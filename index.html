@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoiris Cleaning Service - A Clean Home, A Clear Mind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --text-color: #1f2937;
+            --card-bg: #ffffff;
+            --nav-bg: #ffffff;
+            --footer-bg: #111827;
+            --border-color: #e5e7eb;
+            --hover-bg: #f3f4f6;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .dark-mode {
+            --bg-color: #111827;
+            --text-color: #f9fafb;
+            --card-bg: #1f2937;
+            --nav-bg: #1f2937;
+            --footer-bg: #111827;
+            --border-color: #374151;
+            --hover-bg: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/r2NM3gtN/Whats-App-Image-2025-08-27-at-08-42-20-28cb0154.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .service-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .service-card.expanded {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            margin: 1rem 0;
+        }
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .service-card.expanded .service-details {
+            max-height: 500px;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .testimonial-card {
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            background-color: var(--hover-bg);
+        }
+        .active-nav {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        .nav-bg {
+            background-color: var(--nav-bg);
+        }
+        .footer-bg {
+            background-color: var(--footer-bg);
+        }
+        .card-bg {
+            background-color: var(--card-bg);
+        }
+        .border-color {
+            border-color: var(--border-color);
+        }
+        .bg-hover {
+            background-color: var(--hover-bg);
+        }
+        .shadow-custom {
+            box-shadow: var(--shadow);
+        }
+        .shadow-lg-custom {
+            box-shadow: var(--shadow-lg);
+        }
+        .toggle-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .toggle-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="toggle-button">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="nav-bg shadow-custom sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 cursor-pointer" onclick="location.reload()">
+                        <img src="https://i.ibb.co/MyRswGRJ/ZOIRIS-Cleaning-Service-Logo-Design.png" alt="Zoiris Cleaning service" class="h-16">
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 ml-auto">
+                    <a href="#home" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link active-nav transition duration-300 hover:scale-105">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">About</a>
+                    <a href="#services" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Services</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Testimonials</a>
+                    <a href="#blog" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Blog</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Contact</a>
+                    <a href="#location" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Location</a>
+                    <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">Get a Quote</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden nav-bg border-t border-color">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile active-nav">Home</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">About</a>
+                <a href="#services" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Services</a>
+                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Testimonials</a>
+                <a href="#blog" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Blog</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Contact</a>
+                <a href="#location" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Location</a>
+                <a href="#quote" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-base font-medium mt-2 transition duration-300">Get a Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-image h-screen flex items-center justify-center text-white relative">
+        <div class="text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fadeIn">A Clean Home, A Clear Mind</h1>
+            <p class="text-xl md:text-2xl mb-8">Professional cleaning services for homes and businesses in your area. Book online 24/7!</p>
+            <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105">
+                Get a Free Quote
+            </a>
+        </div>
+        <div class="absolute bottom-10 left-0 right-0 text-center">
+            <a href="#about" class="text-white animate-bounce inline-block">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 card-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    About Zoiris Cleaning Service
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <img src="https://i.ibb.co/x8Rd9N9p/Whats-App-Image-2025-08-27-at-08-42-19-1659b607.jpg" 
+                         alt="yy"class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Our Story</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        At Zoiris Cleaning Service, our journey began with a simple idea — to bring freshness, comfort, and peace of mind into every space we touch. What started as a small, family-inspired venture has grown into a trusted cleaning service, built on dedication, integrity, and a passion for excellence.
+
+                        We recognized that people don’t just want cleaning — they want a service they can rely on, a team that understands their needs, and results that truly make a difference. From busy households to bustling offices, we’ve made it our mission to create spotless environments where people can live, work, and thrive.
+
+                       Every member of our team is trained to deliver detail-oriented, eco-friendly, and personalized cleaning solutions. We believe that a clean space is more than just appearances — it’s about health, comfort, and the positive energy it brings.
+
+                      Today, Zoiris Cleaning Service continues to grow, but our promise remains the same: to treat every home and workplace with the same care as if it were our own.
+                    </p>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Our Values</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                <i class="fas fa-hand-holding-heart text-blue-500 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Honesty</h4>
+                                <p class="mt-1 text-gray-600">Transparent pricing and honest assessments</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                <i class="fas fa-clock text-blue-500 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Punctuality</h4>
+                                <p class="mt-1 text-gray-600">We value your time and arrive as scheduled</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                <i class="fas fa-leaf text-blue-500 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Eco-Friendly</h4>
+                                <p class="mt-1 text-gray-600">Using environmentally safe cleaning products</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                <i class="fas fa-medal text-blue-500 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Quality</h4>
+                                <p class="mt-1 text-gray-600">Consistent, high-quality cleaning standards</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#services" class="inline-flex items-center text-blue-500 font-medium hover:text-blue-700">
+                        View our services
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-hover">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Our Cleaning Services
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
+                <p class="mt-6 max-w-2xl mx-auto text-gray-500">
+                    Professional cleaning services tailored to your needs
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
+                     onclick="this.classList.toggle('expanded')">
+                    <div class="h-48 bg-blue-50 flex items-center justify-center">
+                        <img src="https://i.ibb.co/xVwj2hV/Home-Cleaning-Service-in-Action.png" alt="Residential Cleaning" /></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">🏡 Residential Cleaning</h3>
+                        <p class="text-gray-600 mb-4">Regular, deep, and move-in/out cleaning.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">2-bedroom apartment</span>
+                        </div>
+                        <div class="mt-2 text-green-600 text-sm font-medium">
+                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
+                        </div>
+
+                        <div class="mt-4">
+                        <a href="#quote" class="text-blue-500 font-bold">
+                        Get a Custom Quote
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+
+                        <div class="service-details">
+                             <h4 class="font-bold text-gray-800 mt-4 mb-2">Estimated Price:</h4>
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>✨ Dusting all surfaces and furniture</li>
+                                <li>🧽 Vacuuming & mopping floors</li>
+                                <li>🍳 Kitchen cleaning (appliances, counters, sink)</li>
+                                <li>🚿 Bathroom sanitization (toilets, showers, sinks, mirrors)</li>
+                                <li>🛏️ Bed making & linen changing</li>
+                                <li>🗑️ Trash removal</li>
+                            </ul>
+                            
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>✅ Weekly (most popular)</li>
+                                <li>✅ Bi-weekly</li>
+                                <li>✅ Monthly</li>
+                                <li>✅ One-time deep cleaning</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
+                     onclick="this.classList.toggle('expanded')">
+                    <div class="h-48 bg-blue-50 flex items-center justify-center">
+                        <img src="https://i.ibb.co/mfTgZTC/Seasonal-Deep-Cleaning-Tips.png" alt="Residential Cleaning" /></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">🧼 Deep Cleaning</h3>
+                        <p class="text-gray-600 mb-4">Kitchens, bathrooms, and detailed sanitization.</p>
+                        <div class="flex justify-between items-center">
+
+                            <span class="text-sm text-gray-500">Deep Cleaning</span>
+                        </div>
+                        <div class="mt-2 text-green-600 text-sm font-medium">
+                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
+                        </div>
+
+                        <div class="mt-4">
+                        <a href="#quote" class="text-blue-500 font-bold">
+                        Get a Custom Quote
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        
+                        <div class="service-details">
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>🧽 Scrubbing and disinfecting kitchens & bathrooms</li>
+                                <li>🍳 Cleaning inside appliances (oven, fridge, microwave)</li>
+                                <li>🪵 Washing baseboards, doors & trim</li>
+                                <li>💡 Dusting vents, blinds & light fixtures)</li>
+                                <li>🧹 Shampooing carpets or detailed floor cleaning</li>
+                                <li>🦠 Removing built-up grime, mold & mildew</li>
+                            </ul>
+                            
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>✅ One-time deep cleaning</li>
+                                <li>✅ Seasonal cleaning (Spring/Fall)</li>
+                                <li>✅ Move-in / Move-out cleaning</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
+                     onclick="this.classList.toggle('expanded')">
+                    <div class="h-48 bg-blue-50 flex items-center justify-center">
+                        <img src="https://i.ibb.co/Xx556fXM/Office-Cleaning-Crew.jpg" alt="Residential Cleaning" /></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">🏢 Commercial Cleaning</h3>
+                        <p class="text-gray-600 mb-4">Offices, retail, and workspaces.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Commercial & Office Cleaning</span>
+                        </div>
+                        <div class="mt-2 text-green-600 text-sm font-medium">
+                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
+                        </div>
+
+                        <div class="mt-4">
+                        <a href="#quote" class="text-blue-500 font-bold">
+                        Get a Custom Quote
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        
+                        <div class="service-details">                       
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>🪑 Dusting & sanitizing desks, chairs & workstations</li>
+                                <li>🗑️ Emptying trash bins & replacing liners</li>
+                                <li>🚻 Cleaning restrooms & breakrooms</li>
+                                <li>🧹 Vacuuming, mopping & carpet care</li>
+                                <li>🖱️ Sanitizing high-touch areas (keyboards, switches, handles)</li>
+                            </ul>
+                            
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>✅ Daily</li>
+                                <li>✅ Weekly</li>
+                                <li>✅ Bi-weekly</li>
+                                <li>✅ Customized schedules</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
+                     onclick="this.classList.toggle('expanded')">
+                    <div class="h-48 bg-blue-50 flex items-center justify-center">
+                        <img src="https://i.ibb.co/cXbxNC7y/airbnb-pixabay-e1584981299557-1.webp" alt="airbnb-pixabay-e1584981299557-1" alt="Residential Cleaning" /></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">🏠 Airbnb & Short-Term Rental Cleaning</h3>
+                        <p class="text-gray-600 mb-4">Fast, reliable turnovers to keep your guests happy and your property five-star ready.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Large Home</span>
+                        </div>
+                        <div class="mt-2 text-green-600 text-sm font-medium">
+                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
+                        </div>
+                        
+                        
+                        <div class="mt-4">
+                        <a href="#quote" class="text-blue-500 font-bold">
+                        Get a Custom Quote
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        
+
+                        <div class="service-details">
+                        
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>⏱️ Quick turnaround cleaning between guests</li>
+                                <li>🛏️ Fresh linens & towel replacement</li>
+                                <li>🛁 Kitchen & bathroom sanitization</li>
+                                <li>🧹 Dusting, vacuuming & mopping floors</li>
+                                <li>📦 Restocking essentials (toiletries, paper products)</li>
+                                <li>🔍 Spot-checking for damages or left items</li>
+                            </ul>
+                            
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>✅ After every checkout (standard)</li>
+                                <li>✅ Weekly deep cleaning add-on</li>
+                                <li>✅ Monthly</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
+                     onclick="this.classList.toggle('expanded')">
+                    <div class="h-48 bg-blue-50 flex items-center justify-center">
+                        <img src="https://i.ibb.co/4nn05G5j/carpetcleaning-UT-768x406.jpg" alt="Residential Cleaning" /></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">🛋️ Carpet & Upholstery Cleaning</h3>
+                        <p class="text-gray-600 mb-4">Deep cleaning that removes dirt, stains, and allergens for a fresher, healthier space.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">per room</span>
+                        </div>
+                        <div class="mt-2 text-green-600 text-sm font-medium">
+                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
+                        </div>
+
+                        <div class="mt-4">
+                        <a href="#quote" class="text-blue-500 font-bold">
+                        Get a Custom Quote
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        
+                        <div class="service-details">
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>🧹 Deep vacuuming to remove dirt & dust</li>
+                                <li>💦 Hot water extraction / steam cleaning</li>
+                                <li>🧴 Stain & odor removal treatments</li>
+                                <li>🛋️ Upholstery cleaning (sofas, chairs, cushions)</li>
+                                <li>🌬️ Allergy reduction (dust mites, pet dander removal)</li>
+                            </ul>
+                            
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>✅ One-time service</li>
+                                <li>✅ Quarterly maintenance</li>
+                                <li>✅ As needed (spills, events, pets)</li>
+                                <li>✅ Monthly</li>
+                            </ul>                     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
+                     onclick="this.classList.toggle('expanded')">
+                    <div class="h-48 bg-blue-50 flex items-center justify-center">
+                         <img src="https://i.ibb.co/7dgK3d8x/intro-1705620388.jpg" alt="Residential Cleaning" /></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">🪟 Window Cleaning</h3>
+                        <p class="text-gray-600 mb-4">Streak-free shine inside and out for a brighter view.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">per window</span>
+                        </div>
+                        <div class="mt-2 text-green-600 text-sm font-medium">
+                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
+                        </div>
+
+                      
+                        <div class="mt-4">
+                        <a href="#quote" class="text-blue-500 font-bold">
+                        Get a Custom Quote
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        
+                        <div class="service-details">
+
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>🧼 Interior & exterior glass cleaning</li>
+                                <li>🪟 Window sills & tracks wiped down</li>
+                                <li>🧴 Screen washing or dusting</li>
+                                <li>✨ Removal of smudges, streaks & water spots</li>
+                            
+                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>✅ One-time service</li>
+                                <li>✅ Quarterly</li>
+                                <li>✅ Bi-annual (Spring/Fall)</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 card-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    What Our Clients Say
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
+                <p class="mt-6 max-w-2xl mx-auto text-gray-500">
+                    Don't just take our word for it - hear from our satisfied customers
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md testimonial-card hover:bg-white hover:shadow-lg hover:border-blue-500 hover:border">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J.">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Sarah J.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Zoiris Cleaning made my apartment look brand new. The team was punctual, professional, and paid attention to every detail. Highly recommend!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael T.">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Michael T.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Reliable and affordable. My office has never been this clean. The team works around our business hours and leaves everything spotless."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Lisa M.">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Lisa M.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "As an Airbnb host, I rely on Zoiris for quick turnovers. They've never let me down, always ensuring my property is guest-ready with same-day service."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-hover">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Cleaning Tips & Insights
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
+                <p class="mt-6 max-w-2xl mx-auto text-gray-500">
+                    Helpful articles to keep your space clean and healthy
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:transform hover:-translate-y-1 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Spring cleaning" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>March 15, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">10 Spring Cleaning Tips for a Fresher Home</h3>
+                        <p class="text-gray-600 mb-4">
+                            Discover our top tips to make your spring cleaning more efficient and effective this year.
+                        </p>
+                        <a href="#blog-post-1" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
+                            Read more
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Eco-friendly cleaning" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>February 28, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>4 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Benefits of Eco-Friendly Cleaning Products</h3>
+                        <p class="text-gray-600 mb-4">
+                            Learn why switching to green cleaning products is better for your health and the environment.
+                        </p>
+                        <a href="#blog-post-2" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
+                            Read more
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Home organization" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>January 10, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>6 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Organizing Your Home: Where to Start</h3>
+                        <p class="text-gray-600 mb-4">
+                            Feeling overwhelmed by clutter? Follow our step-by-step guide to organize your home effectively.
+                        </p>
+                        <a href="#blog-post-3" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
+                            Read more
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a href="#blog-archive" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105">
+                    View All Articles
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Steps Section -->
+    <section class="py-20 card-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Book in Just 3 Easy Steps
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-blue-500 text-3xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Request a Quote</h3>
+                    <p class="text-gray-600">
+                        Fill out our simple form or give us a call to get your personalized cleaning quote.
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-blue-500 text-3xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Schedule Your Service</h3>
+                    <p class="text-gray-600">
+                        Choose a date and time that works best for your schedule.
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-blue-500 text-3xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Enjoy a Clean Space</h3>
+                    <p class="text-gray-600">
+                        Relax while our professional team takes care of your cleaning needs.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105">
+                    Get Started Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section id="quote" class="py-20 bg-blue-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold sm:text-4xl">
+                    Get Your Free Quote Today
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-white mx-auto"></div>
+                <p class="mt-6 max-w-2xl mx-auto">
+                    Complete the form below and we'll get back to you within 24 hours with a personalized quote
+                </p>
+            </div>
+            <form id="quoteForm" class="bg-white rounded-lg shadow-xl p-8 text-gray-800">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                        <input type="text" id="name" name="name" required 
+                               class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required 
+                               class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Service Needed *</label>
+                        <select id="service" name="service" required 
+                                class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Select a service</option>
+                            <option value="residential">Residential Cleaning</option>
+                            <option value="deep">Deep Cleaning</option>
+                            <option value="commercial">Commercial/Office Cleaning</option>
+                            <option value="airbnb">Airbnb/Short-Term Rental Cleaning</option>
+                            <option value="carpet">Carpet & Upholstery Cleaning</option>
+                            <option value="windows">Window Cleaning</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="size" class="block text-sm font-medium text-gray-700 mb-1">Home/Office Size</label>
+                        <select id="size" name="size" 
+                                class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Select size</option>
+                            <option value="studio">Studio</option>
+                            <option value="1-bed">1 Bedroom</option>
+                            <option value="2-bed">2 Bedrooms</option>
+                            <option value="3-bed">3 Bedrooms</option>
+                            <option value="4-bed">4+ Bedrooms</option>
+                            <option value="small-office">Small Office (<1000 sq ft)</option>
+                            <option value="medium-office">Medium Office (1000-5000 sq ft)</option>
+                            <option value="large-office">Large Office (5000+ sq ft)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Preferred Date</label>
+                        <input type="date" id="date" name="date" 
+                               class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Additional Details</label>
+                    <textarea id="message" name="message" rows="4" 
+                              class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105">
+                        Submit Request
+                    </button>
+                </div>
+            </form>
+            <div id="formSuccess" class="hidden mt-8 p-6 bg-green-100 text-green-800 rounded-lg text-center">
+                <i class="fas fa-check-circle text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Thank You!</h3>
+                <p>A member of Zoiris Cleaning Service will reach out with your personalized quote within 24 hours.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 card-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Contact Us
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
+                <p class="mt-6 max-w-2xl mx-auto text-gray-500">
+                    Get in touch with our friendly team
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                    <i class="fas fa-phone text-blue-500"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Phone</h4>
+                                    <p class="mt-1 text-gray-600">(251) 497-8136</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                    <i class="fas fa-envelope text-blue-500"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Email</h4>
+                                    <p class="mt-1 text-gray-600">zoiriscleaningservices@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                    <i class="fas fa-map-marker-alt text-blue-500"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Service Area</h4>
+                                    <p class="mt-1 text-gray-600">Downtown Mobile,
+                                    Midtown Mobile,
+                                    West Mobile,
+                                    Eastern Shore,
+                                    Spanish Fort,
+                                    Daphne,
+                                    Fairhope.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                    <i class="fas fa-clock text-blue-500"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Business Hours</h4>
+                                    <p class="mt-1 text-gray-600">24/7</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                    <i class="fas fa-calendar-check text-blue-500"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">24/7 Booking</h4>
+                                    <p class="mt-1 text-gray-600">Book Now online <a href="book.Zoiriscleaning.com" class="text-blue-500 hover:underline">book.Zoiriscleaning.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                                <input type="text" id="contact-name" name="contact-name" 
+                                       class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                <input type="email" id="contact-email" name="contact-email" 
+                                       class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="contact-subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                <input type="text" id="contact-subject" name="contact-subject" 
+                                       class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="contact-message" name="contact-message" rows="4" 
+                                          class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" 
+                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Sections -->
+    <section id="blog-post-1" class="py-20 card-bg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4">10 Spring Cleaning Tips for a Fresher Home</h2>
+                <div class="flex items-center text-sm text-gray-500 mb-6">
+                    <span>March 15, 2023</span>
+                    <span class="mx-2">•</span>
+                    <span>5 min read</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                     alt="Spring cleaning" class="w-full h-auto rounded-lg mb-8">
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">Spring cleaning is the perfect opportunity to refresh your home after the long winter months. Here are our top 10 tips to make your spring cleaning more efficient and effective:</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">1. Make a Plan</h3>
+                    <p class="text-gray-600 mb-4">Before you begin, walk through your home and make a list of areas that need attention. Prioritize tasks and break them down by room.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">2. Declutter First</h3>
+                    <p class="text-gray-600 mb-4">Remove items you no longer need before cleaning. Donate, recycle, or discard unused items to make cleaning easier.</p>
+                    <!-- Add remaining tips here -->
+                    <p class="text-gray-600 mt-8">For professional spring cleaning help, <a href="#quote" class="text-blue-500 hover:underline">contact Zoiris Cleaning Service</a> today!</p>
+                </div>
+            </div>
+            <a href="#blog" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Articles
+            </a>
+        </div>
+    </section>
+
+    <section id="blog-post-2" class="py-20 bg-hover">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4">The Benefits of Eco-Friendly Cleaning Products</h2>
+                <div class="flex items-center text-sm text-gray-500 mb-6">
+                    <span>February 28, 2023</span>
+                    <span class="mx-2">•</span>
+                    <span>4 min read</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                     alt="Eco-friendly cleaning" class="w-full h-auto rounded-lg mb-8">
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">Switching to green cleaning products offers numerous benefits for your health and the environment. Here's why you should make the change:</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Healthier Home Environment</h3>
+                    <p class="text-gray-600 mb-4">Traditional cleaners often contain harsh chemicals that can irritate skin, eyes, and respiratory systems. Eco-friendly products use natural ingredients that are safer for your family.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Better for the Planet</h3>
+                    <p class="text-gray-600 mb-4">Green cleaning products biodegrade quickly and don't contribute to water pollution like conventional cleaners do.</p>
+                    <!-- Add remaining content here -->
+                </div>
+            </div>
+            <a href="#blog" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Articles
+            </a>
+        </div>
+    </section>
+
+    <section id="blog-post-3" class="py-20 card-bg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4">Organizing Your Home: Where to Start</h2>
+                <div class="flex items-center text-sm text-gray-500 mb-6">
+                    <span>January 10, 2023</span>
+                    <span class="mx-2">•</span>
+                    <span>6 min read</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                     alt="Home organization" class="w-full h-auto rounded-lg mb-8">
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 mb-4">Feeling overwhelmed by clutter? Follow our step-by-step guide to organize your home effectively and maintain order long-term.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Start Small</h3>
+                    <p class="text-gray-600 mb-4">Begin with a small, manageable area like a junk drawer or single shelf. Completing small spaces builds momentum.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">The Four-Box Method</h3>
+                    <p class="text-gray-600 mb-4">Use four boxes labeled: Keep, Donate, Trash, and Relocate. This system helps make quick decisions about each item.</p>
+                    <!-- Add remaining content here -->
+                </div>
+            </div>
+            <a href="#blog" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Articles
+            </a>
+        </div>
+    </section>
+
+    <section id="blog-archive" class="py-20 bg-hover">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-8">All Articles</h2>
+            <div class="space-y-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">10 Spring Cleaning Tips for a Fresher Home</h3>
+                    <div class="flex items-center text-sm text-gray-500 mb-3">
+                        <span>March 15, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>5 min read</span>
+                    </div>
+                    <p class="text-gray-600 mb-3">Discover our top tips to make your spring cleaning more efficient and effective this year.</p>
+                    <a href="#blog-post-1" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
+                        Read article
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- Repeat for other articles -->
+            </div>
+            <a href="#blog" class="mt-8 text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Blog
+            </a>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="py-20 bg-hover">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Our Location
+                </h2>
+                <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
+                <p class="mt-6 max-w-2xl mx-auto text-gray-500">
+                    Visit us or see our service area
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Service Area</h3>
+                        <p class="text-gray-600 mb-6">
+                            We proudly serve the following areas with our professional cleaning services:
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Downtown Mobile</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Midtown Mobile</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> West Mobile</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Eastern Shore</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Spanish Fort</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Daphne</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Fairhope</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Service Area Locations</h3>
+                        <div class="aspect-w-16 aspect-h-9 mb-6">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3440.486715999041!2d-88.0524669245256!3d30.69404037555503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x889bc6b1b4b3f1a5%3A0x3e8dfd6a5d5a5b0!2sMobile%2C%20AL!5e0!3m2!1sen!2sus!4v1711234567890!5m2!1sen!2sus" 
+                                width="100%" 
+                                height="300" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                class="rounded-lg">
+                            </iframe>
+                        </div>
+                        <div class="text-gray-600">
+                            <p class="mb-2"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> 123 Dauphin St, Mobile, AL 36602</p>
+                            <p class="mb-2"><i class="fas fa-phone text-blue-500 mr-2"></i> (251) 497-8136</p>
+                            <p><i class="fas fa-clock text-blue-500 mr-2"></i> 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-bg text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Zoiris Cleaning</h3>
+                    <p class="text-gray-400">
+                        Professional cleaning services for homes and businesses. A clean space leads to a clear mind.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-facebook fa-beat"></i>
+                        </a>
+                        
+
+                        
+                        <a href="https://www.instagram.com/zoiriscleaningservices/" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-instagram fa-beat"></i>
+                        </a>
+                        
+
+
+                          <a href="https://x.com/zoiriscleaning" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                          <i class="fa-brands fa-twitter fa-beat"></i>
+                        </a>
+
+
+                        
+                        <a href="https://www.linkedin.com/in/zoiriscleaning-ervices-b5b0b2381/" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-linkedin-in fa-beat"></i>
+                        </a>
+
+
+                        <a href="https://www.yelp.com/user_details?userid=7SDy8Urgj43gfYxrR5o2eQ" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-yelp fa-beat"></i>
+                        </a>
+
+
+
+                        <a href="https://www.youtube.com/channel/UCTewa53AZduD2H9J04RogCw" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-youtube fa-beat"></i>
+
+                        </a>
+
+
+                        <a href="https://www.pinterest.com/zoiriolysh/" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-pinterest fa-beat"></i>
+
+                        </a>
+
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition duration-300">Testimonials</a></li>
+                        <li><a href="#blog" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Residential Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Deep Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Commercial Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Airbnb Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Carpet Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Window Cleaning</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">
+                        Subscribe to our newsletter for cleaning tips and special offers.
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" 
+                               class="px-4 py-2 rounded-l-md text-gray-900 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="submit" 
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-md transition duration-300">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    &copy; 2023 Zoiris Cleaning Service. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        // Form submission
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Hide form and show success message
+            this.classList.add('hidden');
+            document.getElementById('formSuccess').classList.remove('hidden');
+            
+            // Scroll to success message
+            document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth' });
+        });
+        // Service card expansion
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Close other expanded cards
+                document.querySelectorAll('.service-card').forEach(otherCard => {
+                    if (otherCard !== this) {
+                        otherCard.classList.remove('expanded');
+                    }
+                });
+            });
+        });
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    
+                    // Scroll to target
+                    targetElement.scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
+                        link.classList.remove('active-nav');
+                    });
+                    
+                    // Add active class to clicked link
+                    if (this.classList.contains('nav-link') || this.classList.contains('nav-link-mobile')) {
+                        this.classList.add('active-nav');
+                    } else {
+                        // Find corresponding nav link and make it active
+                        const correspondingNavLink = document.querySelector(`.nav-link[href="${targetId}"], .nav-link-mobile[href="${targetId}"]`);
+                        if (correspondingNavLink) {
+                            correspondingNavLink.classList.add('active-nav');
+                        }
+                    }
+                }
+            });
+        });
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
+                        link.classList.remove('active-nav');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active-nav');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
