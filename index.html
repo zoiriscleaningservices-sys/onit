@@ -18,17 +18,6 @@
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        .dark-mode {
-            --bg-color: #111827;
-            --text-color: #f9fafb;
-            --card-bg: #1f2937;
-            --nav-bg: #1f2937;
-            --footer-bg: #111827;
-            --border-color: #374151;
-            --hover-bg: #374151;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-        }
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -120,12 +109,6 @@
             transform: scale(1.1);
         }
     </style>
-</head>
-<body class="font-sans">
-    <!-- Dark Mode Toggle -->
-    <button id="darkModeToggle" class="toggle-button">
-        <i class="fas fa-moon"></i>
-    </button>
 
     <!-- Navigation -->
     <nav class="nav-bg shadow-custom sticky top-0 z-50">
@@ -1294,3 +1277,151 @@
             });
         });
     </script>
+
+<!-- Floating Chat Button + Neon Smart Chatbox -->
+<a href="javascript:void(0)" class="zoiris-chat-fab" onclick="toggleChat()">💬</a>
+
+<div id="zoiris-chatbox">
+  <div class="chat-header" onclick="toggleChat()">ZOIRIS Cleaning Services</div>
+  <div class="chat-messages" id="zoiris-messages">
+    <p><strong>ZOIRIS:</strong> Hi 👋 Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>
+  </div>
+
+  <!-- Chat Input -->
+  <div class="chat-input">
+    <input type="text" id="zoiris-input" placeholder="Type your question..." 
+           onkeypress="if(event.key==='Enter'){sendZoiris();}">
+    <button onclick="sendZoiris()">Send</button>
+  </div>
+
+  <!-- Premade Questions -->
+  <div class="chat-quick">
+    <button onclick="quickAsk('What is your phone number?')">📞 Phone</button>
+    <button onclick="quickAsk('What is your email?')">📧 Email</button>
+    <button onclick="quickAsk('What services do you offer?')">🧹 Services</button>
+    <button onclick="quickAsk('How can I book an appointment?')">📅 Booking</button>
+    <button onclick="quickAsk('What is your price?')">💲 Prices</button>
+  </div>
+</div>
+
+<style>
+/* Floating button */
+.zoiris-chat-fab {
+  position:fixed; right:20px; bottom:20px; z-index:9999;
+  display:inline-block; width:55px; height:55px; border-radius:50%;
+  background:#00f7ff; color:#000; font-weight:700; text-decoration:none;
+  box-shadow:0 0 18px #00f7ff, 0 0 38px rgba(0,247,255,.6);
+  font-family:system-ui,Arial,sans-serif; font-size:22px;
+  text-align:center; line-height:55px;
+}
+.zoiris-chat-fab:hover{ filter:brightness(1.1); }
+
+/* Chatbox */
+#zoiris-chatbox {
+  position:fixed; right:20px; bottom:80px; width:300px; display:none;
+  flex-direction:column; background:#111; color:#fff; border-radius:12px;
+  box-shadow:0 0 18px #00f7ff, 0 0 38px rgba(0,247,255,.6);
+  font-family:system-ui,Arial,sans-serif; max-height:500px;
+}
+#zoiris-chatbox .chat-header {
+  background:#00f7ff; color:#000; font-weight:bold;
+  padding:10px; cursor:pointer;
+  border-top-left-radius:12px; border-top-right-radius:12px;
+}
+#zoiris-chatbox .chat-messages {
+  height:250px; overflow-y:auto; padding:10px; font-size:14px;
+}
+#zoiris-chatbox .chat-input { display:flex; border-top:1px solid #333; }
+#zoiris-chatbox .chat-input input {
+  flex:1; border:none; padding:10px; font-size:14px;
+  outline:none; background:#222; color:#fff;
+}
+#zoiris-chatbox .chat-input button {
+  background:#00f7ff; border:none; padding:10px; cursor:pointer; color:#000;
+  font-weight:bold;
+}
+/* Quick question buttons */
+.chat-quick {
+  display:flex; flex-wrap:wrap; gap:5px; padding:8px; background:#1a1a1a;
+}
+.chat-quick button {
+  flex:1 1 45%; padding:6px; font-size:12px; cursor:pointer;
+  background:#00f7ff; border:none; border-radius:6px; font-weight:bold; color:#000;
+  box-shadow:0 0 8px #00f7ff;
+}
+.chat-quick button:hover{ filter:brightness(1.1); }
+</style>
+
+<script>
+function toggleChat(){
+  const chat=document.getElementById('zoiris-chatbox');
+  const msgBox=document.getElementById('zoiris-messages');
+  
+  if(chat.style.display==='flex'){
+    // Closing -> reset messages
+    chat.style.display='none';
+    msgBox.innerHTML="<p><strong>ZOIRIS:</strong> Hi 👋 Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>";
+  } else {
+    // Opening
+    chat.style.display='flex';
+  }
+}
+
+// Handles sending user messages + auto replies
+function sendZoiris(customText){
+  const input=document.getElementById('zoiris-input');
+  const msgBox=document.getElementById('zoiris-messages');
+  let text=customText || input.value.trim();
+  if(text!==""){
+    // User message
+    const userMsg=document.createElement('p');
+    userMsg.innerHTML="<strong>You:</strong> "+text;
+    msgBox.appendChild(userMsg);
+
+    // Prepare reply
+    let reply="🤝 Thanks for reaching out! Could you please give me more details?";
+    const q=text.toLowerCase();
+
+    if(q.includes("phone")||q.includes("call")||q.includes("number")){
+      reply="📞 Our phone number is 251-497-8163.";
+    }
+    else if(q.includes("email")||q.includes("gmail")||q.includes("mail")){
+      reply="📧 You can email us at Zoiriscleaningservices@gmail.com.";
+    }
+    else if(q.includes("price")||q.includes("cost")||q.includes("rate")){
+      reply="💲 Our prices vary depending on the service. Contact us for a free personalized quote!";
+    }
+    else if(q.includes("book")||q.includes("schedule")||q.includes("appointment")){
+      reply="📅 You can book in just 3 easy steps on our booking page!";
+    }
+    else if(q.includes("location")||q.includes("area")||q.includes("where")){
+      reply="📍 We proudly serve Mobile, Alabama and nearby areas.";
+    }
+    else if(q.includes("service")||q.includes("clean")){
+      reply="🧹 We provide Home Cleaning, Office Cleaning, Window & Mirror Cleaning, and Deep Cleaning.";
+    }
+    else if(q.includes("hi")||q.includes("hello")||q.includes("hey")){
+      reply="👋 Hello! How can we make your home or office shine today?";
+    }
+    else {
+      reply="✅ Great question! You can always reach us at 📞 251-497-8163 or 📧 Zoiriscleaningservices@gmail.com.";
+    }
+
+    // Send reply
+    setTimeout(()=>{
+      const replyMsg=document.createElement('p');
+      replyMsg.innerHTML="<strong>ZOIRIS:</strong> "+reply;
+      msgBox.appendChild(replyMsg);
+      msgBox.scrollTop=msgBox.scrollHeight;
+    },800);
+
+    input.value="";
+    msgBox.scrollTop=msgBox.scrollHeight;
+  }
+}
+
+// Quick questions button trigger
+function quickAsk(text){
+  sendZoiris(text);
+}
+</script>
