@@ -293,99 +293,70 @@
                 </div>
             </div>
         </div>
+        
+        
+        
+        
+        
+        
+        
         <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden nav-bg border-t border-color">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile active-nav">Home</a>
-                <a href="about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">About</a>
+<div id="mobile-menu" class="hidden md:hidden nav-bg border-t border-color">
+  <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+    <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile active-nav">Home</a>
+    <a href="about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">About</a>
 
-
-
-<!-- Navbar -->
-<nav class="bg-blue-600 text-white">
-  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between py-3">
-    <h1 class="text-2xl font-bold">Zoiris Cleaning</h1>
-
-    <!-- Hamburger (mobile only) -->
-    <button id="menu-btn" class="md:hidden text-2xl">
-      <i class="fas fa-bars"></i>
+    <!-- SERVICES DROPDOWN (Mobile) -->
+    <button onclick="toggleDropdown('mobile-services')" class="w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500">
+      Services ▾
     </button>
+    <div id="mobile-services" class="hidden pl-4 space-y-1">
+      <a href="services/commercial-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Commercial Cleaning</a>
+      <a href="services/deep-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Deep Cleaning</a>
+      <a href="services/house-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">House Cleaning</a>
+      <a href="services/move-in-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Move-In Cleaning</a>
+      <a href="services/move-out-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Move-Out Cleaning</a>
+      <a href="services/vacation-rental-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Vacation Rental Cleaning</a>
+      <a href="services/airbnb-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Airbnb Cleaning</a>
+      <a href="services/post-construction-cleanup.html" class="block py-1 text-gray-600 hover:text-blue-500">Post-Construction Cleanup</a>
+      <a href="services/carpet-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Carpet Cleaning</a>
+      <a href="services/pressure-washing.html" class="block py-1 text-gray-600 hover:text-blue-500">Pressure Washing</a>
+    </div>
 
-    <!-- Menu -->
-    <ul id="menu" class="hidden md:flex space-x-6 flex-col md:flex-row mt-4 md:mt-0">
-      
-      <!-- SERVICES -->
-      <li class="nav-item relative">
-        <button class="nav-link flex items-center gap-1 px-2 py-1" onclick="toggleDropdown('servicesDropdown')">
-          Services ▾
-        </button>
-        <ul id="servicesDropdown" class="hidden md:absolute bg-white text-black md:mt-2 rounded shadow-md md:w-56">
-          <li><a href="services/commercial-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Commercial Cleaning</a></li>
-          <li><a href="services/deep-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Deep Cleaning</a></li>
-          <li><a href="services/house-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">House Cleaning</a></li>
-          <li><a href="services/move-in-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Move-In Cleaning</a></li>
-          <li><a href="services/move-out-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Move-Out Cleaning</a></li>
-          <li><a href="services/vacation-rental-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Vacation Rental Cleaning</a></li>
-          <li><a href="services/airbnb-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Airbnb Cleaning</a></li>
-          <li><a href="services/post-construction-cleanup.html" class="block px-4 py-2 hover:bg-gray-200">Post-Construction Cleanup</a></li>
-          <li><a href="services/carpet-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Carpet Cleaning</a></li>
-          <li><a href="services/pressure-washing.html" class="block px-4 py-2 hover:bg-gray-200">Pressure Washing</a></li>
-        </ul>
-      </li>
+    <!-- LOCATIONS DROPDOWN (Mobile) -->
+    <button onclick="toggleDropdown('mobile-locations')" class="w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500">
+      Locations ▾
+    </button>
+    <div id="mobile-locations" class="hidden pl-4 space-y-1">
+      <a href="locations/downtown-mobile.html" class="block py-1 text-gray-600 hover:text-blue-500">Downtown Mobile</a>
+      <a href="locations/midtown-mobile.html" class="block py-1 text-gray-600 hover:text-blue-500">Midtown Mobile</a>
+      <a href="locations/west-mobile.html" class="block py-1 text-gray-600 hover:text-blue-500">West Mobile</a>
+      <a href="locations/fairhope.html" class="block py-1 text-gray-600 hover:text-blue-500">Fairhope</a>
+      <a href="locations/daphne.html" class="block py-1 text-gray-600 hover:text-blue-500">Daphne</a>
+      <a href="locations/spanish-fort.html" class="block py-1 text-gray-600 hover:text-blue-500">Spanish Fort</a>
+      <a href="locations/eastern-shore.html" class="block py-1 text-gray-600 hover:text-blue-500">Eastern Shore</a>
+    </div>
 
-      <!-- LOCATIONS -->
-      <li class="nav-item relative">
-        <button class="nav-link flex items-center gap-1 px-2 py-1" onclick="toggleDropdown('locationsDropdown')">
-          Locations ▾
-        </button>
-        <ul id="locationsDropdown" class="hidden md:absolute bg-white text-black md:mt-2 rounded shadow-md md:w-56">
-          <li><a href="locations/downtown-mobile.html" class="block px-4 py-2 hover:bg-gray-200">Downtown Mobile</a></li>
-          <li><a href="locations/midtown-mobile.html" class="block px-4 py-2 hover:bg-gray-200">Midtown Mobile</a></li>
-          <li><a href="locations/west-mobile.html" class="block px-4 py-2 hover:bg-gray-200">West Mobile</a></li>
-          <li><a href="locations/fairhope.html" class="block px-4 py-2 hover:bg-gray-200">Fairhope</a></li>
-          <li><a href="locations/daphne.html" class="block px-4 py-2 hover:bg-gray-200">Daphne</a></li>
-          <li><a href="locations/spanish-fort.html" class="block px-4 py-2 hover:bg-gray-200">Spanish Fort</a></li>
-          <li><a href="locations/eastern-shore.html" class="block px-4 py-2 hover:bg-gray-200">Eastern Shore</a></li>
-        </ul>
-      </li>
-    </ul>
+    <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Testimonials</a>
+    <a href="blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Blog</a>
+    <a href="contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Contact</a>
+
+    <a href="#quote" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-base font-medium mt-2 transition duration-300">
+      Get a Quote
+    </a>
   </div>
-</nav>
+</div>
 
 <script>
-  // Toggle mobile menu
-  document.getElementById("menu-btn").addEventListener("click", function() {
-    document.getElementById("menu").classList.toggle("hidden");
-  });
-
-  // Toggle dropdowns
   function toggleDropdown(id) {
     document.getElementById(id).classList.toggle("hidden");
   }
-
-  // Auto-close menu on mobile when a link is clicked
-  document.querySelectorAll("#menu a").forEach(link => {
-    link.addEventListener("click", () => {
-      if (window.innerWidth < 768) {
-        document.getElementById("menu").classList.add("hidden");
-      }
-    });
-  });
 </script>
 
 
 
 
 
-
-                
-                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Testimonials</a>
-                <a href="Blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Blog</a>
-                <a href="contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Contact</a>
-                <a href="#quote" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-base font-medium mt-2 transition duration-300">Get a Quote</a>
-            </div>
-        </div>
-    </nav>
 
     <!-- CONTACT BAR (under navbar) -->
 <div class="bg-blue-500 text-white text-sm w-full">
@@ -1835,6 +1806,9 @@ function quickAsk(text){
   sendZoiris(text);
 }
 </script>
+
+
+
 
 
 
