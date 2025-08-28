@@ -280,7 +280,7 @@
 
 
 
-                
+
 
 
 
@@ -301,6 +301,77 @@
 
 
 
+<!-- Navbar -->
+<nav class="bg-blue-600 text-white">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between py-3">
+    <h1 class="text-2xl font-bold">Zoiris Cleaning</h1>
+
+    <!-- Hamburger (mobile only) -->
+    <button id="menu-btn" class="md:hidden text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Menu -->
+    <ul id="menu" class="hidden md:flex space-x-6 flex-col md:flex-row mt-4 md:mt-0">
+      
+      <!-- SERVICES -->
+      <li class="nav-item relative">
+        <button class="nav-link flex items-center gap-1 px-2 py-1" onclick="toggleDropdown('servicesDropdown')">
+          Services ▾
+        </button>
+        <ul id="servicesDropdown" class="hidden md:absolute bg-white text-black md:mt-2 rounded shadow-md md:w-56">
+          <li><a href="services/commercial-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Commercial Cleaning</a></li>
+          <li><a href="services/deep-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Deep Cleaning</a></li>
+          <li><a href="services/house-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">House Cleaning</a></li>
+          <li><a href="services/move-in-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Move-In Cleaning</a></li>
+          <li><a href="services/move-out-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Move-Out Cleaning</a></li>
+          <li><a href="services/vacation-rental-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Vacation Rental Cleaning</a></li>
+          <li><a href="services/airbnb-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Airbnb Cleaning</a></li>
+          <li><a href="services/post-construction-cleanup.html" class="block px-4 py-2 hover:bg-gray-200">Post-Construction Cleanup</a></li>
+          <li><a href="services/carpet-cleaning.html" class="block px-4 py-2 hover:bg-gray-200">Carpet Cleaning</a></li>
+          <li><a href="services/pressure-washing.html" class="block px-4 py-2 hover:bg-gray-200">Pressure Washing</a></li>
+        </ul>
+      </li>
+
+      <!-- LOCATIONS -->
+      <li class="nav-item relative">
+        <button class="nav-link flex items-center gap-1 px-2 py-1" onclick="toggleDropdown('locationsDropdown')">
+          Locations ▾
+        </button>
+        <ul id="locationsDropdown" class="hidden md:absolute bg-white text-black md:mt-2 rounded shadow-md md:w-56">
+          <li><a href="locations/downtown-mobile.html" class="block px-4 py-2 hover:bg-gray-200">Downtown Mobile</a></li>
+          <li><a href="locations/midtown-mobile.html" class="block px-4 py-2 hover:bg-gray-200">Midtown Mobile</a></li>
+          <li><a href="locations/west-mobile.html" class="block px-4 py-2 hover:bg-gray-200">West Mobile</a></li>
+          <li><a href="locations/fairhope.html" class="block px-4 py-2 hover:bg-gray-200">Fairhope</a></li>
+          <li><a href="locations/daphne.html" class="block px-4 py-2 hover:bg-gray-200">Daphne</a></li>
+          <li><a href="locations/spanish-fort.html" class="block px-4 py-2 hover:bg-gray-200">Spanish Fort</a></li>
+          <li><a href="locations/eastern-shore.html" class="block px-4 py-2 hover:bg-gray-200">Eastern Shore</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Toggle mobile menu
+  document.getElementById("menu-btn").addEventListener("click", function() {
+    document.getElementById("menu").classList.toggle("hidden");
+  });
+
+  // Toggle dropdowns
+  function toggleDropdown(id) {
+    document.getElementById(id).classList.toggle("hidden");
+  }
+
+  // Auto-close menu on mobile when a link is clicked
+  document.querySelectorAll("#menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth < 768) {
+        document.getElementById("menu").classList.add("hidden");
+      }
+    });
+  });
+</script>
 
 
 
@@ -1764,6 +1835,8 @@ function quickAsk(text){
   sendZoiris(text);
 }
 </script>
+
+
 
 
 
