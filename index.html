@@ -298,11 +298,41 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile active-nav">Home</a>
                 <a href="about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">About</a>
-                <a href="#services" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Services</a>
+
+
+                <!-- SERVICES DROPDOWN (Mobile) -->
+    <button onclick="toggleDropdown('mobile-services')" class="w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500">
+      Services ▾
+    </button>
+    <div id="mobile-services" class="hidden pl-4 space-y-1">
+      <a href="services/commercial-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Commercial Cleaning</a>
+      <a href="services/deep-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Deep Cleaning</a>
+      <a href="services/house-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">House Cleaning</a>
+      <a href="services/move-in-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Move-In Cleaning</a>
+      <a href="services/move-out-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Move-Out Cleaning</a>
+      <a href="services/vacation-rental-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Vacation Rental Cleaning</a>
+      <a href="services/airbnb-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Airbnb Cleaning</a>
+      <a href="services/post-construction-cleanup.html" class="block py-1 text-gray-600 hover:text-blue-500">Post-Construction Cleanup</a>
+      <a href="services/carpet-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Carpet Cleaning</a>
+      <a href="services/pressure-washing.html" class="block py-1 text-gray-600 hover:text-blue-500">Pressure Washing</a>
+    </div>
+
+    <!-- LOCATIONS DROPDOWN (Mobile) -->
+    <button onclick="toggleDropdown('mobile-locations')" class="w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500">
+      Locations ▾
+    </button>
+    <div id="mobile-locations" class="hidden pl-4 space-y-1">
+      <a href="locations/downtown-mobile.html" class="block py-1 text-gray-600 hover:text-blue-500">Downtown Mobile</a>
+      <a href="locations/midtown-mobile.html" class="block py-1 text-gray-600 hover:text-blue-500">Midtown Mobile</a>
+      <a href="locations/west-mobile.html" class="block py-1 text-gray-600 hover:text-blue-500">West Mobile</a>
+      <a href="locations/fairhope.html" class="block py-1 text-gray-600 hover:text-blue-500">Fairhope</a>
+      <a href="locations/daphne.html" class="block py-1 text-gray-600 hover:text-blue-500">Daphne</a>
+      <a href="locations/spanish-fort.html" class="block py-1 text-gray-600 hover:text-blue-500">Spanish Fort</a>
+      <a href="locations/eastern-shore.html" class="block py-1 text-gray-600 hover:text-blue-500">Eastern Shore</a>
+    </div>
                 <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Testimonials</a>
                 <a href="Blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Blog</a>
                 <a href="contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Contact</a>
-                <a href="#location" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Location</a>
                 <a href="#quote" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-base font-medium mt-2 transition duration-300">Get a Quote</a>
             </div>
         </div>
@@ -1756,11 +1786,6 @@ function quickAsk(text){
   sendZoiris(text);
 }
 </script>
-
-
-
-
-
 
 
 
