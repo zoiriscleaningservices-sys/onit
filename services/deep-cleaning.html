@@ -1,11 +1,158 @@
-<!DOCTYPE html><html lang='en'><head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <title>Zoiris</title>
-<meta name="description" content="Deep Cleaning in Mobile, Alabama — professional, reliable, and detail-focused.">
-</head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoiris Cleaning Service - A Clean Home, A Clear Mind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+
+
+
+
+
+ /* Neon cyber hover effect */
+.dropdown a:hover {
+  background: #0ff; /* neon cyan background */
+  color: #111; 
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff inset;
+  border-radius: 6px;
+  transition: all 0.25s ease-in-out;
+}
+
+
+
+
+        :root {
+            --bg-color: #f9fafb;
+            --text-color: #1f2937;
+            --card-bg: #ffffff;
+            --nav-bg: #ffffff;
+            --footer-bg: #111827;
+            --border-color: #e5e7eb;
+            --hover-bg: #f3f4f6;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/r2NM3gtN/Whats-App-Image-2025-08-27-at-08-42-20-28cb0154.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .service-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .service-card.expanded {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            margin: 1rem 0;
+        }
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .service-card.expanded .service-details {
+            max-height: 500px;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .testimonial-card {
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            background-color: var(--hover-bg);
+        }
+        .active-nav {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        .nav-bg {
+            background-color: var(--nav-bg);
+        }
+        .footer-bg {
+            background-color: var(--footer-bg);
+        }
+        .card-bg {
+            background-color: var(--card-bg);
+        }
+        .border-color {
+            border-color: var(--border-color);
+        }
+        .bg-hover {
+            background-color: var(--hover-bg);
+        }
+        .shadow-custom {
+            box-shadow: var(--shadow);
+        }
+        .shadow-lg-custom {
+            box-shadow: var(--shadow-lg);
+        }
+        .toggle-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .toggle-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+
+    <!-- Navigation -->
+    <nav class="nav-bg shadow-custom sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 cursor-pointer" onclick="location.reload()">
+                        <img src="https://i.ibb.co/MyRswGRJ/ZOIRIS-Cleaning-Service-Logo-Design.png" alt="Zoiris Cleaning service" class="h-16">
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 ml-auto">
+                    <a href="../index.html" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link active-nav transition duration-300 hover:scale-105 ">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105 ">About</a>
+                    
+                
+
+
+
+
+      
+
+
+
+
+<!-- MOBILE + DESKTOP NAVBAR -->
 <style>
   .site-nav{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.06);position:relative;z-index:50}
   .site-nav .wrap{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
@@ -22,6 +169,8 @@
   .dropdown a:hover{background:#f4f6f8}
   .btn{background:#1d4ed8;color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none}
   .btn:hover{background:#173ea8}
+
+  /* --- MOBILE STYLES --- */
   .hamburger{display:none;font-size:28px;cursor:pointer;border:none;background:none}
   @media(max-width:768px){
     .menu{display:none;flex-direction:column;align-items:flex-start;gap:0;width:100%;background:#fff;border-top:1px solid #eee}
@@ -31,19 +180,20 @@
     .dropdown{position:static;box-shadow:none;border:none;padding:0;width:100%;display:none}
     .dropdown.open{display:block}
     .dropdown a{padding:12px 30px}
-    .hamburger{display:block}
   }
 </style>
 
-<nav class="site-nav">
-  <div class="wrap">
-    <a href="../index.html" class="brand"><img src="../images/icon-1.svg" alt="Zoiris Cleaning"></a>
+
+    <!-- Hamburger (mobile only) -->
     <button class="hamburger" aria-label="Toggle menu">☰</button>
-    <ul class="menu">
-      <li class="nav-item has-dropdown">
-        <a href="#" class="nav-link">Services ▾</a>
-        <ul class="dropdown">
-          <li><a href="../services/commercial-cleaning.html">Commercial Cleaning</a></li>
+
+<!-- Menu -->
+<ul class="menu">
+  <!-- SERVICES -->
+  <li class="nav-item has-dropdown">
+    <a href="#" class="nav-link">Services ▾</a>
+    <ul class="dropdown">
+      <li><a href="../services/commercial-cleaning.html">Commercial Cleaning</a></li>
           <li><a href="../services/deep-cleaning.html">Deep Cleaning</a></li>
           <li><a href="../services/house-cleaning.html">House Cleaning</a></li>
           <li><a href="../services/move-in-cleaning.html">Move-In Cleaning</a></li>
@@ -53,82 +203,724 @@
           <li><a href="../services/post-construction-cleanup.html">Post-Construction Cleanup</a></li>
           <li><a href="../services/carpet-cleaning.html">Carpet Cleaning</a></li>
           <li><a href="../services/pressure-washing.html">Pressure Washing</a></li>
-        </ul>
-      </li>
-      <li class="nav-item has-dropdown">
-        <a href="#" class="nav-link">Locations ▾</a>
-        <ul class="dropdown">
-          <li><a href="../locations/downtown-mobile.html">Downtown Mobile</a></li>
+    </ul>
+  </li>
+
+  <!-- LOCATIONS -->
+  <li class="nav-item has-dropdown">
+    <a href="#" class="nav-link">Locations ▾</a>
+    <ul class="dropdown">
+      <li><a href="../locations/downtown-mobile.html">Downtown Mobile</a></li>
           <li><a href="../locations/midtown-mobile.html">Midtown Mobile</a></li>
           <li><a href="../locations/west-mobile.html">West Mobile</a></li>
           <li><a href="../locations/fairhope.html">Fairhope</a></li>
           <li><a href="../locations/daphne.html">Daphne</a></li>
           <li><a href="../locations/spanish-fort.html">Spanish Fort</a></li>
           <li><a href="../locations/eastern-shore.html">Eastern Shore</a></li>
-        </ul>
-      </li>
-      <li><a href="../index.html#quote" class="btn">Get a Quote</a></li>
     </ul>
-  </div>
-</nav>
+  </li>
+</ul>
 
-<header style="position:relative;height:44vh;min-height:280px;color:#fff">
-  <div style="position:absolute;inset:0;background:url('../images/hero-generic.jpg') center/cover no-repeat"></div>
-  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.45))"></div>
-  <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:40px 16px">
-    <nav aria-label="breadcrumb" style="font-size:14px;opacity:.9"><a href="../index.html" style="color:#e2e8f0;text-decoration:underline">Home</a> → Deep Cleaning</nav>
-    <h1 style="margin:8px 0 6px;font-size:44px;font-weight:800;letter-spacing:-.02em">Deep Cleaning</h1>
-    <p style="margin:0;font-size:18px;color:#e2e8f0">Top-to-bottom detail for built-up grime and hidden dust.</p>
-    <div style="margin-top:16px">
-      <a class="btn" href="../index.html#quote">Get a Free Quote</a>
-    </div>
-  </div>
-</header>
 
-<section style="padding:40px 16px;background:#fff">
-  <div style="max-width:1100px;margin:0 auto">
-    <h2 style="font-size:28px;margin:0 0 14px">What’s included</h2>
-    <ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;color:#334155"><li>✓ Baseboards, vents, light fixtures, trim</li><li>✓ Kitchen &amp; bath deep scrub</li><li>✓ Inside appliances (on request)</li><li>✓ High-touch sanitizing</li></ul>
-  </div>
-</section>
-
-<section style="padding:40px 16px;background:#f8fafc">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
-    <img src="../images/gallery-1.jpg" alt="Cleaning gallery 1" style="width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid #e5e7eb">
-    <img src="../images/gallery-2.jpg" alt="Cleaning gallery 2" style="width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid #e5e7eb">
-    <img src="../images/gallery-3.jpg" alt="Cleaning gallery 3" style="width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid #e5e7eb">
-  </div>
-</section>
-
-<section id="contact" style="padding:40px 16px;background:#fff">
-  <div style="max-width:1100px;margin:0 auto">
-    <h2 style="font-size:28px;margin:0 0 10px">Request a Free Quote</h2>
-    <p style="color:#475569;margin:0 0 20px">Tell us about your space and preferred schedule. We’ll reply fast.</p>
-    <form onsubmit="event.preventDefault(); this.reset(); document.getElementById('thanks').style.display='block';" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:16px">
-      <input type="text" name="name" placeholder="Name" required style="padding:12px;border:1px solid #e5e7eb;border-radius:10px">
-      <input type="email" name="email" placeholder="Email" required style="padding:12px;border:1px solid #e5e7eb;border-radius:10px">
-      <input type="tel" name="phone" placeholder="Phone" required style="padding:12px;border:1px solid #e5e7eb;border-radius:10px">
-      <textarea name="message" placeholder="Tell us about your place..." rows="3" style="grid-column:1/-1;padding:12px;border:1px solid #e5e7eb;border-radius:10px"></textarea>
-      <button class="btn" type="submit" style="grid-column:1/-1;width:max-content">Send Request</button>
-    </form>
-    <div id="thanks" style="display:none;margin-top:10px;color:#0a7a3d;font-weight:600">Thanks! We received your request. We’ll reach out shortly.</div>
-    <div style="margin-top:16px"><a class="btn" href="../index.html#quote">Go to the main quote form</a></div>
-  </div>
-</section>
-<footer style='padding:28px 16px;background:#0f172a;color:#cbd5e1'><div style='max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap'><div>&copy; Zoiris Cleaning</div><a href='../index.html#quote' class='btn'>Get a Quote</a></div></footer>
 <script>
 (function () {
   const hamburger = document.querySelector('.hamburger');
   const menu = document.querySelector('.menu');
   const items = document.querySelectorAll('.nav-item.has-dropdown');
-  if(hamburger){hamburger.addEventListener('click', () => menu.classList.toggle('open'));}
+
+  // Toggle mobile menu
+  hamburger.addEventListener('click', () => {
+    menu.classList.toggle('open');
+  });
+
+  // Desktop hover + mobile tap toggle
   items.forEach(item => {
     const link = item.querySelector('.nav-link');
     const dropdown = item.querySelector('.dropdown');
-    item.addEventListener('mouseenter', () => { if (window.innerWidth > 768) dropdown.classList.add('open'); });
-    item.addEventListener('mouseleave', () => { if (window.innerWidth > 768) dropdown.classList.remove('open'); });
-    link.addEventListener('click', e => { if (window.innerWidth <= 768) { e.preventDefault(); dropdown.classList.toggle('open'); } });
+
+    // Hover for desktop
+    item.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) dropdown.classList.add('open');
+    });
+    item.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) dropdown.classList.remove('open');
+    });
+
+    // Tap for mobile
+    link.addEventListener('click', e => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+      }
+    });
   });
 })();
 </script>
-</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <a href="#testimonials" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Testimonials</a>
+                    <a href="#blog" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Blog</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Contact</a>
+
+
+
+                
+
+
+
+                    <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 fa-beat">Get a Quote</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden nav-bg border-t border-color">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile active-nav">Home</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">About</a>
+                <a href="#services" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Services</a>
+                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Testimonials</a>
+                <a href="#blog" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Blog</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Contact</a>
+                <a href="#location" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Location</a>
+                <a href="#quote" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-base font-medium mt-2 transition duration-300">Get a Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTACT BAR (under navbar) -->
+<div class="bg-blue-500 text-white text-sm w-full">
+  <div class="max-w-6xl mx-auto px-4 py-2 flex flex-col md:flex-row justify-between items-center">
+    
+    <!-- Left: Phone & Email -->
+    <div class="flex flex-col md:flex-row md:space-x-6 text-center md:text-left">
+      <a href="tel:2514978163" class="flex items-center justify-center space-x-2 hover:underline">
+        <i class="fas fa-phone-alt fa-beat"></i>
+        <span>(251) 497-8163</span>
+      </a>
+      <a href="mailto:zoiriscleaningservices@gmail.com" class="flex items-center justify-center space-x-2 mt-1 md:mt-0 hover:underline">
+        <i class="fas fa-envelope fa-beat"></i>
+        <span>zoiriscleaningservices@gmail.com</span>
+      </a>
+    </div>
+
+    <!-- Right: Social Icons -->
+    <div class="flex space-x-2 mt-2 md:mt-0">
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-facebook-f fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-instagram fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-twitter fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-linkedin-in fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-yelp fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-youtube fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-pinterest-p fa-beat"></i>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+    <!-- HERO -->
+    <section id="home" class="relative hero h-[68vh] flex items-center justify-center text-center text-white">
+        <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=1600&auto=format&fit=crop" alt="Deep Cleaning Hero" class="absolute inset-0 w-full h-full object-cover">
+        <div class="relative z-10 px-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold drop-shadow">Deep Cleaning Services</h1>
+            <p class="mt-4 text-lg max-w-2xl mx-auto">Transform your home with our top-to-bottom deep cleaning. Perfect for seasonal refreshes, move-ins, or special occasions.</p>
+            <a href="#quote" class="mt-6 inline-block bg-white text-blue-700 px-6 py-3 rounded-lg font-bold hover:bg-gray-100">Request a Quote</a>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-16">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900">About Our Deep Cleaning</h2>
+                <p class="mt-4 text-gray-600 leading-relaxed">
+                    Our deep cleaning service goes beyond the basics—targeting hidden dirt, grime, and bacteria in kitchens, bathrooms, and living areas. We use eco-friendly products to leave every corner of your home sparkling and healthy.
+                </p>
+                <ul class="mt-6 space-y-3 text-gray-700">
+                    <li><i class="fa-solid fa-check text-blue-600 mr-2"></i> Detailed kitchen & bathroom scrubbing</li>
+                    <li><i class="fa-solid fa-check text-blue-600 mr-2"></i> Appliance cleaning inside & out</li>
+                    <li><i class="fa-solid fa-check text-blue-600 mr-2"></i> Baseboards, vents & ceiling fans</li>
+                </ul>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <img class="rounded-xl shadow" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop" alt="Kitchen deep clean">
+                <img class="rounded-xl shadow" src="https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=1200&auto=format&fit=crop" alt="Bathroom deep clean">
+                <img class="rounded-xl shadow" src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1200&auto=format&fit=crop" alt="Appliance cleaning">
+                <img class="rounded-xl shadow" src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=1200&auto=format&fit=crop" alt="Living room deep clean">
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-gray-900">What’s Included in Deep Cleaning</h2>
+            <p class="mt-3 text-gray-600">We go where regular cleaning doesn’t—removing built-up dirt and sanitizing every surface.</p>
+
+            <div class="mt-10 grid md:grid-cols-3 gap-8">
+                <article class="card p-6 text-left bg-white rounded-lg shadow">
+                    <img src="https://images.unsplash.com/photo-1599249305312-7a2b9bb2aecd?q=80&w=1200&auto=format&fit=crop" alt="Kitchen Deep Clean" class="rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold">Kitchen & Appliances</h3>
+                    <p class="mt-2 text-gray-600">Degreasing stoves, ovens, microwaves, fridges, cabinets, and countertops.</p>
+                </article>
+
+                <article class="card p-6 text-left bg-white rounded-lg shadow">
+                    <img src="https://images.unsplash.com/photo-1569937301721-8e2e6afdd1fb?q=80&w=1200&auto=format&fit=crop" alt="Bathroom Deep Clean" class="rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold">Bathrooms</h3>
+                    <p class="mt-2 text-gray-600">Scrubbing tiles, grout, tubs, showers, sinks, and disinfecting all surfaces.</p>
+                </article>
+
+                <article class="card p-6 text-left bg-white rounded-lg shadow">
+                    <img src="https://images.unsplash.com/photo-1584985593413-6519e2ce6539?q=80&w=1200&auto=format&fit=crop" alt="Detailing" class="rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold">Detail Cleaning</h3>
+                    <p class="mt-2 text-gray-600">Windowsills, vents, baseboards, ceiling fans, and hard-to-reach spaces.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-900">Happy Clients</h2>
+            <div class="mt-10 grid md:grid-cols-3 gap-8">
+                <div class="card p-6 bg-white rounded-lg shadow">
+                    <p class="text-gray-700 italic">“The deep clean was amazing! My kitchen and bathrooms look brand new.”</p>
+                    <p class="mt-4 font-semibold">— Emily R.</p>
+                </div>
+                <div class="card p-6 bg-white rounded-lg shadow">
+                    <p class="text-gray-700 italic">“They got to spots I didn’t even know were dirty. Highly recommend!”</p>
+                    <p class="mt-4 font-semibold">— Michael S.</p>
+                </div>
+                <div class="card p-6 bg-white rounded-lg shadow">
+                    <p class="text-gray-700 italic">“Worth every penny. My whole house smells and feels so fresh now.”</p>
+                    <p class="mt-4 font-semibold">— Jasmine T.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE FORM -->
+    <section id="quote" class="py-20 bg-blue-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold sm:text-4xl">Get a Free Deep Cleaning Quote</h2>
+                <p class="mt-6 max-w-2xl mx-auto">Tell us about your space and we’ll send you a custom estimate within 24 hours.</p>
+            </div>
+            <form class="bg-white rounded-lg shadow-xl p-8 text-gray-800">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <input type="text" placeholder="Full Name *" required class="w-full px-4 py-3 rounded-md border border-gray-300">
+                    <input type="tel" placeholder="Phone Number *" required class="w-full px-4 py-3 rounded-md border border-gray-300">
+                    <input type="email" placeholder="Email Address *" required class="w-full px-4 py-3 rounded-md border border-gray-300">
+                    <select required class="w-full px-4 py-3 rounded-md border border-gray-300">
+                        <option value="">Select Service</option>
+                        <option>Deep Cleaning</option>
+                        <option>Move-In/Out Cleaning</option>
+                        <option>Regular House Cleaning</option>
+                    </select>
+                </div>
+                <textarea rows="4" placeholder="Additional Details" class="w-full px-4 py-3 rounded-md border border-gray-300"></textarea>
+                <div class="text-center mt-6">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p>&copy; 2025 Zoiris Cleaning Service. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+<!-- Footer -->
+    <footer class="footer-bg text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Zoiris Cleaning</h3>
+                    <p class="text-gray-400">
+                        Professional cleaning services for homes and businesses. A clean space leads to a clear mind.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-facebook fa-beat"></i>
+                        </a>
+                        
+
+                        
+                        <a href="https://www.instagram.com/zoiriscleaningservices/" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-instagram fa-beat"></i>
+                        </a>
+                        
+
+
+                          <a href="https://x.com/zoiriscleaning" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                          <i class="fa-brands fa-twitter fa-beat"></i>
+                        </a>
+
+
+                        
+                        <a href="https://www.linkedin.com/in/zoiriscleaning-ervices-b5b0b2381/" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-linkedin-in fa-beat"></i>
+                        </a>
+
+
+                        <a href="https://www.yelp.com/user_details?userid=7SDy8Urgj43gfYxrR5o2eQ" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-yelp fa-beat"></i>
+                        </a>
+
+
+
+                        <a href="https://www.youtube.com/channel/UCTewa53AZduD2H9J04RogCw" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-youtube fa-beat"></i>
+
+                        </a>
+
+
+                        <a href="https://www.pinterest.com/zoiriolysh/" class="text-gray-400 hover:text-white transition duration-300 hover:scale-125">
+                            <i class="fa-brands fa-pinterest fa-beat"></i>
+
+                        </a>
+
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition duration-300">Testimonials</a></li>
+                        <li><a href="#blog" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Residential Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Deep Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Commercial Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Airbnb Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Carpet Cleaning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Window Cleaning</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">
+                        Subscribe to our newsletter for cleaning tips and special offers.
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" 
+                               class="px-4 py-2 rounded-l-md text-gray-900 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="submit" 
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-md transition duration-300">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    &copy; 2023 Zoiris Cleaning Service. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        // Form submission
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Hide form and show success message
+            this.classList.add('hidden');
+            document.getElementById('formSuccess').classList.remove('hidden');
+            
+            // Scroll to success message
+            document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth' });
+        });
+        // Service card expansion
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Close other expanded cards
+                document.querySelectorAll('.service-card').forEach(otherCard => {
+                    if (otherCard !== this) {
+                        otherCard.classList.remove('expanded');
+                    }
+                });
+            });
+        });
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    
+                    // Scroll to target
+                    targetElement.scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
+                        link.classList.remove('active-nav');
+                    });
+                    
+                    // Add active class to clicked link
+                    if (this.classList.contains('nav-link') || this.classList.contains('nav-link-mobile')) {
+                        this.classList.add('active-nav');
+                    } else {
+                        // Find corresponding nav link and make it active
+                        const correspondingNavLink = document.querySelector(`.nav-link[href="${targetId}"], .nav-link-mobile[href="${targetId}"]`);
+                        if (correspondingNavLink) {
+                            correspondingNavLink.classList.add('active-nav');
+                        }
+                    }
+                }
+            });
+        });
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
+                        link.classList.remove('active-nav');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active-nav');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+<!-- Floating Chat Button + Neon Smart Chatbox -->
+<a href="javascript:void(0)" id="zoiris-fab" class="zoiris-chat-fab" onclick="toggleChat()">💬</a>
+
+<div id="zoiris-chatbox">
+  <div class="chat-header">
+    ZOIRIS LIVE CHAT 
+    <span style="float:right; cursor:pointer;" onclick="toggleLang(event)">🌐</span>
+  </div>
+  <div class="chat-messages" id="zoiris-messages">
+    <p><strong>ZOIRIS:</strong> Hi 👋 Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>
+  </div>
+
+  <!-- Chat Input -->
+  <div class="chat-input">
+    <input type="text" id="zoiris-input" placeholder="Type your question..." 
+           onkeypress="if(event.key==='Enter'){sendZoiris();}">
+    <button onclick="sendZoiris()">Send</button>
+  </div>
+
+  <!-- Premade Questions -->
+  <div class="chat-quick" id="quick-buttons">
+    <button onclick="quickAsk('What is your phone number?')">📞 Phone</button>
+    <button onclick="quickAsk('What is your email?')">📧 Email</button>
+    <button onclick="quickAsk('What services do you offer?')">🧹 Services</button>
+    <button onclick="quickAsk('How can I book an appointment?')">📅 Booking</button>
+    <button onclick="quickAsk('What is your price?')">💲 Prices</button>
+  </div>
+</div>
+
+<style>
+/* Heartbeat animation */
+@keyframes heartbeat {
+  0% { transform: scale(1); box-shadow:0 0 18px #2563eb, 0 0 38px rgba(37,99,235,.6); }
+  25% { transform: scale(1.1); box-shadow:0 0 25px #2563eb, 0 0 50px rgba(37,99,235,.8); }
+  50% { transform: scale(1); box-shadow:0 0 18px #2563eb, 0 0 38px rgba(37,99,235,.6); }
+  75% { transform: scale(1.1); box-shadow:0 0 25px #2563eb, 0 0 50px rgba(37,99,235,.8); }
+  100% { transform: scale(1); box-shadow:0 0 18px #2563eb, 0 0 38px rgba(37,99,235,.6); }
+}
+
+/* Floating button */
+.zoiris-chat-fab {
+  position:fixed; right:20px; bottom:20px; z-index:9999;
+  display:inline-block; width:55px; height:55px; border-radius:50%;
+  background:#2563eb; color:#fff; font-weight:700; text-decoration:none;
+  font-family:system-ui,Arial,sans-serif; font-size:22px;
+  text-align:center; line-height:55px;
+  animation: heartbeat 1.8s infinite;
+}
+.zoiris-chat-fab.active { animation:none; }
+.zoiris-chat-fab:hover{ filter:brightness(1.1); }
+
+/* Chatbox */
+#zoiris-chatbox {
+  position:fixed; right:20px; bottom:88px; width:320px; max-height:520px;
+  background:#fff; color:#111; border-radius:14px; overflow:hidden;
+  box-shadow:0 12px 36px rgba(2,8,23,.25); display:none; flex-direction:column; z-index:9999;
+}
+#zoiris-chatbox .chat-header {
+  background:#2563eb; color:#fff; font-weight:bold;
+  padding:10px; cursor:pointer;
+  border-top-left-radius:12px; border-top-right-radius:12px;
+}
+#zoiris-chatbox .chat-messages {
+  height:250px; overflow-y:auto; padding:10px; font-size:14px;
+}
+#zoiris-chatbox .chat-input { display:flex; border-top:1px solid #333; }
+#zoiris-chatbox .chat-input input {
+  flex:1; border:none; padding:10px; font-size:14px;
+  outline:none; background:#f1f5f9; color:#111;
+}
+#zoiris-chatbox .chat-input button {
+  background:#2563eb; border:none; padding:10px; cursor:pointer; color:#fff;
+  font-weight:bold;
+}
+/* Quick question buttons */
+.chat-quick {
+  display:flex; flex-wrap:wrap; gap:5px; padding:8px; background:#f9fafb;
+}
+.chat-quick button {
+  flex:1 1 45%; padding:6px; font-size:12px; cursor:pointer;
+  background:#2563eb; border:none; border-radius:6px; font-weight:bold; color:#fff;
+  box-shadow:0 0 8px #2563eb;
+}
+.chat-quick button:hover{ filter:brightness(1.1); }
+</style>
+<!-- Floating Chat Button + Neon Smart Chatbox -->
+<a href="javascript:void(0)" id="zoiris-fab" class="zoiris-chat-fab" onclick="toggleChat()">💬</a>
+
+<div id="zoiris-chatbox">
+  <div class="chat-header">
+    ZOIRIS LIVE CHAT 
+    <span style="float:right; cursor:pointer;" onclick="toggleLang(event)">🌐</span>
+    <span style="float:right; cursor:pointer; margin-right:10px;" onclick="toggleChat()">✖</span>
+  </div>
+  <div class="chat-messages" id="zoiris-messages">
+    <p><strong>ZOIRIS:</strong> Hi 👋 Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>
+  </div>
+
+  <!-- Chat Input -->
+  <div class="chat-input">
+    <input type="text" id="zoiris-input" placeholder="Type your question..." 
+           onkeypress="if(event.key==='Enter'){sendZoiris();}">
+    <button onclick="sendZoiris()">Send</button>
+  </div>
+
+  <!-- Premade Questions -->
+  <div class="chat-quick" id="quick-buttons">
+    <button onclick="quickAsk('What is your phone number?')">📞 Phone</button>
+    <button onclick="quickAsk('What is your email?')">📧 Email</button>
+    <button onclick="quickAsk('What services do you offer?')">🧹 Services</button>
+    <button onclick="quickAsk('How can I book an appointment?')">📅 Booking</button>
+    <button onclick="quickAsk('What is your price?')">💲 Prices</button>
+  </div>
+</div>
+
+<style>
+/* Heartbeat animation */
+@keyframes heartbeat {
+  0% { transform: scale(1); box-shadow:0 0 18px #2563eb, 0 0 38px rgba(37,99,235,.6); }
+  25% { transform: scale(1.1); box-shadow:0 0 25px #2563eb, 0 0 50px rgba(37,99,235,.8); }
+  50% { transform: scale(1); box-shadow:0 0 18px #2563eb, 0 0 38px rgba(37,99,235,.6); }
+  75% { transform: scale(1.1); box-shadow:0 0 25px #2563eb, 0 0 50px rgba(37,99,235,.8); }
+  100% { transform: scale(1); box-shadow:0 0 18px #2563eb, 0 0 38px rgba(37,99,235,.6); }
+}
+
+/* Floating button */
+.zoiris-chat-fab {
+  position:fixed; right:20px; bottom:20px; z-index:9999;
+  display:inline-block; width:55px; height:55px; border-radius:50%;
+  background:#2563eb; color:#fff; font-weight:700; text-decoration:none;
+  font-family:system-ui,Arial,sans-serif; font-size:22px;
+  text-align:center; line-height:55px;
+  animation: heartbeat 1.8s infinite;
+}
+.zoiris-chat-fab.active { animation:none; }
+.zoiris-chat-fab:hover{ filter:brightness(1.1); }
+
+/* Chatbox */
+#zoiris-chatbox {
+  position:fixed; right:20px; bottom:88px; width:320px; max-height:520px;
+  background:#fff; color:#111; border-radius:14px; overflow:hidden;
+  box-shadow:0 12px 36px rgba(2,8,23,.25); display:none; flex-direction:column; z-index:9999;
+}
+#zoiris-chatbox .chat-header {
+  background:#2563eb; color:#fff; font-weight:bold;
+  padding:10px; cursor:pointer;
+  border-top-left-radius:12px; border-top-right-radius:12px;
+}
+#zoiris-chatbox .chat-messages {
+  height:250px; overflow-y:auto; padding:10px; font-size:14px;
+}
+#zoiris-chatbox .chat-input { display:flex; border-top:1px solid #333; }
+#zoiris-chatbox .chat-input input {
+  flex:1; border:none; padding:10px; font-size:14px;
+  outline:none; background:#f1f5f9; color:#111;
+}
+#zoiris-chatbox .chat-input button {
+  background:#2563eb; border:none; padding:10px; cursor:pointer; color:#fff;
+  font-weight:bold;
+}
+/* Quick question buttons */
+.chat-quick {
+  display:flex; flex-wrap:wrap; gap:5px; padding:8px; background:#f9fafb;
+}
+.chat-quick button {
+  flex:1 1 45%; padding:6px; font-size:12px; cursor:pointer;
+  background:#2563eb; border:none; border-radius:6px; font-weight:bold; color:#fff;
+  box-shadow:0 0 8px #2563eb;
+}
+.chat-quick button:hover{ filter:brightness(1.1); }
+</style>
+
+<script>
+let lang = "en"; // default language
+
+// ✅ Toggle Open/Close Chat
+function toggleChat(){
+  const chat=document.getElementById('zoiris-chatbox');
+  const fab=document.getElementById('zoiris-fab');
+  
+  if(chat.style.display==='flex'){
+    chat.style.display='none';
+    fab.classList.remove("active");
+  } else {
+    chat.style.display='flex';
+    fab.classList.add("active");
+  }
+}
+
+function toggleLang(e){
+  e.stopPropagation();
+  lang = (lang === "en") ? "es" : "en";
+  resetGreeting();
+  updateQuickButtons();
+}
+
+function resetGreeting(){
+  const msgBox=document.getElementById('zoiris-messages');
+  msgBox.innerHTML=(lang==="en")
+    ? "<p><strong>ZOIRIS:</strong> Hi 👋 Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>"
+    : "<p><strong>ZOIRIS:</strong> ¡Hola 👋 Bienvenido a ZOIRIS Cleaning Services! ¿Cómo podemos ayudarte hoy?</p>";
+}
+
+function updateQuickButtons(){
+  const quick=document.getElementById('quick-buttons');
+  if(lang==="en"){
+    quick.innerHTML=`
+      <button onclick="quickAsk('What is your phone number?')">📞 Phone</button>
+      <button onclick="quickAsk('What is your email?')">📧 Email</button>
+      <button onclick="quickAsk('What services do you offer?')">🧹 Services</button>
+      <button onclick="quickAsk('How can I book an appointment?')">📅 Booking</button>
+      <button onclick="quickAsk('What is your price?')">💲 Prices</button>
+    `;
+  } else {
+    quick.innerHTML=`
+      <button onclick="quickAsk('¿Cuál es su número de teléfono?')">📞 Teléfono</button>
+      <button onclick="quickAsk('¿Cuál es su correo electrónico?')">📧 Correo</button>
+      <button onclick="quickAsk('¿Qué servicios ofrecen?')">🧹 Servicios</button>
+      <button onclick="quickAsk('¿Cómo puedo reservar una cita?')">📅 Reservar</button>
+      <button onclick="quickAsk('¿Cuál es su precio?')">💲 Precios</button>
+    `;
+  }
+}
+
+function sendZoiris(customText){
+  const input=document.getElementById('zoiris-input');
+  const msgBox=document.getElementById('zoiris-messages');
+  let text=customText || input.value.trim();
+  if(text!==""){
+    const userMsg=document.createElement('p');
+    userMsg.innerHTML="<strong>You:</strong> "+text;
+    msgBox.appendChild(userMsg);
+
+    let reply="";
+    const q=text.toLowerCase();
+
+    if(lang==="en"){
+      if(q.includes("phone")) reply="📞 <a href='tel:2514978163'>251-497-8163</a>";
+      else if(q.includes("email")) reply="📧 <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
+      else if(q.includes("price")) reply="💲 Our prices vary depending on the service. Contact us for a free personalized quote!";
+      else if(q.includes("book")) reply="📅 You can book in just 3 easy steps on our booking page!";
+      else if(q.includes("location")) reply="📍 We proudly serve Mobile, Alabama and nearby areas.";
+      else if(q.includes("service")) reply="🧹 We provide House Cleaning, Office Cleaning, Window Cleaning, and Deep Cleaning.";
+      else reply="✅ You can always reach us at 📞 <a href='tel:2514978163'>251-497-8163</a> or 📧 <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
+    } else {
+      if(q.includes("teléfono")) reply="📞 <a href='tel:2514978163'>251-497-8163</a>";
+      else if(q.includes("correo")) reply="📧 <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
+      else if(q.includes("precio")) reply="💲 Nuestros precios varían según el servicio. ¡Contáctanos para una cotización gratis!";
+      else if(q.includes("reservar")) reply="📅 Puedes reservar en nuestra página de reservas.";
+      else if(q.includes("ubicación")) reply="📍 Servimos Mobile, Alabama y áreas cercanas.";
+      else if(q.includes("servicio")) reply="🧹 Ofrecemos Limpieza de Hogar, Oficinas, Ventanas y Limpieza Profunda.";
+      else reply="✅ Siempre puedes llamarnos al 📞 <a href='tel:2514978163'>251-497-8163</a> o escribirnos a 📧 <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
+    }
+
+    setTimeout(()=>{
+      const replyMsg=document.createElement('p');
+      replyMsg.innerHTML="<strong>ZOIRIS:</strong> "+reply;
+      msgBox.appendChild(replyMsg);
+      msgBox.scrollTop=msgBox.scrollHeight;
+    },800);
+
+    input.value="";
+    msgBox.scrollTop=msgBox.scrollHeight;
+  }
+}
+
+function quickAsk(text){
+  sendZoiris(text);
+}
+</script>
