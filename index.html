@@ -7,6 +7,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+
+
+
+
+
+
+ /* Neon cyber hover effect */
+.dropdown a:hover {
+  background: #0ff; /* neon cyan background */
+  color: #111; 
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff inset;
+  border-radius: 6px;
+  transition: all 0.25s ease-in-out;
+}
+
+
+
+
         :root {
             --bg-color: #f9fafb;
             --text-color: #1f2937;
@@ -120,14 +139,152 @@
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-8 ml-auto">
-                    <a href="#home" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link active-nav transition duration-300 hover:scale-105">Home</a>
-                    <a href="#about" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">About</a>
-                    <a href="#services" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Services</a>
+                    <a href="#home" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link active-nav transition duration-300 hover:scale-105 ">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105 ">About</a>
+                    
+                
+
+
+
+
+      
+
+
+
+
+<!-- MOBILE + DESKTOP NAVBAR -->
+<style>
+  .site-nav{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.06);position:relative;z-index:50}
+  .site-nav .wrap{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+  .brand img{height:48px}
+  .menu{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0}
+  .nav-item{position:relative}
+  .nav-link{display:flex;align-items:center;gap:.35rem;padding:8px 6px;font-weight:600;color:#111;text-decoration:none}
+  .nav-link:hover{color:#0b5bd3}
+  .dropdown{position:absolute;left:0;top:calc(100% + 8px);min-width:230px;border:1px solid #eee;border-radius:12px;background:#fff;
+            box-shadow:0 10px 25px rgba(0,0,0,.08);padding:10px 0;display:none}
+  .nav-item::after{content:"";position:absolute;left:0;right:0;top:100%;height:8px}
+  .dropdown.open{display:block}
+  .dropdown a{display:block;padding:10px 14px;text-decoration:none;color:#111;white-space:nowrap}
+  .dropdown a:hover{background:#f4f6f8}
+  .btn{background:#1d4ed8;color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none}
+  .btn:hover{background:#173ea8}
+
+  /* --- MOBILE STYLES --- */
+  .hamburger{display:none;font-size:28px;cursor:pointer;border:none;background:none}
+  @media(max-width:768px){
+    .menu{display:none;flex-direction:column;align-items:flex-start;gap:0;width:100%;background:#fff;border-top:1px solid #eee}
+    .menu.open{display:flex}
+    .nav-item{width:100%}
+    .nav-link{width:100%;padding:14px 20px;justify-content:space-between}
+    .dropdown{position:static;box-shadow:none;border:none;padding:0;width:100%;display:none}
+    .dropdown.open{display:block}
+    .dropdown a{padding:12px 30px}
+  }
+</style>
+
+
+    <!-- Hamburger (mobile only) -->
+    <button class="hamburger" aria-label="Toggle menu">☰</button>
+
+<!-- Menu -->
+<ul class="menu">
+  <!-- SERVICES -->
+  <li class="nav-item has-dropdown">
+    <a href="#" class="nav-link">Services ▾</a>
+    <ul class="dropdown">
+      <li><a href="services/commercial-cleaning.html">Commercial Cleaning</a></li>
+      <li><a href="services/deep-cleaning.html">Deep Cleaning</a></li>
+      <li><a href="services/house-cleaning.html">House Cleaning</a></li>
+      <li><a href="services/move-in-cleaning.html">Move-In Cleaning</a></li>
+      <li><a href="services/move-out-cleaning.html">Move-Out Cleaning</a></li>
+      <li><a href="services/vacation-rental-cleaning.html">Vacation Rental Cleaning</a></li>
+      <li><a href="services/airbnb-cleaning.html">Airbnb Cleaning</a></li>
+      <li><a href="services/post-construction-cleanup.html">Post-Construction Cleanup</a></li>
+      <li><a href="services/carpet-cleaning.html">Carpet Cleaning</a></li>
+      <li><a href="services/pressure-washing.html">Pressure Washing</a></li>
+    </ul>
+  </li>
+
+  <!-- LOCATIONS -->
+  <li class="nav-item has-dropdown">
+    <a href="#" class="nav-link">Locations ▾</a>
+    <ul class="dropdown">
+      <li><a href="locations/downtown-mobile.html">Downtown Mobile</a></li>
+      <li><a href="locations/midtown-mobile.html">Midtown Mobile</a></li>
+      <li><a href="locations/west-mobile.html">West Mobile</a></li>
+      <li><a href="locations/fairhope.html">Fairhope</a></li>
+      <li><a href="locations/daphne.html">Daphne</a></li>
+      <li><a href="locations/spanish-fort.html">Spanish Fort</a></li>
+      <li><a href="locations/eastern-shore.html">Eastern Shore</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+<script>
+(function () {
+  const hamburger = document.querySelector('.hamburger');
+  const menu = document.querySelector('.menu');
+  const items = document.querySelectorAll('.nav-item.has-dropdown');
+
+  // Toggle mobile menu
+  hamburger.addEventListener('click', () => {
+    menu.classList.toggle('open');
+  });
+
+  // Desktop hover + mobile tap toggle
+  items.forEach(item => {
+    const link = item.querySelector('.nav-link');
+    const dropdown = item.querySelector('.dropdown');
+
+    // Hover for desktop
+    item.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) dropdown.classList.add('open');
+    });
+    item.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) dropdown.classList.remove('open');
+    });
+
+    // Tap for mobile
+    link.addEventListener('click', e => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+      }
+    });
+  });
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <a href="#testimonials" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Testimonials</a>
                     <a href="#blog" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Blog</a>
                     <a href="#contact" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Contact</a>
-                    <a href="#location" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Location</a>
-                    <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">Get a Quote</a>
+
+
+
+                
+
+
+
+                    <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 fa-beat">Get a Quote</a>
                 </div>
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-500 focus:outline-none">
@@ -151,12 +308,63 @@
         </div>
     </nav>
 
+    <!-- CONTACT BAR (under navbar) -->
+<div class="bg-blue-500 text-white text-sm w-full">
+  <div class="max-w-6xl mx-auto px-4 py-2 flex flex-col md:flex-row justify-between items-center">
+    
+    <!-- Left: Phone & Email -->
+    <div class="flex flex-col md:flex-row md:space-x-6 text-center md:text-left">
+      <a href="tel:2514978163" class="flex items-center justify-center space-x-2 hover:underline">
+        <i class="fas fa-phone-alt fa-beat"></i>
+        <span>(251) 497-8163</span>
+      </a>
+      <a href="mailto:zoiriscleaningservices@gmail.com" class="flex items-center justify-center space-x-2 mt-1 md:mt-0 hover:underline">
+        <i class="fas fa-envelope fa-beat"></i>
+        <span>zoiriscleaningservices@gmail.com</span>
+      </a>
+    </div>
+
+    <!-- Right: Social Icons -->
+    <div class="flex space-x-2 mt-2 md:mt-0">
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-facebook-f fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-instagram fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-twitter fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-linkedin-in fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-yelp fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-youtube fa-beat"></i>
+      </a>
+      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+        <i class="fab fa-pinterest-p fa-beat"></i>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
     <!-- Hero Section -->
     <section id="home" class="hero-image h-screen flex items-center justify-center text-white relative">
         <div class="text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fadeIn">A Clean Home, A Clear Mind</h1>
             <p class="text-xl md:text-2xl mb-8">Professional cleaning services for homes and businesses in your area. Book online 24/7!</p>
-            <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105">
+            <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105 fa-beat">
                 Get a Free Quote
             </a>
         </div>
@@ -733,7 +941,7 @@
                 </div>
             </div>
             <div class="mt-12 text-center">
-                <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105">
+                <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105 fa-beat">
                     Get Started Now
                 </a>
             </div>
@@ -811,7 +1019,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" 
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105">
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105 fa-beat">
                         Submit Request
                     </button>
                 </div>
@@ -842,7 +1050,7 @@
                         <h3 class="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
                         <div class="space-y-6">
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
                                     <i class="fas fa-phone text-blue-500"></i>
                                 </div>
                                 <div class="ml-4">
@@ -850,8 +1058,8 @@
                                     <p class="mt-1 text-gray-600">(251) 497-8136</p>
                                 </div>
                             </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                            <div class="flex items-start ">
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
                                     <i class="fas fa-envelope text-blue-500"></i>
                                 </div>
                                 <div class="ml-4">
@@ -860,11 +1068,11 @@
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
-                                    <i class="fas fa-map-marker-alt text-blue-500"></i>
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
+                                    <i class="fas fa-map-marker-alt text-blue-500 "></i>
                                 </div>
                                 <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-gray-900">Service Area</h4>
+                                    <h4 class="text-lg font-medium text-gray-900 ">Service Area</h4>
                                     <p class="mt-1 text-gray-600">Downtown Mobile,
                                     Midtown Mobile,
                                     West Mobile,
@@ -875,7 +1083,7 @@
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
                                     <i class="fas fa-clock text-blue-500"></i>
                                 </div>
                                 <div class="ml-4">
@@ -884,7 +1092,7 @@
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
                                     <i class="fas fa-calendar-check text-blue-500"></i>
                                 </div>
                                 <div class="ml-4">
@@ -1488,4 +1696,6 @@ function quickAsk(text){
   sendZoiris(text);
 }
 </script>
+
+
 
