@@ -1456,8 +1456,10 @@
       <input type="text" name="contact" id="zoiris-contact" placeholder="Phone or Email" required>
       <button type="submit">Sign In</button>
     </form>
+    <p id="signin-status" style="margin-top:10px; font-size:14px; color:#333;"></p>
   </div>
 </div>
+
 
 <div id="zoiris-chatbox">
   <div class="chat-header">
@@ -1700,14 +1702,3 @@ function quickAsk(text){
   sendZoiris(text);
 }
 </script>
-<!-- Sign-in Modal -->
-<div id="zoiris-signin" class="signin-modal">
-  <div class="signin-box">
-    <h2>🔑 Sign In to ZOIRIS Chat</h2>
-    <form id="zoiris-signin-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-      <input type="text" name="name" id="zoiris-name" placeholder="Enter your name" required>
-      <input type="text" name="contact" id="zoiris-contact" placeholder="Phone or Email" required>
-      <button type="submit">Sign In</button>
-    </form>
-  </div>
-</div>
