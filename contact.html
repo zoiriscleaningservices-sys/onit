@@ -257,24 +257,6 @@
 })();
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <a href="#testimonials" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Testimonials</a>
                     <a href="Blog.html" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Blog</a>
                     <a href="contact.html" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Contact</a>
 
@@ -284,7 +266,7 @@
 
 
 
-                    <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 fa-beat">Get a Quote</a>
+                    <a href="contact.html" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 fa-beat">Get a Quote</a>
                 </div>
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-500 focus:outline-none">
@@ -300,18 +282,45 @@
                 <a href="about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">About</a>
 
 
+                <!-- SERVICES DROPDOWN (Mobile) -->
+    <button onclick="toggleDropdown('mobile-services')" class="w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500">
+      Services ▾
+    </button>
+    <div id="mobile-services" class="hidden pl-4 space-y-1">
+      <a href="services/commercial-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Commercial Cleaning</a>
+      <a href="services/deep-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Deep Cleaning</a>
+      <a href="services/house-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">House Cleaning</a>
+      <a href="services/move-in-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Move-In Cleaning</a>
+      <a href="services/move-out-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Move-Out Cleaning</a>
+      <a href="services/vacation-rental-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Vacation Rental Cleaning</a>
+      <a href="services/airbnb-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Airbnb Cleaning</a>
+      <a href="services/post-construction-cleanup.html" class="block py-1 text-gray-600 hover:text-blue-500">Post-Construction Cleanup</a>
+      <a href="services/carpet-cleaning.html" class="block py-1 text-gray-600 hover:text-blue-500">Carpet Cleaning</a>
+      <a href="services/pressure-washing.html" class="block py-1 text-gray-600 hover:text-blue-500">Pressure Washing</a>
+    </div>
 
+    <!-- LOCATIONS DROPDOWN (Mobile) -->
+    <button onclick="toggleDropdown('mobile-locations')" class="w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500">
+      Locations ▾
+    </button>
+    <div id="mobile-locations" class="hidden pl-4 space-y-1">
+      <a href="locations/downtown-mobile.html" class="block py-1 text-gray-600 hover:text-blue-500">Downtown Mobile</a>
+      <a href="locations/midtown-mobile.html" class="block py-1 text-gray-600 hover:text-blue-500">Midtown Mobile</a>
+      <a href="locations/west-mobile.html" class="block py-1 text-gray-600 hover:text-blue-500">West Mobile</a>
+      <a href="locations/fairhope.html" class="block py-1 text-gray-600 hover:text-blue-500">Fairhope</a>
+      <a href="locations/daphne.html" class="block py-1 text-gray-600 hover:text-blue-500">Daphne</a>
+      <a href="locations/spanish-fort.html" class="block py-1 text-gray-600 hover:text-blue-500">Spanish Fort</a>
+      <a href="locations/eastern-shore.html" class="block py-1 text-gray-600 hover:text-blue-500">Eastern Shore</a>
+    </div>
 
-
-
-
-
-
-                
-                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Testimonials</a>
+    <script>
+  function toggleDropdown(id) {
+    document.getElementById(id).classList.toggle("hidden");
+  }
+</script>
                 <a href="Blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Blog</a>
                 <a href="contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-500 nav-link-mobile">Contact</a>
-                <a href="#quote" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-base font-medium mt-2 transition duration-300">Get a Quote</a>
+                <a href="contact.html" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-base font-medium mt-2 transition duration-300">Get a Quote</a>
             </div>
         </div>
     </nav>
@@ -361,6 +370,8 @@
 </div>
 
 
+
+
     <!-- HERO -->
     <section class="relative hero h-[50vh] flex items-center justify-center text-center text-white">
         <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1600&auto=format&fit=crop" alt="Contact Hero" class="absolute inset-0 w-full h-full object-cover">
@@ -370,114 +381,376 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 card-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                    Contact Us
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoiris Cleaning Services - Instant Quote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .service-card.selected {
+            border-color: #667eea;
+            background-color: #f3f4f6;
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        
+        .price-highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .floating-bubbles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4">
+    <!-- Floating Background Bubbles -->
+    <div class="floating-bubbles">
+        <div class="bubble" style="width: 80px; height: 80px; left: 10%; animation-delay: 0s;"></div>
+        <div class="bubble" style="width: 120px; height: 120px; left: 20%; animation-delay: 2s;"></div>
+        <div class="bubble" style="width: 60px; height: 60px; left: 35%; animation-delay: 4s;"></div>
+        <div class="bubble" style="width: 100px; height: 100px; left: 70%; animation-delay: 1s;"></div>
+        <div class="bubble" style="width: 90px; height: 90px; left: 85%; animation-delay: 3s;"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                <i class="fas fa-sparkles mr-3"></i>
+                Zoiris Cleaning Services
+            </h1>
+            <p class="text-xl text-white opacity-90">Get Your Instant Quote in 3 Simple Steps</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="bg-white rounded-full h-2 mb-8 overflow-hidden">
+            <div class="progress-bar bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full"
+                 :style="{ width: `${(step / 3) * 100}%` }"
+                 x-data="{ step: 1 }"
+                 x-bind:style="{ width: `${($store.quote.step / 3) * 100}%` }"></div>
+        </div>
+
+        <!-- Quote Form -->
+        <div x-data="quoteCalculator()" x-init="init()" class="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+            
+            <!-- Step 1: Service Selection -->
+            <div x-show="step === 1" class="fade-in">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">
+                    Step 1: Choose Your Service
                 </h2>
-                <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
-                <p class="mt-6 max-w-2xl mx-auto text-gray-500">
-                    Get in touch with our friendly team
-                </p>
-            </div>
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
-                        <h3 class="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
-                                    <i class="fas fa-phone text-blue-500"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-gray-900">Phone</h4>
-                                    <p class="mt-1 text-gray-600">(251) 497-8136</p>
-                                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <template x-for="service in services" :key="service.id">
+                        <div @click="selectService(service)"
+                             :class="{'selected': selectedService?.id === service.id}"
+                             class="service-card bg-white border rounded-xl p-6 cursor-pointer">
+                            <div class="flex items-center mb-3">
+                                <i :class="service.icon" class="text-2xl text-purple-600 mr-3"></i>
+                                <h3 class="text-lg font-semibold" x-text="service.name"></h3>
                             </div>
-                            <div class="flex items-start ">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
-                                    <i class="fas fa-envelope text-blue-500"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-gray-900">Email</h4>
-                                    <p class="mt-1 text-gray-600">zoiriscleaningservices@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
-                                    <i class="fas fa-map-marker-alt text-blue-500 "></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-gray-900 ">Service Area</h4>
-                                    <p class="mt-1 text-gray-600">Downtown Mobile,
-                                    Midtown Mobile,
-                                    West Mobile,
-                                    Eastern Shore,
-                                    Spanish Fort,
-                                    Daphne,
-                                    Fairhope.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
-                                    <i class="fas fa-clock text-blue-500"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-gray-900">Business Hours</h4>
-                                    <p class="mt-1 text-gray-600">24/7</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 bg-blue-100 rounded-full p-3 fa-beat">
-                                    <i class="fas fa-calendar-check text-blue-500"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="text-lg font-medium text-gray-900">24/7 Booking</h4>
-                                    <p class="mt-1 text-gray-600">Book Now online <a href="book.Zoiriscleaning.com" class="text-blue-500 hover:underline">book.Zoiriscleaning.com</a></p>
-                                </div>
-                            </div>
+                            <p class="text-gray-600 text-sm mb-2" x-text="service.description"></p>
+                            <p class="text-purple-600 font-bold" x-text="`$${service.basePrice}+`"></p>
                         </div>
+                    </template>
+                </div>
+                <button @click="nextStep()" 
+                        :disabled="!selectedService"
+                        class="mt-8 w-full md:w-auto px-8 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:from-purple-600 hover:to-indigo-600 transition-all">
+                    Continue <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+
+            <!-- Step 2: Property Details -->
+            <div x-show="step === 2" class="fade-in">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">
+                    Step 2: Property Details
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Property Type</label>
+                        <select x-model="property.type" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="condo">Condo</option>
+                            <option value="townhouse">Townhouse</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Bedrooms</label>
+                        <select x-model="property.bedrooms" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="1">1 Bedroom</option>
+                            <option value="2">2 Bedrooms</option>
+                            <option value="3">3 Bedrooms</option>
+                            <option value="4">4 Bedrooms</option>
+                            <option value="5+">5+ Bedrooms</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Bathrooms</label>
+                        <select x-model="property.bathrooms" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="1">1 Bathroom</option>
+                            <option value="1.5">1.5 Bathrooms</option>
+                            <option value="2">2 Bathrooms</option>
+                            <option value="2.5">2.5 Bathrooms</option>
+                            <option value="3+">3+ Bathrooms</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Square Footage</label>
+                        <input type="number" x-model="property.squareFootage" placeholder="e.g., 1200" 
+                               class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500">
                     </div>
                 </div>
-                <div class="md:w-1/2">
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
-                        <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
-                        <form class="space-y-6">
-                            <div>
-                                <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                                <input type="text" id="contact-name" name="contact-name" 
-                                       class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                                <input type="email" id="contact-email" name="contact-email" 
-                                       class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="contact-subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                                <input type="text" id="contact-subject" name="contact-subject" 
-                                       class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                                <textarea id="contact-message" name="contact-message" rows="4" 
-                                          class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
-                            </div>
-                            <div>
-                                <button type="submit" 
-                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105">
-                                    Send Message
-                                </button>
-                            </div>
-                        </form>
+                <div class="flex gap-4 mt-8">
+                    <button @click="prevStep()" 
+                            class="px-8 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-all">
+                        <i class="fas fa-arrow-left mr-2"></i> Back
+                    </button>
+                    <button @click="nextStep()" 
+                            class="px-8 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg font-semibold hover:from-purple-600 hover:to-indigo-600 transition-all">
+                        Continue <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Contact & Quote -->
+            <div x-show="step === 3" class="fade-in">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">
+                    Step 3: Your Quote & Contact
+                </h2>
+                <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6 mb-6">
+                    <h3 class="text-xl font-bold mb-4">Your Quote Summary</h3>
+                    <div class="space-y-2">
+                        <p><strong>Service:</strong> <span x-text="selectedService.name"></span></p>
+                        <p><strong>Property:</strong> <span x-text="`${property.type} • ${property.bedrooms} bed • ${property.bathrooms} bath • ${property.squareFootage} sq ft`"></span></p>
+                        <p class="text-3xl font-bold price-highlight">Total: $<span x-text="calculateTotal()"></span></p>
                     </div>
                 </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Name *</label>
+                        <input type="text" x-model="contact.name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+                        <input type="email" x-model="contact.email" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Phone *</label>
+                        <input type="tel" x-model="contact.phone" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Preferred Date</label>
+                        <input type="date" x-model="contact.date" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
+                    <textarea x-model="contact.notes" rows="3" placeholder="Any special requirements or instructions..."
+                              class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500"></textarea>
+                </div>
+                
+                <div class="flex gap-4 mt-8">
+                    <button @click="prevStep()" 
+                            class="px-8 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-all">
+                        <i class="fas fa-arrow-left mr-2"></i> Back
+                    </button>
+                    <button @click="submitQuote()" 
+                            :disabled="!isValidContact()"
+                            class="px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:from-green-600 hover:to-green-700 transition-all">
+                        Get My Quote <i class="fas fa-check ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Confirmation -->
+            <div x-show="step === 4" class="text-center fade-in">
+                <div class="text-green-500 mb-4">
+                    <i class="fas fa-check-circle text-6xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-4">Thank You!</h2>
+                <p class="text-gray-600 mb-6">Your quote request has been submitted successfully. We'll contact you within 1 hour to confirm your booking.</p>
+                <p class="text-2xl font-bold price-highlight">Your Final Quote: $<span x-text="calculateTotal()"></span></p>
+                <button @click="resetForm()" 
+                        class="mt-6 px-8 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg font-semibold hover:from-purple-600 hover:to-indigo-600 transition-all">
+                    Get Another Quote
+                </button>
             </div>
         </div>
-    </section>
+    </div>
 
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('quoteCalculator', () => ({
+                step: 1,
+                selectedService: null,
+                services: [
+                    { id: 1, name: 'Commercial Cleaning', description: 'Professional office and commercial space cleaning', basePrice: 150, icon: 'fas fa-building' },
+                    { id: 2, name: 'Deep Cleaning', description: 'Thorough deep clean of your entire space', basePrice: 200, icon: 'fas fa-broom' },
+                    { id: 3, name: 'House Cleaning', description: 'Regular maintenance cleaning for homes', basePrice: 100, icon: 'fas fa-home' },
+                    { id: 4, name: 'Move-In Cleaning', description: 'Get your new home move-in ready', basePrice: 180, icon: 'fas fa-door-open' },
+                    { id: 5, name: 'Move-Out Cleaning', description: 'Leave your old place spotless', basePrice: 180, icon: 'fas fa-door-closed' },
+                    { id: 6, name: 'Vacation Rental Cleaning', description: 'Quick turnover cleaning for rentals', basePrice: 120, icon: 'fas fa-bed' },
+                    { id: 7, name: 'Airbnb Cleaning', description: 'Specialized Airbnb turnover service', basePrice: 130, icon: 'fas fa-key' },
+                    { id: 8, name: 'Post-Construction Cleanup', description: 'Remove construction dust and debris', basePrice: 300, icon: 'fas fa-hammer' },
+                    { id: 9, name: 'Carpet Cleaning', description: 'Deep carpet cleaning and stain removal', basePrice: 80, icon: 'fas fa-couch' },
+                    { id: 10, name: 'Pressure Washing', description: 'Exterior surfaces and driveway cleaning', basePrice: 150, icon: 'fas fa-tint' }
+                ],
+                property: {
+                    type: 'apartment',
+                    bedrooms: '2',
+                    bathrooms: '2',
+                    squareFootage: 1200
+                },
+                contact: {
+                    name: '',
+                    email: '',
+                    phone: '',
+                    date: '',
+                    notes: ''
+                },
+                
+                init() {
+                    this.$store.quote = { step: this.step };
+                },
+                
+                selectService(service) {
+                    this.selectedService = service;
+                },
+                
+                nextStep() {
+                    this.step++;
+                    this.$store.quote.step = this.step;
+                },
+                
+                prevStep() {
+                    this.step--;
+                    this.$store.quote.step = this.step;
+                },
+                
+                calculateTotal() {
+                    if (!this.selectedService) return 0;
+                    
+                    let basePrice = this.selectedService.basePrice;
+                    
+                    // Property size multiplier
+                    const sizeMultiplier = Math.max(1, this.property.squareFootage / 1000);
+                    
+                    // Room additions
+                    const bedroomAdd = (parseInt(this.property.bedrooms) || 0) * 25;
+                    const bathroomAdd = (parseFloat(this.property.bathrooms) || 0) * 35;
+                    
+                    return Math.round((basePrice + bedroomAdd + bathroomAdd) * sizeMultiplier);
+                },
+                
+                isValidContact() {
+                    return this.contact.name && this.contact.email && this.contact.phone;
+                },
+                
+                submitQuote() {
+    const quoteData = {
+        service: this.selectedService.name,
+        property: `${this.property.type}, ${this.property.bedrooms} bed, ${this.property.bathrooms} bath, ${this.property.squareFootage} sq ft`,
+        name: this.contact.name,
+        email: this.contact.email,
+        phone: this.contact.phone,
+        date: this.contact.date,
+        notes: this.contact.notes,
+        total: this.calculateTotal()
+    };
+
+    fetch("https://formspree.io/f/xkgvorgd", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(quoteData)
+    })
+    .then(response => {
+        if (response.ok) {
+            this.step = 4;
+            this.$store.quote.step = this.step;
+        } else {
+            alert("There was an error submitting your quote.");
+        }
+    })
+    .catch(err => {
+        console.error("Error:", err);
+        alert("Could not send your request. Please try again later.");
+    });
+},
+                
+                resetForm() {
+                    this.step = 1;
+                    this.selectedService = null;
+                    this.property = { type: 'apartment', bedrooms: '2', bathrooms: '2', squareFootage: 1200 };
+                    this.contact = { name: '', email: '', phone: '', date: '', notes: '' };
+                    this.$store.quote.step = this.step;
+                }
+            }));
+        });
+    </script>
+</body>
+</html>
      <!-- Location Section -->
     <section id="location" class="py-20 bg-hover">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -989,3 +1262,4 @@ function quickAsk(text){
   sendZoiris(text);
 }
 </script>
+
