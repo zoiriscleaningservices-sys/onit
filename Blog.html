@@ -798,37 +798,42 @@
     <p id="signin-status" style="margin-top:10px; font-size:14px; color:#333;"></p>
   </div>
 </div>
-
 <script>
+let lang = "en"; 
 let signedIn = false;
 
-// ✅ Chat toggle (locked until signed in)
+// ✅ Toggle Open/Close Chat
 function toggleChat(){
-  const chat = document.getElementById('zoiris-chatbox');
-  const fab = document.getElementById('zoiris-fab');
+  const chat=document.getElementById('zoiris-chatbox');
+  const fab=document.getElementById('zoiris-fab');
 
   if(!signedIn){
     document.getElementById('zoiris-signin').style.display='flex';
     return;
   }
 
-  if(chat.style.display === 'flex'){
-    chat.style.display = 'none';
+  if(chat.style.display==='flex'){
+    chat.style.display='none';
     fab.classList.remove("active");
   } else {
-    chat.style.display = 'flex';
+    chat.style.display='flex';
     fab.classList.add("active");
   }
 }
 
-// ✅ Sign-in form submission (AJAX to Formspree, no redirect)
+// ✅ Sign-in form submission (POST to Formspree + localStorage)
 document.getElementById("zoiris-signin-form").addEventListener("submit", async function(e){
-  e.preventDefault(); // stop default redirect
-  let name = document.getElementById("zoiris-name").value.trim();
-  let contact = document.getElementById("zoiris-contact").value.trim();
-  let statusEl = document.getElementById("signin-status");
+  e.preventDefault();
+  const name=document.getElementById('zoiris-name').value.trim();
+  const contact=document.getElementById('zoiris-contact').value.trim();
+  const statusEl=document.getElementById("signin-status");
 
-  statusEl.textContent = "Signing in...";
+  if(name==="" || contact===""){
+    alert("Please enter your name and phone/email to continue.");
+    return;
+  }
+
+  statusEl.textContent="Signing in...";
 
   try {
     let response = await fetch("https://formspree.io/f/xkgvorgd", {
@@ -839,35 +844,114 @@ document.getElementById("zoiris-signin-form").addEventListener("submit", async f
 
     if(response.ok){
       signedIn = true;
-      localStorage.setItem("zoirisUser", JSON.stringify({ name, contact }));
-      statusEl.textContent = "✅ Signed in successfully!";
+      localStorage.setItem("zoirisUser", JSON.stringify({name, contact}));
+      statusEl.textContent="✅ Signed in successfully!";
 
       setTimeout(()=>{
-        // close modal + open chat
         document.getElementById('zoiris-signin').style.display='none';
-        document.getElementById('zoiris-chatbox').style.display='flex';
-        document.getElementById('zoiris-fab').classList.add("active");
+        toggleChat();
 
-        // personalized greeting
+        // Personalized greeting
         const msgBox=document.getElementById('zoiris-messages');
         msgBox.innerHTML = `<p><strong>ZOIRIS:</strong> Hi ${name} 👋 Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>`;
-      }, 1000);
+      },1000);
     } else {
-      statusEl.textContent = "❌ Error: Could not sign in. Try again.";
+      statusEl.textContent="❌ Error: Could not sign in. Try again.";
     }
   } catch (err){
-    statusEl.textContent = "⚠️ Network error. Please try again.";
+    statusEl.textContent="⚠️ Network error. Please try again.";
   }
 });
 
-// ✅ Keep user signed in on reload
+// ✅ Restore session if user already signed in
 window.onload = function(){
   const savedUser = localStorage.getItem("zoirisUser");
-  if(savedUser){
-    signedIn = true;
-  }
+  if(savedUser){ signedIn = true; }
 };
+
+// ✅ Toggle language
+function toggleLang(e){
+  e.stopPropagation();
+  lang = (lang === "en") ? "es" : "en";
+  resetGreeting();
+  updateQuickButtons();
+}
+
+function resetGreeting(){
+  const msgBox=document.getElementById('zoiris-messages');
+  msgBox.innerHTML=(lang==="en")
+    ? "<p><strong>ZOIRIS:</strong> Hi 👋 Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>"
+    : "<p><strong>ZOIRIS:</strong> ¡Hola 👋 Bienvenido a ZOIRIS Cleaning Services! ¿Cómo podemos ayudarte hoy?</p>";
+}
+
+function updateQuickButtons(){
+  const quick=document.getElementById('quick-buttons');
+  if(lang==="en"){
+    quick.innerHTML=`
+      <button onclick="quickAsk('What is your phone number?')">📞 Phone</button>
+      <button onclick="quickAsk('What is your email?')">📧 Email</button>
+      <button onclick="quickAsk('What services do you offer?')">🧹 Services</button>
+      <button onclick="quickAsk('How can I book an appointment?')">📅 Booking</button>
+      <button onclick="quickAsk('What is your price?')">💲 Prices</button>
+    `;
+  } else {
+    quick.innerHTML=`
+      <button onclick="quickAsk('¿Cuál es su número de teléfono?')">📞 Teléfono</button>
+      <button onclick="quickAsk('¿Cuál es su correo electrónico?')">📧 Correo</button>
+      <button onclick="quickAsk('¿Qué servicios ofrecen?')">🧹 Servicios</button>
+      <button onclick="quickAsk('¿Cómo puedo reservar una cita?')">📅 Reservar</button>
+      <button onclick="quickAsk('¿Cuál es su precio?')">💲 Precios</button>
+    `;
+  }
+}
+
+// ✅ Chat message handling
+function sendZoiris(customText){
+  const input=document.getElementById('zoiris-input');
+  const msgBox=document.getElementById('zoiris-messages');
+  let text=customText || input.value.trim();
+  if(text!==""){
+    const userMsg=document.createElement('p');
+    userMsg.innerHTML="<strong>You:</strong> "+text;
+    msgBox.appendChild(userMsg);
+
+    let reply="";
+    const q=text.toLowerCase();
+
+    if(lang==="en"){
+      if(q.includes("phone")) reply="📞 <a href='tel:2514978163'>251-497-8163</a>";
+      else if(q.includes("email")) reply="📧 <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
+      else if(q.includes("price")) reply="💲 Our prices vary depending on the service. Contact us for a free personalized quote!";
+      else if(q.includes("book")) reply="📅 You can book in just 3 easy steps on our booking page!";
+      else if(q.includes("location")) reply="📍 We proudly serve Mobile, Alabama and nearby areas.";
+      else if(q.includes("service")) reply="🧹 We provide House Cleaning, Office Cleaning, Window Cleaning, and Deep Cleaning.";
+      else reply="✅ You can always reach us at 📞 <a href='tel:2514978163'>251-497-8163</a> or 📧 <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
+    } else {
+      if(q.includes("teléfono")) reply="📞 <a href='tel:2514978163'>251-497-8163</a>";
+      else if(q.includes("correo")) reply="📧 <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
+      else if(q.includes("precio")) reply="💲 Nuestros precios varían según el servicio. ¡Contáctanos para una cotización gratis!";
+      else if(q.includes("reservar")) reply="📅 Puedes reservar en nuestra página de reservas.";
+      else if(q.includes("ubicación")) reply="📍 Servimos Mobile, Alabama y áreas cercanas.";
+      else if(q.includes("servicio")) reply="🧹 Ofrecemos Limpieza de Hogar, Oficinas, Ventanas y Limpieza Profunda.";
+      else reply="✅ Siempre puedes llamarnos al 📞 <a href='tel:2514978163'>251-497-8163</a> o escribirnos a 📧 <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
+    }
+
+    setTimeout(()=>{
+      const replyMsg=document.createElement('p');
+      replyMsg.innerHTML="<strong>ZOIRIS:</strong> "+reply;
+      msgBox.appendChild(replyMsg);
+      msgBox.scrollTop=msgBox.scrollHeight;
+    },800);
+
+    input.value="";
+    msgBox.scrollTop=msgBox.scrollHeight;
+  }
+}
+
+function quickAsk(text){ sendZoiris(text); }
 </script>
+
+
 
 <div id="zoiris-chatbox">
   <div class="chat-header">
