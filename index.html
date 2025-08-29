@@ -27,7 +27,6 @@
 
 
 
-
         :root {
             --bg-color: #f9fafb;
             --text-color: #1f2937;
@@ -129,6 +128,33 @@
         .toggle-button:hover {
             transform: scale(1.1);
         }
+
+
+
+
+
+
+
+            .contact-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 5px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+
     </style>
 
     <!-- Navigation -->
@@ -268,7 +294,7 @@
 
 
 
-                    <a href="contact.html" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 fa-beat">Get a Quote</a>
+                    <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 fa-beat">Get a Quote</a>
                 </div>
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-500 focus:outline-none">
@@ -383,12 +409,22 @@
         <div class="text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fadeIn">A Clean Home, A Clear Mind</h1>
             <p class="text-xl md:text-2xl mb-8">Professional cleaning services for homes and businesses in your area. Book online 24/7!</p>
-            <a href="#quote" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block transform hover:scale-105 fa-beat">
-                Get a Free Quote
-            </a>
-        </div>
+             <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="tel:2514978163" class="contact-button text-lg">
+                    <i class="fas fa-phone mr-2 fa-beat"></i>Call Now: 251-497-8163
+                </a>
+        
+                <a href="mailto:zoiriscleaningservices@gmail.com" class="contact-button text-lg">
+                    <i class="fas fa-envelope mr-2 fa-beat"></i>Email Us
+                </a>
+                <a href="#quote" class="contact-button text-lg">
+                    <i class="fa-solid fa-circle-check fa-beat"></i>
+                            Get a Free Quote
+                </a>
+
+            </div>
         <div class="absolute bottom-10 left-0 right-0 text-center">
-            <a href="about.html" class="text-white animate-bounce inline-block">
+            <a href="#quote" class="text-white animate-bounce inline-block">
                 <i class="fas fa-chevron-down text-2xl"></i>
             </a>
         </div>
@@ -1678,3 +1714,8 @@ function quickAsk(text){
   sendZoiris(text);
 }
 </script>
+
+
+
+
+
