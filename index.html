@@ -1461,7 +1461,6 @@
 </div>
 
 
-
 <div id="zoiris-chatbox">
   <div class="chat-header">
     ZOIRIS LIVE CHAT 
@@ -1703,12 +1702,44 @@ function quickAsk(text){
   sendZoiris(text);
 }
 </script>
+<!-- Sign-in Modal -->
+<div id="zoiris-signin" class="signin-modal">
+  <div class="signin-box">
+    <h2>🔑 Sign In to ZOIRIS Chat</h2>
+    <form id="zoiris-signin-form" action="https://formspree.io/f/xkgvorgd" method="POST">
+      <input type="text" name="name" id="zoiris-name" placeholder="Enter your name" required>
+      <input type="text" name="contact" id="zoiris-contact" placeholder="Phone or Email" required>
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+</div>
+
+
 <script>
 let signedIn = false;
 
-// ✅ Intercept Sign-in Submit
+// Chat toggle (locked until signed in)
+function toggleChat(){
+  const chat = document.getElementById('zoiris-chatbox');
+  const fab = document.getElementById('zoiris-fab');
+
+  if(!signedIn){
+    document.getElementById('zoiris-signin').style.display='flex';
+    return;
+  }
+
+  if(chat.style.display === 'flex'){
+    chat.style.display = 'none';
+    fab.classList.remove("active");
+  } else {
+    chat.style.display = 'flex';
+    fab.classList.add("active");
+  }
+}
+
+// ✅ Intercept Sign-in Submit (send to Formspree without redirect)
 document.getElementById("zoiris-signin-form").addEventListener("submit", async function(e){
-  e.preventDefault(); // stop redirect
+  e.preventDefault(); // stop default form submit
   let name = document.getElementById("zoiris-name").value;
   let contact = document.getElementById("zoiris-contact").value;
   let statusEl = document.getElementById("signin-status");
@@ -1726,10 +1757,17 @@ document.getElementById("zoiris-signin-form").addEventListener("submit", async f
       signedIn = true;
       localStorage.setItem("zoirisUser", JSON.stringify({ name, contact }));
       statusEl.textContent = "✅ Signed in successfully!";
+
+      // close modal + open chat
       setTimeout(()=>{
         document.getElementById('zoiris-signin').style.display='none';
-        toggleChat(); // open chat after sign-in
-      }, 800);
+        document.getElementById('zoiris-chatbox').style.display='flex';
+        document.getElementById('zoiris-fab').classList.add("active");
+
+        // ✅ personalize greeting
+        const msgBox=document.getElementById('zoiris-messages');
+        msgBox.innerHTML = `<p><strong>ZOIRIS:</strong> Hi ${name} 👋 Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>`;
+      }, 1000);
     } else {
       statusEl.textContent = "❌ Error: Could not sign in. Try again.";
     }
@@ -1738,7 +1776,7 @@ document.getElementById("zoiris-signin-form").addEventListener("submit", async f
   }
 });
 
-// ✅ Check if already signed in
+// ✅ Keep user signed in on reload
 window.onload = function(){
   const savedUser = localStorage.getItem("zoirisUser");
   if(savedUser){
