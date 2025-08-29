@@ -1451,7 +1451,7 @@
 <div id="zoiris-signin" class="signin-modal">
   <div class="signin-box">
     <h2>🔑 Sign In to ZOIRIS Chat</h2>
-    <form id="zoiris-signin-form" action="https://formspree.io/f/xkgvorgd" method="POST">
+    <form id="zoiris-signin-form">
       <input type="text" name="name" id="zoiris-name" placeholder="Enter your name" required>
       <input type="text" name="contact" id="zoiris-contact" placeholder="Phone or Email" required>
       <button type="submit">Sign In</button>
@@ -1459,6 +1459,7 @@
     <p id="signin-status" style="margin-top:10px; font-size:14px; color:#333;"></p>
   </div>
 </div>
+
 
 
 <div id="zoiris-chatbox">
@@ -1701,4 +1702,47 @@ function sendZoiris(customText){
 function quickAsk(text){
   sendZoiris(text);
 }
+</script>
+<script>
+let signedIn = false;
+
+// ✅ Intercept Sign-in Submit
+document.getElementById("zoiris-signin-form").addEventListener("submit", async function(e){
+  e.preventDefault(); // stop redirect
+  let name = document.getElementById("zoiris-name").value;
+  let contact = document.getElementById("zoiris-contact").value;
+  let statusEl = document.getElementById("signin-status");
+
+  statusEl.textContent = "Signing in...";
+
+  try {
+    let response = await fetch("https://formspree.io/f/xkgvorgd", {
+      method: "POST",
+      body: JSON.stringify({ name, contact }),
+      headers: { "Accept": "application/json", "Content-Type": "application/json" }
+    });
+
+    if(response.ok){
+      signedIn = true;
+      localStorage.setItem("zoirisUser", JSON.stringify({ name, contact }));
+      statusEl.textContent = "✅ Signed in successfully!";
+      setTimeout(()=>{
+        document.getElementById('zoiris-signin').style.display='none';
+        toggleChat(); // open chat after sign-in
+      }, 800);
+    } else {
+      statusEl.textContent = "❌ Error: Could not sign in. Try again.";
+    }
+  } catch (err){
+    statusEl.textContent = "⚠️ Network error. Please try again.";
+  }
+});
+
+// ✅ Check if already signed in
+window.onload = function(){
+  const savedUser = localStorage.getItem("zoirisUser");
+  if(savedUser){
+    signedIn = true;
+  }
+};
 </script>
