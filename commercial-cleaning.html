@@ -634,6 +634,36 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 </section>
+<!-- JS to prevent redirect -->
+<script>
+  const form = document.getElementById("contactForm");
+  const successMsg = document.getElementById("formSuccess");
+  const errorMsg = document.getElementById("formError");
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        successMsg.classList.remove("hidden");
+        errorMsg.classList.add("hidden");
+        form.reset();
+      } else {
+        throw new Error("Form submission failed.");
+      }
+    } catch (error) {
+      successMsg.classList.add("hidden");
+      errorMsg.classList.remove("hidden");
+    }
+  });
+</script>
 
 
 
