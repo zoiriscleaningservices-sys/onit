@@ -38,6 +38,66 @@
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        /* Keep your content above the bubbles */
+.page-content { position: relative; z-index: 1; }
+
+/* Bubble layer sits behind content but above the body background */
+.floating-bubbles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Base bubble */
+.bubble {
+  position: absolute;
+  bottom: -150px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  opacity: 0.85;
+  animation: rise var(--dur, 22s) linear infinite;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.15));
+}
+
+/* Color variants (pure CSS gradients) */
+.bubble.blue {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+    linear-gradient(135deg, #60a5fa, #2563eb);
+}
+.bubble.green {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+    linear-gradient(135deg, #34d399, #059669);
+}
+.bubble.purple {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+    linear-gradient(135deg, #a78bfa, #7c3aed);
+}
+.bubble.pink {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+    linear-gradient(135deg, #f472b6, #db2777);
+}
+.bubble.yellow {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+    linear-gradient(135deg, #facc15, #eab308);
+}
+
+/* Float up + gentle horizontal drift */
+@keyframes rise {
+  0%   { transform: translate(-50%, 0)         scale(1);   opacity: .85; }
+  50%  { transform: translate(calc(-50% + var(--drift)/2), -60vh) scale(1.1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--drift)), -120vh)  scale(1.2); opacity: 0; }
+}
+
+
+
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -226,6 +286,9 @@
                 opacity: 0;
             }
         }
+          html {
+    scroll-behavior: smooth;
+  }
     </style>
 
     <body class="min-h-screen py-8 px-4">
@@ -239,8 +302,8 @@
     </div>
 
 
-    <!-- Navigation -->
-    <nav class="nav-bg shadow-custom sticky top-0 z-50">
+<!-- Navigation -->
+<nav class="">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
@@ -249,134 +312,57 @@
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-8 ml-auto">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link active-nav transition duration-300 hover:scale-105 ">Home</a>
-                    <a href="about.html" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105 ">About</a>
-                    
-                
+                    <a href="index.html" class="contact-button text-lg">Home</a>
+                    <a href="about.html" class="contact-button text-lg ">About</a>
+
+
+                    <!-- SERVICES Dropdown -->
+<div class="relative group inline-block">
+  <button type="button" class="contact-button text-lg">
+    Services ▾
+  </button>
+  <div
+    class="absolute left-0 top-full hidden group-hover:flex flex-col w-56 z-50"
+  >
+    <a href="commercial-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Commercial Cleaning</a>
+    <a href="deep-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Deep Cleaning</a>
+    <a href="house-cleaning.html" class="contact-button text-lg hover:bg-blue-700">House Cleaning</a>
+    <a href="move-in-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Move-In Cleaning</a>
+    <a href="move-out-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Move-Out Cleaning</a>
+    <a href="vacation-rental-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Vacation Rental Cleaning</a>
+    <a href="airbnb-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Airbnb Cleaning</a>
+    <a href="post-construction-cleanup.html" class="contact-button text-lg hover:bg-blue-700">Post-Construction Cleanup</a>
+    <a href="carpet-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Carpet Cleaning</a>
+    <a href="pressure-washing.html" class="contact-button text-lg hover:bg-blue-700">Pressure Washing</a>
+  </div>
+</div>
+
+<!-- LOCATIONS Dropdown -->
+<div class="relative group inline-block ml-6">
+  <button type="button" class="contact-button text-lg">
+    Locations ▾
+  </button>
+  <div
+    class="absolute left-0 top-full hidden group-hover:flex flex-col w-56 z-50"
+  >
+    <a href="downtown-mobile.html" class="contact-button text-lg hover:bg-blue-700">Downtown Mobile</a>
+    <a href="midtown-mobile.html" class="contact-button text-lg hover:bg-blue-700">Midtown Mobile</a>
+    <a href="west-mobile.html" class="contact-button text-lg hover:bg-blue-700">West Mobile</a>
+    <a href="fairhope.html" class="contact-button text-lg hover:bg-blue-700">Fairhope</a>
+    <a href="daphne.html" class="contact-button text-lg hover:bg-blue-700">Daphne</a>
+    <a href="spanish-fort.html" class="contact-button text-lg hover:bg-blue-700">Spanish Fort</a>
+    <a href="eastern-shore.html" class="contact-button text-lg hover:bg-blue-700">Eastern Shore</a>
+  </div>
+</div>
 
 
 
 
-      
 
 
-
-
-<!-- MOBILE + DESKTOP NAVBAR -->
-<style>
-  .site-nav{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.06);position:relative;z-index:50}
-  .site-nav .wrap{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
-  .brand img{height:48px}
-  .menu{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0}
-  .nav-item{position:relative}
-  .nav-link{display:flex;align-items:center;gap:.35rem;padding:8px 6px;font-weight:600;color:#111;text-decoration:none}
-  .nav-link:hover{color:#0b5bd3}
-  .dropdown{position:absolute;left:0;top:calc(100% + 8px);min-width:230px;border:1px solid #eee;border-radius:12px;background:#fff;
-            box-shadow:0 10px 25px rgba(0,0,0,.08);padding:10px 0;display:none}
-  .nav-item::after{content:"";position:absolute;left:0;right:0;top:100%;height:8px}
-  .dropdown.open{display:block}
-  .dropdown a{display:block;padding:10px 14px;text-decoration:none;color:#111;white-space:nowrap}
-  .dropdown a:hover{background:#f4f6f8}
-  .btn{background:#1d4ed8;color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none}
-  .btn:hover{background:#173ea8}
-
-  /* --- MOBILE STYLES --- */
-  .hamburger{display:none;font-size:28px;cursor:pointer;border:none;background:none}
-  @media(max-width:768px){
-    .menu{display:none;flex-direction:column;align-items:flex-start;gap:0;width:100%;background:#fff;border-top:1px solid #eee}
-    .menu.open{display:flex}
-    .nav-item{width:100%}
-    .nav-link{width:100%;padding:14px 20px;justify-content:space-between}
-    .dropdown{position:static;box-shadow:none;border:none;padding:0;width:100%;display:none}
-    .dropdown.open{display:block}
-    .dropdown a{padding:12px 30px}
-  }
-</style>
-
-
-    <!-- Hamburger (mobile only) -->
-    <button class="hamburger" aria-label="Toggle menu">☰</button>
-
-<!-- Menu -->
-<ul class="menu">
-  <!-- SERVICES -->
-  <li class="nav-item has-dropdown">
-    <a href="#" class="nav-link">Services ▾</a>
-    <ul class="dropdown">
-      <a href="commercial-cleaning.html" class="contact-button text-lg">Commercial Cleaning</a>
-      <a href="deep-cleaning.html" class="contact-button text-lg">Deep Cleaning</a>
-      <a href="house-cleaning.html" class="contact-button text-lg">House Cleaning</a>
-      <a href="move-in-cleaning.html" class="contact-button text-lg">Move-In Cleaning</a>
-      <a href="move-out-cleaning.html" class="contact-button text-lg">Move-Out Cleaning</a>
-      <a href="vacation-rental-cleaning.html" class="contact-button text-lg">Vacation Rental Cleaning</a>
-      <a href="airbnb-cleaning.html" class="contact-button text-lg">Airbnb Cleaning</a>
-      <a href="post-construction-cleanup.html" class="contact-button text-lg">Post-Construction Cleanup</a>
-      <a href="carpet-cleaning.html" class="contact-button text-lg">Carpet Cleaning</a>
-      <a href="pressure-washing.html" class="contact-button text-lg">Pressure Washing</a>
-    </ul>
-  </li>
-
-  <!-- LOCATIONS -->
-  <li class="nav-item has-dropdown">
-    <a href="#" class="nav-link">Locations ▾</a>
-    <ul class="dropdown">
-      <a href="downtown-mobile.html" class="contact-button text-lg">Downtown Mobile</a>
-      <a href="midtown-mobile.html" class="contact-button text-lg">Midtown Mobile</a>
-      <a href="west-mobile.html" class="contact-button text-lg">West Mobile</a>
-      <a href="fairhope.html" class="contact-button text-lg">Fairhope</a>
-      <a href="daphne.html" class="contact-button text-lg">Daphne</a>
-      <a href="spanish-fort.html" class="contact-button text-lg">Spanish Fort</a>
-      <a href="eastern-shore.html" class="contact-button text-lg">Eastern Shore</a>
-    </ul>
-  </li>
-</ul>
-
-
-<script>
-(function () {
-  const hamburger = document.querySelector('.hamburger');
-  const menu = document.querySelector('.menu');
-  const items = document.querySelectorAll('.nav-item.has-dropdown');
-
-  // Toggle mobile menu
-  hamburger.addEventListener('click', () => {
-    menu.classList.toggle('open');
-  });
-
-  // Desktop hover + mobile tap toggle
-  items.forEach(item => {
-    const link = item.querySelector('.nav-link');
-    const dropdown = item.querySelector('.dropdown');
-
-    // Hover for desktop
-    item.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 768) dropdown.classList.add('open');
-    });
-    item.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 768) dropdown.classList.remove('open');
-    });
-
-    // Tap for mobile
-    link.addEventListener('click', e => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        dropdown.classList.toggle('open');
-      }
-    });
-  });
-})();
-</script>
-
-                    <a href="Blog.html" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Blog</a>
-                    <a href="contact.html" class="text-gray-700 hover:text-blue-500 px-3 py-2 text-sm font-medium nav-link transition duration-300 hover:scale-105">Contact</a>
-
-
-
-                
-
-
-
-                    <a href="contact.html" class="contact-button text-lg">Get a Quote</a>
+                <a href="Blog.html" class="contact-button text-lg">Blog</a>
+                    <a href="contact.html" class="contact-button text-lg">Contact</a>
+                    <a href="#quote" class="contact-button text-lg">Get a Quote</a>
                 </div>
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-500 focus:outline-none">
@@ -385,8 +371,20 @@
                 </div>
             </div>
         </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden nav-bg border-t border-color">
+        <div id="mobile-menu" class="hidden md:hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="index.html" class="contact-button text-lg">Home</a>
                 <a href="about.html" class="contact-button text-lg">About</a>
@@ -430,7 +428,7 @@
 </script>
                 <a href="Blog.html" class="contact-button text-lg">Blog</a>
                 <a href="contact.html" class="contact-button text-lg">Contact</a>
-                <a href="contact.html" class="contact-button text-lg">Get a Quote</a>
+                <a href="#quote" class="contact-button text-lg">Get a Quote</a>
             </div>
         </div>
     </nav>
@@ -438,7 +436,8 @@
     <!-- CONTACT BAR (under navbar) -->
 <div class="contact-button text-lg">
    <div class="max-w-6xl mx-auto px-4 py-2 flex flex-col md:flex-row justify-between items-center">
-    
+        
+        
     <!-- Left: Phone & Email -->
     <div class="flex flex-col md:flex-row md:space-x-6 text-center md:text-left">
       <a href="tel:2514978163" class="flex items-center justify-center space-x-2 hover:underline">
@@ -450,8 +449,6 @@
         <span>zoiriscleaningservices@gmail.com</span>
       </a>
     </div>
-
-
 
     <!-- Right: Social Icons -->
     <div class="flex space-x-2 mt-2 md:mt-0">
@@ -480,9 +477,6 @@
 
   </div>
 </div>
-
-
-
 
 
 
@@ -526,66 +520,269 @@
     <img src="https://i.ibb.co/v42Yn1hm/Mobile3.jpg" alt="Cleaning gallery 3" style="width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid #e5e7eb">
   </div>
 </section>
-    <!-- HERO -->
-    <section class="relative hero h-[50vh] flex items-center justify-center text-center text-white">
-        <div class="relative z-10 bg-black bg-opacity-50 px-6 py-8 rounded-lg">
-            <h1 class="text-4xl md:text-5xl font-extrabold drop-shadow"></h1>
-            <p style="font-size:18px;line-height:1.6;color:#475569">
+    <!-- Swiper CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 
-                         <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="tel:2514978163" class="contact-button text-lg">
-                    <i class="fas fa-phone mr-2 fa-beat"></i>Call Now
-                </a>
-        
-                <a href="mailto:zoiriscleaningservices@gmail.com" class="contact-button text-lg">
-                    <i class="fas fa-envelope mr-2 fa-beat"></i>Email Us
-                </a>
-                <a href="contact.html" class="contact-button text-lg">
-                    <i class="fa-solid fa-circle-check fa-beat"></i>
-                            Get a Free Quote
-                </a>
-        </div>
-    </section>
-
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.1800884577054!2d-88.0430!3d30.6944!2m3!1f75!2f65!3f0!3m2!1i1024!2i768!4f35!3m3!1m2!1s0x889a4d6a9fbb6e17%3A0x37c55f0e2d9a6dfc!2sDowntown%20Mobile%2C%20Alabama!5e1!3m2!1sen!2sus!4v1693572000000!5m2!1sen!2sus" 
-      width="100%" 
-      height="420" 
-      style="border:0;border-radius:14px;box-shadow:0 6px 15px rgba(0,0,0,.15)" 
-      allowfullscreen 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+<section id="services" class="py-16 bg-lightGray">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
+      Professional Cleaning Services for Homes & Businesses
+    </h2>
+    <p class="text-center text-gray-800 max-w-3xl mx-auto mb-12">
+      Zoiris Cleaning Service delivers trusted <strong>residential and commercial cleaning</strong> 
+      solutions designed to keep your space spotless, sanitized, and stress-free. 
+      Our expert cleaners specialize in <strong>deep cleaning, move-in and move-out cleaning, 
+      vacation rental turnovers, and post-construction cleanup</strong>. Whether you need a one-time 
+      detail clean or recurring services, we make every home and business shine with unmatched quality.
+    </p>
   </div>
 </section>
 
-<!-- Services Preview -->
-    <section class="py-12 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8">Our Services</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="text-center">
-                    <i class="fas fa-home service-icon text-4xl text-gray-600 mb-3"></i>
-                    <p class="text-sm font-medium">Residential</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-building service-icon text-4xl text-gray-600 mb-3"></i>
-                    <p class="text-sm font-medium">Commercial</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-tools service-icon text-4xl text-gray-600 mb-3"></i>
-                    <p class="text-sm font-medium">Deep Cleaning</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-calendar-check service-icon text-4xl text-gray-600 mb-3"></i>
-                    <p class="text-sm font-medium">Regular Service</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Form Section -->
-<section class="py-16">
+    <!-- Swiper Container -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        
+        <!-- Commercial Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/Xx556fXM/Office-Cleaning-Crew.jpg" alt="Commercial Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-building text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Commercial Cleaning</h3>
+              <p class="text-sm text-center mb-4">Professional cleaning for offices and businesses of all sizes.</p>
+              <div class="text-center"><a href="commercial-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deep Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/mfTgZTC/Seasonal-Deep-Cleaning-Tips.png" alt="Deep Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-broom text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Deep Cleaning</h3>
+              <p class="text-sm text-center mb-4">A top-to-bottom detailed clean to eliminate hidden grime.</p>
+              <div class="text-center"><a href="deep-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Home Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/xVwj2hV/Home-Cleaning-Service-in-Action.png" alt="Home Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-house-chimney text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Home Cleaning</h3>
+              <p class="text-sm text-center mb-4">Flexible residential cleaning for apartments, condos, and houses.</p>
+              <div class="text-center"><a href="house-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Move-In Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/pBhLCp0m/Cleaning-Movers-MH-1.jpg" alt="Move-In Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-key text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Move-In Cleaning</h3>
+              <p class="text-sm text-center mb-4">Fresh, sanitized, and move-in ready from day one.</p>
+              <div class="text-center"><a href="move-in-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Move-Out Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/fzSDxHXB/64119f3c30e4db48a06316e0-Move-out-cleaning-min.jpg" alt="Move-Out Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-truck text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Move-Out Cleaning</h3>
+              <p class="text-sm text-center mb-4">Leave your old space spotless and ready for inspection.</p>
+              <div class="text-center"><a href="move-out-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vacation Rental Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/MDq72Z6T/Vacation-Rental-Cleaning-Contract-1-scaled-e1636734588512.jpg" alt="Vacation Rental Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-umbrella-beach text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Vacation Rental Cleaning</h3>
+              <p class="text-sm text-center mb-4">Keep your rental property spotless and guest-ready every time.</p>
+              <div class="text-center"><a href="vacation-rental-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Airbnb Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/cXbxNC7y/airbnb-pixabay-e1584981299557-1.webp" alt="Airbnb Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-brands fa-airbnb text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Airbnb Cleaning</h3>
+              <p class="text-sm text-center mb-4">Quick turnaround cleaning for Airbnb hosts to keep 5-star ratings.</p>
+              <div class="text-center"><a href="airbnb-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post-Construction Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/kgbB5kPD/Captura-de-Tela-2020-07-06-a-s-15-13-39-1-e1599762634567.png" alt="Post-Construction Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-hammer text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Post-Construction Cleaning</h3>
+              <p class="text-sm text-center mb-4">Remove dust, debris, and construction mess for a polished look.</p>
+              <div class="text-center"><a href="post-construction-cleanup.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carpet Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/4nn05G5j/carpetcleaning-UT-768x406.jpg" alt="Carpet Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-rug text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Carpet Cleaning</h3>
+              <p class="text-sm text-center mb-4">Deep carpet cleaning that removes dirt, stains, and allergens.</p>
+              <div class="text-center"><a href="carpet-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pressure Washing -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/5gDXrjxs/Hotsy-Pressure-Washer-PSI-vs-GPM.jpg" alt="Pressure Washing" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-water text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Pressure Washing</h3>
+              <p class="text-sm text-center mb-4">Restore driveways, decks, and exteriors with powerful washing.</p>
+              <div class="text-center"><a href="pressure-washing.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="swiper-button-next text-blue-600"></div>
+      <div class="swiper-button-prev text-blue-600"></div>
+
+      <!-- Pagination Dots -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      640: { slidesPerView: 1 },
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Contact Form Section -->
+    <section id="quote" class="py-16 scroll-mt-28">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="grid lg:grid-cols-2 gap-12">
       <!-- Contact Form -->
@@ -710,39 +907,344 @@
   </div>
 </section>
 
-<!-- JS to prevent redirect -->
-<script>
-  const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("formSuccess");
-  const errorMsg = document.getElementById("formError");
-
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        successMsg.classList.remove("hidden");
-        errorMsg.classList.add("hidden");
-        form.reset();
-      } else {
-        throw new Error("Form submission failed.");
-      }
-    } catch (error) {
-      successMsg.classList.add("hidden");
-      errorMsg.classList.remove("hidden");
-    }
-  });
-</script>
 
 
-<!-- Footer -->
+
+
+
+
+
+
+
+
+<!-- Cleaning Services Preview -->
+<section id="services" class="py-16 bg-gray-5">
+  <div class="container mx-auto px-4">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
+      
+      <!-- Commercial Cleaning -->
+      <a href="commercial-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-building text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Commercial Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Deep Cleaning -->
+      <a href="deep-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-soap text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Deep Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- House Cleaning -->
+      <a href="house-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-broom text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">House Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Move-In Cleaning -->
+      <a href="move-in-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-box-open text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Move-In Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Move-Out Cleaning -->
+      <a href="move-out-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-truck-moving text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Move-Out Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Vacation Rental Cleaning -->
+      <a href="vacation-rental-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-umbrella-beach text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Vacation Rental Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Airbnb Cleaning -->
+      <a href="airbnb-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-brands fa-airbnb text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Airbnb Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Post-Construction Cleanup -->
+      <a href="post-construction-cleanup.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-hard-hat text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Post-Construction Cleanup</h3>
+        </div>
+        
+      </a>
+
+      <!-- Carpet Cleaning -->
+      <a href="carpet-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-rug text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Carpet Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Pressure Washing -->
+      <a href="pressure-washing.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-water text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Pressure Washing</h3>
+        </div>
+        
+      </a>
+
+
+      <!-- Other Services -->
+      <a href="#othercleaning" class="contact-button text-lg">
+          <div class="flex items-center gap-3">
+         <div class="contact-button text-lg">
+      <i class="fa-solid fa-star text-xl"></i>
+    </div>
+    <h3 class="contact-button text-lg">Other Cleaning Services</h3>
+  </div>
+  
+</a>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+
+    
+
+    <!-- ================= LOCATION SECTION ================= -->
+<section id="location" class="py-20 bg-gray-5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-extrabold text-black sm:text-4xl">
+        Our Location & Service Area
+      </h2>
+      <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
+      <p class="mt-6 max-w-3xl mx-auto text-black text-lg leading-relaxed">
+        <strong>Zoiris Cleaning Service</strong> is proudly headquartered in the heart of <em>Downtown Mobile, Alabama</em>.  
+        We serve both commercial and residential clients throughout Mobile and Baldwin County, including busy office districts, 
+        retail spaces, schools, and medical facilities. Our central location allows us to respond quickly and efficiently to clients across the area, 
+        ensuring top-quality cleaning services whenever you need them — 
+        <span class="font-semibold text-black">day or night, 24/7</span>.  
+        Explore our coverage area below and click on any location to view it directly in Google Maps.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      
+      <!-- Service Area -->
+<div>
+  <h3 class="text-xl font-bold text-gray-900 mb-4">Service Areas We Cover</h3>
+  <p class="text-gray-800 mb-6 leading-relaxed">
+    At <strong>Zoiris Cleaning Service</strong>, we are proud to serve a wide range of communities across 
+    <em>Mobile, AL and Baldwin County</em>. Our dedicated team provides trusted, high-quality cleaning solutions for 
+    offices, businesses, and homes in every corner of the region. Whether you’re located in the busy heart of 
+    <strong>Downtown Mobile</strong>, the growing neighborhoods of <strong>West Mobile</strong>, or the vibrant towns 
+    along the <strong>Eastern Shore</strong>, our team is ready to keep your space spotless, healthy, and welcoming.  
+    We combine flexible scheduling, eco-friendly cleaning products, and years of hands-on experience to deliver results 
+    you can count on — no matter the size or type of property. Explore our full service area below and click on a 
+    location to view it directly on Google Maps.
+  </p>
+</div>
+
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 text-lg">
+          <li>
+            <a href="downtown-mobile.html" target="_blank" class="contact-button text-lg">
+              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Downtown Mobile
+            </a>
+          </li>
+          <li>
+            <a href="midtown-mobile.html" target="_blank" class="contact-button text-lg">
+              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Midtown Mobile
+            </a>
+          </li>
+          <li>
+            <a href="west-mobile.html" target="_blank" class="contact-button text-lg">
+              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> West Mobile
+            </a>
+          </li>
+          <li>
+            <a href="eastern-shore.html" target="_blank" class="contact-button text-lg">
+              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Eastern Shore
+            </a>
+          </li>
+          <li>
+            <a href="spanish-fort.html" target="_blank" class="contact-button text-lg">
+              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Spanish Fort
+            </a>
+          </li>
+          <li>
+            <a href="daphne.html" target="_blank" class="contact-button text-lg">
+              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Daphne
+            </a>
+          </li>
+          <li>
+            <a href="fairhope.html" target="_blank" class="contact-button text-lg">
+              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Fairhope
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Map + Contact Info -->
+      <div>
+        <div class="aspect-w-16 aspect-h-9 mb-6">
+          <!-- 3D Interactive Google Map of Downtown Mobile -->
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!4v1711234567890!6m8!1m7!1sCAoSLEFGMVFpcE1FdFZ2aEJzYUVuTFlQbU8wYzZtR2Vzclh2VE1MZnptZVVCN3Vt!2m2!1d30.694356!2d-88.043054!3f90!4f0!5f0.7820865974627469" 
+            width="100%" 
+            height="350" 
+            style="border:0;" 
+            allowfullscreen 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            class="rounded-xl shadow-lg">
+          </iframe>
+        </div>
+
+        <div class="space-y-3 text-lg">
+          <!-- Clickable Address -->
+          <p class="flex items-center">
+            <i class="fas fa-map-marker-alt text-blue-600 mr-2 fa-beat-fade"></i> 
+            <a href="https://www.google.com/maps/dir/?api=1&destination=123+Dauphin+St,+Mobile,+AL+36602" 
+               target="_blank" 
+               class="text-black font-semibold contact-button text-lg">
+              123 Dauphin St, Mobile, AL 36602
+            </a>
+          </p>
+
+          <!-- Clickable Phone -->
+          <p class="flex items-center">
+            <i class="fas fa-phone text-blue-600 mr-2 fa-beat-fade"></i> 
+            <a href="tel:+12514978136" 
+               class="text-black font-bold contact-button text-lg">
+              (251) 497-8136
+            </a>
+          </p>
+
+          <!-- Clickable 24/7 -->
+          <p class="flex items-center">
+            <i class="fas fa-clock text-blue-600 mr-2 fa-beat-fade"></i> 
+            <a href="tel:+12514978136" 
+               class="text-black font-semibold contact-button text-lg">
+              Available 24/7
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Footer -->
     <footer class="footer-bg text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -2797,3 +3299,6 @@ function quickAsk(text){
 function quickAsk(text){
   sendZoiris(text);
 }
+
+
+    
