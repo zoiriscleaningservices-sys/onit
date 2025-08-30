@@ -752,136 +752,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    <!-- Contact Form Section -->
-    <section id="quote" class="py-16 scroll-mt-28">
-  <div class="container mx-auto px-4 max-w-6xl">
-    <div class="grid lg:grid-cols-2 gap-12">
-      <!-- Contact Form -->
-      <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6">Get a Free Quote</h2>
-        
-        <form id="contactForm" action="https://formspree.io/f/xkgvorgd" method="POST" class="space-y-6">
-          <!-- Hidden subject -->
-          <input type="hidden" name="_subject" value="New Cleaning Quote Request from Zoiris Website">
-
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-              <input type="text" name="firstName" required 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-              <input type="text" name="lastName" required 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
-            </div>
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-            <input type="email" name="email" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-            <input type="tel" name="phone" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
-            <select name="serviceType" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
-              <option value="">Select a service</option>
-              <option value="residential">Residential Cleaning</option>
-              <option value="commercial">Commercial Cleaning</option>
-              <option value="deep">Deep Cleaning</option>
-              <option value="move-in-out">Move In/Out Cleaning</option>
-              <option value="office">Office Cleaning</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-            <textarea name="message" rows="4" 
-              placeholder="Tell us about your cleaning needs..."
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input"></textarea>
-          </div>
-          
-          <button type="submit" 
-            class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition duration-300 pulse-animation">
-            <i class="fas fa-paper-plane mr-2"></i>
-            Send Message
-          </button>
-        </form>
-
-        <!-- Success / Error Messages -->
-        <div id="formSuccess" class="hidden mt-4 text-green-600 font-semibold">
-          ✅ Thanks! Your message has been sent. We'll contact you shortly.
-        </div>
-        <div id="formError" class="hidden mt-4 text-red-600 font-semibold">
-          ❌ Oops! Something went wrong. Please try again.
-        </div>
-      </div>
-
-      <!-- Contact Information -->
-      <div>
-        <div class="bg-white rounded-2xl shadow-xl p-8 card-hover mb-8">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
-          <div class="space-y-6">
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-phone text-green-600 text-xl"></i>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800">Phone</p>
-                <a href="tel:2514978163" class="text-gray-600 hover:text-purple-600">(251) 497-8163</a>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-envelope text-blue-600 text-xl"></i>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800">Email</p>
-                <a href="mailto:zoiriscleaningservices@gmail.com" class="text-gray-600 hover:text-purple-600">
-                  zoiriscleaningservices@gmail.com
-                </a>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-clock text-purple-600 text-xl"></i>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800">Hours</p>
-                <p class="text-gray-600">24/7 Emergency Service</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- WhatsApp Quick Contact -->
-        <div class="bg-gradient-to-r from-green-400 to-green-600 rounded-2xl shadow-xl p-8 text-white">
-          <h3 class="text-2xl font-bold mb-4">Quick WhatsApp</h3>
-          <p class="mb-4 opacity-90">Get instant response via WhatsApp</p>
-          <a href="https://wa.me/12514978163" target="_blank" 
-            class="inline-flex items-center bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
-            <i class="fab fa-whatsapp text-2xl mr-2"></i>
-            Chat Now
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- Swiper CSS -->
+    <!-- Swiper CSS -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
@@ -1123,6 +994,161 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Contact Form Section -->
+    <section id="quote" class="py-16 scroll-mt-28">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Contact Form -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Get a Free Quote</h2>
+        
+        <form id="contactForm" action="https://formspree.io/f/xkgvorgd" method="POST" class="space-y-6">
+          <!-- Hidden subject -->
+          <input type="hidden" name="_subject" value="New Cleaning Quote Request from Zoiris Website">
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+              <input type="text" name="firstName" required 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+              <input type="text" name="lastName" required 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+            </div>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+            <input type="email" name="email" required 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+            <input type="tel" name="phone" required 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
+            <select name="serviceType" required 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+              <option value="">Select a service</option>
+              <option value="residential">Residential Cleaning</option>
+              <option value="commercial">Commercial Cleaning</option>
+              <option value="deep">Deep Cleaning</option>
+              <option value="move-in-out">Move In/Out Cleaning</option>
+              <option value="office">Office Cleaning</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+            <textarea name="message" rows="4" 
+              placeholder="Tell us about your cleaning needs..."
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input"></textarea>
+          </div>
+          
+          <button type="submit" 
+            class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition duration-300 pulse-animation">
+            <i class="fas fa-paper-plane mr-2"></i>
+            Send Message
+          </button>
+        </form>
+
+        <!-- Success / Error Messages -->
+        <div id="formSuccess" class="hidden mt-4 text-green-600 font-semibold">
+          ✅ Thanks! Your message has been sent. We'll contact you shortly.
+        </div>
+        <div id="formError" class="hidden mt-4 text-red-600 font-semibold">
+          ❌ Oops! Something went wrong. Please try again.
+        </div>
+      </div>
+
+      <!-- Contact Information -->
+      <div>
+        <div class="bg-white rounded-2xl shadow-xl p-8 card-hover mb-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
+          <div class="space-y-6">
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-phone text-green-600 text-xl"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800">Phone</p>
+                <a href="tel:2514978163" class="text-gray-600 hover:text-purple-600">(251) 497-8163</a>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-envelope text-blue-600 text-xl"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800">Email</p>
+                <a href="mailto:zoiriscleaningservices@gmail.com" class="text-gray-600 hover:text-purple-600">
+                  zoiriscleaningservices@gmail.com
+                </a>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-clock text-purple-600 text-xl"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800">Hours</p>
+                <p class="text-gray-600">24/7 Emergency Service</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Quick Contact -->
+        <div class="bg-gradient-to-r from-green-400 to-green-600 rounded-2xl shadow-xl p-8 text-white">
+          <h3 class="text-2xl font-bold mb-4">Quick WhatsApp</h3>
+          <p class="mb-4 opacity-90">Get instant response via WhatsApp</p>
+          <a href="https://wa.me/12514978163" target="_blank" 
+            class="inline-flex items-center bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+            <i class="fab fa-whatsapp text-2xl mr-2"></i>
+            Chat Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
 <!-- Cleaning Services Preview -->
 <section id="services" class="py-16 bg-gray-5">
   <div class="container mx-auto px-4">
@@ -1285,19 +1311,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
     <!-- Blog Section -->
-    <section id="blog" class="py-20 bg-hover">
+    <section id="blog" class="py-20 ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                    Cleaning Tips & Insights
-                </h2>
-                <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
-                <p class="mt-6 max-w-2xl mx-auto text-gray-500">
-                    Helpful articles to keep your space clean and healthy
-                </p>
+  Expert Cleaning Tips, Hacks & Professional Insights
+</h2>
+<div class="mt-4 h-1 w-24 bg-blue-600 mx-auto rounded"></div>
+<p class="mt-6 max-w-3xl mx-auto text-gray-800 text-lg leading-relaxed">
+  Stay informed with practical cleaning advice, proven hacks, and 
+  <strong>professional insights from Zoiris Cleaning Service</strong>.  
+  Our articles cover everything from eco-friendly cleaning methods and home 
+  organization to <strong>commercial office cleaning strategies</strong> that 
+  keep businesses in <strong>Mobile, AL & Baldwin County</strong> spotless, 
+  safe, and welcoming. Whether you’re a homeowner or a business owner, 
+  these resources will help you maintain a healthier and cleaner environment 
+  year-round.
+</p>
+
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Blog Post 1 -->
@@ -1373,110 +1438,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-    <!-- Blog Post Sections -->
-    <section id="#blog-post-1" class="py-20 card-bg">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-8">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4">10 Spring Cleaning Tips for a Fresher Home</h2>
-                <div class="flex items-center text-sm text-gray-500 mb-6">
-                    <span>March 15, 2023</span>
-                    <span class="mx-2">•</span>
-                    <span>5 min read</span>
-                </div>
-                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                     alt="Spring cleaning" class="w-full h-auto rounded-lg mb-8">
-                <div class="prose max-w-none">
-                    <p class="text-gray-600 mb-4">Spring cleaning is the perfect opportunity to refresh your home after the long winter months. Here are our top 10 tips to make your spring cleaning more efficient and effective:</p>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">1. Make a Plan</h3>
-                    <p class="text-gray-600 mb-4">Before you begin, walk through your home and make a list of areas that need attention. Prioritize tasks and break them down by room.</p>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">2. Declutter First</h3>
-                    <p class="text-gray-600 mb-4">Remove items you no longer need before cleaning. Donate, recycle, or discard unused items to make cleaning easier.</p>
-                    <!-- Add remaining tips here -->
-                    <p class="text-gray-600 mt-8">For professional spring cleaning help, <a href="contact.html" class="text-blue-500 hover:underline">contact Zoiris Cleaning Service</a> today!</p>
-                </div>
-            </div>
-            <a href="Blog.html" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Articles
-            </a>
-        </div>
-    </section>
-
-    <section id="blog-post-2" class="py-20 bg-hover">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-8">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4">The Benefits of Eco-Friendly Cleaning Products</h2>
-                <div class="flex items-center text-sm text-gray-500 mb-6">
-                    <span>February 28, 2023</span>
-                    <span class="mx-2">•</span>
-                    <span>4 min read</span>
-                </div>
-                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                     alt="Eco-friendly cleaning" class="w-full h-auto rounded-lg mb-8">
-                <div class="prose max-w-none">
-                    <p class="text-gray-600 mb-4">Switching to green cleaning products offers numerous benefits for your health and the environment. Here's why you should make the change:</p>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Healthier Home Environment</h3>
-                    <p class="text-gray-600 mb-4">Traditional cleaners often contain harsh chemicals that can irritate skin, eyes, and respiratory systems. Eco-friendly products use natural ingredients that are safer for your family.</p>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Better for the Planet</h3>
-                    <p class="text-gray-600 mb-4">Green cleaning products biodegrade quickly and don't contribute to water pollution like conventional cleaners do.</p>
-                    <!-- Add remaining content here -->
-                </div>
-            </div>
-            <a href="Blog.html" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Articles
-            </a>
-        </div>
-    </section>
-
-    <section id="blog-post-3" class="py-20 card-bg">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-8">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4">Organizing Your Home: Where to Start</h2>
-                <div class="flex items-center text-sm text-gray-500 mb-6">
-                    <span>January 10, 2023</span>
-                    <span class="mx-2">•</span>
-                    <span>6 min read</span>
-                </div>
-                <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                     alt="Home organization" class="w-full h-auto rounded-lg mb-8">
-                <div class="prose max-w-none">
-                    <p class="text-gray-600 mb-4">Feeling overwhelmed by clutter? Follow our step-by-step guide to organize your home effectively and maintain order long-term.</p>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Start Small</h3>
-                    <p class="text-gray-600 mb-4">Begin with a small, manageable area like a junk drawer or single shelf. Completing small spaces builds momentum.</p>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">The Four-Box Method</h3>
-                    <p class="text-gray-600 mb-4">Use four boxes labeled: Keep, Donate, Trash, and Relocate. This system helps make quick decisions about each item.</p>
-                    <!-- Add remaining content here -->
-                </div>
-            </div>
-            <a href="Blog.html" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Articles
-            </a>
-        </div>
-    </section>
-
-    <section id="blog-archive" class="py-20 bg-hover">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-8">All Articles</h2>
-            <div class="space-y-8">
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">10 Spring Cleaning Tips for a Fresher Home</h3>
-                    <div class="flex items-center text-sm text-gray-500 mb-3">
-                        <span>March 15, 2023</span>
-                        <span class="mx-2">•</span>
-                        <span>5 min read</span>
-                    </div>
-                    <p class="text-gray-600 mb-3">Discover our top tips to make your spring cleaning more efficient and effective this year.</p>
-                    <a href="#blog-post-1" class="text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
-                        Read article
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-                <!-- Repeat for other articles -->
-            </div>
-            <a href="Blog.html" class="mt-8 text-blue-500 font-medium hover:text-blue-700 inline-flex items-center">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Blog
-            </a>
-        </div>
-    </section>
+    
 
     <!-- Location Section -->
     <section id="location" class="py-20 bg-hover">
