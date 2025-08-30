@@ -730,12 +730,6 @@ document.addEventListener('DOMContentLoaded', () => {
           With <strong>5-star reviews and long-term customer relationships</strong>, 
           our commitment to excellence has made us a leading cleaning service provider in Alabama.  
         </p>
-
-        <!-- CTA -->
-        <a href="contact.html" 
-           class="contact-button text-lg">
-          Get a Free Cleaning Quote Today 
-          <i class="fas fa-arrow-right ml-3"></i>
         </a>
       </div>
     </div>
@@ -745,30 +739,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    <!-- Services Preview -->
-    <section class="">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8">Our Services</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="text-center">
-                    <i class="fas fa-home service-icon text-4xl text-gray-600 mb-3"></i>
-                    <p class="text-sm font-medium">Residential</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-building service-icon text-4xl text-gray-600 mb-3"></i>
-                    <p class="text-sm font-medium">Commercial</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-tools service-icon text-4xl text-gray-600 mb-3"></i>
-                    <p class="text-sm font-medium">Deep Cleaning</p>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-calendar-check service-icon text-4xl text-gray-600 mb-3"></i>
-                    <p class="text-sm font-medium">Regular Service</p>
-                </div>
-            </div>
-        </div>
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Contact Form Section -->
     <section id="quote" class="py-16 scroll-mt-28">
@@ -899,35 +881,238 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+<!-- Swiper CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 
-<!-- JS to prevent redirect -->
+<section id="services" class="py-16 bg-lightGray">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
+      Professional Cleaning Services for Homes & Businesses
+    </h2>
+    <p class="text-center text-gray-800 max-w-3xl mx-auto mb-12">
+      Zoiris Cleaning Service delivers trusted <strong>residential and commercial cleaning</strong> 
+      solutions designed to keep your space spotless, sanitized, and stress-free. 
+      Our expert cleaners specialize in <strong>deep cleaning, move-in and move-out cleaning, 
+      vacation rental turnovers, and post-construction cleanup</strong>. Whether you need a one-time 
+      detail clean or recurring services, we make every home and business shine with unmatched quality.
+    </p>
+  </div>
+</section>
+
+
+    <!-- Swiper Container -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        
+        <!-- Commercial Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/Xx556fXM/Office-Cleaning-Crew.jpg" alt="Commercial Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-building text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Commercial Cleaning</h3>
+              <p class="text-sm text-center mb-4">Professional cleaning for offices and businesses of all sizes.</p>
+              <div class="text-center"><a href="commercial-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deep Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/mfTgZTC/Seasonal-Deep-Cleaning-Tips.png" alt="Deep Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-broom text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Deep Cleaning</h3>
+              <p class="text-sm text-center mb-4">A top-to-bottom detailed clean to eliminate hidden grime.</p>
+              <div class="text-center"><a href="deep-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Home Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/xVwj2hV/Home-Cleaning-Service-in-Action.png" alt="Home Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-house-chimney text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Home Cleaning</h3>
+              <p class="text-sm text-center mb-4">Flexible residential cleaning for apartments, condos, and houses.</p>
+              <div class="text-center"><a href="house-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Move-In Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/pBhLCp0m/Cleaning-Movers-MH-1.jpg" alt="Move-In Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-key text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Move-In Cleaning</h3>
+              <p class="text-sm text-center mb-4">Fresh, sanitized, and move-in ready from day one.</p>
+              <div class="text-center"><a href="move-in-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Move-Out Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/fzSDxHXB/64119f3c30e4db48a06316e0-Move-out-cleaning-min.jpg" alt="Move-Out Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-truck text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Move-Out Cleaning</h3>
+              <p class="text-sm text-center mb-4">Leave your old space spotless and ready for inspection.</p>
+              <div class="text-center"><a href="move-out-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vacation Rental Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/MDq72Z6T/Vacation-Rental-Cleaning-Contract-1-scaled-e1636734588512.jpg" alt="Vacation Rental Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-umbrella-beach text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Vacation Rental Cleaning</h3>
+              <p class="text-sm text-center mb-4">Keep your rental property spotless and guest-ready every time.</p>
+              <div class="text-center"><a href="vacation-rental-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Airbnb Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/cXbxNC7y/airbnb-pixabay-e1584981299557-1.webp" alt="Airbnb Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-brands fa-airbnb text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Airbnb Cleaning</h3>
+              <p class="text-sm text-center mb-4">Quick turnaround cleaning for Airbnb hosts to keep 5-star ratings.</p>
+              <div class="text-center"><a href="airbnb-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post-Construction Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/kgbB5kPD/Captura-de-Tela-2020-07-06-a-s-15-13-39-1-e1599762634567.png" alt="Post-Construction Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-hammer text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Post-Construction Cleaning</h3>
+              <p class="text-sm text-center mb-4">Remove dust, debris, and construction mess for a polished look.</p>
+              <div class="text-center"><a href="post-construction-cleanup.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carpet Cleaning -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/4nn05G5j/carpetcleaning-UT-768x406.jpg" alt="Carpet Cleaning" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-rug text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Carpet Cleaning</h3>
+              <p class="text-sm text-center mb-4">Deep carpet cleaning that removes dirt, stains, and allergens.</p>
+              <div class="text-center"><a href="carpet-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pressure Washing -->
+        <div class="swiper-slide">
+          <div class="contact-button text-lg">
+            <img src="https://i.ibb.co/5gDXrjxs/Hotsy-Pressure-Washer-PSI-vs-GPM.jpg" alt="Pressure Washing" class="h-48 w-full object-cover">
+            <div class="p-6">
+              <div class="flex items-center justify-center mb-4">
+                <div class="contact-button text-lg">
+                  <i class="fa-solid fa-water text-xl"></i>
+                </div>
+              </div>
+              <h3 class="font-bold text-xl mb-2 text-center">Pressure Washing</h3>
+              <p class="text-sm text-center mb-4">Restore driveways, decks, and exteriors with powerful washing.</p>
+              <div class="text-center"><a href="pressure-washing.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="swiper-button-next text-blue-600"></div>
+      <div class="swiper-button-prev text-blue-600"></div>
+
+      <!-- Pagination Dots -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("formSuccess");
-  const errorMsg = document.getElementById("formError");
-
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        successMsg.classList.remove("hidden");
-        errorMsg.classList.add("hidden");
-        form.reset();
-      } else {
-        throw new Error("Form submission failed.");
-      }
-    } catch (error) {
-      successMsg.classList.add("hidden");
-      errorMsg.classList.remove("hidden");
-    }
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      640: { slidesPerView: 1 },
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
   });
 </script>
 
@@ -938,317 +1123,167 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+<!-- Cleaning Services Preview -->
+<section id="services" class="py-16 bg-gray-5">
+  <div class="container mx-auto px-4">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
+      
+      <!-- Commercial Cleaning -->
+      <a href="commercial-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-building text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Commercial Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Deep Cleaning -->
+      <a href="deep-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-soap text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Deep Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- House Cleaning -->
+      <a href="house-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-broom text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">House Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Move-In Cleaning -->
+      <a href="move-in-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-box-open text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Move-In Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Move-Out Cleaning -->
+      <a href="move-out-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-truck-moving text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Move-Out Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Vacation Rental Cleaning -->
+      <a href="vacation-rental-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-umbrella-beach text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Vacation Rental Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Airbnb Cleaning -->
+      <a href="airbnb-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-brands fa-airbnb text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Airbnb Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Post-Construction Cleanup -->
+      <a href="post-construction-cleanup.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-hard-hat text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Post-Construction Cleanup</h3>
+        </div>
+        
+      </a>
+
+      <!-- Carpet Cleaning -->
+      <a href="carpet-cleaning.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-rug text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Carpet Cleaning</h3>
+        </div>
+        
+      </a>
+
+      <!-- Pressure Washing -->
+      <a href="pressure-washing.html" class="contact-button text-lg">
+        <div class="flex items-center gap-3">
+          <div class="contact-button text-lg">
+            <i class="fa-solid fa-water text-xl"></i>
+          </div>
+          <h3 class="contact-button text-lg">Pressure Washing</h3>
+        </div>
+        
+      </a>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Services Section -->
-<section id="services" class="">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <!-- Title -->
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
-        Our Professional Cleaning Services
-      </h2>
-      <div class="mt-6 h-1 w-24 bg-blue-600 mx-auto rounded"></div>
-      <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-800 leading-relaxed">
-        At <strong>Zoiris Cleaning Service</strong>, we provide top-rated 
-        <em>residential and commercial cleaning in Mobile, AL & Baldwin County</em>.  
-        Our skilled team delivers spotless results with eco-friendly products, 
-        advanced cleaning techniques, and a commitment to excellence.  
-        Explore our most popular cleaning services below.
-      </p>
+      <!-- Other Services -->
+      <a href="#othercleaning" class="contact-button text-lg">
+          <div class="flex items-center gap-3">
+         <div class="contact-button text-lg">
+      <i class="fa-solid fa-star text-xl"></i>
     </div>
+    <h3 class="contact-button text-lg">Other Cleaning Services</h3>
+  </div>
+  
+</a>
 
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
-                     onclick="this.classList.toggle('expanded')">
-                    <div class="h-48 bg-blue-50 flex items-center justify-center">
-                        <img src="https://i.ibb.co/xVwj2hV/Home-Cleaning-Service-in-Action.png" alt="Residential Cleaning" /></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">🏡 Residential Cleaning</h3>
-                        <p class="text-gray-600 mb-4">Regular, deep, and move-in/out cleaning.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">2-bedroom apartment</span>
-                        </div>
-                        <div class="mt-2 text-green-600 text-sm font-medium">
-                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
-                        </div>
+    </div>
+  </div>
+</section>
 
-                        <div class="mt-4">
-                        <a href="contact.html" class="contact-button text-lg">
-                        Get a Custom Quote
-                        <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
 
-                        <div class="service-details">
-                             <h4 class="font-bold text-gray-800 mt-4 mb-2">Estimated Price:</h4>
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>✨ Dusting all surfaces and furniture</li>
-                                <li>🧽 Vacuuming & mopping floors</li>
-                                <li>🍳 Kitchen cleaning (appliances, counters, sink)</li>
-                                <li>🚿 Bathroom sanitization (toilets, showers, sinks, mirrors)</li>
-                                <li>🛏️ Bed making & linen changing</li>
-                                <li>🗑️ Trash removal</li>
-                            </ul>
-                            
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>✅ Weekly (most popular)</li>
-                                <li>✅ Bi-weekly</li>
-                                <li>✅ Monthly</li>
-                                <li>✅ One-time deep cleaning</li>
-                            </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
-                     onclick="this.classList.toggle('expanded')">
-                    <div class="h-48 bg-blue-50 flex items-center justify-center">
-                        <img src="https://i.ibb.co/mfTgZTC/Seasonal-Deep-Cleaning-Tips.png" alt="Residential Cleaning" /></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">🧼 Deep Cleaning</h3>
-                        <p class="text-gray-600 mb-4">Kitchens, bathrooms, and detailed sanitization.</p>
-                        <div class="flex justify-between items-center">
 
-                            <span class="text-sm text-gray-500">Deep Cleaning</span>
-                        </div>
-                        <div class="mt-2 text-green-600 text-sm font-medium">
-                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
-                        </div>
 
-                        <div class="mt-4">
-                        <a href="contact.html" class="contact-button text-lg">
-                        Get a Custom Quote
-                        <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                        
-                        <div class="service-details">
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>🧽 Scrubbing and disinfecting kitchens & bathrooms</li>
-                                <li>🍳 Cleaning inside appliances (oven, fridge, microwave)</li>
-                                <li>🪵 Washing baseboards, doors & trim</li>
-                                <li>💡 Dusting vents, blinds & light fixtures)</li>
-                                <li>🧹 Shampooing carpets or detailed floor cleaning</li>
-                                <li>🦠 Removing built-up grime, mold & mildew</li>
-                            </ul>
-                            
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>✅ One-time deep cleaning</li>
-                                <li>✅ Seasonal cleaning (Spring/Fall)</li>
-                                <li>✅ Move-in / Move-out cleaning</li>
-                            </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
-                     onclick="this.classList.toggle('expanded')">
-                    <div class="h-48 bg-blue-50 flex items-center justify-center">
-                        <img src="https://i.ibb.co/Xx556fXM/Office-Cleaning-Crew.jpg" alt="Residential Cleaning" /></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">🏢 Commercial Cleaning</h3>
-                        <p class="text-gray-600 mb-4">Offices, retail, and workspaces.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Commercial & Office Cleaning</span>
-                        </div>
-                        <div class="mt-2 text-green-600 text-sm font-medium">
-                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
-                        </div>
 
-                        <div class="mt-4">
-                        <a href="contact.html" class="contact-button text-lg">
-                        Get a Custom Quote
-                        <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                        
-                        <div class="service-details">                       
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>🪑 Dusting & sanitizing desks, chairs & workstations</li>
-                                <li>🗑️ Emptying trash bins & replacing liners</li>
-                                <li>🚻 Cleaning restrooms & breakrooms</li>
-                                <li>🧹 Vacuuming, mopping & carpet care</li>
-                                <li>🖱️ Sanitizing high-touch areas (keyboards, switches, handles)</li>
-                            </ul>
-                            
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>✅ Daily</li>
-                                <li>✅ Weekly</li>
-                                <li>✅ Bi-weekly</li>
-                                <li>✅ Customized schedules</li>
-                            </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
-                     onclick="this.classList.toggle('expanded')">
-                    <div class="h-48 bg-blue-50 flex items-center justify-center">
-                        <img src="https://i.ibb.co/cXbxNC7y/airbnb-pixabay-e1584981299557-1.webp" alt="airbnb-pixabay-e1584981299557-1" alt="Residential Cleaning" /></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">🏠 Airbnb & Short-Term Rental Cleaning</h3>
-                        <p class="text-gray-600 mb-4">Fast, reliable turnovers to keep your guests happy and your property five-star ready.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Large Home</span>
-                        </div>
-                        <div class="mt-2 text-green-600 text-sm font-medium">
-                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
-                        </div>
-                        
-                        
-                        <div class="mt-4">
-                        <a href="contact.html" class="contact-button text-lg">
-                        Get a Custom Quote
-                        <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                        
 
-                        <div class="service-details">
-                        
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>⏱️ Quick turnaround cleaning between guests</li>
-                                <li>🛏️ Fresh linens & towel replacement</li>
-                                <li>🛁 Kitchen & bathroom sanitization</li>
-                                <li>🧹 Dusting, vacuuming & mopping floors</li>
-                                <li>📦 Restocking essentials (toiletries, paper products)</li>
-                                <li>🔍 Spot-checking for damages or left items</li>
-                            </ul>
-                            
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>✅ After every checkout (standard)</li>
-                                <li>✅ Weekly deep cleaning add-on</li>
-                                <li>✅ Monthly</li>
-                            </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Service 5 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
-                     onclick="this.classList.toggle('expanded')">
-                    <div class="h-48 bg-blue-50 flex items-center justify-center">
-                        <img src="https://i.ibb.co/4nn05G5j/carpetcleaning-UT-768x406.jpg" alt="Residential Cleaning" /></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">🛋️ Carpet & Upholstery Cleaning</h3>
-                        <p class="text-gray-600 mb-4">Deep cleaning that removes dirt, stains, and allergens for a fresher, healthier space.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">per room</span>
-                        </div>
-                        <div class="mt-2 text-green-600 text-sm font-medium">
-                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
-                        </div>
 
-                        <div class="mt-4">
-                        <a href="contact.html" class="contact-button text-lg">
-                        Get a Custom Quote
-                        <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                        
-                        <div class="service-details">
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>🧹 Deep vacuuming to remove dirt & dust</li>
-                                <li>💦 Hot water extraction / steam cleaning</li>
-                                <li>🧴 Stain & odor removal treatments</li>
-                                <li>🛋️ Upholstery cleaning (sofas, chairs, cushions)</li>
-                                <li>🌬️ Allergy reduction (dust mites, pet dander removal)</li>
-                            </ul>
-                            
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>✅ One-time service</li>
-                                <li>✅ Quarterly maintenance</li>
-                                <li>✅ As needed (spills, events, pets)</li>
-                                <li>✅ Monthly</li>
-                            </ul>                     
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Service 6 -->
-<div class="bg-white rounded-lg shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl hover:border-blue-500 hover:border-2"
-                     onclick="this.classList.toggle('expanded')">
-                    <div class="h-48 bg-blue-50 flex items-center justify-center">
-                         <img src="https://i.ibb.co/7dgK3d8x/intro-1705620388.jpg" alt="Residential Cleaning" /></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">🪟 Window Cleaning</h3>
-                        <p class="text-gray-600 mb-4">Streak-free shine inside and out for a brighter view.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">per window</span>
-                        </div>
-                        <div class="mt-2 text-green-600 text-sm font-medium">
-                            <i class="fas fa-tag mr-1"></i> Save 10% with monthly subscription
-                        </div>
 
-                      
-                        <div class="mt-4">
-                        <a href="contact.html" class="contact-button text-lg">
-                        Get a Custom Quote
-                        <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                        
-                        <div class="service-details">
 
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">🧹 What’s Included:</h4>
-                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                                <li>🧼 Interior & exterior glass cleaning</li>
-                                <li>🪟 Window sills & tracks wiped down</li>
-                                <li>🧴 Screen washing or dusting</li>
-                                <li>✨ Removal of smudges, streaks & water spots</li>
-                            
-                            <h4 class="font-bold text-gray-800 mt-4 mb-2">📅 Frequency Options:</h4>
-                            <ul class="list-disc l-5 text-gray-600 space-y-1">
-                                <li>✅ One-time service</li>
-                                <li>✅ Quarterly</li>
-                                <li>✅ Bi-annual (Spring/Fall)</li>
-                            </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
 
