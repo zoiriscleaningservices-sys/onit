@@ -481,20 +481,23 @@
 
 
 
-    <!-- HERO -->
-    <section id="home" class="hero-image h-screen flex items-center justify-center relative">
-        <img src="https://i.ibb.co/r2NM3gtN/Whats-App-Image-2025-08-27-at-08-42-20-28cb0154.jpg" alt="About Hero" class="absolute inset-0 w-full h-full object-cover">
 
 
+<!-- Hero Section -->
+<section id="home" class="hero-image h-screen flex items-center justify-center relative">
+  <!-- Light overlay for readability -->
+  <div class="absolute inset-0 bg-black bg-opacity-30"></div>
 
-
-<div class="relative z-10 bg-black bg-opacity-50 px-6 py-8 rounded-lg"> <h1 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg"> About Us </h1>
-
-    <p class="mt-6 text-lg md:text-xl text-white leading-relaxed max-w-3xl mx-auto">
+  <div class="relative text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 animate-fadeIn">
+      Contact Us
+    </h1>
+    <p class="text-lg md:text-xl text-white font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
       At <strong>Zoiris Cleaning Service</strong>, we make it easy to keep your home or business 
       spotless. Whether you need recurring housekeeping, deep cleaning, or same-day service, 
       our friendly team is here to help. Every client receives personalized attention, 
       fast response times, and dependable results you can count on us.
+    </p><span class="font-semibold text-blue-400">24/7</span>.
     </p>
 
 
@@ -502,10 +505,7 @@
 
 
 
-
-
-
-                         <div class="flex flex-col sm:flex-row justify-center gap-4">
+             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="tel:2514978163" class="contact-button text-lg">
                     <i class="fas fa-phone mr-2 fa-beat"></i>Call Now
                 </a>
@@ -517,9 +517,15 @@
                 <i class="fa-solid fa-circle-check fa-beat"></i>
                  Get a Free Quote
                  </a>
-        </div>
-    </section>
-    <script>
+
+
+
+
+
+
+
+
+                 <script>
 document.addEventListener('DOMContentLoaded', () => {
   // Try to detect your sticky header height
   const header = document.querySelector('nav.nav-bg, header.sticky, .sticky');
@@ -562,37 +568,176 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-    <!-- WHY CONTACT US -->
-<section class="py-16 bg-gray-5">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="text-3xl font-bold text-black">Why Contact Us</h2>
-      <p class="mt-4 text-black leading-relaxed">
-        Choosing <strong>Zoiris Cleaning Service</strong> means choosing peace of mind. 
-        When you reach out to us, you’re connecting with a professional team that truly 
-        listens to your needs and delivers solutions tailored specifically for your home 
-        or business. Our goal is simple: to make your life easier by providing reliable, 
-        high-quality cleaning services you can trust every time. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     
+
+
+
+            </div>
+ <!-- Scroll Down Arrow -->
+<div class="flex justify-center mt-6">
+  <button onclick="scrollToQuote()" 
+          class="animate-bounce text-black hover:text-blue-600 focus:outline-none">
+    <!-- Down Arrow Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" 
+         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+</div>
+
+<script>
+  function scrollToQuote() {
+    document.getElementById("quote").scrollIntoView({ behavior: "smooth" });
+  }
+</script>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- About Section (Dark Text & Extended Content) -->
+<section id="about" class="">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+        About Zoiris Cleaning Service – Professional Cleaning in Mobile, Alabama
+      </h2>
+      <div class="mt-6 h-1 w-24 bg-blue-600 mx-auto rounded"></div>
+      <p class="mt-6 text-gray-800 max-w-3xl mx-auto text-lg leading-relaxed">
+        <strong>Zoiris Cleaning Service</strong> is a trusted name in 
+        <em>residential and commercial cleaning across Mobile, AL, and Baldwin County</em>. 
+        We specialize in <strong>house cleaning, apartment cleaning, office cleaning, deep cleaning, and eco-friendly solutions</strong> 
+        that go far beyond appearance — delivering true freshness, hygiene, and peace of mind.  
       </p>
-      <p class="mt-4 text-black leading-relaxed">
-        Whether you’re looking for a dependable partner to maintain your office, 
-        a deep clean to refresh your home, or fast turnaround for an Airbnb or 
-        post-construction project, contacting us ensures the job gets done right — 
-        on time, with care, and with results that exceed expectations.  
-      </p>
-      <p class="mt-4 text-black leading-relaxed">
-        When you call, email, or request a quote, you won’t just get a service — 
-        you’ll get a dedicated cleaning partner committed to your satisfaction. 
-        <strong>Zoiris Cleaning Service</strong> is ready to answer your questions, 
-        schedule around your needs, and provide honest, transparent pricing. 
-        Don’t wait — <span class="font-semibold text-black">contact us today</span> 
-        and discover the difference a truly professional cleaning service can make. 
-      </p>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center">
+      <!-- About Image -->
+      <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+        <img src="https://i.ibb.co/x8Rd9N9p/Whats-App-Image-2025-08-27-at-08-42-19-1659b607.jpg" 
+             alt="Professional eco-friendly cleaning in Mobile Alabama by Zoiris team"
+             class="rounded-xl shadow-2xl w-full h-auto">
+      </div>
+
+      <!-- About Content -->
+      <div class="md:w-1/2">
+        <h3 class="text-3xl font-bold text-gray-900 mb-8">Our Story</h3>
+        <p class="text-gray-800 mb-8 leading-relaxed text-lg">
+          What started as a small, family-run cleaning service has grown into one of the most 
+          <strong>trusted cleaning companies in Mobile and Baldwin County</strong>. 
+          Our mission has always been simple: provide <strong>affordable, reliable, and high-quality cleaning</strong> 
+          that makes life easier for families and businesses.  
+        </p>
+        <p class="text-gray-800 mb-8 leading-relaxed text-lg">
+          From one-bedroom apartments to large commercial facilities, we’ve built our reputation on 
+          <em>professionalism, transparency, and consistent results</em>. 
+          We don’t just clean — we create safe, welcoming spaces where people can live and work comfortably.  
+        </p>
+
+        <h3 class="text-3xl font-bold text-gray-900 mb-8">Why Choose Us</h3>
+        <p class="text-gray-800 mb-8 leading-relaxed text-lg">
+          Families and businesses continue to choose Zoiris because we deliver more than surface-level cleaning. 
+          Our team is trained in <strong>advanced cleaning techniques</strong> and only uses 
+          <strong>eco-friendly, non-toxic products</strong> that are safe for kids, pets, and the environment.  
+        </p>
+        <p class="text-gray-800 mb-8 leading-relaxed text-lg">
+          Whether you’re preparing for a move, scheduling recurring maid service, or need professional 
+          <strong>office and janitorial cleaning</strong>, we ensure a spotless finish — every time, guaranteed.  
+        </p>
+
+        <h3 class="text-3xl font-bold text-gray-900 mb-8">Our Core Values</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 bg-blue-100 rounded-full p-4">
+              <i class="fas fa-hand-holding-heart text-blue-600 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-semibold text-gray-900">Honesty</h4>
+              <p class="mt-2 text-gray-800">Clear communication, upfront pricing, and dependable results.</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div class="flex-shrink-0 bg-blue-100 rounded-full p-4">
+              <i class="fas fa-clock text-blue-600 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-semibold text-gray-900">Punctuality</h4>
+              <p class="mt-2 text-gray-800">We respect your schedule and always show up on time.</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div class="flex-shrink-0 bg-blue-100 rounded-full p-4">
+              <i class="fas fa-leaf text-blue-600 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-semibold text-gray-900">Eco-Friendly</h4>
+              <p class="mt-2 text-gray-800">Safe, non-toxic cleaning products that protect your home and the planet.</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div class="flex-shrink-0 bg-blue-100 rounded-full p-4">
+              <i class="fas fa-medal text-blue-600 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-lg font-semibold text-gray-900">Quality</h4>
+              <p class="mt-2 text-gray-800">Attention to detail with consistent, top-tier results.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extended Value Proposition -->
+        <p class="text-gray-800 text-lg mb-12 leading-relaxed">
+          At Zoiris, we believe your time is valuable, and your space deserves the best. 
+          That’s why we go the extra mile — delivering cleaning services that are not only effective, 
+          but also safe, dependable, and personalized.  
+          With <strong>5-star reviews and long-term customer relationships</strong>, 
+          our commitment to excellence has made us a leading cleaning service provider in Alabama.  
+        </p>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-    
+
 
 
 
@@ -1200,7 +1345,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-    
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+  Expert Cleaning Tips, Hacks & Professional Insights
+</h2>
+<div class="mt-4 h-1 w-24 bg-blue-600 mx-auto rounded"></div>
+<p class="mt-6 max-w-3xl mx-auto text-gray-800 text-lg leading-relaxed">
+  Stay informed with practical cleaning advice, proven hacks, and 
+  <strong>professional insights from Zoiris Cleaning Service</strong>.  
+  Our articles cover everything from eco-friendly cleaning methods and home 
+  organization to <strong>commercial office cleaning strategies</strong> that 
+  keep businesses in <strong>Mobile, AL & Baldwin County</strong> spotless, 
+  safe, and welcoming. Whether you’re a homeowner or a business owner, 
+  these resources will help you maintain a healthier and cleaner environment 
+  year-round.
+</p>
+
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:transform hover:-translate-y-1 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Spring cleaning" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>March 15, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">10 Spring Cleaning Tips for a Fresher Home</h3>
+                        <p class="text-gray-600 mb-4">
+                            Discover our top tips to make your spring cleaning more efficient and effective this year.
+                        </p>
+                        <a href="Blog.html" class="contact-button text-lg">
+                            Read more
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Eco-friendly cleaning" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>February 28, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>4 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">The Benefits of Eco-Friendly Cleaning Products</h3>
+                        <p class="text-gray-600 mb-4">
+                            Learn why switching to green cleaning products is better for your health and the environment.
+                        </p>
+                        <a href="Blog.html" class="contact-button text-lg">
+                            Read more
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         alt="Home organization" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>January 10, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>6 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Organizing Your Home: Where to Start</h3>
+                        <p class="text-gray-600 mb-4">
+                            Feeling overwhelmed by clutter? Follow our step-by-step guide to organize your home effectively.
+                        </p>
+                        <a href="Blog.html" class="contact-button text-lg">
+                            Read more
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a href="Blog.html" class="contact-button text-lg">
+                    View All Articles
+                </a>
+            </div>
+        </div>
+    </section>
+
     
 
     
@@ -3387,6 +3623,3 @@ function quickAsk(text){
 function quickAsk(text){
   sendZoiris(text);
 }
-
-
-    
