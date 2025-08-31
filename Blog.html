@@ -1119,21 +1119,23 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 </section>
-<!-- JS to prevent redirect -->
+<!-- AJAX script -->
 <script>
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
   const successMsg = document.getElementById("formSuccess");
   const errorMsg = document.getElementById("formError");
 
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault(); // stop redirect
 
     const formData = new FormData(form);
+
     try {
       const response = await fetch(form.action, {
-        method: form.method,
+        method: "POST",
         body: formData,
-        headers: { 'Accept': 'application/json' }
+        headers: { "Accept": "application/json" }
       });
 
       if (response.ok) {
@@ -1141,14 +1143,17 @@ document.addEventListener('DOMContentLoaded', () => {
         errorMsg.classList.add("hidden");
         form.reset();
       } else {
-        throw new Error("Form submission failed.");
+        throw new Error("Form submission failed");
       }
     } catch (error) {
       successMsg.classList.add("hidden");
       errorMsg.classList.remove("hidden");
     }
   });
+});
 </script>
+
+
 
 
 
