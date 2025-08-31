@@ -1397,7 +1397,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+<!-- ================= SOCIAL MEDIA FEED SECTION (Compact - Always Visible) ================= -->
+<section id="social-feed" class="py-10 bg-gray-">
+  <div class="max-w-xl mx-auto px-4 text-center">
+<h2 class="text-3xl font-extrabold text-black mb-6">
+  Our Trusted Partners & Affiliations
+</h2>
+<p class="text-black text-lg font-medium leading-relaxed mb-6">
+  At <strong>Zoiris Cleaning Service</strong>, we are proud to collaborate with 
+  <em>trusted partners, affiliates, and organizations</em> that share our commitment 
+  to excellence. These partnerships allow us to strengthen our ability to provide 
+  <strong>residential, commercial, and specialty cleaning services</strong> not only 
+  in <strong>Mobile, AL and Baldwin County</strong>, but also across 
+  <strong>Miami, Florida</strong> and <strong>Sarasota, Florida</strong>.  
+</p>
+<p class="text-black text-lg font-medium leading-relaxed mb-6">
+  By working alongside respected industry leaders, local businesses, and 
+  eco-friendly product suppliers, we ensure that every project meets the 
+  <strong>highest standards of safety, reliability, and professionalism</strong>.  
+  Our partners help us stay ahead with innovative cleaning methods, sustainable 
+  practices, and advanced equipment — so we can consistently deliver spotless 
+  spaces that build trust and long-term satisfaction.  
+</p>
+   <!-- Swiper Container (smaller box) -->
+    <div class="swiper mySocialSwiper bg-white rounded-xl shadow-md p-3 max-w-md mx-auto">
+      <div class="swiper-wrapper">
 
+        <!-- TikTok (iframe embed) -->
+        <div class="swiper-slide">
+          <iframe 
+            src="https://www.tiktok.com/embed/@sweetmindcleaningservice" 
+            width="100%" height="400" 
+            style="border:none;overflow:hidden;border-radius:12px;" 
+            allowfullscreen 
+            scrolling="no">
+          </iframe>
+        </div>
+
+        <!-- Instagram (iframe embed) -->
+        <div class="swiper-slide">
+          <iframe 
+            src="https://www.instagram.com/sweetmindcleaningservice/embed" 
+            width="100%" height="400" 
+            style="border:none;overflow:hidden;border-radius:12px;" 
+            allowfullscreen 
+            scrolling="no">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Pagination + Arrows -->
+      <div class="swiper-button-next text-blue-600"></div>
+      <div class="swiper-button-prev text-blue-600"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Swiper CSS/JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  new Swiper(".mySocialSwiper", {
+    slidesPerView: 1,
+    loop: true,
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    pagination: { el: ".swiper-pagination", clickable: true },
+    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
+  });
+</script>
 
 
 
