@@ -366,6 +366,16 @@ body{
         <div class="bubble" style="width: 100px; height: 100px; left: 70%; animation-delay: 1s;"></div>
         <div class="bubble" style="width: 90px; height: 90px; left: 85%; animation-delay: 3s;"></div>
     </div>
+    
+
+    
+
+
+
+
+
+  
+
 
 
 <!-- Navigation -->
@@ -502,9 +512,11 @@ body{
                 <a href="Blog.html" class="contact-button text-lg">Blog</a>
                 <a href="contact.html" class="contact-button text-lg">Contact</a>
                 <a href="#quote" class="contact-button text-lg">Get a Quote</a>
+
             </div>
         </div>
     </nav>
+        
 
     <!-- CONTACT BAR (under navbar) -->
 <div class="contact-button text-lg">
@@ -522,6 +534,8 @@ body{
         <span>zoiriscleaningservices@gmail.com</span>
       </a>
     </div>
+
+
 
     <!-- Right: Social Icons -->
     <div class="flex space-x-2 mt-2 md:mt-0">
@@ -550,6 +564,146 @@ body{
 
   </div>
 </div>
+<!-- 🌟 Navigation Bar -->
+
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    
+    <!-- Left side (Logo / Title if needed) -->
+    <h1 class="text-xl font-bold text-gray-900"></h1>
+    
+    <!-- Right side (Button) -->
+    <div class="flex items-center">
+      <button 
+        onclick="openFinder()"  
+        class="bg-gray-900 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-700 contact-button text-lg transition">
+        Service Area Finder
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+  <!-- 🗺️ ZIP Finder Modal -->
+  <div id="finderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="contact-button text-lg rounded-2xl shadow-xl w-full max-w-lg p-8 text-center relative" onclick="event.stopPropagation()">
+      
+      <!-- Close Button -->
+      <button onclick="closeFinder()" onclick="closeFinder()" 
+  class="absolute top-3 right-3 text-gray-900 hover:text-black text-4xl font-bold transition">
+  &times;
+</button>
+      
+<h2 class="text-3xl font-extrabold text-black mb-4">
+  Service Availability in Mobile, AL
+</h2>
+<p class="text-black mb-6 leading-relaxed">
+  Enter your ZIP to check if <strong>ZOIRIS Cleaning</strong> serves your area.
+</p>
+
+
+
+
+
+      <!-- Zip Input -->
+      <div class="flex space-x-2">
+        <input id="zipInput" type="text" maxlength="5" placeholder="Enter ZIP code"
+               class="flex-1 border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button onclick="checkZip()"
+                class="bg-blue-700 text-white px-6 rounded-lg font-semibold hover:bg-blue-800">
+          Check
+        </button>
+      </div>
+
+      <!-- Result -->
+      <p id="result" class="mt-6 text-lg font-semibold"></p>
+
+      <!-- Map -->
+      <div id="mapContainer" class="mt-6 hidden">
+        <iframe id="map" width="100%" height="300" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ✅ ZIP Codes You Serve
+    const serviceZips = [
+      "36602","36603","36604","36605","36606","36607","36608","36609","36618","36619","36612", // Mobile
+      "36532", // Fairhope
+      "36526", // Daphne
+      "36527", // Spanish Fort
+      "36551","36533","36575","36582" // Eastern Shore
+    ];
+
+    // Open Modal
+    function openFinder() {
+      document.getElementById("finderModal").classList.remove("hidden");
+    }
+
+    // Close Modal + Reset
+    function closeFinder() {
+      const modal = document.getElementById("finderModal");
+      modal.classList.add("hidden");
+
+      // 🔄 Reset form & results
+      document.getElementById("zipInput").value = "";
+      document.getElementById("result").textContent = "";
+      document.getElementById("mapContainer").classList.add("hidden");
+      document.getElementById("map").src = "";
+    }
+
+    // Close when clicking outside modal box
+    document.getElementById("finderModal").addEventListener("click", function() {
+      closeFinder();
+    });
+
+    // Check ZIP + Show Map
+    function checkZip() {
+      const zip = document.getElementById("zipInput").value.trim();
+      const result = document.getElementById("result");
+      const mapContainer = document.getElementById("mapContainer");
+      const mapFrame = document.getElementById("map");
+
+      if (zip === "") {
+        result.textContent = "⚠️ Please enter a ZIP code.";
+        result.className = "mt-6 text-red-600 font-semibold";
+        mapContainer.classList.add("hidden");
+        return;
+      }
+
+      if (serviceZips.includes(zip)) {
+        result.textContent = "✅ Yes! We provide premium cleaning services in your area.";
+        result.className = "mt-6 text-green-600 font-bold";
+        mapFrame.src = `https://www.google.com/maps?q=${zip}&output=embed`;
+        mapContainer.classList.remove("hidden");
+      } else {
+        result.textContent = "❌ Sorry, we currently don’t service this ZIP code.";
+        result.className = "mt-6 text-red-600 font-bold";
+        mapContainer.classList.add("hidden");
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
