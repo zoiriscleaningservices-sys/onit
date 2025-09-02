@@ -1386,22 +1386,29 @@ document.addEventListener("DOMContentLoaded", function () {
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
-    html { scroll-behavior: smooth; } /* Enables smooth scroll globally */
+    html { scroll-behavior: smooth; }
   </style>
 </head>
-<body class="bg-gradient-to-br from-purple-600 to-indigo-700 min-h-screen flex items-center justify-center p-4">
+<body class="bg-gradient-to-br from-purple-600 to-indigo-700 min-h-screen">
 
-  <div class="w-full max-w-4xl" x-data="quoteCalculator()" x-init="init()">
+  <div class="max-w-4xl mx-auto px-4 py-10 lg:py-20" x-data="quoteCalculator()" x-init="init()">
     <!-- Header -->
-    <div class="text-center mb-6">
-      <h1 class="text-3xl sm:text-5xl font-bold text-white mb-2 flex justify-center items-center gap-2">
-        <i class="fas fa-sparkles"></i> Zoiris Cleaning
-      </h1>
-      <p class="text-base sm:text-lg text-white opacity-90">✨ Premium Cleaning • Book Instantly</p>
+    <div class="text-center mb-8">
+     <h1 class="text-3xl sm:text-5xl font-bold text-black mb-3 text-center">
+  ✨ Zoiris Cleaning – House, Deep & Commercial Cleaning Services in Mobile, Alabama & Baldwin County
+</h1>
+
+<p class="text-base sm:text-lg text-gray-900 max-w-3xl mx-auto text-center leading-relaxed">
+  Zoiris Cleaning is Mobile, Alabama’s trusted choice for professional cleaning services. We specialize in residential house cleaning, deep cleaning, and commercial cleaning throughout Mobile, Midtown, West Mobile, and surrounding areas. Our expert team also provides move-in and move-out cleaning, vacation rental and Airbnb cleaning, post-construction cleanup, carpet cleaning, and pressure washing. Serving Mobile & Baldwin County with reliable service, transparent quotes, and instant online booking.
+</p>
+
+
+
+
     </div>
 
     <!-- Progress Bar -->
-    <div class="bg-white rounded-full h-2 mb-6 overflow-hidden">
+    <div class="bg-white rounded-full h-2 mb-8 overflow-hidden">
       <div class="progress-bar bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full transition-all duration-300"
            x-bind:style="{ width: `${(step / 3) * 100}%` }"></div>
     </div>
