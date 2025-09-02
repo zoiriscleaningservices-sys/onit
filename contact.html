@@ -1414,24 +1414,24 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <!-- Quote Form -->
-    <div id="quoteForm" class="">
+    <div id="quoteForm" class="bg-white rounded-2xl shadow-2xl p-6 sm:p-10">
 
 
 
       <!-- Step 1 -->
-      <div x-show="step === 1" x-ref="step1" class=" space-y-6 fade-in">
+      <div x-show="step === 1" x-ref="step1" class="space-y-6 fade-in">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center">Step 1: Choose Your Service</h2>
-        <div class=" grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <template x-for="service in services" :key="service.id">
             <div @click="selectService(service)"
                  :class="{'ring-2 ring-purple-500': selectedService?.id === service.id}"
-                 class="contact-button text-lg bg-white border rounded-xl p-5 cursor-pointer transition hover:shadow-md">
-              <div class="contact-button text-lg flex items-center mb-2">
-                <i :class="service.icon" class="text-black font-bold text-lg text-2xl text-purple-600 mr-3"></i>
-                <h3 class=" text-lg font-semibold" x-text="service.name"></h3>
+                 class="bg-white border rounded-xl p-5 cursor-pointer transition hover:shadow-md">
+              <div class="flex items-center mb-2">
+                <i :class="service.icon" class="text-2xl text-purple-600 mr-3"></i>
+                <h3 class="text-lg font-semibold" x-text="service.name"></h3>
               </div>
-              <p class=" text-gray-600 text-sm mb-1" x-text="service.description"></p>
-              <p class=" text-purple-600 font-bold text-base" x-text="`$${service.basePrice}+`"></p>
+              <p class="text-gray-600 text-sm mb-1" x-text="service.description"></p>
+              <p class="text-purple-600 font-bold text-base" x-text="`$${service.basePrice}+`"></p>
             </div>
           </template>
         </div>
