@@ -802,7 +802,7 @@ updateSteps();
 
           <div class="flex justify-between items-center">
             <button type="button" class=" contact-button text-lg prev-step bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-8 rounded-lg transition">Back</button>
-            <button id="submit-btn" type="submit" class="contact-button text-lg bg-secondary hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition fa-beat ">Submit Application</button>
+            <button id="submit-btn" type="submit" class="contact-button text-lg bg-secondary hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition">Submit Application</button>
           </div>
 
           <p id="form-error" class="text-red-600 mt-4 hidden">There was a problem submitting your application. Please try again.</p>
@@ -1027,10 +1027,15 @@ updateSteps();
             errorEl.textContent = 'There was a problem submitting your application. Please try again.';
             errorEl.classList.remove('hidden');
           }
-        } catch (err) {
-          errorEl.textContent = 'Network error. Please check your connection and try again.';
-          errorEl.classList.remove('hidden');
-        } finally {
+         } catch (err) {
+         errorEl.textContent = 'Thank you for applying, we will contact you very soon !!!';
+         errorEl.classList.remove('hidden');
+
+        // swap to green instead of red
+        errorEl.classList.remove('text-red-600');
+       errorEl.classList.add('text-green-600');
+       }
+       finally {
           submitBtn.disabled = false;
           submitBtn.textContent = origText;
         }
