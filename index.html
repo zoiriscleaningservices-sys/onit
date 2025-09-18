@@ -1853,7 +1853,6 @@ document.addEventListener('DOMContentLoaded', () => {
   align-items: center;
   justify-content: center;
   cursor: grab;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
   z-index: 1000;
   user-select: none;
   background: transparent; /* no background, logo only */
@@ -1971,29 +1970,29 @@ showServices();
 function showServices() {
   document.getElementById("popup-title").innerText = "Professional Cleaning Services – Available 24/7";
   document.getElementById("popup-content").innerHTML = `
-    <li><a href="commercial-cleaning">✨ Commercial Cleaning – Keep your business spotless with 24/7 reliability.</a></li>
-    <li><a href="deep-cleaning">🧽 Deep Cleaning – Intensive top-to-bottom service for the freshest results.</a></li>
-    <li><a href="house-cleaning">🏠 House Cleaning – Trusted home cleaning with flexible scheduling.</a></li>
-    <li><a href="move-in-cleaning">📦 Move-In Cleaning – Start fresh in your new home with a detailed clean.</a></li>
-    <li><a href="move-out-cleaning">🚚 Move-Out Cleaning – Leave your old place spotless and stress-free.</a></li>
-    <li><a href="vacation-rental-cleaning">🌴 Vacation Rental Cleaning – 5-star ready turnovers, same-day service.</a></li>
-    <li><a href="airbnb-cleaning">🏡 Airbnb Cleaning – Fast, reliable, guest-ready cleaning available 24/7.</a></li>
-    <li><a href="post-construction-cleanup">🔨 Post-Construction Cleanup – Remove dust, debris, and leave it shining.</a></li>
-    <li><a href="carpet-cleaning">🧼 Carpet Cleaning – Deep steam & stain removal for fresh, healthy floors.</a></li>
-    <li><a href="pressure-washing">💧 Pressure Washing – Exterior cleaning that restores beauty & curb appeal.</a></li>
+    <a href="commercial-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Commercial Cleaning</a>
+    <a href="deep-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Deep Cleaning</a>
+    <a href="house-cleaning.html" class="contact-button text-lg hover:bg-blue-700">House Cleaning</a>
+    <a href="move-in-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Move-In Cleaning</a>
+    <a href="move-out-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Move-Out Cleaning</a>
+    <a href="vacation-rental-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Vacation Rental Cleaning</a>
+    <a href="airbnb-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Airbnb Cleaning</a>
+    <a href="post-construction-cleanup.html" class="contact-button text-lg hover:bg-blue-700">Post-Construction Cleanup</a>
+    <a href="carpet-cleaning.html" class="contact-button text-lg hover:bg-blue-700">Carpet Cleaning</a>
+    <a href="pressure-washing.html" class="contact-button text-lg hover:bg-blue-700">Pressure Washing</a>
   `;
 }
 
 function showLocations() {
   document.getElementById("popup-title").innerText = "Trusted Cleaning Services Across Mobile & Baldwin County – 24/7 Availability";
   document.getElementById("popup-content").innerHTML = `
-    <li><a href="downtown-mobile">📍 Downtown Mobile – Reliable same-day cleaning in the heart of the city.</a></li>
-    <li><a href="midtown-mobile">📍 Midtown Mobile – Professional residential & commercial cleaning.</a></li>
-    <li><a href="west-mobile">📍 West Mobile – Affordable, flexible cleaning for homes & businesses.</a></li>
-    <li><a href="fairhope">📍 Fairhope – Trusted cleaning service with fast scheduling options.</a></li>
-    <li><a href="daphne">📍 Daphne – 24/7 cleaning available for houses, rentals & offices.</a></li>
-    <li><a href="spanish-fort">📍 Spanish Fort – Professional cleaners delivering spotless results.</a></li>
-    <li><a href="eastern-shore">📍 Eastern Shore – Full-service cleaning, from deep cleans to pressure washing.</a></li>
+    <a href="downtown-mobile.html" class="contact-button text-lg hover:bg-blue-700">Downtown Mobile</a>
+    <a href="midtown-mobile.html" class="contact-button text-lg hover:bg-blue-700">Midtown Mobile</a>
+    <a href="west-mobile.html" class="contact-button text-lg hover:bg-blue-700">West Mobile</a>
+    <a href="fairhope.html" class="contact-button text-lg hover:bg-blue-700">Fairhope</a>
+    <a href="daphne.html" class="contact-button text-lg hover:bg-blue-700">Daphne</a>
+    <a href="spanish-fort.html" class="contact-button text-lg hover:bg-blue-700">Spanish Fort</a>
+    <a href="eastern-shore.html" class="contact-button text-lg hover:bg-blue-700">Eastern Shore</a>
   `;
 }
 
