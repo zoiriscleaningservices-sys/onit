@@ -1806,6 +1806,243 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Floating Logo Button -->
+<div id="menu-circle">
+  <img src="https://i.ibb.co/zhnr61j1/ecommerce-purple-colored-security-badge-risk-free-satisfaction-guarantee-shopping-experience-icon-ba.png" alt="Zoiri's Cleaning Services Logo">
+</div>
+
+<!-- Popup Section -->
+<div id="popup-card">
+  <div class="popup-header">
+    <h2 id="popup-title"></h2>
+    <button id="popup-close">✖</button>
+  </div>
+  <ul id="popup-content"></ul>
+
+  <div class="popup-switch">
+    <button onclick="showServices()">Services</button>
+    <button onclick="showLocations()">Locations</button>
+  </div>
+</div>
+
+<style>
+/* Floating Logo */
+#menu-circle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* Start on left */
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  user-select: none;
+  background: transparent; /* no background, logo only */
+  overflow: hidden;
+}
+
+/* Logo inside */
+#menu-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* fit perfectly */
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Popup Card */
+#popup-card {
+  position: fixed;
+  width: 320px;
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
+  padding: 15px;
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+}
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.popup-header h2 {
+  font-size: 16px;
+  margin: 0;
+  color: #6a0dad; /* purple */
+  font-weight: bold;
+}
+#popup-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+#popup-content {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+#popup-content li {
+  border-bottom: 1px solid #eee;
+}
+#popup-content li:last-child {
+  border-bottom: none;
+}
+#popup-content a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+}
+#popup-content a:hover {
+  background: #6a0dad;
+  color: #fff;
+}
+.popup-switch {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.popup-switch button {
+  flex: 1;
+  margin: 0 4px;
+  padding: 10px;
+  background: #6a0dad;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+</style>
+
+<script>
+const menuCircle = document.getElementById("menu-circle");
+const popupCard = document.getElementById("popup-card");
+const popupClose = document.getElementById("popup-close");
+
+let circleX = 20;
+let circleY = window.innerHeight - 90;
+
+// Show popup at circle position
+menuCircle.addEventListener("click", () => {
+  if (popupCard.style.display === "flex") {
+    popupCard.style.display = "none";
+  } else {
+    popupCard.style.display = "flex";
+    popupCard.style.left = circleX + "px";
+    popupCard.style.top = (circleY - popupCard.offsetHeight - 10) + "px";
+  }
+});
+
+popupClose.addEventListener("click", () => {
+  popupCard.style.display = "none";
+});
+
+// Fill Services by default
+showServices();
+
+// Switch functions with SEO-friendly descriptions
+function showServices() {
+  document.getElementById("popup-title").innerText = "Professional Cleaning Services – Available 24/7";
+  document.getElementById("popup-content").innerHTML = `
+    <li><a href="commercial-cleaning">✨ Commercial Cleaning – Keep your business spotless with 24/7 reliability.</a></li>
+    <li><a href="deep-cleaning">🧽 Deep Cleaning – Intensive top-to-bottom service for the freshest results.</a></li>
+    <li><a href="house-cleaning">🏠 House Cleaning – Trusted home cleaning with flexible scheduling.</a></li>
+    <li><a href="move-in-cleaning">📦 Move-In Cleaning – Start fresh in your new home with a detailed clean.</a></li>
+    <li><a href="move-out-cleaning">🚚 Move-Out Cleaning – Leave your old place spotless and stress-free.</a></li>
+    <li><a href="vacation-rental-cleaning">🌴 Vacation Rental Cleaning – 5-star ready turnovers, same-day service.</a></li>
+    <li><a href="airbnb-cleaning">🏡 Airbnb Cleaning – Fast, reliable, guest-ready cleaning available 24/7.</a></li>
+    <li><a href="post-construction-cleanup">🔨 Post-Construction Cleanup – Remove dust, debris, and leave it shining.</a></li>
+    <li><a href="carpet-cleaning">🧼 Carpet Cleaning – Deep steam & stain removal for fresh, healthy floors.</a></li>
+    <li><a href="pressure-washing">💧 Pressure Washing – Exterior cleaning that restores beauty & curb appeal.</a></li>
+  `;
+}
+
+function showLocations() {
+  document.getElementById("popup-title").innerText = "Trusted Cleaning Services Across Mobile & Baldwin County – 24/7 Availability";
+  document.getElementById("popup-content").innerHTML = `
+    <li><a href="downtown-mobile">📍 Downtown Mobile – Reliable same-day cleaning in the heart of the city.</a></li>
+    <li><a href="midtown-mobile">📍 Midtown Mobile – Professional residential & commercial cleaning.</a></li>
+    <li><a href="west-mobile">📍 West Mobile – Affordable, flexible cleaning for homes & businesses.</a></li>
+    <li><a href="fairhope">📍 Fairhope – Trusted cleaning service with fast scheduling options.</a></li>
+    <li><a href="daphne">📍 Daphne – 24/7 cleaning available for houses, rentals & offices.</a></li>
+    <li><a href="spanish-fort">📍 Spanish Fort – Professional cleaners delivering spotless results.</a></li>
+    <li><a href="eastern-shore">📍 Eastern Shore – Full-service cleaning, from deep cleans to pressure washing.</a></li>
+  `;
+}
+
+// Make circle draggable
+menuCircle.addEventListener("mousedown", (e) => {
+  let shiftX = e.clientX - menuCircle.getBoundingClientRect().left;
+  let shiftY = e.clientY - menuCircle.getBoundingClientRect().top;
+
+  function moveAt(pageX, pageY) {
+    circleX = pageX - shiftX;
+    circleY = pageY - shiftY;
+    menuCircle.style.left = circleX + "px";
+    menuCircle.style.top = circleY + "px";
+    menuCircle.style.bottom = "auto";
+    menuCircle.style.right = "auto";
+    menuCircle.style.position = "fixed";
+  }
+
+  function onMouseMove(e) {
+    moveAt(e.pageX, e.pageY);
+  }
+
+  document.addEventListener("mousemove", onMouseMove);
+
+  document.addEventListener("mouseup", () => {
+    document.removeEventListener("mousemove", onMouseMove);
+  }, { once: true });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Footer -->
     <footer class="footer-bg text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -3447,298 +3684,6 @@ function quickAsk(text){
         });
     </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Floating Logo Button -->
-<div id="menu-circle">
-  <img src="https://i.ibb.co/zhnr61j1/ecommerce-purple-colored-security-badge-risk-free-satisfaction-guarantee-shopping-experience-icon-ba.png" alt="Zoiri's Cleaning Services Logo">
-</div>
-
-<!-- Popup Section -->
-<div id="popup-card">
-  <div class="popup-header">
-    <h2 id="popup-title"></h2>
-    <button id="popup-close">✖</button>
-  </div>
-  <ul id="popup-content"></ul>
-
-  <div class="popup-switch">
-    <button onclick="showServices()">Services</button>
-    <button onclick="showLocations()">Locations</button>
-  </div>
-</div>
-
-<style>
-/* Floating Logo */
-#menu-circle {
-  position: fixed;
-  bottom: 20px;
-  left: 20px; /* Start on left */
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: grab;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
-  z-index: 1000;
-  user-select: none;
-  background: transparent; /* no background, logo only */
-  overflow: hidden;
-}
-
-/* Logo inside */
-#menu-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* fit perfectly */
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* Popup Card */
-#popup-card {
-  position: fixed;
-  width: 320px;
-  max-height: 80vh;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
-  padding: 15px;
-  display: none;
-  flex-direction: column;
-  z-index: 999;
-}
-.popup-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.popup-header h2 {
-  font-size: 16px;
-  margin: 0;
-  color: #6a0dad; /* purple */
-  font-weight: bold;
-}
-#popup-close {
-  background: none;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-}
-#popup-content {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-height: 400px;
-  overflow-y: auto;
-}
-#popup-content li {
-  border-bottom: 1px solid #eee;
-}
-#popup-content li:last-child {
-  border-bottom: none;
-}
-#popup-content a {
-  display: block;
-  padding: 10px;
-  color: #333;
-  text-decoration: none;
-}
-#popup-content a:hover {
-  background: #6a0dad;
-  color: #fff;
-}
-.popup-switch {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-.popup-switch button {
-  flex: 1;
-  margin: 0 4px;
-  padding: 10px;
-  background: #6a0dad;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  cursor: pointer;
-  font-weight: bold;
-}
-</style>
-
-<script>
-const menuCircle = document.getElementById("menu-circle");
-const popupCard = document.getElementById("popup-card");
-const popupClose = document.getElementById("popup-close");
-
-let circleX = 20;
-let circleY = window.innerHeight - 90;
-
-// Show popup at circle position
-menuCircle.addEventListener("click", () => {
-  if (popupCard.style.display === "flex") {
-    popupCard.style.display = "none";
-  } else {
-    popupCard.style.display = "flex";
-    popupCard.style.left = circleX + "px";
-    popupCard.style.top = (circleY - popupCard.offsetHeight - 10) + "px";
-  }
-});
-
-popupClose.addEventListener("click", () => {
-  popupCard.style.display = "none";
-});
-
-// Fill Services by default
-showServices();
-
-// Switch functions with SEO-friendly descriptions
-function showServices() {
-  document.getElementById("popup-title").innerText = "Professional Cleaning Services – Available 24/7";
-  document.getElementById("popup-content").innerHTML = `
-    <li><a href="commercial-cleaning">✨ Commercial Cleaning – Keep your business spotless with 24/7 reliability.</a></li>
-    <li><a href="deep-cleaning">🧽 Deep Cleaning – Intensive top-to-bottom service for the freshest results.</a></li>
-    <li><a href="house-cleaning">🏠 House Cleaning – Trusted home cleaning with flexible scheduling.</a></li>
-    <li><a href="move-in-cleaning">📦 Move-In Cleaning – Start fresh in your new home with a detailed clean.</a></li>
-    <li><a href="move-out-cleaning">🚚 Move-Out Cleaning – Leave your old place spotless and stress-free.</a></li>
-    <li><a href="vacation-rental-cleaning">🌴 Vacation Rental Cleaning – 5-star ready turnovers, same-day service.</a></li>
-    <li><a href="airbnb-cleaning">🏡 Airbnb Cleaning – Fast, reliable, guest-ready cleaning available 24/7.</a></li>
-    <li><a href="post-construction-cleanup">🔨 Post-Construction Cleanup – Remove dust, debris, and leave it shining.</a></li>
-    <li><a href="carpet-cleaning">🧼 Carpet Cleaning – Deep steam & stain removal for fresh, healthy floors.</a></li>
-    <li><a href="pressure-washing">💧 Pressure Washing – Exterior cleaning that restores beauty & curb appeal.</a></li>
-  `;
-}
-
-function showLocations() {
-  document.getElementById("popup-title").innerText = "Trusted Cleaning Services Across Mobile & Baldwin County – 24/7 Availability";
-  document.getElementById("popup-content").innerHTML = `
-    <li><a href="downtown-mobile">📍 Downtown Mobile – Reliable same-day cleaning in the heart of the city.</a></li>
-    <li><a href="midtown-mobile">📍 Midtown Mobile – Professional residential & commercial cleaning.</a></li>
-    <li><a href="west-mobile">📍 West Mobile – Affordable, flexible cleaning for homes & businesses.</a></li>
-    <li><a href="fairhope">📍 Fairhope – Trusted cleaning service with fast scheduling options.</a></li>
-    <li><a href="daphne">📍 Daphne – 24/7 cleaning available for houses, rentals & offices.</a></li>
-    <li><a href="spanish-fort">📍 Spanish Fort – Professional cleaners delivering spotless results.</a></li>
-    <li><a href="eastern-shore">📍 Eastern Shore – Full-service cleaning, from deep cleans to pressure washing.</a></li>
-  `;
-}
-
-// Make circle draggable
-menuCircle.addEventListener("mousedown", (e) => {
-  let shiftX = e.clientX - menuCircle.getBoundingClientRect().left;
-  let shiftY = e.clientY - menuCircle.getBoundingClientRect().top;
-
-  function moveAt(pageX, pageY) {
-    circleX = pageX - shiftX;
-    circleY = pageY - shiftY;
-    menuCircle.style.left = circleX + "px";
-    menuCircle.style.top = circleY + "px";
-    menuCircle.style.bottom = "auto";
-    menuCircle.style.right = "auto";
-    menuCircle.style.position = "fixed";
-  }
-
-  function onMouseMove(e) {
-    moveAt(e.pageX, e.pageY);
-  }
-
-  document.addEventListener("mousemove", onMouseMove);
-
-  document.addEventListener("mouseup", () => {
-    document.removeEventListener("mousemove", onMouseMove);
-  }, { once: true });
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Floating Chat Button + Neon Smart Chatbox -->
 <a href="javascript:void(0)" id="zoiris-fab" class="zoiris-chat-fab" onclick="toggleChat()">💬</a>
 
@@ -4153,7 +4098,3 @@ function quickAsk(text){
 function quickAsk(text){
   sendZoiris(text);
 }
-
-
-
-
