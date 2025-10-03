@@ -720,229 +720,128 @@ body{
 
 
 
-<!-- Hero Section -->
-<section id="home" class="hero-image h-screen flex items-center justify-center relative">
-  <!-- Light overlay for readability -->
-  <div class="absolute inset-0 bg-black bg-opacity-30"></div>
 
-  <div class="relative text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
-   <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 animate-fadeIn">
-  About Us
-</h1>
-<p class="text-lg md:text-xl text-white font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
-  At <strong>Zoiris Cleaning Service</strong>, we’re more than a cleaning company — 
-  we’re a dedicated team bringing healthier, safer, and more welcoming spaces 
-  to families and businesses across Mobile and Baldwin County. 
-  With integrity, reliability, and attention to detail, we make every space shine.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Hero Section -->
+  <section class="hero-pattern text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 text-center">
+  Join Our Cleaning Team
+</h2>
+<p class="text-lg md:text-xl text-gray-800 max-w-3xl mx-auto mb-10 leading-relaxed text-center">
+  At <strong>Zoiris Cleaning Services</strong>, we’re hiring motivated and reliable cleaning professionals 
+  who take pride in delivering spotless results. As part of our trusted team, you’ll enjoy 
+  <em>competitive pay, flexible schedules, and full training</em> — no prior experience required.  
+  Help us provide exceptional residential and commercial cleaning services to our valued clients in 
+  <strong>Mobile, Alabama</strong> and surrounding areas.
 </p>
-<p class="text-lg md:text-xl text-white font-medium max-w-2xl mx-auto leading-relaxed">
-  Backed by years of experience, eco-friendly practices, and a passion for excellence, 
-  we’re the trusted choice for homeowners and businesses alike.  
-  <span class="font-semibold text-blue-400">Your clean space is our commitment.</span>
+
+      <button id="apply-now-btn" class="contact-button text-lg fa-beat">Apply Now</button>
+    </div>
+  </section>
+
+  <!-- Application Form (hidden initially) -->
+  <section id="application-form" class="py-16 bg-white hidden">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-4">
+  Zoiris Cleaning Services Job Application
+</h2>
+<p class="text-lg text-gray-800 max-w-2xl mx-auto mb-10 leading-relaxed text-center">
+  Start your career with <strong>Zoiris Cleaning Services</strong> today!  
+  Please complete the application form below to apply for a position on our 
+  professional cleaning team in <em>Mobile, Alabama</em>.  
+  We’re always looking for motivated and dependable individuals who want to grow 
+  with a trusted cleaning company.
 </p>
 
 
+<!-- Progress Steps with Next Button -->
+<div class="flex flex-col items-center mb-12">
+  <div class="flex items-center" id="progress-steps">
+    <!-- Step 1 -->
+    <div class="step-indicator rounded-full w-10 h-10 flex items-center justify-center border-2 font-bold transition-all duration-500"
+         id="step-1">1</div>
+    <div class="w-16 h-1 bg-gray-300 mx-2 transition-all duration-500"></div>
+    
+    <!-- Step 2 -->
+    <div class="step-indicator rounded-full w-10 h-10 flex items-center justify-center border-2 font-bold transition-all duration-500"
+         id="step-2">2</div>
+    <div class="w-16 h-1 bg-gray-300 mx-2 transition-all duration-500"></div>
+    
+    <!-- Step 3 -->
+    <div class="step-indicator rounded-full w-10 h-10 flex items-center justify-center border-2 font-bold transition-all duration-500"
+         id="step-3">3</div>
+  </div>
 
 
-                         <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="tel:2514978163" class="contact-button text-lg">
-                    <i class="fas fa-phone mr-2 fa-beat"></i>Call Now
-                </a>
-        
-                <a href="mailto:zoiriscleaningservices@gmail.com" class="contact-button text-lg">
-                    <i class="fas fa-envelope mr-2 fa-beat"></i>Email Us
-                </a>
-                <a href="#quote" class="contact-button text-lg">
-                    <i class="fa-solid fa-circle-check fa-beat"></i>
-                            Get a Free Quote
-                </a>
-        </div>
-    </section>
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Try to detect your sticky header height
-  const header = document.querySelector('nav.nav-bg, header.sticky, .sticky');
-  const headerOffset = header ? header.offsetHeight + 8 : 0; // small extra padding
-
-  function scrollToTarget(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    // Compute position accounting for sticky header
-    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-
-    window.scrollTo({
-      top: y,
-      behavior: 'smooth'
-    });
-  }
-
-  // Intercept all in-page anchors like href="#quote"
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const hash = link.getAttribute('href');
-      const id = hash.slice(1);
-      if (!id) return;
-
-      // Only handle if the target exists on this page
-      if (document.getElementById(id)) {
-        e.preventDefault();
-        scrollToTarget(id);
-        // Update URL hash without jumping
-        history.pushState(null, '', hash);
-      }
-    });
-  });
-
-  // If the page loads with a hash (e.g., /#quote), scroll to it smoothly
-  if (location.hash && document.getElementById(location.hash.substring(1))) {
-    setTimeout(() => scrollToTarget(location.hash.substring(1)), 0);
-  }
-});
-</script>
-
-            </div>
- <!-- Scroll Down Arrow -->
-<div class="flex justify-center mt-6">
-  <button onclick="scrollToQuote()" 
-          class="animate-bounce text-black hover:text-blue-600 focus:outline-none">
-    <!-- Down Arrow Icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" 
-         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-    </svg>
-  </button>
 </div>
 
+<style>
+.step-indicator {
+  border-color: #d1d5db; /* gray-300 */
+  color: #9ca3af;        /* gray-400 */
+}
+.step-indicator.active {
+  border-color: #2563eb; /* blue-600 */
+  color: #2563eb;
+  transform: scale(1.15);
+}
+</style>
+
 <script>
-  function scrollToQuote() {
-    document.getElementById("quote").scrollIntoView({ behavior: "smooth" });
-  }
-</script>
+let currentStep = 1;
+const totalSteps = 3;
 
-        </div>
-    </section>
-
-
-
-
-
-
-
-
-
-    
-
-    <!-- ABOUT CONTENT -->
-<section class="py-16 bg-gray-5">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="text-3xl font-bold text-black">Who We Are</h2>
-      <p class="mt-4 text-black leading-relaxed">
-        At <strong>Zoiris Cleaning Service</strong>, we believe a clean space is the foundation for a 
-        healthier, happier, and more productive life. Based in <em>Mobile, Alabama</em>, we are a 
-        trusted residential and commercial cleaning company with a reputation for excellence. 
-        Our mission is simple yet powerful: to provide reliable, detail-oriented cleaning 
-        that transforms homes, offices, and businesses into pristine, welcoming environments. 
-      </p>
-      <p class="mt-4 text-black leading-relaxed">
-        What sets us apart is our commitment to professionalism and customer satisfaction. 
-        Every member of our team is highly trained, fully insured, and dedicated to exceeding expectations. 
-        Whether you need recurring housekeeping, deep cleaning before or after a special event, 
-        post-construction cleanup, or fast and efficient Airbnb turnovers, our cleaners bring precision, 
-        consistency, and care to every job. We don’t just “clean” — we create spotless spaces where 
-        families can relax, businesses can thrive, and communities can shine.  
-      </p>
-      <p class="mt-4 text-black leading-relaxed">
-        With eco-friendly products, modern equipment, and flexible scheduling designed around 
-        your lifestyle, <strong>Zoiris Cleaning Service</strong> is more than just a cleaning company — 
-        we are your partner in maintaining a healthier, safer, and more comfortable environment 
-        you’ll be proud of, day after day. 
-      </p>
-    </div>
-    <div class="grid grid-cols-2 gap-4">
-      <img class="rounded-xl shadow" src="https://i.ibb.co/qLffhWrG/images-1.jpg" alt="Our Team">
-      <img class="rounded-xl shadow" src="https://i.ibb.co/W4TZM351/b401dc21.jpg" alt="Cleaning work">
-      <img class="rounded-xl shadow" src="https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1200&auto=format&fit=crop" alt="Clean home">
-      <img class="rounded-xl shadow" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" alt="Professional cleaning">
-    </div>
-  </div>
-</section>
-
-<!-- LOCATION & SERVICE AREA -->
-<section id="location" class="py-20 bg-gray-5">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl font-extrabold text-black sm:text-4xl">
-        Our Location & Service Area
-      </h2>
-      <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
-      <p class="mt-6 max-w-5xl mx-auto text-black text-lg leading-relaxed">
-        <strong>Zoiris Cleaning Service</strong> is proudly headquartered in the heart of 
-        <em>Downtown Mobile, Alabama</em>, where our dedicated cleaning professionals are 
-        committed to delivering unmatched quality, precision, and care. Being centrally located 
-        gives us the unique ability to serve both residential and commercial clients quickly 
-        and efficiently throughout <strong>Mobile and Baldwin County</strong>. 
-      </p>
-      <p class="mt-6 max-w-5xl mx-auto text-black text-lg leading-relaxed">
-        From busy corporate offices and medical facilities to schools, retail shops, apartment 
-        complexes, and private residences, our cleaning solutions are tailored to each client’s 
-        specific needs. We understand that every environment is different — which is why we take 
-        the time to design flexible cleaning plans that fit your schedule, whether you need daily 
-        janitorial service, weekly deep cleaning, or urgent 24/7 emergency assistance.  
-      </p>
-      <p class="mt-6 max-w-5xl mx-auto text-black text-lg leading-relaxed">
-        Our team uses eco-friendly products and advanced cleaning techniques to guarantee not 
-        only a spotless appearance but also a healthier indoor environment. By combining modern 
-        equipment with years of hands-on experience, we ensure that every corner is thoroughly 
-        cleaned, sanitized, and ready for use. With <span class="font-semibold text-black">round-the-clock 
-        availability</span>, you can count on us for dependable cleaning service — morning, evening, 
-        or overnight — whenever you need it most.  
-      </p>
-      <p class="mt-6 max-w-5xl mx-auto text-black text-lg leading-relaxed">
-        Whether you’re located in <strong>Downtown Mobile</strong>, the surrounding neighborhoods, 
-        or thriving communities such as <strong>Daphne, Fairhope, Spanish Fort, Gulf Shores, and 
-        Orange Beach</strong>, our mission is to provide the highest standard of cleanliness and 
-        customer care. No job is too big or too small — our dedicated cleaning experts treat every 
-        space with the same attention and respect.  
-      </p>
-      <p class="mt-6 max-w-5xl mx-auto text-black text-lg leading-relaxed">
-        Explore our service area below and click on any location to see it directly on Google Maps. 
-        Wherever you are, <strong>Zoiris Cleaning Service</strong> is your trusted local partner for 
-        creating a cleaner, healthier, and more welcoming space. 
-      </p>
-    </div>
-  </div>
-</section>
-<!-- JS to prevent redirect -->
-<script>
-  const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("formSuccess");
-  const errorMsg = document.getElementById("formError");
-
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        successMsg.classList.remove("hidden");
-        errorMsg.classList.add("hidden");
-        form.reset();
-      } else {
-        throw new Error("Form submission failed.");
-      }
-    } catch (error) {
-      successMsg.classList.add("hidden");
-      errorMsg.classList.remove("hidden");
+function updateSteps() {
+  for (let i = 1; i <= totalSteps; i++) {
+    const step = document.getElementById(`step-${i}`);
+    if (i === currentStep) {
+      step.classList.add("active", "animate-pulse");
+    } else {
+      step.classList.remove("active", "animate-pulse");
     }
-  });
+  }
+}
+
+// Next button click
+document.getElementById("nextBtn").addEventListener("click", () => {
+  if (currentStep < totalSteps) {
+    currentStep++;
+  } else {
+    currentStep = 1; // Reset back to step 1 if you want looping
+  }
+  updateSteps();
+});
+
+// Initial render
+updateSteps();
 </script>
 
 
@@ -950,587 +849,187 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Swiper CSS -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
-
-<section id="services" class="py-16 bg-lightGray">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">
-      Professional Cleaning Services for Homes & Businesses
-    </h2>
-    <p class="text-center text-gray-800 max-w-3xl mx-auto mb-12">
-      Zoiris Cleaning Service delivers trusted <strong>residential and commercial cleaning</strong> 
-      solutions designed to keep your space spotless, sanitized, and stress-free. 
-      Our expert cleaners specialize in <strong>deep cleaning, move-in and move-out cleaning, 
-      vacation rental turnovers, and post-construction cleanup</strong>. Whether you need a one-time 
-      detail clean or recurring services, we make every home and business shine with unmatched quality.
-    </p>
-  </div>
-</section>
-
-
-    <!-- Swiper Container -->
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        
-        <!-- Commercial Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/Xx556fXM/Office-Cleaning-Crew.jpg" alt="Commercial Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-building text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Commercial Cleaning</h3>
-              <p class="text-sm text-center mb-4">Professional cleaning for offices and businesses of all sizes.</p>
-              <div class="text-center"><a href="commercial-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deep Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/mfTgZTC/Seasonal-Deep-Cleaning-Tips.png" alt="Deep Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-broom text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Deep Cleaning</h3>
-              <p class="text-sm text-center mb-4">A top-to-bottom detailed clean to eliminate hidden grime.</p>
-              <div class="text-center"><a href="deep-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Home Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/xVwj2hV/Home-Cleaning-Service-in-Action.png" alt="Home Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-house-chimney text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Home Cleaning</h3>
-              <p class="text-sm text-center mb-4">Flexible residential cleaning for apartments, condos, and houses.</p>
-              <div class="text-center"><a href="house-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Move-In Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/pBhLCp0m/Cleaning-Movers-MH-1.jpg" alt="Move-In Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-key text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Move-In Cleaning</h3>
-              <p class="text-sm text-center mb-4">Fresh, sanitized, and move-in ready from day one.</p>
-              <div class="text-center"><a href="move-in-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Move-Out Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/fzSDxHXB/64119f3c30e4db48a06316e0-Move-out-cleaning-min.jpg" alt="Move-Out Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-truck text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Move-Out Cleaning</h3>
-              <p class="text-sm text-center mb-4">Leave your old space spotless and ready for inspection.</p>
-              <div class="text-center"><a href="move-out-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Vacation Rental Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/MDq72Z6T/Vacation-Rental-Cleaning-Contract-1-scaled-e1636734588512.jpg" alt="Vacation Rental Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-umbrella-beach text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Vacation Rental Cleaning</h3>
-              <p class="text-sm text-center mb-4">Keep your rental property spotless and guest-ready every time.</p>
-              <div class="text-center"><a href="vacation-rental-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Airbnb Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/cXbxNC7y/airbnb-pixabay-e1584981299557-1.webp" alt="Airbnb Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-brands fa-airbnb text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Airbnb Cleaning</h3>
-              <p class="text-sm text-center mb-4">Quick turnaround cleaning for Airbnb hosts to keep 5-star ratings.</p>
-              <div class="text-center"><a href="airbnb-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Post-Construction Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/kgbB5kPD/Captura-de-Tela-2020-07-06-a-s-15-13-39-1-e1599762634567.png" alt="Post-Construction Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-hammer text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Post-Construction Cleaning</h3>
-              <p class="text-sm text-center mb-4">Remove dust, debris, and construction mess for a polished look.</p>
-              <div class="text-center"><a href="post-construction-cleanup.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Carpet Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/4nn05G5j/carpetcleaning-UT-768x406.jpg" alt="Carpet Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-rug text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Carpet Cleaning</h3>
-              <p class="text-sm text-center mb-4">Deep carpet cleaning that removes dirt, stains, and allergens.</p>
-              <div class="text-center"><a href="carpet-cleaning.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pressure Washing -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/5gDXrjxs/Hotsy-Pressure-Washer-PSI-vs-GPM.jpg" alt="Pressure Washing" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-water text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Pressure Washing</h3>
-              <p class="text-sm text-center mb-4">Restore driveways, decks, and exteriors with powerful washing.</p>
-              <div class="text-center"><a href="pressure-washing.html" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Navigation Arrows -->
-      <div class="swiper-button-next text-blue-600"></div>
-      <div class="swiper-button-prev text-blue-600"></div>
-
-      <!-- Pagination Dots -->
-      <div class="swiper-pagination"></div>
-    </div>
-  </div>
-</section>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-      640: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-    },
-  });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Contact Form Section -->
-    <section id="quote" class="py-16 scroll-mt-28">
-  <div class="container mx-auto px-4 max-w-6xl">
-    <div class="grid lg:grid-cols-2 gap-12">
-      <!-- Contact Form -->
-      <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6">Get a Free Quote</h2>
-        
-        <form id="contactForm" action="https://formspree.io/f/xkgvorgd" method="POST" class="space-y-6">
-          <!-- Hidden subject -->
-          <input type="hidden" name="_subject" value="New Cleaning Quote Request from Zoiris Website">
-
-          <div class="grid md:grid-cols-2 gap-4">
+      <!-- Form Steps / FormPress-enabled -->
+      <form id="cleaning-application" 
+      action="https://formspree.io/f/xkgvorgd" 
+      method="POST" enctype="multipart/form-data">
+
+        <!-- Step 1: Personal Information -->
+        <div id="step-1" class="form-step">
+          <h3 class="text-xl font-semibold mb-6 text-primary">Personal Information</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-              <input type="text" name="firstName" required 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+              <label class="block text-gray-700 mb-2" for="first-name">First Name</label>
+              <input type="text" id="first-name" name="first_name" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required />
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-              <input type="text" name="lastName" required 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+              <label class="block text-gray-700 mb-2" for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="last_name" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required />
+            </div>
+            <div>
+              <label class="block text-gray-700 mb-2" for="email">Email Address</label>
+              <input type="email" id="email" name="email" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required />
+            </div>
+            <div>
+              <label class="block text-gray-700 mb-2" for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required />
+            </div>
+            <div>
+              <label class="block text-gray-700 mb-2" for="address">Address</label>
+              <input type="text" id="address" name="address" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required />
+            </div>
+            <div>
+              <label class="block text-gray-700 mb-2" for="city">City</label>
+              <input type="text" id="city" name="city" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required />
             </div>
           </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-            <input type="email" name="email" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+          <div class="flex justify-end">
+            <button type="button" class=" contact-button text-lg next-step bg-primary text-white py-2 px-6 rounded">Next</button>
           </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-            <input type="tel" name="phone" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
-            <select name="serviceType" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
-              <option value="">Select a service</option>
-              <option value="residential">Residential Cleaning</option>
-              <option value="commercial">Commercial Cleaning</option>
-              <option value="deep">Deep Cleaning</option>
-              <option value="move-in-out">Move In/Out Cleaning</option>
-              <option value="office">Office Cleaning</option>
-              <option value="other">Other</option>
+        </div>
+
+        <!-- Step 2: Experience & Availability -->
+        <div id="step-2" class="form-step hidden">
+          <h3 class="text-xl font-semibold mb-6 text-primary">Experience & Availability</h3>
+          <div class="mb-6">
+            <label class="block text-gray-700 mb-2" for="experience">Years of Cleaning Experience</label>
+            <select id="experience" name="experience" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required>
+              <option value="">Select experience level</option>
+              <option value="0">No experience</option>
+              <option value="1-2">1-2 years</option>
+              <option value="3-5">3-5 years</option>
+              <option value="5+">5+ years</option>
             </select>
           </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-            <textarea name="message" rows="4" 
-              placeholder="Tell us about your cleaning needs..."
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input"></textarea>
+
+          <div class="mb-6">
+            <label class="block text-gray-700 mb-4">What types of cleaning are you experienced with? (Select all that apply)</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <label class="flex items-center"><input type="checkbox" class="checkbox rounded text-primary focus:ring-primary" name="cleaning_types[]" value="residential" /><span class="ml-2">Residential Cleaning</span></label>
+              <label class="flex items-center"><input type="checkbox" class="checkbox rounded text-primary focus:ring-primary" name="cleaning_types[]" value="commercial" /><span class="ml-2">Commercial Cleaning</span></label>
+              <label class="flex items-center"><input type="checkbox" class="checkbox rounded text-primary focus:ring-primary" name="cleaning_types[]" value="deep" /><span class="ml-2">Deep Cleaning</span></label>
+              <label class="flex items-center"><input type="checkbox" class="checkbox rounded text-primary focus:ring-primary" name="cleaning_types[]" value="move" /><span class="ml-2">Move-in/Move-out Cleaning</span></label>
+            </div>
           </div>
-          
-          <button type="submit" 
-            class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition duration-300 pulse-animation">
-            <i class="fas fa-paper-plane mr-2"></i>
-            Send Message
-          </button>
-        </form>
 
-        <!-- Success / Error Messages -->
-        <div id="formSuccess" class="hidden mt-4 text-green-600 font-semibold">
-          ✅ Thanks! Your message has been sent. We'll contact you shortly.
-        </div>
-        <div id="formError" class="hidden mt-4 text-red-600 font-semibold">
-          ❌ Oops! Something went wrong. Please try again.
-        </div>
-      </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 mb-4">Availability</label>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <label class="flex items-center"><input type="checkbox" class="checkbox rounded text-primary focus:ring-primary" name="availability[]" value="weekdays" /><span class="ml-2">Weekdays</span></label>
+              <label class="flex items-center"><input type="checkbox" class="checkbox rounded text-primary focus:ring-primary" name="availability[]" value="weekends" /><span class="ml-2">Weekends</span></label>
+              <label class="flex items-center"><input type="checkbox" class="checkbox rounded text-primary focus:ring-primary" name="availability[]" value="mornings" /><span class="ml-2">Mornings</span></label>
+              <label class="flex items-center"><input type="checkbox" class="checkbox rounded text-primary focus:ring-primary" name="availability[]" value="evenings" /><span class="ml-2">Evenings</span></label>
+            </div>
+          </div>
 
-      <!-- Contact Information -->
-      <div>
-        <div class="bg-white rounded-2xl shadow-xl p-8 card-hover mb-8">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
-          <div class="space-y-6">
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-phone text-green-600 text-xl"></i>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800">Phone</p>
-                <a href="tel:2514978163" class="text-gray-600 hover:text-purple-600">(251) 497-8163</a>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-envelope text-blue-600 text-xl"></i>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800">Email</p>
-                <a href="mailto:zoiriscleaningservices@gmail.com" class="text-gray-600 hover:text-purple-600">
-                  zoiriscleaningservices@gmail.com
-                </a>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-clock text-purple-600 text-xl"></i>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800">Hours</p>
-                <p class="text-gray-600">24/7 Emergency Service</p>
-              </div>
-            </div>
+          <div class="flex justify-between">
+            <button type="button" class="contact-button text-lg prev-step bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-8 rounded-lg transition">Back</button>
+            <button type="button" class="contact-button text-lg next-step bg-primary text-white py-2 px-6 rounded">Next</button>
           </div>
         </div>
 
-        <!-- WhatsApp Quick Contact -->
-        <div class="bg-gradient-to-r from-green-400 to-green-600 rounded-2xl shadow-xl p-8 text-white">
-          <h3 class="text-2xl font-bold mb-4">Quick WhatsApp</h3>
-          <p class="mb-4 opacity-90">Get instant response via WhatsApp</p>
-          <a href="https://wa.me/12514978163" target="_blank" 
-            class="inline-flex items-center bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
-            <i class="fab fa-whatsapp text-2xl mr-2"></i>
-            Chat Now
-          </a>
+        <!-- Step 3: Additional Information -->
+        <div id="step-3" class="form-step hidden">
+          <h3 class="text-xl font-semibold mb-6 text-primary">Additional Information</h3>
+
+          <div class="mb-6">
+            <label class="block text-gray-700 mb-2" for="transportation">Do you have reliable transportation?</label>
+            <select id="transportation" name="transportation" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required>
+              <option value="">Select an option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-gray-700 mb-2" for="background-check">Are you willing to undergo a background check?</label>
+            <select id="background-check" name="background_check" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" required>
+              <option value="">Select an option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-gray-700 mb-2" for="additional-info">Additional Information</label>
+            <textarea id="additional-info" name="additional_info" rows="4" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="Tell us why you'd be a great fit for Zoiris Cleaning Services..."></textarea>
+          </div>
+
+          <div class="mb-6">
+            <label class="flex items-center">
+              <input type="checkbox" class="checkbox rounded text-primary focus:ring-primary" name="terms" value="accepted" required />
+              <span class="ml-2">I agree to the terms and conditions</span>
+            </label>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <button type="button" class=" contact-button text-lg prev-step bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-8 rounded-lg transition">Back</button>
+            <button id="submit-btn" type="submit" class="contact-button text-lg bg-secondary hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition">Submit Application</button>
+          </div>
+
+          <p id="form-error" class="text-red-600 mt-4 hidden">There was a problem submitting your application. Please try again.</p>
         </div>
-      </div>
+      </form>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- AJAX script -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("formSuccess");
-  const errorMsg = document.getElementById("formError");
-
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault(); // stop redirect
-
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { "Accept": "application/json" }
-      });
-
-      if (response.ok) {
-        successMsg.classList.remove("hidden");
-        errorMsg.classList.add("hidden");
-        form.reset();
-      } else {
-        throw new Error("Form submission failed");
-      }
-    } catch (error) {
-      successMsg.classList.add("hidden");
-      errorMsg.classList.remove("hidden");
-    }
-  });
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Cleaning Services Preview -->
-<section id="services" class="py-16 bg-gray-5">
+  <!-- Services Overview -->
+<section class="py-16 bg-gray-10">
   <div class="container mx-auto px-4">
+    
+    <!-- SEO-Optimized Title -->
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center text-gray-900 mb-6">
+      Professional Cleaning Services in Mobile, Alabama
+    </h2>
+    
+    <!-- SEO-Optimized Subtitle -->
+    <p class="text-center text-lg text-gray-800 max-w-2xl mx-auto mb-12 leading-relaxed">
+      At <strong>Zoiris Cleaning Services</strong>, we specialize in <em>residential, commercial, deep cleaning, and move-in/move-out cleaning</em> solutions.  
+      Serving <strong>Mobile, Alabama</strong> and surrounding areas with trusted, affordable service.
+    </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
+    <!-- Service Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       
+      <!-- Residential Cleaning -->
+      <div class="contact-button text-lg text-center">
+        <div class="contact-button text-lg"><i class="fas fa-home"></i></div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Residential Cleaning</h3>
+        <p class="text-gray-800">
+          Detailed cleaning for <strong>houses, condos, and apartments</strong>.  
+          Keep your home spotless and fresh with our reliable cleaning team.
+        </p>
+      </div>
+
       <!-- Commercial Cleaning -->
-      <a href="commercial-cleaning.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-solid fa-building text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">Commercial Cleaning</h3>
-        </div>
-        
-      </a>
+      <div class="contact-button text-lg text-center">
+        <div class="contact-button text-lg"><i class="fas fa-building"></i></div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Commercial Cleaning</h3>
+        <p class="text-gray-800">
+          Professional cleaning for <strong>offices, retail stores, and business spaces</strong>.  
+          Maintain a clean and productive work environment.
+        </p>
+      </div>
 
       <!-- Deep Cleaning -->
-      <a href="deep-cleaning.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-solid fa-soap text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">Deep Cleaning</h3>
-        </div>
-        
-      </a>
+      <div class="contact-button text-lg text-center">
+        <div class="contact-button text-lg"><i class="fas fa-broom"></i></div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Deep Cleaning</h3>
+        <p class="text-gray-800">
+          Intensive cleaning service that targets <em>hidden dirt, dust, and grime</em>.  
+          Perfect for seasonal refresh or post-renovation.
+        </p>
+      </div>
 
-      <!-- House Cleaning -->
-      <a href="house-cleaning.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-solid fa-broom text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">House Cleaning</h3>
-        </div>
-        
-      </a>
-
-      <!-- Move-In Cleaning -->
-      <a href="move-in-cleaning.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-solid fa-box-open text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">Move-In Cleaning</h3>
-        </div>
-        
-      </a>
-
-      <!-- Move-Out Cleaning -->
-      <a href="move-out-cleaning.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-solid fa-truck-moving text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">Move-Out Cleaning</h3>
-        </div>
-        
-      </a>
-
-      <!-- Vacation Rental Cleaning -->
-      <a href="vacation-rental-cleaning.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-solid fa-umbrella-beach text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">Vacation Rental Cleaning</h3>
-        </div>
-        
-      </a>
-
-      <!-- Airbnb Cleaning -->
-      <a href="airbnb-cleaning.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-brands fa-airbnb text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">Airbnb Cleaning</h3>
-        </div>
-        
-      </a>
-
-      <!-- Post-Construction Cleanup -->
-      <a href="post-construction-cleanup.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-solid fa-hard-hat text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">Post-Construction Cleanup</h3>
-        </div>
-        
-      </a>
-
-      <!-- Carpet Cleaning -->
-      <a href="carpet-cleaning.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-solid fa-rug text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">Carpet Cleaning</h3>
-        </div>
-        
-      </a>
-
-      <!-- Pressure Washing -->
-      <a href="pressure-washing.html" class="contact-button text-lg">
-        <div class="flex items-center gap-3">
-          <div class="contact-button text-lg">
-            <i class="fa-solid fa-water text-xl"></i>
-          </div>
-          <h3 class="contact-button text-lg">Pressure Washing</h3>
-        </div>
-        
-      </a>
-
-
-      <!-- Other Services -->
-      <a href="#othercleaning" class="contact-button text-lg">
-          <div class="flex items-center gap-3">
-         <div class="contact-button text-lg">
-      <i class="fa-solid fa-star text-xl"></i>
-    </div>
-    <h3 class="contact-button text-lg">Other Cleaning Services</h3>
-  </div>
-  
-</a>
+      <!-- Move-in/Move-out Cleaning -->
+      <div class="contact-button text-lg text-center">
+        <div class="contact-button text-lg"><i class="fas fa-box-open"></i></div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Move-in / Move-out Cleaning</h3>
+        <p class="text-gray-800">
+          Comprehensive cleaning for properties <strong>before moving in or after moving out</strong>.  
+          We leave homes spotless and ready for the next residents.
+        </p>
+      </div>
 
     </div>
   </div>
@@ -1552,186 +1051,203 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-    
-
-    
-
-    <!-- ================= LOCATION SECTION ================= -->
-<section id="location" class="py-20 bg-gray-5">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl font-extrabold text-black sm:text-4xl">
-        Our Location & Service Area
-      </h2>
-      <div class="mt-4 h-1 w-20 bg-blue-500 mx-auto"></div>
-      <p class="mt-6 max-w-3xl mx-auto text-black text-lg leading-relaxed">
-        <strong>Zoiris Cleaning Service</strong> is proudly headquartered in the heart of <em>Downtown Mobile, Alabama</em>.  
-        We serve both commercial and residential clients throughout Mobile and Baldwin County, including busy office districts, 
-        retail spaces, schools, and medical facilities. Our central location allows us to respond quickly and efficiently to clients across the area, 
-        ensuring top-quality cleaning services whenever you need them — 
-        <span class="font-semibold text-black">day or night, 24/7</span>.  
-        Explore our coverage area below and click on any location to view it directly in Google Maps.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-    <div class="grid lg:grid-cols-2 gap-12 items-start">
       
-      <!-- Service Area -->
-<div>
-  <h3 class="text-xl font-bold text-gray-900 mb-4">Service Areas We Cover</h3>
-  <p class="text-gray-800 mb-6 leading-relaxed">
-    At <strong>Zoiris Cleaning Service</strong>, we are proud to serve a wide range of communities across 
-    <em>Mobile, AL and Baldwin County</em>. Our dedicated team provides trusted, high-quality cleaning solutions for 
-    offices, businesses, and homes in every corner of the region. Whether you’re located in the busy heart of 
-    <strong>Downtown Mobile</strong>, the growing neighborhoods of <strong>West Mobile</strong>, or the vibrant towns 
-    along the <strong>Eastern Shore</strong>, our team is ready to keep your space spotless, healthy, and welcoming.  
-    We combine flexible scheduling, eco-friendly cleaning products, and years of hands-on experience to deliver results 
-    you can count on — no matter the size or type of property. Explore our full service area below and click on a 
-    location to view it directly on Google Maps.
-  </p>
-</div>
 
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 text-lg">
-          <li>
-            <a href="downtown-mobile.html" target="_blank" class="contact-button text-lg">
-              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Downtown Mobile
-            </a>
-          </li>
-          <li>
-            <a href="midtown-mobile.html" target="_blank" class="contact-button text-lg">
-              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Midtown Mobile
-            </a>
-          </li>
-          <li>
-            <a href="west-mobile.html" target="_blank" class="contact-button text-lg">
-              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> West Mobile
-            </a>
-          </li>
-          <li>
-            <a href="eastern-shore.html" target="_blank" class="contact-button text-lg">
-              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Eastern Shore
-            </a>
-          </li>
-          <li>
-            <a href="spanish-fort.html" target="_blank" class="contact-button text-lg">
-              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Spanish Fort
-            </a>
-          </li>
-          <li>
-            <a href="daphne.html" target="_blank" class="contact-button text-lg">
-              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Daphne
-            </a>
-          </li>
-          <li>
-            <a href="fairhope.html" target="_blank" class="contact-button text-lg">
-              <i class="fas fa-check-circle text-blue-600 mr-2 fa-beat-fade"></i> Fairhope
-            </a>
-          </li>
-        </ul>
-      </div>
 
-      <!-- Map + Contact Info -->
-      <div>
-        <div class="aspect-w-16 aspect-h-9 mb-6">
-          <!-- 3D Interactive Google Map of Downtown Mobile -->
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!4v1711234567890!6m8!1m7!1sCAoSLEFGMVFpcE1FdFZ2aEJzYUVuTFlQbU8wYzZtR2Vzclh2VE1MZnptZVVCN3Vt!2m2!1d30.694356!2d-88.043054!3f90!4f0!5f0.7820865974627469" 
-            width="100%" 
-            height="350" 
-            style="border:0;" 
-            allowfullscreen 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"
-            class="rounded-xl shadow-lg">
-          </iframe>
-        </div>
 
-        <div class="space-y-3 text-lg">
-          <!-- Clickable Address -->
-          <p class="flex items-center">
-            <i class="fas fa-map-marker-alt text-blue-600 mr-2 fa-beat-fade"></i> 
-            <a href="https://www.google.com/maps/dir/?api=1&destination=123+Dauphin+St,+Mobile,+AL+36602" 
-               target="_blank" 
-               class="text-black font-semibold contact-button text-lg">
-              123 Dauphin St, Mobile, AL 36602
-            </a>
-          </p>
 
-          <!-- Clickable Phone -->
-          <p class="flex items-center">
-            <i class="fas fa-phone text-blue-600 mr-2 fa-beat-fade"></i> 
-            <a href="tel:+12514978136" 
-               class="text-black font-bold contact-button text-lg">
-              (251) 497-8136
-            </a>
-          </p>
 
-          <!-- Clickable 24/7 -->
-          <p class="flex items-center">
-            <i class="fas fa-clock text-blue-600 mr-2 fa-beat-fade"></i> 
-            <a href="tel:+12514978136" 
-               class="text-black font-semibold contact-button text-lg">
-              Available 24/7
-            </a>
-          </p>
-        </div>
-      </div>
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<!-- Success Modal -->
+  <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+      <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-secondary text-2xl mb-4 mx-auto"><i class="fas fa-check"></i></div>
+      <h3 class="text-2xl font-semibold text-center mb-4">Application Submitted!</h3>
+      <p class="text-gray-600 text-center mb-6">Thank you for applying to Zoiris Cleaning Services. We'll review your application and contact you soon.</p>
+      <button id="close-modal" class="bg-primary hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg w-full transition">Close</button>
     </div>
   </div>
-</section>
 
-    <!-- Footer -->
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Show application form when "Apply Now" is clicked
+      const applyBtn = document.getElementById('apply-now-btn');
+      const applicationFormSection = document.getElementById('application-form');
+      applyBtn.addEventListener('click', function() {
+        applicationFormSection.classList.remove('hidden');
+        applicationFormSection.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Multi-step form functionality
+      const formSteps = document.querySelectorAll('.form-step');
+      const stepIndicators = document.querySelectorAll('.step-indicator');
+      const nextButtons = document.querySelectorAll('.next-step');
+      const prevButtons = document.querySelectorAll('.prev-step');
+      let currentStep = 0;
+
+      function updateFormStep() {
+        formSteps.forEach((step, index) => {
+          if (index === currentStep) step.classList.remove('hidden');
+          else step.classList.add('hidden');
+        });
+        stepIndicators.forEach((indicator, index) => {
+          if (index <= currentStep) indicator.classList.add('active');
+          else indicator.classList.remove('active');
+        });
+      }
+
+      nextButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const currentStepInputs = formSteps[currentStep].querySelectorAll('input[required], select[required], textarea[required]');
+          let isValid = true;
+          currentStepInputs.forEach(input => {
+            if (!input.value || (input.type === 'checkbox' && !input.checked)) {
+              isValid = false;
+              input.classList.add('border-red-500');
+            } else {
+              input.classList.remove('border-red-500');
+            }
+          });
+          if (isValid && currentStep < formSteps.length - 1) {
+            currentStep++;
+            updateFormStep();
+          }
+        });
+      });
+
+      prevButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          if (currentStep > 0) {
+            currentStep--;
+            updateFormStep();
+          }
+        });
+      });
+
+      // Initialize first step visible
+      updateFormStep();
+
+      // FormPress submission
+      const applicationFormElement = document.getElementById('cleaning-application');
+      const successModal = document.getElementById('success-modal');
+      const closeModalBtn = document.getElementById('close-modal');
+      const submitBtn = document.getElementById('submit-btn');
+      const errorEl = document.getElementById('form-error');
+
+      applicationFormElement.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        errorEl.classList.add('hidden');
+
+        // Disable submit while sending
+        submitBtn.disabled = true;
+        const origText = submitBtn.textContent;
+        submitBtn.textContent = 'Submitting...';
+
+        try {
+          const formData = new FormData(applicationFormElement);
+
+          const response = await fetch(applicationFormElement.action, {
+            method: 'POST',
+            body: formData,
+            credentials: 'same-origin'
+          });
+
+          if (response.ok) {
+            successModal.classList.remove('hidden');
+            applicationFormElement.reset();
+            currentStep = 0;
+            updateFormStep();
+          } else {
+            errorEl.textContent = 'There was a problem submitting your application. Please try again.';
+            errorEl.classList.remove('hidden');
+          }
+         } catch (err) {
+         errorEl.textContent = 'Thank you for applying, we will contact you very soon !!!';
+         errorEl.classList.remove('hidden');
+
+        // swap to green instead of red
+        errorEl.classList.remove('text-red-600');
+       errorEl.classList.add('text-green-600');
+       }
+       finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = origText;
+        }
+      });
+
+      // Close modal
+      closeModalBtn.addEventListener('click', function() { successModal.classList.add('hidden'); });
+      successModal.addEventListener('click', function(e) { if (e.target === successModal) successModal.classList.add('hidden'); });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Footer -->
     <footer class="footer-bg text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -3786,6 +3302,3 @@ function quickAsk(text){
 function quickAsk(text){
   sendZoiris(text);
 }
-
-
-    
