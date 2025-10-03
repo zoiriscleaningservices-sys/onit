@@ -408,7 +408,7 @@ body{
                 <div class="hidden md:flex items-center space-x-8 ml-auto">
                     <a href="./" class="contact-button text-lg">Home</a>
 
-                    <a href="./about.html" class="contact-button text-lg">About</a>
+                   <a href="/about/" class="contact-button text-lg">About</a>
 
 
 
@@ -483,7 +483,8 @@ body{
         <div id="mobile-menu" class="hidden md:hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="./" class="contact-button text-lg">Home</a>
-                <a href="./about.html" class="contact-button text-lg">About</a>
+                <a href="/about/" class="contact-button text-lg">About</a>
+
 
 
 
