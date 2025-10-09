@@ -10,14 +10,29 @@
 
   <!-- Core Pages -->
   <url>
-    <loc>https://www.zoiriscleaningservices.com/apply/</loc>
+    <loc>https://www.zoiriscleaningservices.com/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.zoiriscleaningservices.com/contact/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.zoiriscleaningservices.com/get-a-quote/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Services -->
   <url>
-    <loc>https://www.zoiriscleaningservices.com/house-cleaning/</loc>
+    <loc>https://www.zoiriscleaningservices.com/services/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.zoiriscleaningservices.com/residential-cleaning/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -32,7 +47,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.zoiriscleaningservices.com/airbnb-cleaning/</loc>
+    <loc>https://www.zoiriscleaningservices.com/vacation-rental-cleaning/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -94,7 +109,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.zoiriscleaningservices.com/spanish-fort.html</loc>
+    <loc>https://www.zoiriscleaningservices.com/spanish-fort/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -109,6 +124,18 @@
     <loc>https://www.zoiriscleaningservices.com/blog/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Legal -->
+  <url>
+    <loc>https://www.zoiriscleaningservices.com/privacy-policy/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.zoiriscleaningservices.com/terms-of-service/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
