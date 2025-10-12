@@ -267,6 +267,12 @@ body{
             background-size: cover;
             background-position: center;
         }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
         .service-card {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -638,7 +644,7 @@ body{
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
     
     <!-- Left side (Logo / Title if needed) -->
-    <h1 class="text-xl font-bold text-gray-900"></h1>
+    <h2 class="text-xl font-bold text-gray-900"></h2>
     
     <!-- Right side (Button) -->
     <div class="flex items-center">
@@ -789,41 +795,108 @@ body{
 
 
 <!-- Hero Section -->
-<section id="home" class="hero-image h-screen flex items-center justify-center relative">
-  <!-- Light overlay for readability -->
-  <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-
-  <div class="relative text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
-    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 animate-fadeIn">
-      Contact Us
-    </h1>
-    <p class="text-lg md:text-xl text-white font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
-      At <strong>Zoiris Cleaning Service</strong>, we make it easy to keep your home or business 
-      spotless. Whether you need recurring housekeeping, deep cleaning, or same-day service, 
-      our friendly team is here to help. Every client receives personalized attention, 
-      fast response times, and dependable results you can count on us.
-    </p><span class="font-semibold text-blue-400">24/7</span>.
+<section class="hero-bg pt-32 pb-20 text-white">
+  <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+      Contact Zoiris Cleaning Services – Mobile, AL
+    </h2>
+    <p class="text-xl max-w-2xl mx-auto mb-8">
+      Keeping your home or business spotless has never been easier. At <strong>Zoiris Cleaning Services</strong>, we provide professional residential and commercial cleaning services throughout Mobile and Baldwin County, AL.  
+      From routine housekeeping and deep cleaning to move-in/move-out and post-construction cleanup, our expert team ensures a pristine, healthy, and welcoming environment for every client.  
+      Reach out today for personalized service, fast response times, and dependable results you can trust. Let us take care of the cleaning so you can focus on what matters most.
     </p>
 
 
+    <!-- Call Form (Thin Horizontal) -->
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-6xl mx-auto" x-data="callForm()">
+      <form @submit.prevent="submitForm" class="flex flex-col space-y-4">
 
+        <!-- Title -->
+        <h2 class="text-xl font-bold text-purple-600 text-left">Let Us Call You</h2>
 
+        <!-- Row with Inputs + Button -->
+        <div class="flex flex-col md:flex-row md:items-center md:space-x-3 space-y-3 md:space-y-0">
+          <input type="text" x-model="form.firstName" placeholder="First Name*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
+          <input type="text" x-model="form.lastName" placeholder="Last Name*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
+          <input type="email" x-model="form.email" placeholder="Email*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
+          <input type="tel" x-model="form.phone" placeholder="Phone*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
+          <input type="text" x-model="form.zip" placeholder="ZIP Code*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
 
-             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="tel:2519308621" class="contact-button text-lg">
-                    <i class="fas fa-phone mr-2 fa-beat"></i>Call Now
-                </a>
-        
-                <a href="mailto:zoiriscleaningservices@gmail.com" class="contact-button text-lg">
-                    <i class="fas fa-envelope mr-2 fa-beat"></i>Email Us
-                </a>
-                <a href="#quote" class="contact-button text-lg">
-                    <i class="fa-solid fa-circle-check fa-beat"></i>
-                            Get a Free Quote
-                </a>
+          <button type="submit" class="contact-button bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-md shrink-0 md:w-auto w-full">
+            Request A Call
+          </button>
         </div>
-    </section>
-    <script>
+
+        <!-- Checkbox -->
+        <div class="flex items-center gap-2 text-sm text-gray-700">
+          <input type="checkbox" x-model="form.textUpdates" id="text-updates" class="text-blue-600 focus:ring-blue-600">
+          <label for="text-updates">Yes! You can text me service reminders and other messages.</label>
+        </div>
+
+        <!-- Disclaimer -->
+        <p class="text-xs text-gray-600 leading-snug">
+          By checking this box, I agree to receive automated SMS/MMS messages from Zoiris Cleaning Services. Message/data rates may apply. 
+          View <a href="#" class="text-blue-600 underline">Terms</a> and <a href="#" class="text-blue-600 underline">Privacy Policy</a>. Reply STOP to opt out. Reply HELP for help.
+        </p>
+        <p class="text-xs text-gray-600 leading-snug">
+          By entering your email address, you agree to receive emails about services, updates, or promotions. You may unsubscribe at any time.
+        </p>
+
+        <!-- Success Message -->
+        <div x-show="submitted" class="text-purple-600 font-bold text-center mt-2">
+          ✅ Request A Call
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('callForm', () => ({
+    form: { firstName: '', lastName: '', email: '', phone: '', zip: '', textUpdates: false },
+    submitted: false,
+
+    async submitForm() {
+      const payload = {
+        'First Name': this.form.firstName,
+        'Last Name': this.form.lastName,
+        'Email': this.form.email,
+        'Phone': this.form.phone,
+        'ZIP': this.form.zip,
+        'Text Updates': this.form.textUpdates ? 'Yes' : 'No'
+      };
+
+      try {
+        await fetch('https://formspree.io/f/xkgvorgd', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        this.submitted = true;
+
+        // Reset form after showing success
+        setTimeout(() => {
+          this.submitted = false;
+          this.form = { firstName: '', lastName: '', email: '', phone: '', zip: '', textUpdates: false };
+        }, 3000);
+
+      } catch (err) {
+        this.submitted = true;
+        setTimeout(() => {
+          this.submitted = false;
+          this.form = { firstName: '', lastName: '', email: '', phone: '', zip: '', textUpdates: false };
+        }, 3000);
+      }
+    }
+  }));
+});
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
   // Try to detect your sticky header height
   const header = document.querySelector('nav.nav-bg, header.sticky, .sticky');
