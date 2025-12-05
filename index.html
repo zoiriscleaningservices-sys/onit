@@ -498,168 +498,6 @@ body{
 
 
 
-<!-- FULL-WIDTH LUXURY HOLIDAY BANNER -->
-<style>
-.holiday-popup-overlay {
-  position: fixed; top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.85);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 9999; overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.holiday-popup-overlay.show { opacity: 1; }
-
-.holiday-popup-content {
-  position: relative; width: 90%; max-width: 900px; height: 90%;
-  background: #111; border-radius: 20px; overflow: hidden;
-  display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.7);
-}
-
-.holiday-popup-close {
-  position: absolute; top: 15px; right: 20px; font-size: 28px; color: white;
-  cursor: pointer; z-index: 1000;
-}
-
-.luxury-banner {
-  position: relative; width: 100%; height: 100%;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  color: white; text-align: center;
-  overflow: hidden;
-}
-
-.luxury-slides div {
-  position: absolute; top:0; left:0; width:100%; height:100%;
-  background-size: cover; 
-  background-position: center center;
-  opacity:0; 
-  animation: fadeSlide 18s infinite ease-in-out;
-}
-
-.luxury-slides div:nth-child(1){background-image:url('https://i.ibb.co/Ps4CzByD/family-holidays-smaller.jpg'); animation-delay:0s;}
-.luxury-slides div:nth-child(2){background-image:url('https://i.ibb.co/k22tKqRT/fireworks-new-years-eve-san-francisco.jpg"'); animation-delay:6s;}
-.luxury-slides div:nth-child(3){background-image:url('https://i.ibb.co/4RnrFL8c/phoenix-party-bus-rental-2.jpg'); animation-delay:12s;}
-
-@keyframes fadeSlide {0%{opacity:0;}10%{opacity:1;}33%{opacity:1;}43%{opacity:0;}100%{opacity:0;}}
-
-/* Snow effect */
-.snowflake {
-  position: absolute;
-  top: -10px;
-  width: 10px; height: 10px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: fall linear infinite;
-}
-@keyframes fall {
-  0% {transform: translateY(0) translateX(0);}
-  100% {transform: translateY(110vh) translateX(20px);}
-}
-
-.luxury-content {
-  position: relative; z-index:3; width: 90%; padding: 25px; 
-  background: rgba(0,0,0,0.85); 
-  border-radius: 12px; text-align: center;
-}
-
-.luxury-content h1,h2,p { 
-  color: white;  
-  font-weight: bold; 
-}
-
-.luxury-content h1{font-size:42px; margin-bottom:10px;}
-.luxury-content h2{font-size:26px; margin-bottom:20px;}
-.luxury-content p{font-size:16px; line-height:1.6; margin-bottom:25px;}
-
-.luxury-button {
-  padding:12px 30px; font-size:18px; background: linear-gradient(45deg,#1e90ff,#63b3ff);
-  color:white; text-decoration:none; border-radius:10px; font-weight:bold; box-shadow:0 0 20px rgba(30,144,255,0.6);
-  cursor:pointer;
-}
-.luxury-button:hover {transform: scale(1.05); box-shadow:0 0 30px rgba(30,144,255,1);}
-
-@media(max-width:600px){
-  .luxury-content h1{font-size:28px;} 
-  .luxury-content h2{font-size:20px;} 
-  .luxury-content p{font-size:14px;}
-}
-</style>
- 
-<div class="holiday-popup-overlay" id="holidayPopup">
-  <div class="holiday-popup-content">
-    <span class="holiday-popup-close" id="popupClose">&times;</span>
-    <section class="luxury-banner">
-      <div class="luxury-slides">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-
-      <!-- Snowflakes -->
-      <div id="snowContainer"></div>
-
-<div class="luxury-content">
-  <h1> Make Your Home Sparkle This Holiday Season!</h1>
-  <h2>✨ Enjoy <span style="color:#63b3ff;">10% OFF</span> All Cleaning Services — Limited Time!</h2>
-  <p>
-    Tis the season to shine! ❄️ Say goodbye to holiday mess and hello to a sparkling, cozy home.  
-    Sit back, relax, and let us bring the festive magic while you enjoy the holidays! 🎁
-  </p>
-      <button class=" contact-button text-lg  fa-beat" id="bookNowBtn">Book Now</button>
-
-<div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="tel:2519308621" class="contact-button text-lg">
-                    <i class="fas fa-phone mr-2 fa-beat"></i>Call Now
-                </a>
-        
-                <a href="mailto:zoiriscleaningservices@gmail.com" class="contact-button text-lg">
-                    <i class="fas fa-envelope mr-2 fa-beat"></i>Email Us
-                </a>
-      </div> 
-    </section>
-  </div>
-</div>
-
-<script>
-const popup = document.getElementById('holidayPopup');
-const closeBtn = document.getElementById('popupClose');
-const bookBtn = document.getElementById('bookNowBtn');
-const snowContainer = document.getElementById('snowContainer');
-
-// Show popup
-popup.classList.add('show');
-
-// Close popup function
-function closePopup() {
-  popup.style.opacity = '0';
-  setTimeout(()=>{ popup.remove(); }, 500);
-}
-
-// Close handlers
-closeBtn.addEventListener('click', closePopup);
-popup.addEventListener('click', e => { if(e.target === popup) closePopup(); });
-
-// Book Now: close popup AND scroll to #quote
-bookBtn.addEventListener('click', () => {
-  closePopup();
-  const quoteSection = document.querySelector('#quote');
-  if(quoteSection){
-    quoteSection.scrollIntoView({behavior: 'smooth'});
-  }
-});
-
-// Create snowflakes
-for(let i=0;i<40;i++){
-  let flake = document.createElement('div');
-  flake.className = 'snowflake';
-  flake.style.left = Math.random()*100 + 'vw';
-  flake.style.animationDuration = 3+Math.random()*5 + 's';
-  flake.style.width = flake.style.height = 5 + Math.random()*5 + 'px';
-  snowContainer.appendChild(flake);
-}
-</script>
 
 
 
@@ -668,13 +506,6 @@ for(let i=0;i<40;i++){
 
 
  
-
-
-
-
-
- 
-
 
 
 
@@ -4156,4 +3987,5 @@ function quickAsk(text){
 function quickAsk(text){
   sendZoiris(text);
 }
+  
   
