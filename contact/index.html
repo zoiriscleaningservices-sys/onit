@@ -839,58 +839,70 @@ body{
 
 
     <!-- Call Form (Thin Horizontal) -->
-    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-6xl mx-auto" x-data="callForm()">
-      <form @submit.prevent="submitForm" class="flex flex-col space-y-4">
+<section>
+  <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-6xl mx-auto" x-data="callForm()">
+    <form @submit.prevent="submitForm" class="flex flex-col space-y-4">
 
-        <!-- Title -->
-        <h2 class="text-xl font-bold text-purple-600 text-left">Let Us Call You</h2>
+      <!-- Title -->
+      <h2 class="text-xl font-bold text-purple-600 text-left">Let Us Call You</h2>
 
-        <!-- Row with Inputs + Button -->
-        <div class="flex flex-col md:flex-row md:items-center md:space-x-3 space-y-3 md:space-y-0">
-          <input type="text" x-model="form.firstName" placeholder="First Name*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
-          <input type="text" x-model="form.lastName" placeholder="Last Name*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
-          <input type="email" x-model="form.email" placeholder="Email*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
-          <input type="tel" x-model="form.phone" placeholder="Phone*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
-          <input type="text" x-model="form.zip" placeholder="ZIP Code*" required class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400" />
+      <!-- Row with Inputs + Button -->
+      <div class="flex flex-col md:flex-row md:items-center md:space-x-3 space-y-3 md:space-y-0">
+        <input type="text" x-model="form.firstName" placeholder="First Name*" required
+          class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400 text-black" />
+        <input type="text" x-model="form.lastName" placeholder="Last Name*" required
+          class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400 text-black" />
+        <input type="email" x-model="form.email" placeholder="Email*" required
+          class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400 text-black" />
+        <input type="tel" x-model="form.phone" placeholder="Phone*" required
+          class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400 text-black" />
+        <input type="text" x-model="form.zip" placeholder="ZIP Code*" required
+          class="border rounded-md px-3 py-2 w-full md:flex-1 focus:ring-2 focus:ring-blue-400 text-black" />
 
-          <button type="submit" class="contact-button bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-md shrink-0 md:w-auto w-full">
-            Request A Call
-          </button>
-        </div>
+        <button type="submit"
+          class="contact-button bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-md shrink-0 md:w-auto w-full">
+          Request A Call
+        </button>
+      </div>
 
-        <!-- Checkbox -->
-        <div class="flex items-center gap-2 text-sm text-gray-700">
-          <input type="checkbox" x-model="form.textUpdates" id="text-updates" class="text-blue-600 focus:ring-blue-600">
-          <label for="text-updates">Yes! You can text me service reminders and other messages.</label>
-        </div>
+      <!-- Checkbox -->
+      <div class="flex items-center gap-2 text-sm text-gray-700">
+        <input type="checkbox" x-model="form.textUpdates" id="text-updates" class="text-blue-600 focus:ring-blue-600">
+        <label for="text-updates">Yes! You can text me service reminders and other messages.</label>
+      </div>
 
-        <!-- Disclaimer -->
-        <p class="text-xs text-gray-600 leading-snug">
-          By checking this box, I agree to receive automated SMS/MMS messages from Zoiris Cleaning Services. Message/data rates may apply. 
-          View <a href="#" class="text-blue-600 underline">Terms</a> and <a href="#" class="text-blue-600 underline">Privacy Policy</a>. Reply STOP to opt out. Reply HELP for help.
-        </p>
-        <p class="text-xs text-gray-600 leading-snug">
-          By entering your email address, you agree to receive emails about services, updates, or promotions. You may unsubscribe at any time.
-        </p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="tel:2514978163" class="contact-button text-lg">
-                    <i class="fas fa-phone mr-2 fa-beat"></i>Call Now
-                </a>
-        
-                <a href="mailto:zoiriscleaningservices@gmail.com" class="contact-button text-lg">
-                    <i class="fas fa-envelope mr-2 fa-beat"></i>Email Us
-                </a>
-                <a href="#quote" class="contact-button text-lg">
-                <i class="fa-solid fa-circle-check fa-beat"></i>
-                 Get a Free Quote
-                 </a>
+      <!-- Disclaimer -->
+      <p class="text-xs text-gray-600 leading-snug">
+        By checking this box, I agree to receive automated SMS/MMS messages from Zoiris Cleaning Services. Message/data
+        rates may apply.
+        View <a href="#" class="text-blue-600 underline">Terms</a> and <a href="#"
+          class="text-blue-600 underline">Privacy Policy</a>. Reply STOP to opt out. Reply HELP for help.
+      </p>
+      <p class="text-xs text-gray-600 leading-snug">
+        By entering your email address, you agree to receive emails about services, updates, or promotions. You may
+        unsubscribe at any time.
+      </p>
 
-        <!-- Success Message -->
-        <div x-show="submitted" class="text-purple-600 font-bold text-center mt-2">
-          ✅ Request A Call
-        </div>
-      </form>
-    </div>
+      <!-- Contact Links -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="tel:2514978163" class="contact-button text-lg">
+          <i class="fas fa-phone mr-2 fa-beat"></i>Call Now
+        </a>
+
+        <a href="mailto:zoiriscleaningservices@gmail.com" class="contact-button text-lg">
+          <i class="fas fa-envelope mr-2 fa-beat"></i>Email Us
+        </a>
+
+        <a href="#quote" class="contact-button text-lg">
+          <i class="fa-solid fa-circle-check fa-beat"></i> Get a Free Quote
+        </a>
+      </div>
+
+      <!-- Success Message -->
+      <div x-show="submitted" class="text-purple-600 font-bold text-center mt-2">
+        ✅ Request A Call
+      </div>
+    </form>
   </div>
 </section>
 
@@ -919,7 +931,6 @@ document.addEventListener('alpine:init', () => {
 
         this.submitted = true;
 
-        // Reset form after showing success
         setTimeout(() => {
           this.submitted = false;
           this.form = { firstName: '', lastName: '', email: '', phone: '', zip: '', textUpdates: false };
@@ -936,51 +947,39 @@ document.addEventListener('alpine:init', () => {
   }));
 });
 
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Try to detect your sticky header height
   const header = document.querySelector('nav.nav-bg, header.sticky, .sticky');
-  const headerOffset = header ? header.offsetHeight + 8 : 0; // small extra padding
+  const headerOffset = header ? header.offsetHeight + 8 : 0;
 
   function scrollToTarget(id) {
     const el = document.getElementById(id);
     if (!el) return;
 
-    // Compute position accounting for sticky header
     const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
-    window.scrollTo({
-      top: y,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: y, behavior: 'smooth' });
   }
 
-  // Intercept all in-page anchors like href="#quote"
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const hash = link.getAttribute('href');
       const id = hash.slice(1);
       if (!id) return;
 
-      // Only handle if the target exists on this page
       if (document.getElementById(id)) {
         e.preventDefault();
         scrollToTarget(id);
-        // Update URL hash without jumping
         history.pushState(null, '', hash);
       }
     });
   });
 
-  // If the page loads with a hash (e.g., /#quote), scroll to it smoothly
   if (location.hash && document.getElementById(location.hash.substring(1))) {
     setTimeout(() => scrollToTarget(location.hash.substring(1)), 0);
   }
 });
 </script>
+
 
             </div>
  <!-- Scroll Down Arrow -->
