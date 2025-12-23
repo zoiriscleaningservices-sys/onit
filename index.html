@@ -241,50 +241,40 @@ body{
 
 /* Bubble layer sits behind content but above the body background */
 .floating-bubbles {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
+    position: fixed;           /* Removes from document flow = zero CLS */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;      /* Clicks pass through to content below */
+    z-index: -1;               /* Behind everything else */
 }
 
-/* Base bubble */
-.bubble {
-  position: absolute;
-  bottom: -150px;
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  opacity: 0.85;
-  animation: rise var(--dur, 22s) linear infinite;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,.15));
+.floating-bubbles .bubble {
+    position: absolute;
+    bottom: -150px;            /* Start below viewport */
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15); /* Adjust color/opacity to match your design */
+    opacity: 0;
+    animation: float-up 25s infinite linear forwards;
+    animation-delay: inherit;  /* Uses your inline animation-delay values */
 }
 
-/* Color variants (pure CSS gradients) */
-.bubble.blue {
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
-    linear-gradient(135deg, #60a5fa, #2563eb);
-}
-.bubble.green {
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
-    linear-gradient(135deg, #34d399, #059669);
-}
-.bubble.purple {
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
-    linear-gradient(135deg, #a78bfa, #7c3aed);
-}
-.bubble.pink {
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
-    linear-gradient(135deg, #f472b6, #db2777);
-}
-.bubble.yellow {
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%),
-    linear-gradient(135deg, #facc15, #eab308);
+@keyframes float-up {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.6;
+    }
+    85% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
 }
 
 /* Float up + gentle horizontal drift */
@@ -490,14 +480,14 @@ body{
     </style>
 
     <body class="min-h-screen py-8 px-4">
-    <!-- Floating Background Bubbles -->
-    <div class="floating-bubbles">
-        <div class="bubble" style="width: 80px; height: 80px; left: 10%; animation-delay: 0s;"></div>
-        <div class="bubble" style="width: 120px; height: 120px; left: 20%; animation-delay: 2s;"></div>
-        <div class="bubble" style="width: 60px; height: 60px; left: 35%; animation-delay: 4s;"></div>
-        <div class="bubble" style="width: 100px; height: 100px; left: 70%; animation-delay: 1s;"></div>
-        <div class="bubble" style="width: 90px; height: 90px; left: 85%; animation-delay: 3s;"></div>
-    </div>
+<!-- Floating Background Bubbles -->
+<div class="floating-bubbles">
+    <div class="bubble" style="width: 80px; height: 80px; left: 10%; animation-delay: 0s;"></div>
+    <div class="bubble" style="width: 120px; height: 120px; left: 20%; animation-delay: 2s;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; left: 35%; animation-delay: 4s;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; left: 70%; animation-delay: 1s;"></div>
+    <div class="bubble" style="width: 90px; height: 90px; left: 85%; animation-delay: 3s;"></div>
+</div>
     
 
     
@@ -724,7 +714,7 @@ body{
 
 
 <!-- Navigation -->
-<nav class="">
+<nav class="hidden md:block">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex items-center">
@@ -734,7 +724,8 @@ body{
                          class="h-28 w-auto">
                 </div>
             </div>
-
+            <!-- Rest of your navigation links/buttons here -->
+ 
             <div class="hidden md:flex items-center space-x-8 ml-auto">
                 <a href="/" class="contact-button text-lg">Home</a>
                 <a href="/about/" class="contact-button text-lg">About</a>
