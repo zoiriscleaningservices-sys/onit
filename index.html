@@ -672,6 +672,16 @@ body{
   </div>
 </div>
 
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-safe-listener]").forEach(el => {
+      // placeholder to prevent null listener crashes
+    });
+  });
+</script>
+
+
 <script>
 (() => {
   const popup = document.getElementById('holidayPopup');
@@ -2312,16 +2322,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         });
-        // Form submission
-        document.getElementById('quoteForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Hide form and show success message
-            this.classList.add('hidden');
-            document.getElementById('formSuccess').classList.remove('hidden');
-            
-            // Scroll to success message
-            document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth' });
-        });
+// Form submission
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('quoteForm');
+    const success = document.getElementById('formSuccess');
+
+    if (!form || !success) return;
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Hide form and show success message
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+
+        // Scroll to success message
+        success.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
         // Service card expansion
         document.querySelectorAll('.service-card').forEach(card => {
             card.addEventListener('click', function() {
