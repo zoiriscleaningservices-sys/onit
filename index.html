@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 
+
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +21,9 @@
 
 <link rel="canonical" href="https://www.zoiriscleaningservices.com/">
 <link rel="sitemap" type="application/xml" href="https://www.zoiriscleaningservices.com/sitemap.xml">
+
+
+<link rel="preload" as="image" href="https://i.ibb.co/F4gsMz1c/7e6c60fb-e7da-4ac4-9db4-251daab42a76.png" fetchpriority="high">
 
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="180x180" href="https://imgur.com/yjACVrG.png">
@@ -291,11 +295,11 @@ body{
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
         }
-        .hero-image {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/F4gsMz1c/7e6c60fb-e7da-4ac4-9db4-251daab42a76.png');
-            background-size: cover;
-            background-position: center;
-        }
+.hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://i.ibb.co/F4gsMz1c/7e6c60fb-e7da-4ac4-9db4-251daab42a76.png'); /* reduced from 0.5 to 0.3 */
+    background-size: cover;
+    background-position: center;
+}
         .service-card {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1052,9 +1056,8 @@ body{
 
 
 <!-- Hero Section -->
-<section id="home" class="hero-image h-screen flex items-center justify-center relative">
-  <!-- Light overlay for readability -->
-  <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+<section id="home" class="hero-image h-screen flex items-center justify-center relative bg-cover bg-center bg-no-repeat">
+
 
 
 
