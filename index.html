@@ -139,8 +139,8 @@
 
 
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
   <style>
  /* Neon cyber hover effect */
@@ -2187,7 +2187,8 @@ document.addEventListener('DOMContentLoaded', () => {
 </footer>
 
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
 <!-- Smooth Scroll -->
 <style>
@@ -3749,3 +3750,11 @@ function quickAsk(text){
             });
         });
     </script>
+
+
+    <script>
+  const twScript = document.createElement('script');
+  twScript.src = 'https://cdn.tailwindcss.com';
+  twScript.async = true;
+  document.body.appendChild(twScript);
+</script>
