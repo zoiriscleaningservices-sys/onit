@@ -9,12 +9,16 @@
 <!-- Zoiris Cleaning Service — FULL SEO DOMINATION SETUP -->
 
 <title>#1 Cleaning Service in Mobile, AL | Zoiris Cleaning Services</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+
+
 
 <meta name="description" content="Zoiris Cleaning Services is the #1 cleaning company in Mobile, AL. We offer house cleaning, deep cleaning, Airbnb cleaning, move-in/out, commercial & post-construction cleaning. Serving Mobile & Baldwin County. Call today.">
 
 <meta name="keywords" content="cleaning service Mobile AL, house cleaning Mobile Alabama, deep cleaning Mobile, commercial cleaning Mobile, Airbnb cleaning Mobile, vacation rental cleaning, maid service Mobile, professional cleaners Mobile AL, top-rated cleaning company Mobile, move-in cleaning Mobile Alabama, move-out cleaning Mobile Alabama, carpet cleaning Mobile AL, post-construction cleaning Mobile, pressure washing Mobile AL, apartment cleaning Mobile AL, residential cleaning Mobile, office cleaning Mobile, eco-friendly cleaning Mobile AL, rental property cleaning Mobile">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="Zoiris Cleaning Service">
 
@@ -779,13 +783,19 @@ body{
                 <a href="#quote" class="contact-button text-lg">Get a Quote</a>
             </div>
 
-            <div class="md:hidden flex items-center">
-                <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-500 focus:outline-none">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+           <div class="md:hidden flex items-center">
+           <button id="mobile-menu-button"
+            class="text-gray-700 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+            aria-label="Open mobile menu"
+            aria-expanded="false"
+            onclick="toggleMobileMenu()"> <!-- Add your actual JS function name here -->
+
+        <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+
+        <!-- Visually hidden text for screen readers -->
+        <span class="sr-only">Open menu</span>
+    </button>
+</div>
 
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden md:hidden">
@@ -860,35 +870,48 @@ body{
       </a>
     </div>
 
+ 
 
 
-    <!-- Right: Social Icons -->
-    <div class="flex space-x-2 mt-2 md:mt-0">
-      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-facebook-f fa-beat"></i>
-      </a>
-      <a href="https://www.instagram.com/zoiriscleaning" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-instagram fa-beat"></i>
-      </a>
-      <a href="https://x.com/zoiriscleaning" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-twitter fa-beat"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/zoiriscleaning-services-b5b0b2381/" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-linkedin-in fa-beat"></i>
-      </a>
-      <a href="https://www.yelp.com/user_details?userid=7SDy8Urgj43gfYxrR5o2eQ" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-yelp fa-beat"></i>
-      </a>
-      <a href="https://www.youtube.com/channel/UCTewa53AZduD2H9J04RogCw" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-youtube fa-beat"></i>
-      </a>
-      <a href="https://www.pinterest.com/zoiriolysh/_profile/" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-pinterest-p fa-beat"></i>
-      </a>
-    </div>
 
-  </div>
+<!-- Right: Social Icons -->
+<div class="flex space-x-2 mt-2 md:mt-0">
+  <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-facebook-f fa-beat"></i>
+    <span class="sr-only">Follow us on Facebook</span>
+  </a>
+  <a href="https://www.instagram.com/zoiriscleaning" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-instagram fa-beat"></i>
+    <span class="sr-only">Follow us on Instagram</span>
+  </a>
+  <a href="https://x.com/zoiriscleaning" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-twitter fa-beat"></i>
+    <span class="sr-only">Follow us on X (Twitter)</span>
+  </a>
+  <a href="https://www.linkedin.com/in/zoiriscleaning-services-b5b0b2381/" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-linkedin-in fa-beat"></i>
+    <span class="sr-only">Connect with us on LinkedIn</span>
+  </a>
+  <a href="https://www.yelp.com/user_details?userid=7SDy8Urgj43gfYxrR5o2eQ" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-yelp fa-beat"></i>
+    <span class="sr-only">Read our reviews on Yelp</span>
+  </a>
+  <a href="https://www.youtube.com/channel/UCTewa53AZduD2H9J04RogCw" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-youtube fa-beat"></i>
+    <span class="sr-only">Subscribe to our YouTube channel</span>
+  </a>
+  <a href="https://www.pinterest.com/zoiriolysh/_profile/" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-pinterest-p fa-beat"></i>
+    <span class="sr-only">Follow us on Pinterest</span>
+  </a>
+</div>  
 </div>
+</div>
+
+
+
+
+
 <!-- 🌟 Navigation Bar -->
 
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -1175,15 +1198,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             </div>
- <!-- Scroll Down Arrow -->
+<!-- Scroll Down Arrow -->
 <div class="flex justify-center mt-6">
   <button onclick="scrollToQuote()" 
-          class="animate-bounce text-black hover:text-blue-600 focus:outline-none">
+          class="animate-bounce text-black hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent"
+          aria-label="Scroll down to get a quote">
+
     <!-- Down Arrow Icon -->
     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" 
-         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
     </svg>
+
+    <!-- Hidden text for screen readers (extra safety) -->
+    <span class="sr-only">Scroll to quote section</span>
   </button>
 </div>
 
@@ -1575,9 +1603,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-<!-- Contact Form Section -->
-    <section id="quote" class="py-16 scroll-mt-28">
+ <!-- Contact Form Section -->
+<section id="quote" class="py-16 scroll-mt-28">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="grid lg:grid-cols-2 gap-12">
       <!-- Contact Form -->
@@ -1590,33 +1617,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <div class="grid md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-              <input type="text" name="firstName" required 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+              <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+              <input type="text" 
+                     id="firstName" 
+                     name="firstName" 
+                     required 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-              <input type="text" name="lastName" required 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+              <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+              <input type="text" 
+                     id="lastName" 
+                     name="lastName" 
+                     required 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
             </div>
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-            <input type="email" name="email" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+            <input type="email" 
+                   id="email" 
+                   name="email" 
+                   required 
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-            <input type="tel" name="phone" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+            <input type="tel" 
+                   id="phone" 
+                   name="phone" 
+                   required 
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
-            <select name="serviceType" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+            <label for="serviceType" class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
+            <select id="serviceType" 
+                    name="serviceType" 
+                    required 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
               <option value="">Select a service</option>
               <option value="residential">Residential Cleaning</option>
               <option value="commercial">Commercial Cleaning</option>
@@ -1628,18 +1669,24 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-            <textarea name="message" rows="4" 
-              placeholder="Tell us about your cleaning needs..."
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input"></textarea>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+            <textarea id="message" 
+                      name="message" 
+                      rows="4" 
+                      placeholder="Tell us about your cleaning needs..."
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input"></textarea>
           </div>
           
           <button type="submit" 
-            class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition duration-300 pulse-animation">
+                  class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition duration-300 pulse-animation">
             <i class="fas fa-paper-plane mr-2"></i>
             Send Message
           </button>
         </form>
+
+
+
+
 
         <!-- Success / Error Messages -->
         <div id="formSuccess" class="hidden mt-4 text-green-600 font-semibold">
@@ -1691,11 +1738,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="bg-gradient-to-r from-green-400 to-green-600 rounded-2xl shadow-xl p-8 text-white">
           <h3 class="text-2xl font-bold mb-4">Quick WhatsApp</h3>
           <p class="mb-4 opacity-90">Get instant response via WhatsApp</p>
-          <a href="https://wa.me/12519308621" target="_blank" 
-            class="inline-flex items-center bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
-            <i class="fab fa-whatsapp text-2xl mr-2"></i>
-            Chat Now
-          </a>
+ <a href="https://wa.me/12519308621" target="_blank" 
+   class="inline-flex items-center bg-white text-green-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+  <i class="fab fa-whatsapp text-2xl mr-2"></i>
+  Chat Now
+</a>
         </div>
       </div>
     </div>
@@ -2045,17 +2092,17 @@ document.addEventListener('DOMContentLoaded', () => {
       <div>
         <div class="aspect-w-16 aspect-h-9 mb-6">
           <!-- 3D Interactive Google Map of Downtown Mobile -->
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!4v1711234567890!6m8!1m7!1sCAoSLEFGMVFpcE1FdFZ2aEJzYUVuTFlQbU8wYzZtR2Vzclh2VE1MZnptZVVCN3Vt!2m2!1d30.694356!2d-88.043054!3f90!4f0!5f0.7820865974627469" 
-            width="100%" 
-            height="350" 
-            style="border:0;" 
-            allowfullscreen 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"
-            class="rounded-xl shadow-lg">
-          </iframe>
-        </div>
+<iframe 
+    src="https://www.google.com/maps/embed?pb=!4v1711234567890!6m8!1m7!1sCAoSLEFGMVFpcE1FdFZ2aEJzYUVuTFlQbU8wYzZtR2Vzclh2VE1MZnptZVVCN3Vt!2m2!1d30.694356!2d-88.043054!3f90!4f0!5f0.7820865974627469" 
+    width="100%" 
+    height="350" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade"
+    class="rounded-xl shadow-lg"
+    title="Zoiris Cleaning Service location map in Mobile, AL">
+</iframe>
 
         <div class="space-y-3 text-lg">
           <!-- Clickable Address -->
@@ -2097,7 +2144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-gray-400 py-12">
+<footer class="bg-gray-900 text-gray-200 py-12">
   <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
     
     <!-- Left: Logo & Description -->
@@ -2159,31 +2206,77 @@ document.addEventListener('DOMContentLoaded', () => {
         <li><a href="/contact/" class="hover:text-white">Contact</a></li>
         <li><a href="/apply/" class="hover:text-white">Apply</a></li>
       </ul>
-      <p class="mt-4 text-gray-500 text-xs">&copy; <span id="year"></span> Zoiris Cleaning. All Rights Reserved.</p>
-    </div>
+      <p class="mt-4 text-gray-200 text-xs">&copy; <span id="year"></span> Zoiris Cleaning. All Rights Reserved.</p>
     
   </div>
 
-  <!-- Social Media Full Width -->
+ <!-- Social Media Full Width -->
   <div class="mt-8 border-t border-gray-700 pt-6">
     <div class="flex flex-wrap justify-center gap-6 text-2xl">
-      <a href="https://facebook.com" target="_blank" class="hover:text-blue-500"><i class="fab fa-facebook"></i></a>
-      <a href="https://instagram.com/zoiriscleaning" target="_blank" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com/zoiriscleaning" target="_blank" class="hover:text-sky-400"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://linkedin.com" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
-      <a href="https://youtube.com" target="_blank" class="hover:text-red-500"><i class="fab fa-youtube"></i></a>
-      <a href="https://tiktok.com" target="_blank" class="hover:text-gray-300"><i class="fab fa-tiktok"></i></a>
-      <a href="https://pinterest.com" target="_blank" class="hover:text-red-600"><i class="fab fa-pinterest"></i></a>
-      <a href="https://snapchat.com" target="_blank" class="hover:text-yellow-400"><i class="fab fa-snapchat"></i></a>
-      <a href="https://reddit.com" target="_blank" class="hover:text-orange-500"><i class="fab fa-reddit"></i></a>
-      <a href="https://tumblr.com" target="_blank" class="hover:text-indigo-400"><i class="fab fa-tumblr"></i></a>
-      <a href="https://discord.com" target="_blank" class="hover:text-indigo-500"><i class="fab fa-discord"></i></a>
-      <a href="https://wa.me/12519308621" target="_blank" class="hover:text-green-500"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://telegram.org" target="_blank" class="hover:text-sky-500"><i class="fab fa-telegram"></i></a>
-      <a href="https://yelp.com" target="_blank" class="hover:text-red-400"><i class="fab fa-yelp"></i></a>
-      <a href="https://github.com" target="_blank" class="hover:text-gray-400"><i class="fab fa-github"></i></a>
+      <a href="https://facebook.com" target="_blank" class="hover:text-blue-500">
+        <i class="fab fa-facebook"></i>
+        <span class="sr-only">Follow us on Facebook</span>
+      </a>
+      <a href="https://instagram.com/zoiriscleaning" target="_blank" class="hover:text-pink-500">
+        <i class="fab fa-instagram"></i>
+        <span class="sr-only">Follow us on Instagram</span>
+      </a>
+      <a href="https://x.com/zoiriscleaning" target="_blank" class="hover:text-sky-400">
+        <i class="fab fa-x-twitter"></i>
+        <span class="sr-only">Follow us on X (Twitter)</span>
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="hover:text-blue-400">
+        <i class="fab fa-linkedin"></i>
+        <span class="sr-only">Connect with us on LinkedIn</span>
+      </a>
+      <a href="https://youtube.com" target="_blank" class="hover:text-red-500">
+        <i class="fab fa-youtube"></i>
+        <span class="sr-only">Subscribe to our YouTube channel</span>
+      </a>
+      <a href="https://tiktok.com" target="_blank" class="hover:text-gray-300">
+        <i class="fab fa-tiktok"></i>
+        <span class="sr-only">Follow us on TikTok</span>
+      </a>
+      <a href="https://pinterest.com" target="_blank" class="hover:text-red-600">
+        <i class="fab fa-pinterest"></i>
+        <span class="sr-only">Follow us on Pinterest</span>
+      </a>
+      <a href="https://snapchat.com" target="_blank" class="hover:text-yellow-400">
+        <i class="fab fa-snapchat"></i>
+        <span class="sr-only">Add us on Snapchat</span>
+      </a>
+      <a href="https://reddit.com" target="_blank" class="hover:text-orange-500">
+        <i class="fab fa-reddit"></i>
+        <span class="sr-only">Join us on Reddit</span>
+      </a>
+      <a href="https://tumblr.com" target="_blank" class="hover:text-indigo-400">
+        <i class="fab fa-tumblr"></i>
+        <span class="sr-only">Follow us on Tumblr</span>
+      </a>
+      <a href="https://discord.com" target="_blank" class="hover:text-indigo-500">
+        <i class="fab fa-discord"></i>
+        <span class="sr-only">Join our Discord server</span>
+      </a>
+      <a href="https://wa.me/12519308621" target="_blank" class="hover:text-green-500">
+        <i class="fab fa-whatsapp"></i>
+        <span class="sr-only">Chat with us on WhatsApp</span>
+      </a>
+      <a href="https://telegram.org" target="_blank" class="hover:text-sky-500">
+        <i class="fab fa-telegram"></i>
+        <span class="sr-only">Join us on Telegram</span>
+      </a>
+      <a href="https://yelp.com" target="_blank" class="hover:text-red-400">
+        <i class="fab fa-yelp"></i>
+        <span class="sr-only">Read our reviews on Yelp</span>
+      </a>
+      <a href="https://github.com" target="_blank" class="hover:text-gray-400">
+        <i class="fab fa-github"></i>
+        <span class="sr-only">View our GitHub</span>
+      </a>
     </div>
   </div>
+
+
 
   <!-- Local SEO Schema -->
 </footer>
@@ -2872,18 +2965,20 @@ function quickAsk(text){
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
-                            <select name="serviceType" required 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
-                                <option value="">Select a service</option>
-                                <option value="residential">Residential Cleaning</option>
-                                <option value="commercial">Commercial Cleaning</option>
-                                <option value="deep">Deep Cleaning</option>
-                                <option value="move-in-out">Move In/Out Cleaning</option>
-                                <option value="office">Office Cleaning</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
+  <label for="serviceType" class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
+  <select id="serviceType" 
+          name="serviceType" 
+          required 
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
+    <option value="">Select a service</option>
+    <option value="residential">Residential Cleaning</option>
+    <option value="commercial">Commercial Cleaning</option>
+    <option value="deep">Deep Cleaning</option>
+    <option value="move-in-out">Move In/Out Cleaning</option>
+    <option value="office">Office Cleaning</option>
+    <option value="other">Other</option>
+  </select>
+</div>
                         
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
