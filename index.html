@@ -2427,17 +2427,33 @@ function toggleChat(){
   }
 }
 
-// ✅ Sign-in form submission (POST to Formspree + localStorage)
-document.getElementById("zoiris-signin-form").addEventListener("submit", async function(e){
-  e.preventDefault();
-  const name=document.getElementById('zoiris-name').value.trim();
-  const contact=document.getElementById('zoiris-contact').value.trim();
-  const statusEl=document.getElementById("signin-status");
+// ✅ Sign-in form submission (POST to Formspree + localStorage) - SAFE VERSION
+const signinForm = document.getElementById("zoiris-signin-form");
 
-  if(name==="" || contact===""){
-    alert("Please enter your name and phone/email to continue.");
-    return;
-  }
+if (signinForm) 
+  signinForm.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    
+    const nameEl = document.getElementById('zoiris-name');
+    const contactEl = document.getElementById('zoiris-contact');
+    const statusEl = document.getElementById("signin-status");
+
+    // Safety check in case fields are missing (prevents further errors)
+    if (!nameEl || !contactEl) {
+      console.error("Sign-in form fields missing");
+      return;
+    }
+
+    const name = nameEl.value.trim();
+    const contact = contactEl.value.trim();
+
+    if (name === "" || contact === "") {
+      alert("Please enter your name and phone/email to continue.");
+      return;
+    }
+
+    
+
 
   statusEl.textContent="Signing in...";
 
