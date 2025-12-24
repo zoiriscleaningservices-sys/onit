@@ -1111,35 +1111,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- JS to prevent redirect -->
 <script>
-  const form = document.getElementById("contactForm");
+document.addEventListener("DOMContentLoaded", function () {
+  const contactForm = document.getElementById("contactForm");
   const successMsg = document.getElementById("formSuccess");
   const errorMsg = document.getElementById("formError");
 
-  form.addEventListener("submit", async function(e) {
+  if (!contactForm) return; // prevents console errors
+
+  contactForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const formData = new FormData(form);
+    const formData = new FormData(contactForm);
+
     try {
-      const response = await fetch(form.action, {
-        method: form.method,
+      const response = await fetch(contactForm.action, {
+        method: contactForm.method || "POST",
         body: formData,
-        headers: { 'Accept': 'application/json' }
+        headers: { "Accept": "application/json" }
       });
 
       if (response.ok) {
-        successMsg.classList.remove("hidden");
-        errorMsg.classList.add("hidden");
-        form.reset();
+        successMsg?.classList.remove("hidden");
+        errorMsg?.classList.add("hidden");
+        contactForm.reset();
       } else {
-        throw new Error("Form submission failed.");
+        throw new Error("Form submission failed");
       }
     } catch (error) {
-      successMsg.classList.add("hidden");
-      errorMsg.classList.remove("hidden");
+      successMsg?.classList.add("hidden");
+      errorMsg?.classList.remove("hidden");
     }
   });
+});
 </script>
 
 
@@ -1596,6 +1600,16 @@ var swiper = new Swiper(".mySwiper", {
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
+
+
+
 <!-- JS to prevent redirect -->
 <script>
   const form = document.getElementById("contactForm");
