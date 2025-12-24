@@ -5,25 +5,33 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <!-- Zoiris Cleaning Service — FULL SEO DOMINATION SETUP -->
 
 <title>About Zoiris Cleaning Services | #1 Cleaning Company in Mobile, AL</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Preload hero image -->
+
+<!-- Tailwind CSS Play CDN (your original working setup — keep this) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Preload hero image (keeps it fast) -->
 <link rel="preload" as="image" href="https://i.ibb.co/F4gsMz1c/7e6c60fb-e7da-4ac4-9db4-251daab42a76.png" fetchpriority="high">
 
-<!-- Preconnect to main CDN origins (early connection setup) -->
+<!-- Preconnect to CDNs (early connection) -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
 
-<!-- Tailwind CSS (async load to avoid render-blocking) -->
-<link rel="preload" href="https://cdn.tailwindcss.com" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.tailwindcss.com"></noscript>
+<!-- Tailwind CSS - NOW LOADED BLOCKING TO PREVENT FOUC -->
+<link rel="stylesheet" href="https://cdn.tailwindcss.com">
 
-<!-- Font Awesome CSS (async load) -->
+<!-- Font Awesome CSS (still async - safe because icons load after layout) -->
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
@@ -31,13 +39,13 @@
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 
-<!-- Swiper CSS (async load) - using latest version 12 -->
+<!-- Swiper CSS (async is fine - not critical for initial layout) -->
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"></noscript>
 
-<!-- Swiper JS (preload + defer) -->
+<!-- Swiper JS (deferred - doesn't affect initial render) -->
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" as="script">
-<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>  
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>    
 
 <meta name="description" content="Learn about Zoiris Cleaning Services, the #1 trusted cleaning company in Mobile, AL & Baldwin County. Professional, eco-friendly house cleaning, commercial cleaning, Airbnb & vacation rental services since our founding. Fully insured, 5-star rated. Call (251) 930-8621.">
 
@@ -467,8 +475,18 @@ body{
         }
 
 
+.tailwind-loading body {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
 
-
+/* Optional: Smooth fade-in when ready */
+html:not(.tailwind-loading) body {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+ 
 
 
 
@@ -1151,22 +1169,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-
-
-
-
-
-
-<!-- Tailwind CSS Play CDN (your original working setup — keep this) -->
-<script src="https://cdn.tailwindcss.com"></script>
-
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-
 
 
 
