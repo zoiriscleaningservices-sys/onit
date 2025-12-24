@@ -37,6 +37,25 @@
 
 
 
+<!-- Preload Swiper JS early but apply async -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" as="script">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+
+<!-- For jsDelivr (Swiper) -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+<!-- Fallback for older browsers -->
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+
+<!-- If Tailwind stays on CDN temporarily -->
+<link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+<link rel="dns-prefetch" href="//cdn.tailwindcss.com">    
+
+
+
+
+
 <meta name="description" content="Zoiris Cleaning Services is the #1 cleaning company in Mobile, AL. We offer house cleaning, deep cleaning, Airbnb cleaning, move-in/out, commercial & post-construction cleaning. Serving Mobile & Baldwin County. Call today.">
 
 <meta name="keywords" content="cleaning service Mobile AL, house cleaning Mobile Alabama, deep cleaning Mobile, commercial cleaning Mobile, Airbnb cleaning Mobile, vacation rental cleaning, maid service Mobile, professional cleaners Mobile AL, top-rated cleaning company Mobile, move-in cleaning Mobile Alabama, move-out cleaning Mobile Alabama, carpet cleaning Mobile AL, post-construction cleaning Mobile, pressure washing Mobile AL, apartment cleaning Mobile AL, residential cleaning Mobile, office cleaning Mobile, eco-friendly cleaning Mobile AL, rental property cleaning Mobile">
@@ -1437,6 +1456,9 @@ document.addEventListener('DOMContentLoaded', () => {
   outline: 3px solid #2563eb;
   outline-offset: 4px;
 }
+
+
+
 </style>
 
 <section id="services" class="py-16 bg-lightGray">
