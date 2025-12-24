@@ -1298,37 +1298,42 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 </section>
-<!-- JS to prevent redirect -->
+<!-- JS to prevent redirect and handle form safely -->
 <script>
-  const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("formSuccess");
-  const errorMsg = document.getElementById("formError");
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById("contactForm");
+    
+    // If the form doesn't exist on this page, do nothing (prevents null error)
+    if (!form) return;
 
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
+    const successMsg = document.getElementById("formSuccess");
+    const errorMsg = document.getElementById("formError");
 
-    const formData = new FormData(form);
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
 
-      if (response.ok) {
-        successMsg.classList.remove("hidden");
-        errorMsg.classList.add("hidden");
-        form.reset();
-      } else {
-        throw new Error("Form submission failed.");
+      const formData = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          if (successMsg) successMsg.classList.remove("hidden");
+          if (errorMsg) errorMsg.classList.add("hidden");
+          form.reset();
+        } else {
+          throw new Error("Form submission failed.");
+        }
+      } catch (error) {
+        if (successMsg) successMsg.classList.add("hidden");
+        if (errorMsg) errorMsg.classList.remove("hidden");
       }
-    } catch (error) {
-      successMsg.classList.add("hidden");
-      errorMsg.classList.remove("hidden");
-    }
+    });
   });
 </script>
-
 
 
 
@@ -1778,34 +1783,41 @@ var swiper = new Swiper(".mySwiper", {
     </div>
   </div>
 </section>
-<!-- JS to prevent redirect -->
+<!-- JS to prevent redirect and handle form safely -->
 <script>
-  const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("formSuccess");
-  const errorMsg = document.getElementById("formError");
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById("contactForm");
+    
+    // If there's no form with id="contactForm" on this page, exit early (prevents null errors)
+    if (!form) return;
 
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
+    const successMsg = document.getElementById("formSuccess");
+    const errorMsg = document.getElementById("formError");
 
-    const formData = new FormData(form);
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
 
-      if (response.ok) {
-        successMsg.classList.remove("hidden");
-        errorMsg.classList.add("hidden");
-        form.reset();
-      } else {
-        throw new Error("Form submission failed.");
+      const formData = new FormData(form);
+      
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          if (successMsg) successMsg.classList.remove("hidden");
+          if (errorMsg) errorMsg.classList.add("hidden");
+          form.reset();
+        } else {
+          throw new Error("Form submission failed.");
+        }
+      } catch (error) {
+        if (successMsg) successMsg.classList.add("hidden");
+        if (errorMsg) errorMsg.classList.remove("hidden");
       }
-    } catch (error) {
-      successMsg.classList.add("hidden");
-      errorMsg.classList.remove("hidden");
-    }
+    });
   });
 </script>
 
