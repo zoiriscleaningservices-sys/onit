@@ -811,10 +811,18 @@ body{
                 <a href="#quote" class="contact-button text-lg">Get a Quote</a>
             </div>
 
-            <div class="md:hidden flex items-center">
-                <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-500 focus:outline-none">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+           <div class="md:hidden flex items-center">
+             <button
+             id="mobile-menu-button"
+              class="text-gray-700 hover:text-blue-500 focus:outline-none"
+              aria-label="Open mobile menu"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              > 
+    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+  </button>
+
+
             </div>
         </div>
     </div>
