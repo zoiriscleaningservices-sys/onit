@@ -1078,11 +1078,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- Swiper CSS -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
+
+
+<style>
+/* ✅ Lighthouse Touch Target Fix for Swiper Pagination */
+.swiper-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.swiper-pagination-bullet {
+  width: 48px !important;
+  height: 48px !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  position: relative;
+}
+
+.swiper-pagination-bullet::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #2563eb;
+  border-radius: 9999px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.swiper-pagination-bullet-active::after {
+  background: #1e40af;
+}
+
+.swiper-pagination-bullet:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 4px;
+}
+
+
+
+</style>
 
 <section id="services" class="py-16 bg-lightGray">
   <div class="container mx-auto px-4">
@@ -1099,218 +1137,215 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
+<!-- Swiper Container -->
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
 
-    <!-- Swiper Container -->
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        
-        <!-- Commercial Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/Xx556fXM/Office-Cleaning-Crew.jpg" alt="Commercial Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-building text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Commercial Cleaning</h3>
-              <p class="text-sm text-center mb-4">Professional cleaning for offices and businesses of all sizes.</p>
-              <div class="text-center"><a href="/commercial-cleaning/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
+    <!-- Commercial Cleaning -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/Xx556fXM/Office-Cleaning-Crew.jpg" alt="Commercial Cleaning" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-solid fa-building text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Commercial Cleaning</h3>
+          <p class="text-sm text-center mb-4">Professional cleaning for offices and businesses of all sizes.</p>
+          <div class="text-center">
+            <a href="/commercial-cleaning/" class="contact-button text-lg">Learn More About Commercial Cleaning <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
-
-        <!-- Deep Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/mfTgZTC/Seasonal-Deep-Cleaning-Tips.png" alt="Deep Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-broom text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Deep Cleaning</h3>
-              <p class="text-sm text-center mb-4">A top-to-bottom detailed clean to eliminate hidden grime.</p>
-              <div class="text-center"><a href="/deep-cleaning/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Home Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/xVwj2hV/Home-Cleaning-Service-in-Action.png" alt="Home Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-house-chimney text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Home Cleaning</h3>
-              <p class="text-sm text-center mb-4">Flexible residential cleaning for apartments, condos, and houses.</p>
-              <div class="text-center"><a href="/house-cleaning/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Move-In Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/pBhLCp0m/Cleaning-Movers-MH-1.jpg" alt="Move-In Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-key text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Move-In Cleaning</h3>
-              <p class="text-sm text-center mb-4">Fresh, sanitized, and move-in ready from day one.</p>
-              <div class="text-center"><a href="/move-in-cleaning/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Move-Out Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/fzSDxHXB/64119f3c30e4db48a06316e0-Move-out-cleaning-min.jpg" alt="Move-Out Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-truck text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Move-Out Cleaning</h3>
-              <p class="text-sm text-center mb-4">Leave your old space spotless and ready for inspection.</p>
-              <div class="text-center"><a href="/move-out-cleaning/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Vacation Rental Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/MDq72Z6T/Vacation-Rental-Cleaning-Contract-1-scaled-e1636734588512.jpg" alt="Vacation Rental Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-umbrella-beach text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Vacation Rental Cleaning</h3>
-              <p class="text-sm text-center mb-4">Keep your rental property spotless and guest-ready every time.</p>
-              <div class="text-center"><a href="/vacation-rental-cleaning/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Airbnb Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/cXbxNC7y/airbnb-pixabay-e1584981299557-1.webp" alt="Airbnb Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-brands fa-airbnb text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Airbnb Cleaning</h3>
-              <p class="text-sm text-center mb-4">Quick turnaround cleaning for Airbnb hosts to keep 5-star ratings.</p>
-              <div class="text-center"><a href="/airbnb-cleaning/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Post-Construction Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/kgbB5kPD/Captura-de-Tela-2020-07-06-a-s-15-13-39-1-e1599762634567.png" alt="Post-Construction Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-hammer text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Post-Construction Cleaning</h3>
-              <p class="text-sm text-center mb-4">Remove dust, debris, and construction mess for a polished look.</p>
-              <div class="text-center"><a href="/post-construction-cleanup/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Carpet Cleaning -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/4nn05G5j/carpetcleaning-UT-768x406.jpg" alt="Carpet Cleaning" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-rug text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Carpet Cleaning</h3>
-              <p class="text-sm text-center mb-4">Deep carpet cleaning that removes dirt, stains, and allergens.</p>
-              <div class="text-center"><a href="/carpet-cleaning/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pressure Washing -->
-        <div class="swiper-slide">
-          <div class="contact-button text-lg">
-            <img src="https://i.ibb.co/5gDXrjxs/Hotsy-Pressure-Washer-PSI-vs-GPM.jpg" alt="Pressure Washing" class="h-48 w-full object-cover">
-            <div class="p-6">
-              <div class="flex items-center justify-center mb-4">
-                <div class="contact-button text-lg">
-                  <i class="fa-solid fa-water text-xl"></i>
-                </div>
-              </div>
-              <h3 class="font-bold text-xl mb-2 text-center">Pressure Washing</h3>
-              <p class="text-sm text-center mb-4">Restore driveways, decks, and exteriors with powerful washing.</p>
-              <div class="text-center"><a href="/pressure-washing/" class="contact-button text-lg">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
-            </div>
-          </div>
-        </div>
-
       </div>
-
-      <!-- Navigation Arrows -->
-      <div class="swiper-button-next text-blue-600"></div>
-      <div class="swiper-button-prev text-blue-600"></div>
-
-      <!-- Pagination Dots -->
-      <div class="swiper-pagination"></div>
     </div>
+
+    <!-- Deep Cleaning -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/mfTgZTC/Seasonal-Deep-Cleaning-Tips.png" alt="Deep Cleaning" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-solid fa-broom text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Deep Cleaning</h3>
+          <p class="text-sm text-center mb-4">A top-to-bottom detailed clean to eliminate hidden grime.</p>
+          <div class="text-center">
+            <a href="/deep-cleaning/" class="contact-button text-lg">Learn More About Deep Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Home Cleaning -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/xVwj2hV/Home-Cleaning-Service-in-Action.png" alt="Home Cleaning" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-solid fa-house-chimney text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Home Cleaning</h3>
+          <p class="text-sm text-center mb-4">Flexible residential cleaning for apartments, condos, and houses.</p>
+          <div class="text-center">
+            <a href="/house-cleaning/" class="contact-button text-lg">Learn More About Home Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Move-In Cleaning -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/pBhLCp0m/Cleaning-Movers-MH-1.jpg" alt="Move-In Cleaning" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-solid fa-key text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Move-In Cleaning</h3>
+          <p class="text-sm text-center mb-4">Fresh, sanitized, and move-in ready from day one.</p>
+          <div class="text-center">
+            <a href="/move-in-cleaning/" class="contact-button text-lg">Learn More About Move-In Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Move-Out Cleaning -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/fzSDxHXB/64119f3c30e4db48a06316e0-Move-out-cleaning-min.jpg" alt="Move-Out Cleaning" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-solid fa-truck text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Move-Out Cleaning</h3>
+          <p class="text-sm text-center mb-4">Leave your old space spotless and ready for inspection.</p>
+          <div class="text-center">
+            <a href="/move-out-cleaning/" class="contact-button text-lg">Learn More About Move-Out Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vacation Rental Cleaning -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/MDq72Z6T/Vacation-Rental-Cleaning-Contract-1-scaled-e1636734588512.jpg" alt="Vacation Rental Cleaning" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-solid fa-umbrella-beach text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Vacation Rental Cleaning</h3>
+          <p class="text-sm text-center mb-4">Keep your rental property spotless and guest-ready every time.</p>
+          <div class="text-center">
+            <a href="/vacation-rental-cleaning/" class="contact-button text-lg">Learn More About Vacation Rental Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Airbnb Cleaning -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/cXbxNC7y/airbnb-pixabay-e1584981299557-1.webp" alt="Airbnb Cleaning" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-brands fa-airbnb text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Airbnb Cleaning</h3>
+          <p class="text-sm text-center mb-4">Quick turnaround cleaning for Airbnb hosts to keep 5-star ratings.</p>
+          <div class="text-center">
+            <a href="/airbnb-cleaning/" class="contact-button text-lg">Learn More About Airbnb Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post-Construction Cleaning -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/kgbB5kPD/Captura-de-Tela-2020-07-06-a-s-15-13-39-1-e1599762634567.png" alt="Post-Construction Cleaning" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-solid fa-hammer text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Post-Construction Cleaning</h3>
+          <p class="text-sm text-center mb-4">Remove dust, debris, and construction mess for a polished look.</p>
+          <div class="text-center">
+            <a href="/post-construction-cleanup/" class="contact-button text-lg">Learn More About Post-Construction Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carpet Cleaning -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/4nn05G5j/carpetcleaning-UT-768x406.jpg" alt="Carpet Cleaning" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-solid fa-rug text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Carpet Cleaning</h3>
+          <p class="text-sm text-center mb-4">Deep carpet cleaning that removes dirt, stains, and allergens.</p>
+          <div class="text-center">
+            <a href="/carpet-cleaning/" class="contact-button text-lg">Learn More About Carpet Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pressure Washing -->
+    <div class="swiper-slide">
+      <div class="contact-button text-lg">
+        <img src="https://i.ibb.co/5gDXrjxs/Hotsy-Pressure-Washer-PSI-vs-GPM.jpg" alt="Pressure Washing" class="h-48 w-full object-cover">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fa-solid fa-water text-xl"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-2 text-center">Pressure Washing</h3>
+          <p class="text-sm text-center mb-4">Restore driveways, decks, and exteriors with powerful washing.</p>
+          <div class="text-center">
+            <a href="/pressure-washing/" class="contact-button text-lg">Learn More About Pressure Washing <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-</section>
+
+  <!-- Navigation Arrows -->
+  <div class="swiper-button-next text-blue-600"></div>
+  <div class="swiper-button-prev text-blue-600"></div>
+
+  <!-- Pagination Dots -->
+  <div class="swiper-pagination"></div>
+</div>
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-      640: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-    },
-  });
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    640: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 },
+  },
+});
 </script>
 
 
@@ -1339,8 +1374,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- Contact Form Section -->
-    <section id="quote" class="py-16 scroll-mt-28">
+ <!-- Contact Form Section -->
+<section id="quote" class="py-16 scroll-mt-28">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="grid lg:grid-cols-2 gap-12">
       <!-- Contact Form -->
@@ -1353,33 +1388,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <div class="grid md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-              <input type="text" name="firstName" required 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+              <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+              <input type="text" 
+                     id="firstName" 
+                     name="firstName" 
+                     required 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-              <input type="text" name="lastName" required 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+              <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+              <input type="text" 
+                     id="lastName" 
+                     name="lastName" 
+                     required 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
             </div>
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-            <input type="email" name="email" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+            <input type="email" 
+                   id="email" 
+                   name="email" 
+                   required 
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-            <input type="tel" name="phone" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+            <input type="tel" 
+                   id="phone" 
+                   name="phone" 
+                   required 
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
-            <select name="serviceType" required 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input">
+            <label for="serviceType" class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
+            <select id="serviceType" 
+                    name="serviceType" 
+                    required 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input">
               <option value="">Select a service</option>
               <option value="residential">Residential Cleaning</option>
               <option value="commercial">Commercial Cleaning</option>
@@ -1391,18 +1440,24 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-            <textarea name="message" rows="4" 
-              placeholder="Tell us about your cleaning needs..."
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none form-input"></textarea>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+            <textarea id="message" 
+                      name="message" 
+                      rows="4" 
+                      placeholder="Tell us about your cleaning needs..."
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent form-input"></textarea>
           </div>
           
           <button type="submit" 
-            class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition duration-300 pulse-animation">
+                  class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition duration-300 pulse-animation">
             <i class="fas fa-paper-plane mr-2"></i>
             Send Message
           </button>
         </form>
+
+
+
+
 
         <!-- Success / Error Messages -->
         <div id="formSuccess" class="hidden mt-4 text-green-600 font-semibold">
@@ -1454,11 +1509,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="bg-gradient-to-r from-green-400 to-green-600 rounded-2xl shadow-xl p-8 text-white">
           <h3 class="text-2xl font-bold mb-4">Quick WhatsApp</h3>
           <p class="mb-4 opacity-90">Get instant response via WhatsApp</p>
-          <a href="https://wa.me/12519308621" target="_blank" 
-            class="inline-flex items-center bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
-            <i class="fab fa-whatsapp text-2xl mr-2"></i>
-            Chat Now
-          </a>
+ <a href="https://wa.me/12519308621" target="_blank" 
+   class="inline-flex items-center bg-white text-green-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+  <i class="fab fa-whatsapp text-2xl mr-2"></i>
+  Chat Now
+</a>
         </div>
       </div>
     </div>
@@ -1625,6 +1680,104 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
+
+
+
+
+    
+
+    <!-- Blog Section (Fully Fixed) -->
+<section id="blog" class="py-20 ">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                Expert Cleaning Tips, Hacks & Professional Insights
+            </h2>
+            <div class="mt-4 h-1 w-24 bg-blue-600 mx-auto rounded"></div>
+            <p class="mt-6 max-w-3xl mx-auto text-gray-800 text-lg leading-relaxed">
+                Stay informed with practical cleaning advice, proven hacks, and 
+                <strong>professional insights from Zoiris Cleaning Service</strong>.  
+                Our articles cover everything from eco-friendly cleaning methods and home 
+                organization to <strong>commercial office cleaning strategies</strong> that 
+                keep businesses in <strong>Mobile, AL & Baldwin County</strong> spotless, 
+                safe, and welcoming. Whether you’re a homeowner or a business owner, 
+                these resources will help you maintain a healthier and cleaner environment 
+                year-round.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Blog Post 1 (Fixed) -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:transform hover:-translate-y-1 transition duration-300">
+                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                     alt="Spring cleaning" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-2">
+                        <span>March 15, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>5 min read</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">10 Spring Cleaning Tips for a Fresher Home</h3>
+                    <p class="text-gray-600 mb-4">
+                        Discover our top tips to make your spring cleaning more efficient and effective this year.
+                    </p>
+                    <a href="/blog/" class="contact-button text-lg">
+                        Read More: 10 Spring Cleaning Tips for a Fresher Home
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Blog Post 2 (Already Fixed) -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                     alt="Eco-friendly cleaning" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-2">
+                        <span>February 28, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>4 min read</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">The Benefits of Eco-Friendly Cleaning Products</h3>
+                    <p class="text-gray-600 mb-4">
+                        Learn why switching to green cleaning products is better for your health and the environment.
+                    </p>
+                    <a href="/blog/" class="contact-button text-lg">
+                        Read More: The Benefits of Eco-Friendly Cleaning Products
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Blog Post 3 (Fixed) -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                     alt="Home organization" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-2">
+                        <span>January 10, 2023</span>
+                        <span class="mx-2">•</span>
+                        <span>6 min read</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Organizing Your Home: Where to Start</h3>
+                    <p class="text-gray-600 mb-4">
+                        Feeling overwhelmed by clutter? Follow our step-by-step guide to organize your home effectively.
+                    </p>
+                    <a href="/blog/" class="contact-button text-lg">
+                        Read More: Organizing Your Home: Where to Start
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-12 text-center">
+            <a href="/blog/" class="contact-button text-lg">
+                View All Articles
+            </a>
+        </div>
+    </div>
+</section>
+    
+
     
 
     
@@ -1710,17 +1863,17 @@ document.addEventListener('DOMContentLoaded', () => {
       <div>
         <div class="aspect-w-16 aspect-h-9 mb-6">
           <!-- 3D Interactive Google Map of Downtown Mobile -->
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!4v1711234567890!6m8!1m7!1sCAoSLEFGMVFpcE1FdFZ2aEJzYUVuTFlQbU8wYzZtR2Vzclh2VE1MZnptZVVCN3Vt!2m2!1d30.694356!2d-88.043054!3f90!4f0!5f0.7820865974627469" 
-            width="100%" 
-            height="350" 
-            style="border:0;" 
-            allowfullscreen 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"
-            class="rounded-xl shadow-lg">
-          </iframe>
-        </div>
+<iframe 
+    src="https://www.google.com/maps/embed?pb=!4v1711234567890!6m8!1m7!1sCAoSLEFGMVFpcE1FdFZ2aEJzYUVuTFlQbU8wYzZtR2Vzclh2VE1MZnptZVVCN3Vt!2m2!1d30.694356!2d-88.043054!3f90!4f0!5f0.7820865974627469" 
+    width="100%" 
+    height="350" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade"
+    class="rounded-xl shadow-lg"
+    title="Zoiris Cleaning Service location map in Mobile, AL">
+</iframe>
 
         <div class="space-y-3 text-lg">
           <!-- Clickable Address -->
@@ -2485,12 +2638,3 @@ function quickAsk(text){
 function quickAsk(text){
   sendZoiris(text);
 }
-
-
-
-
-    
-
-   
-
-   
