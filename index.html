@@ -30,6 +30,9 @@
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@xx/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@xx/swiper-bundle.min.css"></noscript>
 
+<link rel="preload" href="https://cdnjs.cloudflare.com/.../fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://cdnjs.cloudflare.com/.../fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+
 
 
 
@@ -178,6 +181,22 @@
   box-shadow: 0 0 10px #0ff, 0 0 20px #0ff inset;
   border-radius: 6px;
   transition: all 0.25s ease-in-out;
+}
+
+
+
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  src: url('...fa-solid-900.woff2') format('woff2'); /* Keep existing src if needed */
+  font-display: swap; /* Or optional for even less layout shift risk */
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 Brands';
+  font-weight: 400;
+  src: url('...fa-brands-400.woff2') format('woff2');
+  font-display: swap;
 }
 
 
