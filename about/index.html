@@ -11,18 +11,33 @@
 <title>About Zoiris Cleaning Services | #1 Cleaning Company in Mobile, AL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
-<!-- Preload hero image) -->
+<!-- Preload hero image -->
 <link rel="preload" as="image" href="https://i.ibb.co/F4gsMz1c/7e6c60fb-e7da-4ac4-9db4-251daab42a76.png" fetchpriority="high">
 
-<!-- Preload Font Awesome) -->
-<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Preconnect to main CDN origins (early connection setup) -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
 
-<!-- Preconnect to CDN origins -->
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<!-- Tailwind CSS (async load to avoid render-blocking) -->
+<link rel="preload" href="https://cdn.tailwindcss.com" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.tailwindcss.com"></noscript>
 
+<!-- Font Awesome CSS (async load) -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<!-- Preload Font Awesome fonts -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Swiper CSS (async load) - using latest version 12 -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"></noscript>
+
+<!-- Swiper JS (preload + defer) -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" as="script">
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>  
 
 <meta name="description" content="Learn about Zoiris Cleaning Services, the #1 trusted cleaning company in Mobile, AL & Baldwin County. Professional, eco-friendly house cleaning, commercial cleaning, Airbnb & vacation rental services since our founding. Fully insured, 5-star rated. Call (251) 930-8621.">
 
