@@ -2208,142 +2208,166 @@ var swiper = new Swiper(".mySwiper", {
 
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-gray-200 py-12">
-  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer class="bg-gradient-to-b from-gray-900 to-black text-gray-200 py-12 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
     
     <!-- Left: Logo & Description -->
-    <div class="space-y-4">
-      <a href="/" class="flex items-center space-x-2">
+    <div class="space-y-6 relative z-10">
+      <a href="/" class="flex items-center space-x-3 group">
         <img src="https://i.ibb.co/gbzKPdnc/Chat-GPT-Image-Aug-31-2025-12-19-42-AM-Picsart-Background-Remover.png" 
-             alt="Zoiris Cleaning Logo" class="h-24 w-auto cursor-pointer transition-transform duration-300 hover:scale-110" />
+             alt="Zoiris Cleaning Logo" class="h-28 w-auto transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg rounded-full" />
       </a>
-      <p class="text-gray-400 text-sm">
-        Zoiris Cleaning is a trusted professional cleaning company serving Mobile, AL, and surrounding areas including Daphne, Fairhope, Midtown Mobile, Downtown Mobile, West Mobile, Eastern Shore, and Spanish Fort. 
-        We offer top-quality residential cleaning, commercial cleaning, deep cleaning, move-in/move-out cleaning, carpet and window cleaning, Airbnb and vacation rental cleaning, post-construction cleanup, and pressure washing. 
-        Our experienced team uses eco-friendly products to deliver spotless, hygienic, and well-organized spaces for homes, offices, and commercial properties. 
-        Trust Zoiris Cleaning for affordable, reliable, and professional cleaning services tailored to your unique needs in Mobile, AL, and nearby cities.
+      <p class="text-gray-300 text-base leading-relaxed">
+        Zoiris Cleaning is your trusted partner for professional cleaning services in Mobile, AL, and surrounding areas like Daphne, Fairhope, Midtown Mobile, Downtown Mobile, West Mobile, Eastern Shore, and Spanish Fort. 
+        We specialize in residential and commercial cleaning, deep cleans, move-in/move-out services, carpet and window cleaning, Airbnb and vacation rentals, post-construction cleanup, and pressure washing. 
+        Using eco-friendly products, our team delivers impeccable, hygienic results tailored to your needs affordable, reliable, and always professional.
       </p>
       <!-- Contact Info -->
-      <p class="text-gray-400 text-sm mt-2">
-        <strong>Zoiris Cleaning Services</strong><br>
-        Mobile, AL<br>
-        <a href="tel:+12519308621">(251) 930-8621</a><br>
-        <a href="mailto:zoiriscleaningservices@gmail.com">zoiriscleaningservices@gmail.com</a><br>
-        <a href="/sitemap.xml" class="hover:text-white">Sitemap</a>
-      </p>
+      <div class="text-gray-300 text-base space-y-1">
+        <p><strong>Zoiris Cleaning Services</strong></p>
+        <p>Mobile, AL</p>
+        <p><a href="tel:+12519308621" class="hover:text-white transition-colors">(251) 930-8621</a></p>
+        <p><a href="mailto:zoiriscleaningservices@gmail.com" class="hover:text-white transition-colors">zoiriscleaningservices@gmail.com</a></p>
+        <p><a href="/sitemap.xml" class="hover:text-white transition-colors">Sitemap</a></p>
+      </div>
     </div>
     
     <!-- Middle: Services -->
-    <div>
-      <h3 class="text-white font-semibold mb-4">Services</h3>
-      <ul class="space-y-2 text-gray-400 text-sm">
-        <li><a href="/house-cleaning/" class="hover:text-white">Residential Cleaning</a></li>
-        <li><a href="/deep-cleaning/" class="hover:text-white">Deep Cleaning</a></li>
-        <li><a href="/commercial-cleaning/" class="hover:text-white">Commercial Cleaning</a></li>
-        <li><a href="/airbnb-cleaning/" class="hover:text-white">Airbnb Cleaning</a></li>
-        <li><a href="/carpet-cleaning/" class="hover:text-white">Carpet Cleaning</a></li>
-        <li><a href="/window-cleaning/" class="hover:text-white">Window Cleaning</a></li>
-        <li><a href="/move-in-cleaning/" class="hover:text-white">Move-In Cleaning</a></li>
-        <li><a href="/move-out-cleaning/" class="hover:text-white">Move-Out Cleaning</a></li>
-        <li><a href="/post-construction-cleanup/" class="hover:text-white">Post-Construction</a></li>
-        <li><a href="/vacation-rental-cleaning/" class="hover:text-white">Vacation Rental</a></li>
-        <li><a href="/pressure-washing/" class="hover:text-white">Pressure Washing</a></li>
+    <div class="relative z-10">
+      <h3 class="text-white font-bold text-lg mb-5 tracking-wide">Our Services</h3>
+      <ul class="grid grid-cols-1 gap-3 text-gray-300 text-base">
+        <li><a href="/house-cleaning/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🧹</span> Residential Cleaning</a></li>
+        <li><a href="/deep-cleaning/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🧼</span> Deep Cleaning</a></li>
+        <li><a href="/commercial-cleaning/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🏢</span> Commercial Cleaning</a></li>
+        <li><a href="/airbnb-cleaning/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🏠</span> Airbnb Cleaning</a></li>
+        <li><a href="/carpet-cleaning/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🛋️</span> Carpet Cleaning</a></li>
+        <li><a href="/window-cleaning/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🪟</span> Window Cleaning</a></li>
+        <li><a href="/move-in-cleaning/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🚚</span> Move-In Cleaning</a></li>
+        <li><a href="/move-out-cleaning/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🚪</span> Move-Out Cleaning</a></li>
+        <li><a href="/post-construction-cleanup/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🏗️</span> Post-Construction</a></li>
+        <li><a href="/vacation-rental-cleaning/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🏖️</span> Vacation Rental</a></li>
+        <li><a href="/pressure-washing/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">💦</span> Pressure Washing</a></li>
       </ul>
     </div>
     
     <!-- Right: Locations & Quick Links -->
-    <div>
-      <h3 class="text-white font-semibold mb-4">Locations & Quick Links</h3>
-      <ul class="space-y-2 text-gray-400 text-sm">
+    <div class="relative z-10">
+      <h3 class="text-white font-bold text-lg mb-5 tracking-wide">Locations & Links</h3>
+      <ul class="grid grid-cols-1 gap-3 text-gray-300 text-base">
         <!-- Locations -->
-        <li><a href="/downtown-mobile/" class="hover:text-white">Downtown Mobile</a></li>
-        <li><a href="/midtown-mobile/" class="hover:text-white">Midtown Mobile</a></li>
-        <li><a href="/west-mobile/" class="hover:text-white">West Mobile</a></li>
-        <li><a href="/daphne/" class="hover:text-white">Daphne</a></li>
-        <li><a href="/fairhope/" class="hover:text-white">Fairhope</a></li>
-        <li><a href="/eastern-shore/" class="hover:text-white">Eastern Shore</a></li>
-        <li><a href="/spanish-fort/" class="hover:text-white">Spanish Fort</a></li>
+        <li><a href="/downtown-mobile/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📍</span> Downtown Mobile</a></li>
+        <li><a href="/midtown-mobile/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📍</span> Midtown Mobile</a></li>
+        <li><a href="/west-mobile/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📍</span> West Mobile</a></li>
+        <li><a href="/daphne/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📍</span> Daphne</a></li>
+        <li><a href="/fairhope/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📍</span> Fairhope</a></li>
+        <li><a href="/eastern-shore/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📍</span> Eastern Shore</a></li>
+        <li><a href="/spanish-fort/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📍</span> Spanish Fort</a></li>
         <!-- Quick Links -->
-        <li><a href="/index.html" class="hover:text-white">Home</a></li>
-        <li><a href="/about/" class="hover:text-white">About</a></li>
-        <li><a href="/blog/" class="hover:text-white">Blog</a></li>
-        <li><a href="/contact/" class="hover:text-white">Contact</a></li>
-        <li><a href="/apply/" class="hover:text-white">Apply</a></li>
+        <li><a href="/index.html" class="hover:text-white transition-colors flex items-center"><span class="mr-2">🏡</span> Home</a></li>
+        <li><a href="/about/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">ℹ️</span> About</a></li>
+        <li><a href="/blog/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📝</span> Blog</a></li>
+        <li><a href="/contact/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📞</span> Contact</a></li>
+        <li><a href="/apply/" class="hover:text-white transition-colors flex items-center"><span class="mr-2">📄</span> Apply</a></li>
       </ul>
-      <p class="mt-4 text-gray-200 text-xs">&copy; <span id="year"></span> Zoiris Cleaning. All Rights Reserved.</p>
-    
+      <p class="mt-6 text-gray-400 text-sm">&copy; <span id="year">2025</span> Zoiris Cleaning. All Rights Reserved.</p>
+    </div>
   </div>
 
- <!-- Social Media Full Width -->
-  <div class="mt-8 border-t border-gray-700 pt-6">
-    <div class="flex flex-wrap justify-center gap-6 text-2xl">
-      <a href="https://facebook.com" target="_blank" class="hover:text-blue-500">
+  <!-- Social Media Full Width -->
+  <div class="mt-12 border-t border-gray-800 pt-8 relative z-10">
+    <div class="flex flex-wrap justify-center gap-6 text-3xl">
+      <a href="https://facebook.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-blue-500">
         <i class="fab fa-facebook"></i>
         <span class="sr-only">Follow us on Facebook</span>
       </a>
-      <a href="https://instagram.com/zoiriscleaning" target="_blank" class="hover:text-pink-500">
+      <a href="https://instagram.com/zoiriscleaning" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-pink-500">
         <i class="fab fa-instagram"></i>
         <span class="sr-only">Follow us on Instagram</span>
       </a>
-      <a href="https://x.com/zoiriscleaning" target="_blank" class="hover:text-sky-400">
+      <a href="https://x.com/zoiriscleaning" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-sky-400">
         <i class="fab fa-x-twitter"></i>
         <span class="sr-only">Follow us on X (Twitter)</span>
       </a>
-      <a href="https://linkedin.com" target="_blank" class="hover:text-blue-400">
+      <a href="https://linkedin.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-blue-400">
         <i class="fab fa-linkedin"></i>
         <span class="sr-only">Connect with us on LinkedIn</span>
       </a>
-      <a href="https://youtube.com" target="_blank" class="hover:text-red-500">
+      <a href="https://youtube.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-red-500">
         <i class="fab fa-youtube"></i>
         <span class="sr-only">Subscribe to our YouTube channel</span>
       </a>
-      <a href="https://tiktok.com" target="_blank" class="hover:text-gray-300">
+      <a href="https://tiktok.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-gray-300">
         <i class="fab fa-tiktok"></i>
         <span class="sr-only">Follow us on TikTok</span>
       </a>
-      <a href="https://pinterest.com" target="_blank" class="hover:text-red-600">
+      <a href="https://pinterest.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-red-600">
         <i class="fab fa-pinterest"></i>
         <span class="sr-only">Follow us on Pinterest</span>
       </a>
-      <a href="https://snapchat.com" target="_blank" class="hover:text-yellow-400">
+      <a href="https://snapchat.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-yellow-400">
         <i class="fab fa-snapchat"></i>
         <span class="sr-only">Add us on Snapchat</span>
       </a>
-      <a href="https://reddit.com" target="_blank" class="hover:text-orange-500">
+      <a href="https://reddit.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-orange-500">
         <i class="fab fa-reddit"></i>
         <span class="sr-only">Join us on Reddit</span>
       </a>
-      <a href="https://tumblr.com" target="_blank" class="hover:text-indigo-400">
+      <a href="https://tumblr.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-indigo-400">
         <i class="fab fa-tumblr"></i>
         <span class="sr-only">Follow us on Tumblr</span>
       </a>
-      <a href="https://discord.com" target="_blank" class="hover:text-indigo-500">
+      <a href="https://discord.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-indigo-500">
         <i class="fab fa-discord"></i>
         <span class="sr-only">Join our Discord server</span>
       </a>
-      <a href="https://wa.me/12519308621" target="_blank" class="hover:text-green-500">
+      <a href="https://wa.me/12519308621" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-green-500">
         <i class="fab fa-whatsapp"></i>
         <span class="sr-only">Chat with us on WhatsApp</span>
       </a>
-      <a href="https://telegram.org" target="_blank" class="hover:text-sky-500">
+      <a href="https://telegram.org" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-sky-500">
         <i class="fab fa-telegram"></i>
         <span class="sr-only">Join us on Telegram</span>
       </a>
-      <a href="https://yelp.com" target="_blank" class="hover:text-red-400">
+      <a href="https://yelp.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-red-400">
         <i class="fab fa-yelp"></i>
         <span class="sr-only">Read our reviews on Yelp</span>
       </a>
-      <a href="https://github.com" target="_blank" class="hover:text-gray-400">
+      <a href="https://github.com" target="_blank" class="hover:scale-110 transition-transform duration-200 hover:text-gray-400">
         <i class="fab fa-github"></i>
         <span class="sr-only">View our GitHub</span>
       </a>
     </div>
   </div>
 
+  <!-- Background Gradient Effect for Modernity -->
+  <div class="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-green-900/10 opacity-50 pointer-events-none"></div>
 
-
-  <!-- Local SEO Schema -->
+  <!-- Local SEO Schema (Add your JSON-LD here if needed) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Zoiris Cleaning Services",
+      "image": "https://i.ibb.co/gbzKPdnc/Chat-GPT-Image-Aug-31-2025-12-19-42-AM-Picsart-Background-Remover.png",
+      "telephone": "+12519308621",
+      "email": "zoiriscleaningservices@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mobile",
+        "addressRegion": "AL",
+        "postalCode": "36601",
+        "addressCountry": "US"
+      },
+      "url": "https://yourwebsite.com",
+      "openingHours": "Mo-Su 08:00-20:00",
+      "priceRange": "$$"
+    }
+  </script>
 </footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 
 
