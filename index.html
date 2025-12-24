@@ -1353,11 +1353,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    <!-- Swiper CSS -->
+<!-- Swiper CSS -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
+
+<style>
+/* ✅ Lighthouse Touch Target Fix for Swiper Pagination */
+.swiper-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.swiper-pagination-bullet {
+  width: 48px !important;
+  height: 48px !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  position: relative;
+}
+
+.swiper-pagination-bullet::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #2563eb;
+  border-radius: 9999px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.swiper-pagination-bullet-active::after {
+  background: #1e40af;
+}
+
+.swiper-pagination-bullet:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 4px;
+}
+</style>
 
 <section id="services" class="py-16 bg-lightGray">
   <div class="container mx-auto px-4">
@@ -1374,24 +1413,23 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
-
-    <!-- Swiper Container -->
+<!-- Swiper Container -->
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
-    
+
     <!-- Commercial Cleaning -->
     <div class="swiper-slide">
       <div class="contact-button text-lg">
         <img src="https://i.ibb.co/Xx556fXM/Office-Cleaning-Crew.jpg" alt="Commercial Cleaning" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-solid fa-building text-xl"></i>
-            </div>
+            <i class="fa-solid fa-building text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Commercial Cleaning</h3>
           <p class="text-sm text-center mb-4">Professional cleaning for offices and businesses of all sizes.</p>
-          <div class="text-center"><a href="/commercial-cleaning/" class="contact-button text-lg">Learn More About Commercial Cleaning <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/commercial-cleaning/" class="contact-button text-lg">Learn More About Commercial Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1402,13 +1440,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="https://i.ibb.co/mfTgZTC/Seasonal-Deep-Cleaning-Tips.png" alt="Deep Cleaning" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-solid fa-broom text-xl"></i>
-            </div>
+            <i class="fa-solid fa-broom text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Deep Cleaning</h3>
           <p class="text-sm text-center mb-4">A top-to-bottom detailed clean to eliminate hidden grime.</p>
-          <div class="text-center"><a href="/deep-cleaning/" class="contact-button text-lg">Learn More About Deep Cleaning <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/deep-cleaning/" class="contact-button text-lg">Learn More About Deep Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1419,13 +1457,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="https://i.ibb.co/xVwj2hV/Home-Cleaning-Service-in-Action.png" alt="Home Cleaning" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-solid fa-house-chimney text-xl"></i>
-            </div>
+            <i class="fa-solid fa-house-chimney text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Home Cleaning</h3>
           <p class="text-sm text-center mb-4">Flexible residential cleaning for apartments, condos, and houses.</p>
-          <div class="text-center"><a href="/house-cleaning/" class="contact-button text-lg">Learn More About Home Cleaning <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/house-cleaning/" class="contact-button text-lg">Learn More About Home Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1436,13 +1474,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="https://i.ibb.co/pBhLCp0m/Cleaning-Movers-MH-1.jpg" alt="Move-In Cleaning" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-solid fa-key text-xl"></i>
-            </div>
+            <i class="fa-solid fa-key text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Move-In Cleaning</h3>
           <p class="text-sm text-center mb-4">Fresh, sanitized, and move-in ready from day one.</p>
-          <div class="text-center"><a href="/move-in-cleaning/" class="contact-button text-lg">Learn More About Move-In Cleaning <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/move-in-cleaning/" class="contact-button text-lg">Learn More About Move-In Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1453,13 +1491,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="https://i.ibb.co/fzSDxHXB/64119f3c30e4db48a06316e0-Move-out-cleaning-min.jpg" alt="Move-Out Cleaning" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-solid fa-truck text-xl"></i>
-            </div>
+            <i class="fa-solid fa-truck text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Move-Out Cleaning</h3>
           <p class="text-sm text-center mb-4">Leave your old space spotless and ready for inspection.</p>
-          <div class="text-center"><a href="/move-out-cleaning/" class="contact-button text-lg">Learn More About Move-Out Cleaning <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/move-out-cleaning/" class="contact-button text-lg">Learn More About Move-Out Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1470,13 +1508,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="https://i.ibb.co/MDq72Z6T/Vacation-Rental-Cleaning-Contract-1-scaled-e1636734588512.jpg" alt="Vacation Rental Cleaning" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-solid fa-umbrella-beach text-xl"></i>
-            </div>
+            <i class="fa-solid fa-umbrella-beach text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Vacation Rental Cleaning</h3>
           <p class="text-sm text-center mb-4">Keep your rental property spotless and guest-ready every time.</p>
-          <div class="text-center"><a href="/vacation-rental-cleaning/" class="contact-button text-lg">Learn More About Vacation Rental Cleaning <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/vacation-rental-cleaning/" class="contact-button text-lg">Learn More About Vacation Rental Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1487,13 +1525,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="https://i.ibb.co/cXbxNC7y/airbnb-pixabay-e1584981299557-1.webp" alt="Airbnb Cleaning" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-brands fa-airbnb text-xl"></i>
-            </div>
+            <i class="fa-brands fa-airbnb text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Airbnb Cleaning</h3>
           <p class="text-sm text-center mb-4">Quick turnaround cleaning for Airbnb hosts to keep 5-star ratings.</p>
-          <div class="text-center"><a href="/airbnb-cleaning/" class="contact-button text-lg">Learn More About Airbnb Cleaning <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/airbnb-cleaning/" class="contact-button text-lg">Learn More About Airbnb Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1504,13 +1542,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="https://i.ibb.co/kgbB5kPD/Captura-de-Tela-2020-07-06-a-s-15-13-39-1-e1599762634567.png" alt="Post-Construction Cleaning" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-solid fa-hammer text-xl"></i>
-            </div>
+            <i class="fa-solid fa-hammer text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Post-Construction Cleaning</h3>
           <p class="text-sm text-center mb-4">Remove dust, debris, and construction mess for a polished look.</p>
-          <div class="text-center"><a href="/post-construction-cleanup/" class="contact-button text-lg">Learn More About Post-Construction Cleaning <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/post-construction-cleanup/" class="contact-button text-lg">Learn More About Post-Construction Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1521,13 +1559,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="https://i.ibb.co/4nn05G5j/carpetcleaning-UT-768x406.jpg" alt="Carpet Cleaning" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-solid fa-rug text-xl"></i>
-            </div>
+            <i class="fa-solid fa-rug text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Carpet Cleaning</h3>
           <p class="text-sm text-center mb-4">Deep carpet cleaning that removes dirt, stains, and allergens.</p>
-          <div class="text-center"><a href="/carpet-cleaning/" class="contact-button text-lg">Learn More About Carpet Cleaning <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/carpet-cleaning/" class="contact-button text-lg">Learn More About Carpet Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -1538,55 +1576,54 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="https://i.ibb.co/5gDXrjxs/Hotsy-Pressure-Washer-PSI-vs-GPM.jpg" alt="Pressure Washing" class="h-48 w-full object-cover">
         <div class="p-6">
           <div class="flex items-center justify-center mb-4">
-            <div class="contact-button text-lg">
-              <i class="fa-solid fa-water text-xl"></i>
-            </div>
+            <i class="fa-solid fa-water text-xl"></i>
           </div>
           <h3 class="font-bold text-xl mb-2 text-center">Pressure Washing</h3>
           <p class="text-sm text-center mb-4">Restore driveways, decks, and exteriors with powerful washing.</p>
-          <div class="text-center"><a href="/pressure-washing/" class="contact-button text-lg">Learn More About Pressure Washing <i class="fa-solid fa-arrow-right"></i></a></div>
+          <div class="text-center">
+            <a href="/pressure-washing/" class="contact-button text-lg">Learn More About Pressure Washing <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
 
-      <!-- Navigation Arrows -->
-      <div class="swiper-button-next text-blue-600"></div>
-      <div class="swiper-button-prev text-blue-600"></div>
+  <!-- Navigation Arrows -->
+  <div class="swiper-button-next text-blue-600"></div>
+  <div class="swiper-button-prev text-blue-600"></div>
 
-      <!-- Pagination Dots -->
-      <div class="swiper-pagination"></div>
-    </div>
-  </div>
-</section>
+  <!-- Pagination Dots -->
+  <div class="swiper-pagination"></div>
+</div>
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-      640: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-    },
-  });
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    640: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 },
+  },
+});
 </script>
+
 
 
 
