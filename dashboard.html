@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zoiris Blog Dashboard</title>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Supabase v2 -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
     body {
       background: linear-gradient(135deg, #0a0a1a 0%, #1e0033 50%, #000428 100%);
@@ -28,25 +35,16 @@
       border-radius: 24px;
       padding: 60px 30px;
       text-align: center;
-      transition: all 0.4s ease;
       cursor: pointer;
-    }
-    .upload-area:hover {
-      background: rgba(100, 100, 255, 0.1);
-      border-color: #a78bfa;
-      box-shadow: 0 0 30px rgba(167, 139, 250, 0.3);
     }
     .upload-area.dragover {
       background: rgba(167, 139, 250, 0.2);
       border-color: #a78bfa;
-      transform: scale(1.02);
     }
     .upload-icon {
       font-size: 64px;
-      color: #ff6b6b;
       margin-bottom: 20px;
     }
-    .upload-icon.gallery { color: #a78bfa; }
     .preview-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -58,8 +56,7 @@
       height: 150px;
       object-fit: cover;
       border-radius: 16px;
-      border: 2px solid rgba(167, 139, 250, 0.4);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
     }
     .gold-btn {
       background: linear-gradient(45deg, #ffd700, #ffed4e);
@@ -67,232 +64,225 @@
       font-weight: 800;
       padding: 16px 40px;
       border-radius: 60px;
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
     }
-    .gold-btn:hover {
-      transform: translateY(-6px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(255, 215, 0, 0.6);
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    .post-card {
-      background: rgba(30, 30, 70, 0.5);
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(167, 139, 250, 0.2);
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
     }
-    .post-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 30px 60px rgba(167, 139, 250, 0.2);
+    #lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 48px;
+      cursor: pointer;
     }
-    .title-glow {
-      font-size: 4rem;
-      font-weight: 900;
-      background: linear-gradient(90deg, #a78bfa, #ffd700, #ff6b6b);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-align: center;
-      margin: 3rem 0;
-      text-shadow: 0 0 40px rgba(167, 139, 250, 0.5);
-    }
-    .progress-bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-top: 12px; overflow: hidden; }
-    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #a78bfa, #ffd700); transition: width 0.4s ease; }
   </style>
 </head>
+
 <body class="py-16 px-6">
   <div class="max-w-7xl mx-auto">
-    <h1 class="title-glow">ZOIRIS BLOG DASHBOARD</h1>
 
-    <div class="glass-card p-12 mb-16">
-      <h2 class="text-4xl font-bold text-center mb-12">Create New Post</h2>
+    <h1 class="text-center text-6xl font-black mb-16">ZOIRIS BLOG DASHBOARD</h1>
 
-      <form id="blogForm" class="space-y-12">
+    <div class="glass-card p-12 mb-20">
+      <form id="blogForm" class="space-y-10">
+
         <!-- Featured -->
         <div>
-          <label class="block text-3xl font-bold text-center mb-8">
-            <i class="fas fa-camera upload-icon"></i><br>
-            Upload Featured Photo
-            <span class="block text-lg font-normal text-gray-300 mt-3">(Required — one image)</span>
-          </label>
           <div id="featuredDrop" class="upload-area">
-            <input type="file" id="featuredFile" accept="image/*" required class="hidden">
-            <p class="text-xl">Click or drag image here</p>
-            <div class="progress-bar"><div id="featuredProgress" class="progress-fill"></div></div>
+            <input id="featuredFile" type="file" accept="image/*" required style="display:none" />
+            <i class="fas fa-camera upload-icon"></i>
+            <p>Click or drag featured image</p>
           </div>
           <div id="featuredPreview" class="preview-grid hidden"></div>
         </div>
 
         <!-- Gallery -->
         <div>
-          <label class="block text-3xl font-bold text-center mb-8">
-            <i class="fas fa-images upload-icon gallery"></i><br>
-            Upload Gallery Photos
-            <span class="block text-lg font-normal text-gray-300 mt-3">(Optional — multiple)</span>
-          </label>
           <div id="galleryDrop" class="upload-area">
-            <input type="file" id="galleryFile" accept="image/*" multiple class="hidden">
-            <p class="text-xl">Click or drag photos</p>
-            <div class="progress-bar"><div id="galleryProgress" class="progress-fill"></div></div>
+            <input id="galleryFile" type="file" accept="image/*" multiple style="display:none" />
+            <i class="fas fa-images upload-icon"></i>
+            <p>Click or drag gallery images</p>
           </div>
           <div id="galleryPreview" class="preview-grid hidden"></div>
         </div>
 
-        <div class="grid lg:grid-cols-3 gap-8">
-          <div><label class="block text-lg font-medium mb-3">Title</label><input type="text" id="title" required class="w-full px-6 py-5 bg-white/5 border border-white/20 rounded-2xl text-white text-lg"></div>
-          <div><label class="block text-lg font-medium mb-3">Date</label><input type="date" id="date" required class="w-full px-6 py-5 bg-white/5 border border-white/20 rounded-2xl text-white text-lg"></div>
-          <div><label class="block text-lg font-medium mb-3">Read Time (min)</label><input type="number" id="readTime" required min="1" value="5" class="w-full px-6 py-5 bg-white/5 border border-white/20 rounded-2xl text-white text-lg"></div>
-        </div>
+        <input id="title" placeholder="Title" required class="w-full p-4 rounded bg-white/10" />
+        <input id="date" type="date" required class="w-full p-4 rounded bg-white/10" />
+        <input id="readTime" type="number" value="5" min="1" class="w-full p-4 rounded bg-white/10" />
+        <textarea id="excerpt" rows="3" placeholder="Excerpt" required class="w-full p-4 rounded bg-white/10"></textarea>
+        <textarea id="content" rows="8" placeholder="Content" required class="w-full p-4 rounded bg-white/10"></textarea>
 
-        <div><label class="block text-lg font-medium mb-3">Excerpt</label><textarea id="excerpt" required rows="4" class="w-full px-6 py-5 bg-white/5 border border-white/20 rounded-2xl text-white text-lg"></textarea></div>
-        <div><label class="block text-lg font-medium mb-3">Content (HTML OK)</label><textarea id="content" required rows="14" class="w-full px-6 py-5 bg-white/5 border border-white/20 rounded-2xl text-white font-mono text-base"></textarea></div>
-
-        <div class="text-center">
-          <button type="submit" class="gold-btn text-2xl px-20 py-6">
-            <i class="fas fa-rocket mr-4"></i> Publish Post
-          </button>
-        </div>
+        <button class="gold-btn w-full text-2xl">Publish</button>
       </form>
 
-      <div id="status" class="mt-10 text-center text-3xl font-bold"></div>
+      <div id="status" class="mt-6 text-center text-xl"></div>
     </div>
 
-    <h2 class="text-4xl font-bold text-center mb-12">Published Posts</h2>
-    <div id="postsList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10"></div>
+    <div id="postsList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
   </div>
 
-  <script>
-    const supabase = supabase.createClient('https://dwxbzltxsdeshmmtcycv.supabase.co', 'sb_publishable_4PWdqRYFR0E-tp-OjdTP3Q_S_5qvRbp');
-    const bucket = 'blog-images';
-    document.getElementById('date').valueAsDate = new Date();
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <span id="lightbox-close">&times;</span>
+    <img id="lightbox-img" />
+  </div>
 
-    function setupUpload(areaId, inputId, previewId, progressId) {
-      const area = document.getElementById(areaId);
-      const input = document.getElementById(inputId);
-      const preview = document.getElementById(previewId);
-      const progress = document.getElementById(progressId);
+<script>
+/* SUPABASE INITIALIZATION - Updated with your provided keys */
+const supabaseUrl = 'https://dwxbzltxsdeshmmtcycv.supabase.co';
+const supabaseKey = 'sb_publishable_4PWdqRYFR0E-tp-OjdTP3Q_S_5qvRbp';
 
-      area.addEventListener('click', () => input.click());
-      ['dragover', 'dragenter'].forEach(ev => area.addEventListener(ev, e => { e.preventDefault(); area.classList.add('dragover'); }));
-      ['dragleave', 'drop'].forEach(ev => area.addEventListener(ev, e => { e.preventDefault(); area.classList.remove('dragover'); }));
+const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+const bucket = 'blog-images';
 
-      area.addEventListener('drop', e => {
-        input.files = e.dataTransfer.files;
-        handlePreview(input.files, preview);
-      });
+document.getElementById('date').valueAsDate = new Date();
 
-      input.addEventListener('change', () => handlePreview(input.files, preview));
+/* Lightbox */
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+document.getElementById('lightbox-close').onclick = () =>
+  document.getElementById('lightbox').style.display = 'none';
+
+/* Upload Setup */
+const featuredDrop = document.getElementById('featuredDrop');
+const featuredFile = document.getElementById('featuredFile');
+const featuredPreview = document.getElementById('featuredPreview');
+
+const galleryDrop = document.getElementById('galleryDrop');
+const galleryFile = document.getElementById('galleryFile');
+const galleryPreview = document.getElementById('galleryPreview');
+
+function setupUpload(drop, input, preview) {
+  drop.onclick = () => input.click();
+  drop.ondrop = e => {
+    e.preventDefault();
+    drop.classList.remove('dragover');
+    input.files = e.dataTransfer.files;
+    showPreview(input.files, preview);
+  };
+  drop.ondragover = e => {
+    e.preventDefault();
+    drop.classList.add('dragover');
+  };
+  drop.ondragleave = () => drop.classList.remove('dragover');
+  input.onchange = () => showPreview(input.files, preview);
+}
+
+function showPreview(files, preview) {
+  preview.innerHTML = '';
+  preview.classList.remove('hidden');
+  [...files].forEach(f => {
+    const img = document.createElement('img');
+    img.className = 'preview-img';
+    img.src = URL.createObjectURL(f);
+    img.onclick = () => openLightbox(img.src);
+    preview.appendChild(img);
+  });
+}
+
+setupUpload(featuredDrop, featuredFile, featuredPreview);
+setupUpload(galleryDrop, galleryFile, galleryPreview);
+
+/* Upload Files */
+async function uploadFiles(files, path) {
+  const urls = [];
+  for (const file of files) {
+    const fileName = `${path}/${Date.now()}-${file.name}`;
+    const { error } = await supabaseClient.storage.from(bucket).upload(fileName, file);
+    if (error) {
+      console.error('Upload error:', error);
+      throw error;
+    }
+    const { data: { publicUrl } } = supabaseClient.storage.from(bucket).getPublicUrl(fileName);
+    urls.push(publicUrl);
+  }
+  return urls;
+}
+
+/* Form Submit */
+const blogForm = document.getElementById('blogForm');
+const status = document.getElementById('status');
+const title = document.getElementById('title');
+const date = document.getElementById('date');
+const readTime = document.getElementById('readTime');
+const excerpt = document.getElementById('excerpt');
+const content = document.getElementById('content');
+
+blogForm.onsubmit = async e => {
+  e.preventDefault();
+  status.textContent = 'Uploading images...';
+
+  try {
+    if (featuredFile.files.length === 0) {
+      status.textContent = 'Please select a featured image';
+      return;
     }
 
-    function handlePreview(files, previewEl) {
-      previewEl.innerHTML = '';
-      previewEl.classList.remove('hidden');
-      Array.from(files).forEach(file => {
-        const img = document.createElement('img');
-        img.src = URL.createObjectURL(file);
-        img.className = 'preview-img';
-        previewEl.appendChild(img);
-      });
+    const [image_url] = await uploadFiles(featuredFile.files, 'featured');
+
+    let gallery_urls = null;
+    if (galleryFile.files.length > 0) {
+      gallery_urls = await uploadFiles(galleryFile.files, 'gallery');
     }
 
-    setupUpload('featuredDrop', 'featuredFile', 'featuredPreview', 'featuredProgress');
-    setupUpload('galleryDrop', 'galleryFile', 'galleryPreview', 'galleryProgress');
+    status.textContent = 'Publishing post...';
 
-    async function uploadFiles(files, prefix = '') {
-      const urls = [];
-      let loaded = 0;
-      const total = files.length;
-
-      for (const file of files) {
-        const ext = file.name.split('.').pop();
-        const name = `${prefix}${Date.now()}-${Math.random().toString(36).substr(2,9)}.${ext}`;
-        const { error: uploadError } = await supabase.storage.from(bucket).upload(name, file, { cacheControl: '3600', upsert: false });
-        if (uploadError) {
-          console.error('Upload error:', uploadError);
-          throw uploadError;
-        }
-        const { data } = supabase.storage.from(bucket).getPublicUrl(name);
-        urls.push(data.publicUrl);
-
-        loaded++;
-        const percent = (loaded / total) * 100;
-        const progId = prefix === 'featured/' ? 'featuredProgress' : 'galleryProgress';
-        document.getElementById(progId).style.width = percent + '%';
-      }
-      return urls;
-    }
-
-    document.getElementById('blogForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const status = document.getElementById('status');
-      status.textContent = '';
-      try {
-        status.textContent = 'Uploading images...';
-        status.className = 'text-yellow-400';
-
-        const featuredFile = document.getElementById('featuredFile').files[0];
-        if (!featuredFile) throw new Error('Please select a featured image');
-
-        const [image_url] = await uploadFiles([featuredFile], 'featured/');
-
-        let gallery_urls = null;
-        const galleryFiles = document.getElementById('galleryFile').files;
-        if (galleryFiles.length > 0) {
-          gallery_urls = await uploadFiles(Array.from(galleryFiles), 'gallery/');
-        }
-
-        status.textContent = 'Saving post...';
-
-        const postData = {
-          title: document.getElementById('title').value.trim(),
-          date: document.getElementById('date').value,
-          read_time: parseInt(document.getElementById('readTime').value),
-          image_url,
-          gallery_urls,
-          excerpt: document.getElementById('excerpt').value.trim(),
-          content: document.getElementById('content').value.trim()
-        };
-
-        const { error } = await supabase.from('blogs').insert([postData]);
-        if (error) throw error;
-
-        status.textContent = 'Post published successfully! 🚀';
-        status.className = 'text-green-400';
-
-        // Reset form
-        e.target.reset();
-        document.querySelectorAll('.preview-grid').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.progress-fill').forEach(el => el.style.width = '0%');
-
-        loadPosts();
-      } catch (err) {
-        console.error(err);
-        status.textContent = 'Error: ' + (err.message || 'Something went wrong');
-        status.className = 'text-red-400';
-      }
+    const { error } = await supabaseClient.from('blogs').insert({
+      title: title.value,
+      date: date.value,
+      read_time: parseInt(readTime.value),
+      image_url,
+      gallery_urls,
+      excerpt: excerpt.value,
+      content: content.value
     });
 
-    async function loadPosts() {
-      const { data, error } = await supabase.from('blogs').select('*').order('created_at', { ascending: false });
-      if (error) console.error(error);
-      const list = document.getElementById('postsList');
-      list.innerHTML = data && data.length > 0 
-        ? data.map(post => `
-          <div class="post-card">
-            <img src="${post.image_url}" class="w-full h-64 object-cover">
-            <div class="p-8">
-              <h3 class="text-3xl font-bold mb-3">${post.title}</h3>
-              <p class="text-gray-400 mb-4">${new Date(post.date).toLocaleDateString()} • ${post.read_time} min</p>
-              <p class="mb-6">${post.excerpt}</p>
-              ${post.gallery_urls ? `<p class="text-purple-300 mb-4">+${post.gallery_urls.length} gallery photos</p>` : ''}
-              <button onclick="if(confirm('Delete this post?')){supabase.from('blogs').delete().eq('id',${post.id}).then(()=>{loadPosts()})}" class="text-red-400 text-lg font-bold">
-                <i class="fas fa-trash mr-2"></i> Delete
-              </button>
-            </div>
-          </div>
-        `).join('')
-        : '<p class="col-span-full text-center text-2xl text-gray-400">No posts yet — create your first one!</p>';
-    }
+    if (error) throw error;
 
-    loadPosts();
-  </script>
+    status.textContent = 'Published 🚀';
+    blogForm.reset();
+    featuredPreview.classList.add('hidden');
+    galleryPreview.classList.add('hidden');
+    loadPosts(); // Refresh list
+  } catch (err) {
+    status.textContent = `Error: ${err.message || err}`;
+    console.error(err);
+  }
+};
+
+/* Load Existing Posts */
+const postsList = document.getElementById('postsList');
+
+async function loadPosts() {
+  const { data, error } = await supabaseClient.from('blogs').select('*').order('date', { ascending: false });
+  if (error) {
+    console.error('Load posts error:', error);
+    return;
+  }
+
+  postsList.innerHTML = data.map(p => `
+    <div class="glass-card p-6 cursor-pointer" onclick="openLightbox('${p.image_url}')">
+      <img src="${p.image_url}" alt="${p.title}" class="w-full h-64 object-cover rounded-2xl mb-4">
+      <h3 class="text-2xl font-bold">${p.title}</h3>
+      <p class="text-sm opacity-70 mt-2">${p.date} • ${p.read_time} min read</p>
+      <p class="mt-3">${p.excerpt}</p>
+    </div>
+  `).join('');
+}
+
+loadPosts();
+</script>
 </body>
-</html>
+</html> 
