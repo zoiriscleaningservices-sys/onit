@@ -106,7 +106,7 @@
       <h2 class="text-4xl font-bold text-center mb-12">Create New Post</h2>
 
       <form id="blogForm" class="space-y-12">
-        <!-- Featured Image -->
+        <!-- Featured -->
         <div>
           <label class="block text-3xl font-bold text-center mb-8">
             <i class="fas fa-camera upload-icon"></i><br>
@@ -171,11 +171,10 @@
       const progress = document.getElementById(progressId);
 
       area.addEventListener('click', () => input.click());
-      ['dragover', 'dragenter'].forEach(ev => area.addEventListener(ev, () => area.classList.add('dragover')));
-      ['dragleave', 'drop'].forEach(ev => area.addEventListener(ev, () => area.classList.remove('dragover')));
+      ['dragover', 'dragenter'].forEach(ev => area.addEventListener(ev, e => { e.preventDefault(); area.classList.add('dragover'); }));
+      ['dragleave', 'drop'].forEach(ev => area.addEventListener(ev, e => { e.preventDefault(); area.classList.remove('dragover'); }));
 
       area.addEventListener('drop', e => {
-        e.preventDefault();
         input.files = e.dataTransfer.files;
         handlePreview(input.files, preview);
       });
@@ -200,78 +199,97 @@
     async function uploadFiles(files, prefix = '') {
       const urls = [];
       let loaded = 0;
+      const total = files.length;
+
       for (const file of files) {
         const ext = file.name.split('.').pop();
         const name = `${prefix}${Date.now()}-${Math.random().toString(36).substr(2,9)}.${ext}`;
-        const { error } = await supabase.storage.from(bucket).upload(name, file);
-        if (error) throw error;
-        const { data: { publicUrl } } = supabase.storage.from(bucket).getPublicUrl(name);
-        urls.push(publicUrl);
+        const { error: uploadError } = await supabase.storage.from(bucket).upload(name, file, { cacheControl: '3600', upsert: false });
+        if (uploadError) {
+          console.error('Upload error:', uploadError);
+          throw uploadError;
+        }
+        const { data } = supabase.storage.from(bucket).getPublicUrl(name);
+        urls.push(data.publicUrl);
+
         loaded++;
-        const percent = (loaded / files.length) * 100;
-        document.getElementById(prefix === 'featured/' ? 'featuredProgress' : 'galleryProgress').style.width = percent + '%';
+        const percent = (loaded / total) * 100;
+        const progId = prefix === 'featured/' ? 'featuredProgress' : 'galleryProgress';
+        document.getElementById(progId).style.width = percent + '%';
       }
       return urls;
     }
 
-    document.getElementById('blogForm').onsubmit = async e => {
+    document.getElementById('blogForm').addEventListener('submit', async e => {
       e.preventDefault();
       const status = document.getElementById('status');
+      status.textContent = '';
       try {
-        status.textContent = 'Uploading...';
-        const featured = document.getElementById('featuredFile').files[0];
-        if (!featured) throw 'Featured image required';
+        status.textContent = 'Uploading images...';
+        status.className = 'text-yellow-400';
 
-        const [image_url] = await uploadFiles([featured], 'featured/');
+        const featuredFile = document.getElementById('featuredFile').files[0];
+        if (!featuredFile) throw new Error('Please select a featured image');
+
+        const [image_url] = await uploadFiles([featuredFile], 'featured/');
+
+        let gallery_urls = null;
         const galleryFiles = document.getElementById('galleryFile').files;
-        const gallery_urls = galleryFiles.length ? await uploadFiles(Array.from(galleryFiles), 'gallery/') : null;
+        if (galleryFiles.length > 0) {
+          gallery_urls = await uploadFiles(Array.from(galleryFiles), 'gallery/');
+        }
 
-        const post = {
+        status.textContent = 'Saving post...';
+
+        const postData = {
           title: document.getElementById('title').value.trim(),
           date: document.getElementById('date').value,
-          read_time: +document.getElementById('readTime').value,
+          read_time: parseInt(document.getElementById('readTime').value),
           image_url,
           gallery_urls,
           excerpt: document.getElementById('excerpt').value.trim(),
           content: document.getElementById('content').value.trim()
         };
 
-        const { error } = await supabase.from('blogs').insert(post);
+        const { error } = await supabase.from('blogs').insert([postData]);
         if (error) throw error;
 
-        status.textContent = 'Published! 🚀';
+        status.textContent = 'Post published successfully! 🚀';
         status.className = 'text-green-400';
+
+        // Reset form
         e.target.reset();
         document.querySelectorAll('.preview-grid').forEach(el => el.classList.add('hidden'));
         document.querySelectorAll('.progress-fill').forEach(el => el.style.width = '0%');
+
         loadPosts();
       } catch (err) {
-        status.textContent = 'Error: ' + err;
+        console.error(err);
+        status.textContent = 'Error: ' + (err.message || 'Something went wrong');
         status.className = 'text-red-400';
       }
-    };
+    });
 
     async function loadPosts() {
-      const { data } = await supabase.from('blogs').select('*').order('created_at', { ascending: false });
+      const { data, error } = await supabase.from('blogs').select('*').order('created_at', { ascending: false });
+      if (error) console.error(error);
       const list = document.getElementById('postsList');
-      list.innerHTML = data.length === 0 ? '<p class="col-span-full text-center text-2xl text-gray-400">No posts yet</p>' : '';
-      data.forEach(post => {
-        const card = document.createElement('div');
-        card.className = 'post-card';
-        card.innerHTML = `
-          <img src="${post.image_url}" class="w-full h-64 object-cover">
-          <div class="p-8">
-            <h3 class="text-3xl font-bold mb-3">${post.title}</h3>
-            <p class="text-gray-400 mb-4">${new Date(post.date).toLocaleDateString()} • ${post.read_time} min</p>
-            <p class="mb-6">${post.excerpt}</p>
-            ${post.gallery_urls ? `<p class="text-purple-300 mb-4">+${post.gallery_urls.length} gallery photos</p>` : ''}
-            <button onclick="if(confirm('Delete?')) supabase.from('blogs').delete().eq('id',${post.id}).then(loadPosts)" class="text-red-400 text-lg font-bold">
-              <i class="fas fa-trash mr-2"></i> Delete
-            </button>
+      list.innerHTML = data && data.length > 0 
+        ? data.map(post => `
+          <div class="post-card">
+            <img src="${post.image_url}" class="w-full h-64 object-cover">
+            <div class="p-8">
+              <h3 class="text-3xl font-bold mb-3">${post.title}</h3>
+              <p class="text-gray-400 mb-4">${new Date(post.date).toLocaleDateString()} • ${post.read_time} min</p>
+              <p class="mb-6">${post.excerpt}</p>
+              ${post.gallery_urls ? `<p class="text-purple-300 mb-4">+${post.gallery_urls.length} gallery photos</p>` : ''}
+              <button onclick="if(confirm('Delete this post?')){supabase.from('blogs').delete().eq('id',${post.id}).then(()=>{loadPosts()})}" class="text-red-400 text-lg font-bold">
+                <i class="fas fa-trash mr-2"></i> Delete
+              </button>
+            </div>
           </div>
-        `;
-        list.appendChild(card);
-      });
+        `).join('')
+        : '<p class="col-span-full text-center text-2xl text-gray-400">No posts yet — create your first one!</p>';
     }
 
     loadPosts();
