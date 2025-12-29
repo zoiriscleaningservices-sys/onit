@@ -1090,361 +1090,375 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-<!-- ==== TrueWebX Blog Embed (Full Blog-Style Layout + Maximum SEO) ==== -->
+<!-- ==== TrueWebX Blog Embed (Perfectly Responsive Cards & Single Post) ==== -->
 <section class="truewebx-blog-section" aria-labelledby="truewebx-blog-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
 
-    .truewebx-blog-section {
-        background: linear-gradient(135deg, var(--turquoise), var(--coral));
-        color: #ffffff;
-        padding: 60px 20px 80px;
-        font-family: system-ui, -apple-system, sans-serif;
-        min-height: 100vh;
-    }
-    .truewebx-blog-container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    .truewebx-blog-heading {
-        font-size: clamp(2.5rem, 8vw, 4rem);
-        font-weight: 900;
-        text-align: center;
-        margin-bottom: 60px;
-        background: linear-gradient(45deg, #fff, #ff8fa3);
-        -webkit-background-clip: text;
-        color: transparent;
-    }
 
-    /* Blog Grid */
-    .truewebx-blog-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    .truewebx-blog-card {
-        background: rgba(255,255,255,0.22);
-        backdrop-filter: blur(20px);
-        border-radius: 28px;
-        overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        transition: transform 0.3s ease;
-        display: flex;
-        flex-direction: column;
-    }
-    .truewebx-blog-card:hover { transform: translateY(-10px); }
-
-    .truewebx-blog-card img.featured {
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-    }
-    .truewebx-blog-card .content {
-        padding: 24px;
-        text-align: left;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    .truewebx-blog-card .date {
-        font-size: 0.9rem;
-        opacity: 0.8;
-        margin-bottom: 8px;
-    }
-    .truewebx-blog-card h2 {
-        font-size: 1.8rem;
-        margin: 8px 0 12px;
-        line-height: 1.3;
-    }
-    .truewebx-blog-card .excerpt {
-        font-size: 1rem;
-        line-height: 1.6;
-        opacity: 0.95;
-        margin-bottom: 20px;
-        flex-grow: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-    }
-    .truewebx-blog-card .read-more {
-        display: inline-block;
-        padding: 10px 28px;
-        background: var(--coral);
-        color: white;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background 0.3s;
-        align-self: flex-start;
-    }
-    .truewebx-blog-card .read-more:hover { background: #ff8787; }
-
-    /* Single Blog Post View */
-    .truewebx-single-post {
-        max-width: 900px;
-        margin: 0 auto;
-        background: rgba(255,255,255,0.18);
-        backdrop-filter: blur(20px);
-        border-radius: 32px;
-        padding: 40px;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    }
-    .truewebx-single-post img.featured {
-        width: 100%;
-        border-radius: 24px;
-        margin: 30px 0;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-    }
-    .truewebx-single-post .meta {
-        font-size: 1rem;
-        opacity: 0.8;
-        margin: 20px 0 40px;
-        text-align: center;
-    }
-    .truewebx-single-post h1 {
-        font-size: 2.8rem;
-        text-align: center;
-        margin: 30px 0;
-        line-height: 1.3;
-    }
-    .truewebx-single-post .content {
-        font-size: 1.2rem;
-        line-height: 1.8;
-        max-width: 800px;
-        margin: 0 auto 50px;
-    }
-    .truewebx-single-post .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin: 60px 0;
-    }
-    .truewebx-single-post .gallery img {
-        width: 100%;
-        border-radius: 20px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    }
-    .back-btn {
-        display: block;
-        width: fit-content;
-        margin: 60px auto 0;
-        padding: 14px 36px;
-        background: var(--coral);
-        color: white;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 1.2rem;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    }
-
-    .truewebx-footer-link {
-        text-align: center;
-        margin-top: 80px;
-        font-size: 1rem;
-    }
-    .truewebx-footer-link a {
-        color: white;
-        text-decoration: underline;
-        font-weight: 600;
-    }
-
-    @media (min-width: 768px) {
-        .truewebx-blog-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 1024px) {
-        .truewebx-blog-grid { grid-template-columns: repeat(3, 1fr); }
-        .truewebx-single-post { padding: 60px; }
-    }
-</style>
-
-<div class="truewebx-blog-container">
-    <h1 id="truewebx-blog-heading" class="truewebx-blog-heading">Zoiris Cleaning Services Blog</h1>
-
-    <!-- Blog Grid View -->
-    <div id="blogGrid" class="truewebx-blog-grid"></div>
-
-    <!-- Single Blog Post View -->
-    <article id="singlePost" class="truewebx-single-post" style="display:none;"></article>
-
-    <div class="truewebx-footer-link">
-        Powered by <a href="https://truewebx.site" target="_blank">TrueWebX</a>
-    </div>
-</div>
-
-<!-- Dependencies -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-    const supabaseClient = supabase.createClient(
-        'https://dwxbzltxsdeshmmtcycv.supabase.co',
-        'sb_publishable_4PWdqRYFR0E-tp-OjdTP3Q_S_5qvRbp'
-    );
-
-    let allBlogs = [];
-
-    async function loadBlogs() {
-        const { data: blogs, error } = await supabaseClient
-            .from('services')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-        if (error || !blogs || blogs.length === 0) {
-            document.getElementById('blogGrid').innerHTML =
-                '<p style="grid-column:1/-1; text-align:center; font-size:1.4rem; opacity:0.9; padding:60px;">No blog posts yet. Check back soon!</p>';
-            return;
+        .truewebx-blog-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 8px;
+        }
+        .truewebx-blog-heading {
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #fff, #ff8fa3);
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
-        allBlogs = blogs;
-        checkHashAndRender();
-    }
-
-    function setMetaTags(blog) {
-        document.title = `${blog.name} | Zoiris Cleaning Services Blog`;
-
-        const desc = blog.description ? blog.description.substring(0, 155) + '...' : 'Read the latest insights and tips from Zoiris Cleaning Services.';
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.name = 'description';
-            document.head.appendChild(metaDesc);
+        /* Blog Grid - Uniform Card Height & Perfect Fit */
+        .truewebx-blog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
         }
-        metaDesc.content = desc;
+        .truewebx-blog-card {
+            background: rgba(255,255,255,0.22);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Makes all cards same height in row */
+        }
+        .truewebx-blog-card:hover { transform: translateY(-10px); }
 
-        const setOG = (property, content) => {
-            let tag = document.querySelector(`meta[property="og:${property}"]`);
-            if (!tag) {
-                tag = document.createElement('meta');
-                tag.setAttribute('property', `og:${property}`);
-                document.head.appendChild(tag);
+        .truewebx-blog-card img.featured {
+            width: 100%;
+            height: 240px; /* Fixed height for uniform look */
+            object-fit: cover;
+            object-position: center;
+        }
+        .truewebx-blog-card .content {
+            padding: 24px;
+            text-align: left;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .truewebx-blog-card .date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+        .truewebx-blog-card h2 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            margin: 0 0 12px 0;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .truewebx-blog-card .excerpt {
+            font-size: clamp(0.95rem, 2.5vw, 1rem);
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .truewebx-blog-card .read-more {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 10px 28px;
+            background: var(--coral);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+        }
+        .truewebx-blog-card .read-more:hover { background: #ff8787; }
+
+        /* Single Blog Post - Full Fit, No Overflow */
+        .truewebx-single-post {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: clamp(24px, 5vw, 50px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            box-sizing: border-box;
+        }
+        .truewebx-single-post img.featured {
+            width: 100%;
+            height: auto;
+            max-height: 60vh;
+            object-fit: cover;
+            border-radius: 24px;
+            margin: 24px 0;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        }
+        .truewebx-single-post .meta {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            opacity: 0.8;
+            margin: 20px 0 30px;
+            text-align: center;
+        }
+        .truewebx-single-post h1 {
+            font-size: clamp(2rem, 7vw, 3rem);
+            text-align: center;
+            margin: 20px 0 30px;
+            line-height: 1.3;
+            word-wrap: break-word;
+        }
+        .truewebx-single-post .content {
+            font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        .truewebx-single-post .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin: 50px 0;
+        }
+        .truewebx-single-post .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            object-fit: cover;
+        }
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 50px auto 0;
+            padding: 12px 36px;
+            background: var(--coral);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .truewebx-footer-link {
+            text-align: center;
+            margin-top: 70px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+        .truewebx-footer-link a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        /* Responsive Grid */
+        @media (min-width: 640px) {
+            .truewebx-blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 36px;
             }
-            tag.content = content;
-        };
-        setOG('title', document.title);
-        setOG('description', desc);
-        setOG('url', window.location.href);
-        setOG('type', 'article');
-        setOG('image', blog.profile || 'https://truewebx.site/og-image.jpg');
+            .truewebx-blog-card img.featured { height: 260px; }
+        }
+        @media (min-width: 1024px) {
+            .truewebx-blog-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+            .truewebx-blog-card img.featured { height: 280px; }
+            .truewebx-single-post { padding: 60px; }
+        }
+        @media (min-width: 1400px) {
+            .truewebx-blog-grid { gap: 48px; }
+        }
+    </style>
 
-        // Article Schema
-        const ldScript = document.getElementById('articleLD');
-        if (ldScript) ldScript.remove();
+    <div class="truewebx-blog-container">
+        <h1 id="truewebx-blog-heading" class="truewebx-blog-heading">Zoiris Cleaning Services Blog</h1>
 
-        const script = document.createElement('script');
-        script.id = 'articleLD';
-        script.type = 'application/ld+json';
-        script.text = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": blog.name,
-            "description": blog.description || "",
-            "image": blog.profile || "",
-            "author": {
-                "@type": "Organization",
-                "name": "Zoiris Cleaning Services"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "Zoiris Cleaning Services",
-                "logo": { "@type": "ImageObject", "url": "https://truewebx.site/favicon.png" }
-            },
-            "datePublished": blog.created_at ? new Date(blog.created_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-            "mainEntityOfPage": { "@type": "WebPage", "@id": window.location.href }
-        }, null, 2);
-        document.head.appendChild(script);
-    }
+        <!-- Blog Grid View -->
+        <div id="blogGrid" class="truewebx-blog-grid"></div>
 
-    function resetMetaTags() {
-        document.title = 'Zoiris Cleaning Services Blog';
-        const defaultDesc = 'Latest cleaning tips, industry insights, and professional advice from Zoiris Cleaning Services.';
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.content = defaultDesc;
-        const ldScript = document.getElementById('articleLD');
-        if (ldScript) ldScript.remove();
-    }
+        <!-- Single Blog Post View -->
+        <article id="singlePost" class="truewebx-single-post" style="display:none;"></article>
 
-    function renderBlogGrid() {
-        resetMetaTags();
+        <div class="truewebx-footer-link">
+            Powered by <a href="https://truewebx.site" target="_blank">TrueWebX</a>
+        </div>
+    </div>
 
-        const container = document.getElementById('blogGrid');
-        container.innerHTML = allBlogs.map(b => `
-            <div class="truewebx-blog-card">
-                ${b.profile ? `<img src="${b.profile}" alt="${b.name}" class="featured">` : ''}
-                <div class="content">
-                    <div class="date">
-                        ${new Date(b.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+    <!-- Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        const supabaseClient = supabase.createClient(
+            'https://dwxbzltxsdeshmmtcycv.supabase.co',
+            'sb_publishable_4PWdqRYFR0E-tp-OjdTP3Q_S_5qvRbp'
+        );
+
+        let allBlogs = [];
+
+        async function loadBlogs() {
+            const { data: blogs, error } = await supabaseClient
+                .from('services')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error || !blogs || blogs.length === 0) {
+                document.getElementById('blogGrid').innerHTML =
+                    '<p style="grid-column:1/-1; text-align:center; font-size:1.4rem; opacity:0.9; padding:60px;">No blog posts yet. Check back soon!</p>';
+                return;
+            }
+
+            allBlogs = blogs;
+            checkHashAndRender();
+        }
+
+        function setMetaTags(blog) {
+            document.title = `${blog.name} | Zoiris Cleaning Services Blog`;
+
+            const desc = blog.description ? blog.description.substring(0, 155) + '...' : 'Read the latest insights and tips from Zoiris Cleaning Services.';
+            let metaDesc = document.querySelector('meta[name="description"]');
+            if (!metaDesc) {
+                metaDesc = document.createElement('meta');
+                metaDesc.name = 'description';
+                document.head.appendChild(metaDesc);
+            }
+            metaDesc.content = desc;
+
+            const setOG = (property, content) => {
+                let tag = document.querySelector(`meta[property="og:${property}"]`);
+                if (!tag) {
+                    tag = document.createElement('meta');
+                    tag.setAttribute('property', `og:${property}`);
+                    document.head.appendChild(tag);
+                }
+                tag.content = content;
+            };
+            setOG('title', document.title);
+            setOG('description', desc);
+            setOG('url', window.location.href);
+            setOG('type', 'article');
+            setOG('image', blog.profile || 'https://truewebx.site/og-image.jpg');
+
+            const ldScript = document.getElementById('articleLD');
+            if (ldScript) ldScript.remove();
+
+            const script = document.createElement('script');
+            script.id = 'articleLD';
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": blog.name,
+                "description": blog.description || "",
+                "image": blog.profile || "",
+                "author": { "@type": "Organization", "name": "Zoiris Cleaning Services" },
+                "publisher": { "@type": "Organization", "name": "Zoiris Cleaning Services" },
+                "datePublished": blog.created_at ? new Date(blog.created_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+                "mainEntityOfPage": { "@type": "WebPage", "@id": window.location.href }
+            }, null, 2);
+            document.head.appendChild(script);
+        }
+
+        function resetMetaTags() {
+            document.title = 'Zoiris Cleaning Services Blog';
+            const defaultDesc = 'Latest cleaning tips, industry insights, and professional advice from Zoiris Cleaning Services.';
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.content = defaultDesc;
+            const ldScript = document.getElementById('articleLD');
+            if (ldScript) ldScript.remove();
+        }
+
+        function renderBlogGrid() {
+            resetMetaTags();
+
+            const container = document.getElementById('blogGrid');
+            container.innerHTML = allBlogs.map(b => `
+                <div class="truewebx-blog-card">
+                    ${b.profile ? `<img src="${b.profile}" alt="${b.name}" class="featured" loading="lazy">` : ''}
+                    <div class="content">
+                        <div class="date">
+                            ${new Date(b.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        </div>
+                        <h2>${b.name}</h2>
+                        <p class="excerpt">${b.description ? b.description.substring(0, 150) + '...' : 'Read this insightful post from Zoiris Cleaning Services.'}</p>
+                        <a href="#${b.slug}" class="read-more" onclick="showSinglePost('${b.slug}'); return false;">
+                            Read Post →
+                        </a>
                     </div>
-                    <h2>${b.name}</h2>
-                    <p class="excerpt">${b.description ? b.description.substring(0, 150) + '...' : 'Read this insightful post from Zoiris Cleaning Services.'}</p>
-                    <a href="#${b.slug}" class="read-more" onclick="showSinglePost('${b.slug}'); return false;">
-                        Read Post →
-                    </a>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
 
-        document.getElementById('blogGrid').style.display = 'grid';
-        document.getElementById('singlePost').style.display = 'none';
-    }
-
-    function showSinglePost(slug) {
-        const blog = allBlogs.find(b => b.slug === slug);
-        if (!blog) {
-            renderBlogGrid();
-            return;
+            document.getElementById('blogGrid').style.display = 'grid';
+            document.getElementById('singlePost').style.display = 'none';
         }
 
-        setMetaTags(blog);
+        function showSinglePost(slug) {
+            const blog = allBlogs.find(b => b.slug === slug);
+            if (!blog) {
+                renderBlogGrid();
+                return;
+            }
 
-        document.getElementById('singlePost').innerHTML = `
-            ${blog.profile ? `<img src="${blog.profile}" alt="${blog.name}" class="featured">` : ''}
+            setMetaTags(blog);
 
-            <div class="meta">
-                Published on ${new Date(blog.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
-            </div>
+            document.getElementById('singlePost').innerHTML = `
+                ${blog.profile ? `<img src="${blog.profile}" alt="${blog.name}" class="featured" loading="lazy">` : ''}
 
-            <h1>${blog.name}</h1>
+                <div class="meta">
+                    Published on ${new Date(blog.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </div>
 
-            <div class="content">
-                <p>${blog.description || ''}</p>
-            </div>
+                <h1>${blog.name}</h1>
 
-            ${Array.isArray(blog.photos) && blog.photos.length > 0 ? `
-            <div class="gallery">
-                ${blog.photos.map(p => `<img src="${p}" alt="Blog image" loading="lazy">`).join('')}
-            </div>` : ''}
+                <div class="content">
+                    <p>${blog.description || ''}</p>
+                </div>
 
-            <a href="#" class="back-btn" onclick="renderBlogGrid(); history.pushState({}, '', location.pathname); return false;">
-                ← Back to All Posts
-            </a>
-        `;
+                ${Array.isArray(blog.photos) && blog.photos.length > 0 ? `
+                <div class="gallery">
+                    ${blog.photos.map(p => `<img src="${p}" alt="Blog image" loading="lazy">`).join('')}
+                </div>` : ''}
 
-        document.getElementById('blogGrid').style.display = 'none';
-        document.getElementById('singlePost').style.display = 'block';
+                <a href="#" class="back-btn" onclick="renderBlogGrid(); history.pushState({}, '', location.pathname); return false;">
+                    ← Back to All Posts
+                </a>
+            `;
 
-        history.pushState({}, '', `#${slug}`);
-        window.scrollTo(0, 0);
-    }
+            document.getElementById('blogGrid').style.display = 'none';
+            document.getElementById('singlePost').style.display = 'block';
 
-    function checkHashAndRender() {
-        const hash = window.location.hash.slice(1);
-        if (hash) {
-            showSinglePost(hash);
-        } else {
-            renderBlogGrid();
+            history.pushState({}, '', `#${slug}`);
+            window.scrollTo(0, 0);
         }
-    }
 
-    window.addEventListener('popstate', checkHashAndRender);
-    loadBlogs();
-</script></section>
-<!-- ==== End TrueWebX Blog-Style Embed ==== -->
-```
+        function checkHashAndRender() {
+            const hash = window.location.hash.slice(1);
+            if (hash) {
+                showSinglePost(hash);
+            } else {
+                renderBlogGrid();
+            }
+        }
 
+        window.addEventListener('popstate', checkHashAndRender);
+        loadBlogs();
+    </script>
+</section>
+<!-- ==== End Perfectly Fitting Responsive Blog Embed ==== -->
 
 
 
