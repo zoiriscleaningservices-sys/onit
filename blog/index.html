@@ -1092,8 +1092,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-<!-- ==== TrueWebX Business Directory Embed (With On-Page Individual Profiles) ==== -->
+<!-- ==== TrueWebX Business Directory Embed (Maximum SEO Optimized Individual Profiles) ==== -->
 <section class="truewebx-embed-section" aria-labelledby="truewebx-embed-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
@@ -1182,7 +1181,7 @@ document.addEventListener('DOMContentLoaded', () => {
             font-weight: bold;
         }
 
-        /* Individual Profile View */
+        /* Individual Profile View - Fully SEO Optimized */
         .truewebx-profile {
             max-width: 1000px;
             margin: 0 auto;
@@ -1194,6 +1193,13 @@ document.addEventListener('DOMContentLoaded', () => {
             border-radius: 24px;
             margin: 30px auto;
             box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        .truewebx-profile .description {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 40px auto;
+            opacity: 0.95;
         }
         .truewebx-profile .contact-info {
             background: rgba(255,255,255,0.15);
@@ -1214,14 +1220,12 @@ document.addEventListener('DOMContentLoaded', () => {
         .truewebx-profile .contact-item i { color: var(--coral); flex-shrink: 0; }
         .truewebx-profile .contact-item a { color: white; text-decoration: none; }
 
-        .truewebx-gallery {
-            margin: 60px 0;
-        }
         .truewebx-gallery-wrapper {
             position: relative;
             overflow: hidden;
             border-radius: 24px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            margin: 60px 0;
         }
         .truewebx-gallery {
             display: flex;
@@ -1321,12 +1325,82 @@ document.addEventListener('DOMContentLoaded', () => {
             checkHashAndRender();
         }
 
+        function setMetaTags(service) {
+            document.title = `${service.name} in ${service.city} | Professional Service | Free Consultation`;
+
+            const desc = `${service.name} offers top-quality professional services in ${service.city}. ${service.description || 'Contact for a free consultation today.'}`;
+            let metaDesc = document.querySelector('meta[name="description"]');
+            if (!metaDesc) {
+                metaDesc = document.createElement('meta');
+                metaDesc.name = 'description';
+                document.head.appendChild(metaDesc);
+            }
+            metaDesc.content = desc.substring(0, 160);
+
+            // Open Graph
+            const setOG = (property, content) => {
+                let tag = document.querySelector(`meta[property="og:${property}"]`);
+                if (!tag) {
+                    tag = document.createElement('meta');
+                    tag.setAttribute('property', `og:${property}`);
+                    document.head.appendChild(tag);
+                }
+                tag.content = content;
+            };
+            setOG('title', document.title);
+            setOG('description', desc.substring(0, 200));
+            setOG('url', window.location.href);
+            setOG('type', 'profile');
+            setOG('image', service.profile || 'https://truewebx.site/og-image.jpg');
+
+            // Structured Data (LocalBusiness JSON-LD)
+            const cityPart = service.city ? service.city.split(',')[0].trim() : 'Location';
+            const statePart = service.city ? service.city.split(',')[1]?.trim() || '' : '';
+
+            const ldScript = document.getElementById('localBusinessLD');
+            if (ldScript) ldScript.remove();
+
+            const script = document.createElement('script');
+            script.id = 'localBusinessLD';
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": service.name,
+                "description": service.description || "Professional service with free consultation",
+                "image": service.profile || "",
+                "telephone": service.phone || "",
+                "email": service.gmail || "",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": cityPart,
+                    "addressRegion": statePart
+                },
+                "url": window.location.href,
+                "priceRange": "$$"
+            }, null, 2);
+            document.head.appendChild(script);
+        }
+
+        function resetMetaTags() {
+            document.title = 'Zoiris Cleaning Services Blogs | TrueWebX Directory';
+            const defaultDesc = 'Browse trusted cleaning and professional services worldwide. Free consultations available.';
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.content = defaultDesc;
+
+            // Remove dynamic OG tags if needed (or leave defaults from page)
+            const ldScript = document.getElementById('localBusinessLD');
+            if (ldScript) ldScript.remove();
+        }
+
         function renderDirectory() {
+            resetMetaTags();
+
             const container = document.getElementById('truewebxList');
             container.innerHTML = allServices.map(s => `
                 <article class="truewebx-card">
                     <img src="${s.profile || 'https://via.placeholder.com/600x400/0d9488/ffffff?text=Logo'}"
-                         alt="${s.name}" class="profile-img">
+                         alt="${s.name} logo" class="profile-img">
 
                     <h3>${s.name || 'Professional Service'}</h3>
                     <p><strong>${s.city || 'Location not specified'}</strong></p>
@@ -1334,7 +1408,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     ${Array.isArray(s.photos) && s.photos.length > 0 ? `
                     <div class="photos">
-                        ${s.photos.map(p => `<img src="${p}" alt="Gallery" loading="lazy">`).join('')}
+                        ${s.photos.map(p => `<img src="${p}" alt="${s.name} gallery" loading="lazy">`).join('')}
                     </div>` : ''}
 
                     <p>Phone: <span class="truewebx-private">${s.phone || 'Hidden'}</span></p>
@@ -1363,12 +1437,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            document.getElementById('profileView').innerHTML = `
-                <div class="truewebx-profile">
-                    ${service.profile ? `<img src="${service.profile}" alt="${service.name}" class="main-img">` : ''}
+            setMetaTags(service);
 
-                    <h2 style="font-size:2.6rem; margin:30px 0;">${service.name}</h2>
-                    <p style="font-size:1.3rem; max-width:800px; margin:0 auto 40px; opacity:0.95;">
+            document.getElementById('profileView').innerHTML = `
+                <div class="truewebx-profile" itemscope itemtype="https://schema.org/LocalBusiness">
+                    ${service.profile ? `<img src="${service.profile}" alt="${service.name} profile" class="main-img" itemprop="image">` : ''}
+
+                    <h1 style="font-size:2.8rem; margin:30px 0;" itemprop="name">${service.name}</h1>
+                    <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                        <strong itemprop="addressLocality">${service.city || 'Your Area'}</strong>
+                    </p>
+
+                    <p class="description" itemprop="description">
                         ${service.description || 'Professional, reliable service with free consultation.'}
                     </p>
 
@@ -1376,12 +1456,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${service.phone ? `
                         <div class="contact-item">
                             <i class="fas fa-phone fa-2x"></i>
-                            <div><a href="tel:${service.phone}">${service.phone}</a></div>
+                            <div><a href="tel:${service.phone}" itemprop="telephone">${service.phone}</a></div>
                         </div>` : ''}
                         ${service.gmail ? `
                         <div class="contact-item">
                             <i class="fas fa-envelope fa-2x"></i>
-                            <div><a href="mailto:${service.gmail}">${service.gmail}</a></div>
+                            <div><a href="mailto:${service.gmail}" itemprop="email">${service.gmail}</a></div>
                         </div>` : ''}
                     </div>
 
@@ -1390,17 +1470,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
 
                     ${Array.isArray(service.photos) && service.photos.length > 0 ? `
-                    <div class="truewebx-gallery">
-                        <h2 style="font-size:2.4rem; margin-bottom:30px;">Gallery</h2>
-                        <div class="truewebx-gallery-wrapper">
-                            <div class="truewebx-gallery">
-                                ${service.photos.map(p => `<img src="${p}" alt="${service.name} work" loading="lazy">`).join('')}
-                            </div>
+                    <div class="truewebx-gallery-wrapper">
+                        <div class="truewebx-gallery">
+                            ${service.photos.map(p => `<img src="${p}" alt="${service.name} work example" loading="lazy">`).join('')}
                         </div>
                     </div>` : ''}
 
-                    <a href="#" class="back-btn" onclick="renderDirectory(); return false;">
-                        ← Back to All Listings
+                    <a href="#" class="back-btn" onclick="renderDirectory(); history.pushState({}, '', location.pathname); return false;">
+                        ← Back to Directory
                     </a>
                 </div>
             `;
@@ -1408,7 +1485,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('directoryView').style.display = 'none';
             document.getElementById('profileView').style.display = 'block';
 
-            // Update URL hash without reloading
             history.pushState({}, '', `#${slug}`);
             window.scrollTo(0, 0);
         }
@@ -1422,14 +1498,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Handle back/forward buttons
         window.addEventListener('popstate', checkHashAndRender);
 
-        // Initial load
         loadServices();
     </script>
 </section>
-<!-- ==== End TrueWebX Embed With On-Page Profiles ==== -->
+<!-- ==== End Ultra SEO-Optimized Embed ==== -->
 
 
 
