@@ -167,52 +167,6 @@
         button:hover { background: #ff8787; }
         button:disabled { background: #666; cursor: not-allowed; }
 
-        /* Searchable City Select – DARK & HIGH CONTRAST (100% VISIBLE) */
-        .searchable-select {
-            position: relative;
-            width: 100%;
-        }
-        .searchable-select input {
-            padding-right: 50px;
-            width: 100%;
-        }
-        .searchable-select .dropdown-list {
-            position: absolute;
-            top: 100%;
-            margin-top: 12px;
-            left: 0;
-            right: 0;
-            max-height: 360px;
-            overflow-y: auto;
-            background: #0f0f1a; /* Solid very dark background */
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-            z-index: 10000;
-            display: none;
-            border: 2px solid #333;
-        }
-        .searchable-select .dropdown-list div {
-            padding: 20px 24px;
-            cursor: pointer;
-            transition: background 0.25s;
-            color: #ffffff;
-            font-size: 16px;
-            border-bottom: 1px solid #333;
-        }
-        .searchable-select .dropdown-list div:last-child {
-            border-bottom: none;
-        }
-        .searchable-select .dropdown-list div:hover {
-            background: var(--coral);
-        }
-        .searchable-select .no-results {
-            padding: 20px 24px;
-            text-align: center;
-            color: #ff6b6b;
-            font-style: italic;
-            font-weight: bold;
-        }
-
         .photo-upload {
             position: relative;
             background: rgba(255,255,255,0.15);
@@ -375,46 +329,8 @@
 </head>
 <body>
 
-<!-- LOGIN / SIGN UP -->
-<div id="loginScreen" class="login-container">
-    <div class="form">
-        <h2 style="margin-bottom:30px; color:#151717;" id="formTitle">Sign In</h2>
-
-        <form id="authForm">
-            <div class="inputForm">
-                <input id="email" placeholder="Your email" class="input" type="email" required>
-            </div>
-
-            <div class="inputForm">
-                <input id="password" placeholder="Your password" class="input" type="password" required>
-            </div>
-
-            <button type="submit" class="button-submit" id="authButton">Sign In</button>
-        </form>
-
-        <div id="message"></div>
-
-        <p style="margin-top:20px; color:#666;">
-            <span id="toggleText">Don't have an account?</span> 
-            <span class="toggle-link" onclick="toggleAuthMode()">Sign up here</span>
-        </p>
-
-        <div style="margin-top:20px;">
-            <button type="button" class="btn google" id="googleBtn">
-                <svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor">
-                    <path d="M113.47,309.408L95.648,375.94l-65.139,1.378C11.042,341.211,0,299.9,0,256 c0-42.451,10.324-82.483,28.624-117.732h0.014l57.992,10.632l25.404,57.644c-5.317,15.501-8.215,32.141-8.215,49.456 C103.821,274.792,107.225,292.797,113.47,309.408z" style="fill:#FBBB00;"></path>
-                    <path d="M507.527,208.176C510.467,223.662,512,239.655,512,256c0,18.328-1.927,36.206-5.598,53.451 c-12.462,58.683-45.025,109.925-90.134,146.187l-0.014-0.014l-73.044-3.727l-10.338-64.535 c29.932-17.554,53.324-45.025,65.646-77.911h-136.89V208.176h138.887L507.527,208.176z" style="fill:#518EF8;"></path>
-                    <path d="M416.253,455.624l0.014,0.014C372.396,490.901,316.666,512,256,512 c-97.491,0-182.252-54.491-225.491-134.681l82.961-67.91c21.619,57.698,77.278,98.771,142.53,98.771 c28.047,0,54.323-7.582,76.87-20.818L416.253,455.624z" style="fill:#28B446;"></path>
-                    <path d="M419.404,58.936l-82.933,67.896c-23.335-14.586-50.919-23.012-80.471-23.012 c-66.729,0-123.429,42.957-143.965,102.724l-83.397-68.276h-0.014C71.23,56.123,157.06,0,256,0 C318.115,0,375.068,22.126,419.404,58.936z" style="fill:#F14336;"></path>
-                </svg>
-                Continue with Google
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- DASHBOARD -->
-<div id="dashboardScreen" style="display:none;">
+<!-- DASHBOARD (always visible – no login screen) -->
+<div id="dashboardScreen">
     <div class="bottom-nav">
         <div class="nav-container">
             <div class="nav-item active" onclick="show('home')"><i class="fas fa-home"></i><span>My Services</span></div>
@@ -438,69 +354,7 @@
             <form class="form-grid" id="addForm">
                 <input type="text" id="name" placeholder="Business / Company Name" required>
 
-                <div class="searchable-select">
-                    <input type="text" id="cityAddInput" placeholder="Search any US city (e.g. Bradenton, Miami...)" autocomplete="off" required>
-                    <div class="dropdown-list" id="cityAddList"></div>
-                    <input type="hidden" id="cityAdd" required>
-                </div>
-
-                <div class="select-wrapper">
-                    <select id="stateAdd" required>
-                        <option value="" disabled selected>Select State</option>
-                        <option value="AL">Alabama - AL</option>
-                        <option value="AK">Alaska - AK</option>
-                        <option value="AZ">Arizona - AZ</option>
-                        <option value="AR">Arkansas - AR</option>
-                        <option value="CA">California - CA</option>
-                        <option value="CO">Colorado - CO</option>
-                        <option value="CT">Connecticut - CT</option>
-                        <option value="DE">Delaware - DE</option>
-                        <option value="FL">Florida - FL</option>
-                        <option value="GA">Georgia - GA</option>
-                        <option value="HI">Hawaii - HI</option>
-                        <option value="ID">Idaho - ID</option>
-                        <option value="IL">Illinois - IL</option>
-                        <option value="IN">Indiana - IN</option>
-                        <option value="IA">Iowa - IA</option>
-                        <option value="KS">Kansas - KS</option>
-                        <option value="KY">Kentucky - KY</option>
-                        <option value="LA">Louisiana - LA</option>
-                        <option value="ME">Maine - ME</option>
-                        <option value="MD">Maryland - MD</option>
-                        <option value="MA">Massachusetts - MA</option>
-                        <option value="MI">Michigan - MI</option>
-                        <option value="MN">Minnesota - MN</option>
-                        <option value="MS">Mississippi - MS</option>
-                        <option value="MO">Missouri - MO</option>
-                        <option value="MT">Montana - MT</option>
-                        <option value="NE">Nebraska - NE</option>
-                        <option value="NV">Nevada - NV</option>
-                        <option value="NH">New Hampshire - NH</option>
-                        <option value="NJ">New Jersey - NJ</option>
-                        <option value="NM">New Mexico - NM</option>
-                        <option value="NY">New York - NY</option>
-                        <option value="NC">North Carolina - NC</option>
-                        <option value="ND">North Dakota - ND</option>
-                        <option value="OH">Ohio - OH</option>
-                        <option value="OK">Oklahoma - OK</option>
-                        <option value="OR">Oregon - OR</option>
-                        <option value="PA">Pennsylvania - PA</option>
-                        <option value="RI">Rhode Island - RI</option>
-                        <option value="SC">South Carolina - SC</option>
-                        <option value="SD">South Dakota - SD</option>
-                        <option value="TN">Tennessee - TN</option>
-                        <option value="TX">Texas - TX</option>
-                        <option value="UT">Utah - UT</option>
-                        <option value="VT">Vermont - VT</option>
-                        <option value="VA">Virginia - VA</option>
-                        <option value="WA">Washington - WA</option>
-                        <option value="WV">West Virginia - WV</option>
-                        <option value="WI">Wisconsin - WI</option>
-                        <option value="WY">Wyoming - WY</option>
-                    </select>
-                </div>
-
-                <input type="text" id="zipAdd" placeholder="ZIP Code (optional, 5 digits)" maxlength="5">
+                <input type="text" id="location" placeholder="Location (e.g. Miami)" required>
 
                 <input type="tel" id="phone" placeholder="Phone Number" required>
                 <input type="email" id="gmail" placeholder="Email" required>
@@ -551,69 +405,7 @@
             <form class="form-grid" id="editForm">
                 <input type="text" id="edit-name" placeholder="Business / Company Name" required>
 
-                <div class="searchable-select">
-                    <input type="text" id="cityEditInput" placeholder="Search any US city (e.g. Bradenton...)" autocomplete="off" required>
-                    <div class="dropdown-list" id="cityEditList"></div>
-                    <input type="hidden" id="cityEdit" required>
-                </div>
-
-                <div class="select-wrapper">
-                    <select id="stateEdit" required>
-                        <option value="" disabled selected>Select State</option>
-                        <option value="AL">Alabama - AL</option>
-                        <option value="AK">Alaska - AK</option>
-                        <option value="AZ">Arizona - AZ</option>
-                        <option value="AR">Arkansas - AR</option>
-                        <option value="CA">California - CA</option>
-                        <option value="CO">Colorado - CO</option>
-                        <option value="CT">Connecticut - CT</option>
-                        <option value="DE">Delaware - DE</option>
-                        <option value="FL">Florida - FL</option>
-                        <option value="GA">Georgia - GA</option>
-                        <option value="HI">Hawaii - HI</option>
-                        <option value="ID">Idaho - ID</option>
-                        <option value="IL">Illinois - IL</option>
-                        <option value="IN">Indiana - IN</option>
-                        <option value="IA">Iowa - IA</option>
-                        <option value="KS">Kansas - KS</option>
-                        <option value="KY">Kentucky - KY</option>
-                        <option value="LA">Louisiana - LA</option>
-                        <option value="ME">Maine - ME</option>
-                        <option value="MD">Maryland - MD</option>
-                        <option value="MA">Massachusetts - MA</option>
-                        <option value="MI">Michigan - MI</option>
-                        <option value="MN">Minnesota - MN</option>
-                        <option value="MS">Mississippi - MS</option>
-                        <option value="MO">Missouri - MO</option>
-                        <option value="MT">Montana - MT</option>
-                        <option value="NE">Nebraska - NE</option>
-                        <option value="NV">Nevada - NV</option>
-                        <option value="NH">New Hampshire - NH</option>
-                        <option value="NJ">New Jersey - NJ</option>
-                        <option value="NM">New Mexico - NM</option>
-                        <option value="NY">New York - NY</option>
-                        <option value="NC">North Carolina - NC</option>
-                        <option value="ND">North Dakota - ND</option>
-                        <option value="OH">Ohio - OH</option>
-                        <option value="OK">Oklahoma - OK</option>
-                        <option value="OR">Oregon - OR</option>
-                        <option value="PA">Pennsylvania - PA</option>
-                        <option value="RI">Rhode Island - RI</option>
-                        <option value="SC">South Carolina - SC</option>
-                        <option value="SD">South Dakota - SD</option>
-                        <option value="TN">Tennessee - TN</option>
-                        <option value="TX">Texas - TX</option>
-                        <option value="UT">Utah - UT</option>
-                        <option value="VT">Vermont - VT</option>
-                        <option value="VA">Virginia - VA</option>
-                        <option value="WA">Washington - WA</option>
-                        <option value="WV">West Virginia - WV</option>
-                        <option value="WI">Wisconsin - WI</option>
-                        <option value="WY">Wyoming - WY</option>
-                    </select>
-                </div>
-
-                <input type="text" id="zipEdit" placeholder="ZIP Code (optional, 5 digits)" maxlength="5">
+                <input type="text" id="edit-location" placeholder="Location (e.g. Miami)" required>
 
                 <input type="tel" id="edit-phone" placeholder="Phone Number" required>
                 <input type="email" id="edit-gmail" placeholder="Email" required>
@@ -676,88 +468,6 @@
 </div>
 
 <script>
-// Full US cities list
-const usCities = [
-    "Abilene TX","Akron OH","Alameda CA","Albany GA","Albany NY","Albuquerque NM","Alexandria LA","Alexandria VA","Alhambra CA","Allen TX",
-    "Allentown PA","Alpharetta GA","Altamonte Springs FL","Altoona PA","Ames IA","Anaheim CA","Anchorage AK","Anderson IN","Ann Arbor MI","Annapolis MD",
-    "Antioch CA","Apache Junction AZ","Apex NC","Apple Valley CA","Apple Valley MN","Appleton WI","Arcadia CA","Arlington TX","Arlington VA","Arvada CO",
-    "Asheville NC","Athens GA","Atlanta GA","Atlantic City NJ","Attleboro MA","Auburn AL","Auburn WA","Augusta GA","Aurora CO","Aurora IL",
-    "Austin TX","Avondale AZ","Azusa CA","Bakersfield CA","Baldwin Park CA","Baltimore MD","Bangor ME","Barnstable Town MA","Bartlett TN","Baton Rouge LA",
-    "Battle Creek MI","Bayonne NJ","Baytown TX","Beaumont TX","Beavercreek OH","Bedford TX","Bell Gardens CA","Bellevue WA","Bellflower CA","Bellingham WA",
-    "Bend OR","Bentonville AR","Berkeley CA","Berwyn IL","Bethlehem PA","Billings MT","Birmingham AL","Bismarck ND","Blacksburg VA","Blaine MN",
-    "Bloomington IL","Bloomington IN","Bloomington MN","Boca Raton FL","Boise ID","Bolingbrook IL","Bonita Springs FL","Bossier City LA","Boston MA","Boulder CO",
-    "Bowling Green KY","Boynton Beach FL","Bradenton FL","Brea CA","Brentwood CA","Brentwood TN","Bridgeport CT","Bristol CT","Brockton MA","Broken Arrow OK",
-    "Brookhaven GA","Broomfield CO","Brownsville TX","Bryan TX","Buckeye AZ","Buena Park CA","Buffalo NY","Burbank CA","Burien WA","Burleson TX",
-    "Burlington NC","Burlington VT","Caldwell ID","Camarillo CA","Cambridge MA","Camden NJ","Campbell CA","Canton OH","Cape Coral FL","Carlsbad CA",
-    "Carmel IN","Carson CA","Carson City NV","Cary NC","Casa Grande AZ","Casper WY","Castle Rock CO","Cathedral City CA","Cedar Park TX","Cedar Rapids IA",
-    "Centennial CO","Central Islip NY","Cerritos CA","Champaign IL","Chandler AZ","Chapel Hill NC","Charleston SC","Charlotte NC","Charlottesville VA","Chattanooga TN",
-    "Chelsea MA","Cherry Hill NJ","Chesapeake VA","Chesterfield MO","Cheyenne WY","Chicago IL","Chico CA","Chino CA","Chino Hills CA","Chula Vista CA",
-    "Cicero IL","Cincinnati OH","Citrus Heights CA","Clarksville TN","Clearwater FL","Cleveland OH","Cleveland Heights OH","Clifton NJ","Clovis CA","Clovis NM",
-    "Coachella CA","Coconut Creek FL","Coeur d'Alene ID","College Station TX","Colorado Springs CO","Columbia MO","Columbia SC","Columbus GA","Columbus OH","Commerce City CO",
-    "Compton CA","Concord CA","Concord NC","Conroe TX","Conway AR","Coon Rapids MN","Coral Gables FL","Coral Springs FL","Corona CA","Corpus Christi TX",
-    "Costa Mesa CA","Council Bluffs IA","Covina CA","Cranston RI","Cupertino CA","Cutler Bay FL","Cuyahoga Falls OH","Cypress CA","Dallas TX","Daly City CA",
-    "Danbury CT","Danville CA","Danville VA","Davenport IA","Davie FL","Dayton OH","Daytona Beach FL","DeKalb IL","Deerfield Beach FL","Delray Beach FL",
-    "Deltona FL","Denver CO","Des Moines IA","Des Plaines IL","Detroit MI","Doral FL","Dothan AL","Downey CA","Draper UT","Dublin CA","Dublin OH",
-    "Dubuque IA","Duluth MN","Duncanville TX","Dunedin FL","Durham NC","Eagan MN","East Lansing MI","East Orange NJ","Eau Claire WI","Edina MN",
-    "Edinburg TX","Edmond OK","El Cajon CA","El Centro CA","El Monte CA","El Paso TX","Elgin IL","Elizabeth NJ","Elk Grove CA","Elmhurst IL",
-    "Elyria OH","Encinitas CA","Enid OK","Erie PA","Escondido CA","Eugene OR","Euless TX","Euclid OH","Evanston IL","Evansville IN",
-    "Everett MA","Everett WA","Fairfield CA","Fargo ND","Farmington Hills MI","Fayetteville AR","Fayetteville NC","Federal Way WA","Findlay OH","Fishers IN",
-    "Flagstaff AZ","Flint MI","Florence AL","Florissant MO","Flower Mound TX","Folsom CA","Fontana CA","Fort Collins CO","Fort Lauderdale FL","Fort Myers FL",
-    "Fort Pierce FL","Fort Smith AR","Fort Wayne IN","Fort Worth TX","Fountain Valley CA","Fremont CA","Fresno CA","Frisco TX","Fullerton CA","Gainesville FL",
-    "Gaithersburg MD","Galveston TX","Garden Grove CA","Gardena CA","Garland TX","Gary IN","Gastonia NC","Georgetown TX","Germantown TN","Gilbert AZ",
-    "Glendale AZ","Glendale CA","Glendora CA","Goodyear AZ","Grand Forks ND","Grand Island NE","Grand Junction CO","Grand Prairie TX","Grand Rapids MI","Grapevine TX",
-    "Great Falls MT","Greeley CO","Green Bay WI","Greensboro NC","Greenville NC","Greenville SC","Greenwood IN","Gulfport MS","Hackensack NJ","Hagerstown MD",
-    "Hallandale Beach FL","Hamilton OH","Hammond IN","Hampton VA","Hanford CA","Harrisburg PA","Harrisonburg VA","Hartford CT","Hattiesburg MS","Haverhill MA",
-    "Hawthorne CA","Hayward CA","Hemet CA","Hempstead NY","Henderson NV","Hesperia CA","Hialeah FL","Hickory NC","High Point NC","Highland CA",
-    "Hillsboro OR","Hilton Head Island SC","Hoboken NJ","Hoffman Estates IL","Hollywood FL","Holyoke MA","Homestead FL","Hoover AL","Houston TX","Huntington NY",
-    "Huntington Beach CA","Huntsville AL","Idaho Falls ID","Independence MO","Indianapolis IN","Indio CA","Inglewood CA","Iowa City IA","Irvine CA","Irving TX",
-    "Jackson MS","Jackson TN","Jacksonville FL","Jacksonville NC","Janesville WI","Jeffersonville IN","Jersey City NJ","Johns Creek GA","Joliet IL","Jonesboro AR",
-    "Joplin MO","Jupiter FL","Kalamazoo MI","Kannapolis NC","Kansas City KS","Kansas City MO","Kearny NJ","Keller TX","Kennewick WA","Kenner LA",
-    "Kenosha WI","Kent WA","Kettering OH","Killeen TX","Kingsport TN","Kirkland WA","Kissimmee FL","Knoxville TN","La Crosse WI","La Habra CA",
-    "La Mesa CA","La Mirada CA","La Puente CA","Lacey WA","Lafayette IN","Lafayette LA","Laguna Niguel CA","Lake Charles LA","Lake Elsinore CA","Lake Forest CA",
-    "Lake Havasu City AZ","Lakeland FL","Lakeville MN","Lakewood CA","Lakewood CO","Lakewood NJ","Lakewood OH","Lakewood WA","Lancaster CA","Lancaster PA",
-    "Lansing MI","Laredo TX","Largo FL","Las Cruces NM","Las Vegas NV","Lauderhill FL","Lawrence KS","Lawrence MA","Lawton OK","Layton UT",
-    "League City TX","Lee's Summit MO","Lehi UT","Lenexa KS","Levittown NY","Lewiston ME","Lewisville TX","Lexington KY","Lincoln NE","Little Rock AR",
-    "Littleton CO","Livermore CA","Lodi CA","Logan UT","Long Beach CA","Longmont CO","Longview TX","Lorain OH","Los Angeles CA","Louisville KY",
-    "Loveland CO","Lowell MA","Lubbock TX","Lynchburg VA","Lynn MA","Lynwood CA","Macon GA","Madison AL","Madison WI","Malden MA",
-    "Manchester NH","Manhattan KS","Mansfield TX","Manteca CA","Maple Grove MN","Margate FL","Maricopa AZ","Marietta GA","Marlborough MA","Marysville WA",
-    "McAllen TX","McKinney TX","Medford MA","Medford OR","Melbourne FL","Memphis TN","Menifee CA","Merced CA","Meridian ID","Meridian MS",
-    "Mesquite TX","Miami FL","Miami Gardens FL","Middletown CT","Middletown OH","Midland MI","Midland TX","Milford CT","Milpitas CA","Milwaukee WI",
-    "Minneapolis MN","Minnetonka MN","Miramar FL","Mission TX","Mission Viejo CA","Missoula MT","Missouri City TX","Mobile AL","Modesto CA","Monroe LA",
-    "Montebello CA","Montgomery AL","Moore OK","Moreno Valley CA","Morgan Hill CA","Mount Pleasant SC","Mount Vernon NY","Mountain View CA","Muncie IN","Murfreesboro TN",
-    "Murray UT","Murrieta CA","Nampa ID","Naperville IL","Nashua NH","Nashville TN","New Bedford MA","New Braunfels TX","New Britain CT","New Haven CT",
-    "New Orleans LA","New Rochelle NY","New York NY","Newark NJ","Newport Beach CA","Newport News VA","Newton MA","Niagara Falls NY","Noblesville IN","Norfolk VA",
-    "Normal IL","Norman OK","North Charleston SC","North Las Vegas NV","North Little Rock AR","North Miami FL","North Port FL","Norwalk CA","Norwalk CT","Novato CA",
-    "Oak Lawn IL","Oakland CA","Ocala FL","Oceanside CA","Odessa TX","O'Fallon MO","Ogden UT","Oklahoma City OK","Olathe KS","Olympia WA",
-    "Omaha NE","Ontario CA","Orange CA","Orem UT","Orlando FL","Ormond Beach FL","Orland Park IL","Oro Valley AZ","Overland Park KS","Owensboro KY",
-    "Oxnard CA","Palm Bay FL","Palm Beach Gardens FL","Palm Coast FL","Palm Desert CA","Palm Springs CA","Palmdale CA","Palo Alto CA","Panama City FL","Parker CO",
-    "Parma OH","Pasadena CA","Pasadena TX","Pasco WA","Paterson NJ","Pawtucket RI","Peabody MA","Peoria AZ","Peoria IL","Perris CA",
-    "Petaluma CA","Pflugerville TX","Pharr TX","Philadelphia PA","Phoenix AZ","Pico Rivera CA","Pine Bluff AR","Pinellas Park FL","Pittsburg CA","Pittsburgh PA",
-    "Placentia CA","Plainfield IL","Plainfield NJ","Plantation FL","Pleasanton CA","Plymouth MN","Pocatello ID","Pomona CA","Pompano Beach FL","Port Arthur TX",
-    "Port Orange FL","Port St. Lucie FL","Portland ME","Portland OR","Portsmouth VA","Pottstown PA","Providence RI","Provo UT","Pueblo CO","Quincy IL",
-    "Quincy MA","Racine WI","Raleigh NC","Rancho Cordova CA","Rancho Cucamonga CA","Rancho Palos Verdes CA","Rapid City SD","Reading PA","Redding CA","Redlands CA",
-    "Redmond WA","Redondo Beach CA","Redwood City CA","Reno NV","Renton WA","Revere MA","Richardson TX","Richland WA","Richmond CA","Richmond VA","Rio Rancho NM",
-    "Riverton UT","Riverside CA","Rochester MN","Rochester NY","Rochester Hills MI","Rock Hill SC","Rockford IL","Rockville MD","Rockwall TX","Rocky Mount NC",
-    "Rogers AR","Rosemead CA","Roseville CA","Round Rock TX","Rowlett TX","Royal Oak MI","Sacramento CA","Salem OR","Salinas CA","Salt Lake City UT",
-    "Sammamish WA","San Angelo TX","San Antonio TX","San Bernardino CA","San Buenaventura (Ventura) CA","San Clemente CA","San Diego CA","San Francisco CA","San Jacinto CA","San Jose CA",
-    "San Leandro CA","San Luis Obispo CA","San Marcos CA","San Mateo CA","San Rafael CA","Santa Ana CA","Santa Barbara CA","Santa Clara CA","Santa Clarita CA","Santa Cruz CA",
-    "Santa Fe NM","Santa Maria CA","Santa Monica CA","Santa Rosa CA","Sarasota FL","Schaumburg IL","Scottsdale AZ","Scranton PA","Seattle WA","Shawnee KS",
-    "Sheboygan WI","Shoreline WA","Shreveport LA","Sierra Vista AZ","Silver Spring MD","Sioux City IA","Sioux Falls SD","Skokie IL","Smyrna GA","Somerville MA",
-    "South Bend IN","South Gate CA","South Jordan UT","Southfield MI","Sparks NV","Spokane WA","Spokane Valley WA","Springdale AR","Springfield IL","Springfield MA",
-    "Springfield MO","Springfield OR","St. Charles MO","St. Cloud MN","St. George UT","St. Joseph MO","St. Louis MO","St. Paul MN","St. Petersburg FL","Stamford CT",
-    "State College PA","Sterling Heights MI","Stockton CA","Streamwood IL","Strongsville OH","Suffolk VA","Sugar Land TX","Summerville SC","Sunnyvale CA","Surprise AZ",
-    "Syracuse NY","Tacoma WA","Tallahassee FL","Tamarac FL","Tamiami FL","Tampa FL","Taunton MA","Taylor MI","Temecula CA","Tempe AZ",
-    "Temple TX","Terre Haute IN","Texarkana TX","Texas City TX","The Colony TX","Thornton CO","Thousand Oaks CA","Tigard OR","Tinley Park IL","Titusville FL",
-    "Toledo OH","Torrance CA","Tracy CA","Trenton NJ","Troy MI","Troy NY","Tucson AZ","Tulsa OK","Tuscaloosa AL","Tustin CA",
-    "Tyler TX","Union City CA","Union City NJ","Upland CA","Urbana IL","Urbandale IA","Vacaville CA","Vallejo CA","Valparaiso IN","Victorville CA",
-    "Vineland NJ","Virginia Beach VA","Visalia CA","Vista CA","Waco TX","Waipahu HI","Waldorf MD","Walnut Creek CA","Waltham MA","Warner Robins GA",
-    "Warren MI","Warwick RI","Washington DC","Waterbury CT","Waterloo IA","Waukegan IL","Wausau WI","Wauwatosa WI","Wellington FL","Wesley Chapel FL",
-    "West Allis WI","West Covina CA","West Des Moines IA","West Hartford CT","West Haven CT","West Jordan UT","West New York NJ","West Palm Beach FL","West Valley City UT","Westland MI",
-    "Westminster CA","Westminster CO","Weston FL","Weymouth Town MA","Wheaton IL","White Plains NY","Whittier CA","Wichita KS","Wichita Falls TX","Wilmington DE",
-    "Wilmington NC","Wilson NC","Winston-Salem NC","Winter Garden FL","Woodbury MN","Woodland CA","Worcester MA","Wylie TX","Wyoming MI","Yakima WA",
-    "Yonkers NY","Yorba Linda CA","Youngstown OH","Yuba City CA","Yucaipa CA","Yuma AZ"
-].sort();
-
     const firebaseConfig = {
         apiKey: "AIzaSyAHZ5v86FWK9uU-9LfZKaBsMR6QQ92JqQM",
         authDomain: "truewebx-78890.firebaseapp.com",
@@ -778,57 +488,8 @@ const usCities = [
     const welcomeMsg = document.getElementById('welcomeMsg');
     let currentEditId = null;
     let currentSocialLinks = [];
-    let isSignupMode = false;
     let isPublishing = false;
     let currentChatServiceId = null;
-
-    function setupCitySearch(inputId, listId, hiddenId) {
-        const input = document.getElementById(inputId);
-        const dropdown = document.getElementById(listId);
-        const hidden = document.getElementById(hiddenId);
-
-        function showDropdown(filter) {
-            dropdown.innerHTML = '';
-            let filtered = usCities.filter(city => city.toLowerCase().includes(filter));
-            if (filtered.length === 0) {
-                dropdown.innerHTML = '<div class="no-results">No cities found</div>';
-            } else {
-                filtered.slice(0, 100).forEach(city => {
-                    const div = document.createElement('div');
-                    div.textContent = city;
-                    div.onclick = () => {
-                        input.value = city;
-                        hidden.value = city;
-                        dropdown.style.display = 'none';
-                    };
-                    dropdown.appendChild(div);
-                });
-                if (filtered.length > 100) {
-                    const more = document.createElement('div');
-                    more.className = 'no-results';
-                    more.textContent = '...type more to refine';
-                    dropdown.appendChild(more);
-                }
-            }
-            dropdown.style.display = 'block';
-        }
-
-        input.addEventListener('focus', () => showDropdown(''));
-        input.addEventListener('input', () => showDropdown(input.value.toLowerCase()));
-        input.addEventListener('click', () => showDropdown(input.value.toLowerCase()));
-
-        document.addEventListener('click', (e) => {
-            if (!input.parentElement.contains(e.target)) {
-                dropdown.style.display = 'none';
-            }
-        });
-    }
-
-    setupCitySearch('cityAddInput', 'cityAddList', 'cityAdd');
-    setupCitySearch('cityEditInput', 'cityEditList', 'cityEdit');
-
-    document.getElementById('zipAdd').addEventListener('input', e => e.target.value = e.target.value.replace(/\D/g, '').slice(0,5));
-    document.getElementById('zipEdit').addEventListener('input', e => e.target.value = e.target.value.replace(/\D/g, '').slice(0,5));
 
     function previewImage(file, containerId, isProfile = false) {
         const reader = new FileReader();
@@ -861,34 +522,6 @@ const usCities = [
     document.getElementById('edit-profile').addEventListener('change', e => e.target.files[0] ? previewImage(e.target.files[0], 'editProfilePreview', true) : document.getElementById('editProfilePreview').innerHTML = '');
     document.getElementById('edit-photos').addEventListener('change', e => e.target.files.length && previewMultipleImages(e.target.files, 'editGalleryPreview'));
 
-    function toggleAuthMode() {
-        isSignupMode = !isSignupMode;
-        document.getElementById('formTitle').textContent = isSignupMode ? 'Create Account' : 'Sign In';
-        document.getElementById('authButton').textContent = isSignupMode ? 'Sign Up' : 'Sign In';
-        document.getElementById('toggleText').textContent = isSignupMode ? 'Already have an account?' : "Don't have an account?";
-    }
-
-    document.getElementById('authForm').onsubmit = e => {
-        e.preventDefault();
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value;
-
-        if (isSignupMode) {
-            auth.createUserWithEmailAndPassword(email, password)
-                .then(() => loadDashboard())
-                .catch(err => document.getElementById('message').innerHTML = `<div class="error">${err.message}</div>`);
-        } else {
-            auth.signInWithEmailAndPassword(email, password)
-                .then(() => loadDashboard())
-                .catch(err => document.getElementById('message').innerHTML = `<div class="error">${err.message}</div>`);
-        }
-    };
-
-    document.getElementById('googleBtn').onclick = () => {
-        auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-            .then(() => loadDashboard());
-    };
-
     function logoutAndGoHome() {
         auth.signOut().then(() => {
             window.location.href = 'https://truewebx.site/';
@@ -901,8 +534,6 @@ const usCities = [
 
     async function loadDashboard(user = auth.currentUser) {
         if (!user) return;
-        document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('dashboardScreen').style.display = 'block';
         welcomeMsg.textContent = `Hello ${user.displayName || user.email.split('@')[0]}!`;
 
         const { data: services } = await supabaseClient
@@ -955,8 +586,6 @@ const usCities = [
             document.getElementById('addForm').reset();
             document.getElementById('profilePreview').innerHTML = '';
             document.getElementById('galleryPreview').innerHTML = '';
-            document.getElementById('cityAddInput').value = '';
-            document.getElementById('cityAdd').value = '';
         }
         if (section === 'messages') loadInbox();
     }
@@ -997,21 +626,14 @@ const usCities = [
         if (isPublishing) return;
 
         const name = document.getElementById('name').value.trim();
-        const city = document.getElementById('cityAdd').value;
-        const state = document.getElementById('stateAdd').value;
-        const zip = document.getElementById('zipAdd').value.trim();
+        const location = document.getElementById('location').value.trim();
         const phone = document.getElementById('phone').value.trim();
         const gmail = document.getElementById('gmail').value.trim();
         const desc = document.getElementById('desc').value.trim();
         const profileFile = document.getElementById('profile').files[0];
 
-        if (!name || !city || !state || !phone || !gmail || !desc || !profileFile) {
+        if (!name || !location || !phone || !gmail || !desc || !profileFile) {
             msg.innerHTML = '<p style="color:red;">Required fields are missing!</p>';
-            return;
-        }
-
-        if (zip && zip.length !== 5) {
-            msg.innerHTML = '<p style="color:red;">ZIP code must be exactly 5 digits</p>';
             return;
         }
 
@@ -1019,12 +641,9 @@ const usCities = [
         document.getElementById('publishBtn').disabled = true;
         document.getElementById('publishBtn').textContent = 'PUBLISHING...';
 
-        let location = `${city}, ${state}`;
-        if (zip) location += ` ${zip}`;
-
         const baseSlug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        const citySlug = city.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        const slug = `${baseSlug}-${citySlug}`.slice(0, 100);
+        const locationSlug = location.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        const slug = `${baseSlug}-${locationSlug}`.slice(0, 100);
 
         const user = auth.currentUser;
         if (!user) return;
@@ -1074,8 +693,6 @@ const usCities = [
             document.getElementById('added-socials').innerHTML = '';
             document.getElementById('profilePreview').innerHTML = '';
             document.getElementById('galleryPreview').innerHTML = '';
-            document.getElementById('cityAddInput').value = '';
-            document.getElementById('cityAdd').value = '';
             setTimeout(() => { show('home'); msg.innerHTML = ''; }, 6000);
         } catch (err) {
             msg.innerHTML = `<p style="color:red;">Error: ${err.message || 'Unknown error'}</p>`;
@@ -1092,19 +709,10 @@ const usCities = [
         const { data: service } = await supabaseClient.from('services').select('*').eq('id', id).single();
 
         document.getElementById('edit-name').value = service.name || '';
+        document.getElementById('edit-location').value = service.city || '';
         document.getElementById('edit-phone').value = service.phone || '';
         document.getElementById('edit-gmail').value = service.gmail || '';
         document.getElementById('edit-desc').value = service.description || '';
-
-        const parts = service.city ? service.city.trim().split(' ') : [];
-        const zipPart = parts.length > 2 && /^\d{5}$/.test(parts[parts.length - 1]) ? parts.pop() : '';
-        const cityState = parts.join(' ');
-        const [cityPart, statePart] = cityState ? cityState.split(', ') : ['', ''];
-
-        document.getElementById('cityEditInput').value = cityPart || '';
-        document.getElementById('cityEdit').value = cityPart || '';
-        document.getElementById('stateEdit').value = statePart || '';
-        document.getElementById('zipEdit').value = zipPart;
 
         currentSocialLinks = Array.isArray(service.social_links) ? service.social_links : [];
         updateAddedSocials(true);
@@ -1118,29 +726,19 @@ const usCities = [
         if (!currentEditId) return;
 
         const name = document.getElementById('edit-name').value.trim();
-        const city = document.getElementById('cityEdit').value;
-        const state = document.getElementById('stateEdit').value;
-        const zip = document.getElementById('zipEdit').value.trim();
+        const location = document.getElementById('edit-location').value.trim();
         const phone = document.getElementById('edit-phone').value.trim();
         const gmail = document.getElementById('edit-gmail').value.trim();
         const desc = document.getElementById('edit-desc').value.trim();
 
-        if (!name || !city || !state || !phone || !gmail || !desc) {
+        if (!name || !location || !phone || !gmail || !desc) {
             document.getElementById('edit-msg').innerHTML = '<p style="color:red;">Required fields cannot be empty</p>';
             return;
         }
 
-        if (zip && zip.length !== 5) {
-            document.getElementById('edit-msg').innerHTML = '<p style="color:red;">ZIP code must be exactly 5 digits</p>';
-            return;
-        }
-
-        let location = `${city}, ${state}`;
-        if (zip) location += ` ${zip}`;
-
         const baseSlug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        const citySlug = city.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        const slug = `${baseSlug}-${citySlug}`.slice(0, 100);
+        const locationSlug = location.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        const slug = `${baseSlug}-${locationSlug}`.slice(0, 100);
 
         try {
             const profileFile = document.getElementById('edit-profile').files[0];
@@ -1278,5 +876,5 @@ const usCities = [
         if (e.key === 'Enter') sendReply();
     });
 </script>
-</body>
-</html>
+</body> 
+</html> 
