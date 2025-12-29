@@ -1093,9 +1093,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- ==== TrueWebX Business Directory Embed Section (No Search Bar) ==== -->
+<!-- ==== TrueWebX Business Directory Embed (With On-Page Individual Profiles) ==== -->
 <section class="truewebx-embed-section" aria-labelledby="truewebx-embed-heading">
     <style>
+        :root { --coral: #ff6b6b; --turquoise: #0d9488; }
+
+        .truewebx-embed-section {
+            background: linear-gradient(135deg, var(--turquoise), var(--coral));
+            color: #ffffff;
+            padding: 60px 20px 80px;
+            font-family: system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+        }
         .truewebx-embed-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -1131,7 +1140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             border: 1px solid rgba(255,255,255,0.4);
             box-shadow: 0 8px 28px rgba(0,0,0,0.25);
             transition: transform 0.3s ease;
-            position: relative;
             text-align: center;
         }
         .truewebx-card:hover { transform: translateY(-8px); }
@@ -1159,39 +1167,89 @@ document.addEventListener('DOMContentLoaded', () => {
         .truewebx-private:hover, .truewebx-private:focus { filter: none; }
         .truewebx-price {
             font-size: 1.8rem !important;
-            color: #ff6b6b !important;
+            color: var(--coral) !important;
             font-weight: 800;
             margin: 16px 0;
         }
-        .truewebx-links {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-        }
-        .truewebx-links a {
-            color: #ffeb3b;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 10px 16px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .truewebx-links a:hover { background: rgba(255,255,255,0.2); }
         .truewebx-view-btn {
             display: inline-block;
             margin-top: 20px;
             padding: 12px 28px;
-            background: #ff6b6b;
+            background: var(--coral);
             color: white;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
         }
+
+        /* Individual Profile View */
+        .truewebx-profile {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .truewebx-profile img.main-img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 24px;
+            margin: 30px auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        .truewebx-profile .contact-info {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 600px;
+        }
+        .truewebx-profile .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 15px 0;
+            font-size: 1.4rem;
+        }
+        .truewebx-profile .contact-item i { color: var(--coral); flex-shrink: 0; }
+        .truewebx-profile .contact-item a { color: white; text-decoration: none; }
+
+        .truewebx-gallery {
+            margin: 60px 0;
+        }
+        .truewebx-gallery-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        }
+        .truewebx-gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+        .truewebx-gallery img {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            scroll-snap-align: center;
+        }
+        .back-btn {
+            display: inline-block;
+            margin: 40px auto;
+            padding: 16px 40px;
+            background: var(--coral);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
         .truewebx-no-services {
             font-size: 1.3rem;
             text-align: center;
@@ -1201,7 +1259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         .truewebx-footer-link {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 60px;
             font-size: 1rem;
         }
         .truewebx-footer-link a {
@@ -1222,11 +1280,13 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="truewebx-embed-container">
         <h2 id="truewebx-embed-heading" class="truewebx-embed-heading">Zoiris Cleaning Services Blogs</h2>
 
-        <!-- Search bar removed -->
-
-        <div class="truewebx-glass">
+        <!-- Directory View -->
+        <div id="directoryView" class="truewebx-glass">
             <div class="truewebx-services" id="truewebxList"></div>
         </div>
+
+        <!-- Individual Profile View (hidden by default) -->
+        <div id="profileView" class="truewebx-glass" style="display:none;"></div>
 
         <div class="truewebx-footer-link">
             Powered by <a href="https://truewebx.site" target="_blank">TrueWebX Global Directory</a>
@@ -1245,7 +1305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let allServices = [];
 
-        async function loadTrueWebXServices() {
+        async function loadServices() {
             const { data: services, error } = await supabaseClient
                 .from('services')
                 .select('*')
@@ -1258,16 +1318,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             allServices = services;
-            renderCards(services);
+            checkHashAndRender();
         }
- 
-        function renderCards(services) {
-            const container = document.getElementById('truewebxList');
 
-            container.innerHTML = services.map(s => `
+        function renderDirectory() {
+            const container = document.getElementById('truewebxList');
+            container.innerHTML = allServices.map(s => `
                 <article class="truewebx-card">
-                    <img src="${s.profile || 'https://via.placeholder.com/600x400/0d9488/ffffff?text=Service+Logo'}"
-                         alt="${s.name} logo" class="profile-img">
+                    <img src="${s.profile || 'https://via.placeholder.com/600x400/0d9488/ffffff?text=Logo'}"
+                         alt="${s.name}" class="profile-img">
 
                     <h3>${s.name || 'Professional Service'}</h3>
                     <p><strong>${s.city || 'Location not specified'}</strong></p>
@@ -1283,16 +1342,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <p class="truewebx-price">Free Consultation</p>
 
-                    ${Array.isArray(s.social_links) && s.social_links.length > 0 ? `
-                    <div class="truewebx-links">
-                        ${s.social_links.map(l => `
-                            <a href="${l.url}" target="_blank" rel="noopener">
-                                <i class="fab fa-${l.type.toLowerCase()}"></i> ${l.type}
-                            </a>
-                        `).join('')}
-                    </div>` : ''}
-
-                    <a href="https://truewebx.site/#${s.slug}" target="_blank" class="truewebx-view-btn">
+                    <a href="#${s.slug}" class="truewebx-view-btn" onclick="showProfile('${s.slug}'); return false;">
                         View Full Profile →
                     </a>
 
@@ -1301,13 +1351,85 @@ document.addEventListener('DOMContentLoaded', () => {
                     </small>
                 </article>
             `).join('');
+
+            document.getElementById('directoryView').style.display = 'block';
+            document.getElementById('profileView').style.display = 'none';
         }
 
-        // Load all services on page load (no search functionality)
-        loadTrueWebXServices();
+        function showProfile(slug) {
+            const service = allServices.find(s => s.slug === slug);
+            if (!service) {
+                renderDirectory();
+                return;
+            }
+
+            document.getElementById('profileView').innerHTML = `
+                <div class="truewebx-profile">
+                    ${service.profile ? `<img src="${service.profile}" alt="${service.name}" class="main-img">` : ''}
+
+                    <h2 style="font-size:2.6rem; margin:30px 0;">${service.name}</h2>
+                    <p style="font-size:1.3rem; max-width:800px; margin:0 auto 40px; opacity:0.95;">
+                        ${service.description || 'Professional, reliable service with free consultation.'}
+                    </p>
+
+                    <div class="contact-info">
+                        ${service.phone ? `
+                        <div class="contact-item">
+                            <i class="fas fa-phone fa-2x"></i>
+                            <div><a href="tel:${service.phone}">${service.phone}</a></div>
+                        </div>` : ''}
+                        ${service.gmail ? `
+                        <div class="contact-item">
+                            <i class="fas fa-envelope fa-2x"></i>
+                            <div><a href="mailto:${service.gmail}">${service.gmail}</a></div>
+                        </div>` : ''}
+                    </div>
+
+                    <p style="font-size:2.4rem; color:var(--coral); font-weight:800; margin:40px 0;">
+                        Free Consultation Available
+                    </p>
+
+                    ${Array.isArray(service.photos) && service.photos.length > 0 ? `
+                    <div class="truewebx-gallery">
+                        <h2 style="font-size:2.4rem; margin-bottom:30px;">Gallery</h2>
+                        <div class="truewebx-gallery-wrapper">
+                            <div class="truewebx-gallery">
+                                ${service.photos.map(p => `<img src="${p}" alt="${service.name} work" loading="lazy">`).join('')}
+                            </div>
+                        </div>
+                    </div>` : ''}
+
+                    <a href="#" class="back-btn" onclick="renderDirectory(); return false;">
+                        ← Back to All Listings
+                    </a>
+                </div>
+            `;
+
+            document.getElementById('directoryView').style.display = 'none';
+            document.getElementById('profileView').style.display = 'block';
+
+            // Update URL hash without reloading
+            history.pushState({}, '', `#${slug}`);
+            window.scrollTo(0, 0);
+        }
+
+        function checkHashAndRender() {
+            const hash = window.location.hash.slice(1);
+            if (hash) {
+                showProfile(hash);
+            } else {
+                renderDirectory();
+            }
+        }
+
+        // Handle back/forward buttons
+        window.addEventListener('popstate', checkHashAndRender);
+
+        // Initial load
+        loadServices();
     </script>
 </section>
-<!-- ==== End TrueWebX Embed Section (No Search Bar) ==== -->
+<!-- ==== End TrueWebX Embed With On-Page Profiles ==== -->
 
 
 
