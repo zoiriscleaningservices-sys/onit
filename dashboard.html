@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrueWebX – My Dashboard</title>
+    <title>Zoiris Cleaning – My Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root { 
@@ -25,83 +23,21 @@
             flex-direction:column;
         }
 
-        .login-container { 
-            display:flex; justify-content:center; align-items:center; flex:1; padding:20px; 
-        }
-        .form { 
-            width:100%; max-width:450px; background:#ffffff; color:#151717; padding:40px; border-radius:20px; 
-            box-shadow:0 10px 40px rgba(0,0,0,.15); text-align:center;
-        }
-        .inputForm { 
-            height:56px; 
-            border:2px solid #e0e0e0; 
-            border-radius:12px; 
-            padding:0 16px; 
-            display:flex; 
-            align-items:center; 
-            margin-bottom:16px;
-            background:white;
-        }
-        .inputForm:focus-within { 
-            border-color:#2d79f3; 
-            box-shadow:0 0 0 3px rgba(45,121,243,0.15);
-        }
-        .input { 
-            width:100%; 
-            height:100%; 
-            border:none; 
-            background:transparent; 
-            font-size:16px; 
-            color:#151717;
-            outline:none;
-        }
-        .input::placeholder { color:#aaa; }
-        .button-submit { 
-            background:#151717; 
-            color:white; 
-            height:56px; 
-            border-radius:12px; 
-            font-weight:600; 
-            font-size:16px; 
-            cursor:pointer; 
-            width:100%; 
-            margin:20px 0;
-            border:none;
-        }
-        .button-submit:hover { background:#2d79f3; }
-        .btn.google { 
-            background:white; 
-            border:2px solid #e0e0e0; 
-            height:56px; 
-            border-radius:12px; 
-            display:flex; 
-            align-items:center; 
-            justify-content:center; 
-            gap:12px; 
-            cursor:pointer; 
-            width:100%; 
-            font-weight:600;
-            color:#151717;
-        }
-        .btn.google:hover { border-color:#2d79f3; }
-        .error { color:#e74c3c; background:#fff5f5; padding:12px; border-radius:8px; text-align:center; margin:10px 0; }
-        .toggle-link { color:#2d79f3; cursor:pointer; font-weight:600; }
-
         .bottom-nav {
             position:fixed; bottom:0; left:0; right:0; height:80px; background:rgba(0,0,0,0.9); backdrop-filter:blur(20px);
             display:flex; align-items:center; justify-content:center; z-index:9999; padding-bottom:env(safe-area-inset-bottom);
         }
         .nav-container {
-            background:rgba(255,255,255,0.1); backdrop-filter:blur(20px); border-radius:50px; padding:12px 30px;
-            display:flex; gap:40px; box-shadow:0 8px 32px rgba(0,0,0,0.5);
+            background:rgba(255,255,255,0.1); backdrop-filter:blur(20px); border-radius:50px; padding:12px 24px;
+            display:flex; gap:clamp(20px, 8vw, 40px); box-shadow:0 8px 32px rgba(0,0,0,0.5);
         }
-        .nav-item { display:flex; flex-direction:column; align-items:center; gap:6px; color:#888; font-size:11px; font-weight:600; cursor:pointer; }
-        .nav-item i { font-size:24px; }
+        .nav-item { display:flex; flex-direction:column; align-items:center; gap:6px; color:#888; font-size:clamp(10px, 2.5vw, 11px); font-weight:600; cursor:pointer; }
+        .nav-item i { font-size:clamp(22px, 5vw, 24px); }
         .nav-item.active, .nav-item.active i { color:var(--coral); transform:scale(1.15); }
 
         .main-content {
             flex:1;
-            padding:20px;
+            padding:clamp(16px, 4vw, 20px);
             padding-top:80px;
             padding-bottom:100px;
             display:flex;
@@ -109,54 +45,40 @@
             align-items:center;
         }
         .logo { 
-            font-size: clamp(2.5rem, 8vw, 4rem); 
+            font-size: clamp(2.2rem, 8vw, 4rem); 
             font-weight:900; 
             background:linear-gradient(45deg,#fff,#ff8fa3); 
             -webkit-background-clip:text; 
             color:transparent; 
             text-align:center; 
-            margin:20px 0; 
+            margin:clamp(16px, 4vw, 20px) 0; 
             cursor:pointer;
         }
+
         .glass { 
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-radius: 32px;
-            padding: 32px;
+            padding: clamp(24px, 5vw, 32px);
             margin: 20px 0;
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
             border: 1px solid rgba(255,255,255,0.2);
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
-        .form-grid { display: grid; gap: 20px; width: 100%; }
-        input, textarea, select, button {
-            padding: 18px;
+
+        .form-grid { display: grid; gap: clamp(16px, 4vw, 20px); width: 100%; }
+        input, textarea, button {
+            padding: clamp(14px, 4vw, 18px);
             border-radius: 20px;
             border: none;
-            font-size: 16px;
+            font-size: clamp(15px, 4vw, 16px);
             background: rgba(255,255,255,0.25);
             color: white;
             backdrop-filter: blur(10px);
             width: 100%;
         }
         input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.7); }
-        select { appearance: none; padding-right: 50px; cursor: pointer; }
-        .select-wrapper {
-            position: relative;
-        }
-        .select-wrapper::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            color: white;
-            font-size: 18px;
-        }
         button {
             background: var(--coral);
             color: white;
@@ -173,54 +95,85 @@
             backdrop-filter: blur(12px);
             border: 2px dashed rgba(255,255,255,0.4);
             border-radius: 28px;
-            padding: 24px;
+            padding: clamp(20px, 5vw, 24px);
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            overflow: hidden;
         }
         .photo-upload:hover {
             background: rgba(255,255,255,0.25);
             border-color: var(--coral);
             transform: translateY(-4px);
         }
-        .photo-upload i { font-size: 48px; color: var(--coral); margin-bottom: 12px; }
-        .photo-upload span { font-size: 18px; font-weight: 600; display: block; margin-bottom: 8px; }
-        .photo-upload small { font-size: 14px; opacity: 0.85; }
+        .photo-upload i { font-size: clamp(40px, 10vw, 48px); color: var(--coral); margin-bottom: 12px; }
+        .photo-upload span { font-size: clamp(16px, 4.5vw, 18px); font-weight: 600; display: block; margin-bottom: 8px; }
+        .photo-upload small { font-size: clamp(13px, 3.5vw, 14px); opacity: 0.85; }
         .photo-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
-        .preview-container { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-        .preview-img { max-width: 120px; max-height: 120px; object-fit: cover; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.4); }
-        .profile-preview { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 5px solid var(--coral); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+        .preview-container { 
+            margin-top: 16px; 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 12px; 
+            justify-content: center; 
+        }
+        .preview-img { 
+            max-width: clamp(100px, 25vw, 120px); 
+            max-height: clamp(100px, 25vw, 120px); 
+            object-fit: cover; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4); 
+        }
+        .profile-preview { 
+            width: clamp(130px, 35vw, 160px); 
+            height: clamp(130px, 35vw, 160px); 
+            object-fit: cover; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5); 
+        }
 
-        .services { display:grid; grid-template-columns:1fr; gap:24px; margin-top:20px; width:100%; }
+        /* Listings Grid - Long text now wraps perfectly */
+        .services { 
+            display:grid; 
+            grid-template-columns:1fr; 
+            gap:clamp(20px, 5vw, 24px); 
+            margin-top:20px; 
+            width:100%; 
+        }
         .card { 
             background:rgba(255,255,255,0.15); 
-            border-radius:24px; 
-            padding:24px; 
-            position:relative; 
+            border-radius:28px; 
+            padding:clamp(20px, 5vw, 24px); 
             width:100%; 
             text-align:center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            word-wrap: break-word; /* Ensures long words break */
+            overflow-wrap: break-word;
         }
         .card img.profile-img {
             width: 100%;
-            max-width: 320px;
+            max-width: clamp(260px, 70vw, 320px);
             border-radius: 20px;
             margin: 16px auto;
             box-shadow: 0 8px 24px rgba(0,0,0,0.4);
         }
         .card h3 {
             margin: 16px 0 8px;
-            font-size: 1.6rem;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
+            word-wrap: break-word;
         }
         .card p {
             margin: 10px 0;
             line-height: 1.6;
             opacity: 0.95;
+            font-size: clamp(0.95rem, 3vw, 1rem);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto; /* Helps break long words */
         }
         .card .photos {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(clamp(100px, 25vw, 110px), 1fr));
             gap: 12px;
             margin: 20px 0;
         }
@@ -229,141 +182,53 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
-        .edit, .delete { 
-            position:absolute; top:16px; right:16px; 
-            background:#ffeb3b; color:black; width:44px; height:44px; 
-            border-radius:50%; display:grid; place-items:center; 
-            cursor:pointer; font-size:22px; opacity:0; transition:opacity 0.3s; 
-        }
-        .delete { background:red; color:white; right:72px; }
-        .card:hover .edit, .card:hover .delete { opacity:1; }
 
-        .private { filter:blur(6px); user-select:none; transition: filter 0.3s; font-weight: 500; }
-        .private:hover, .private:focus { filter:none; }
-
-        .links { margin-top:20px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
-        .links a { color:var(--coral); text-decoration:none; font-weight:600; padding:10px 16px; background:rgba(255,255,255,0.1); border-radius:20px; display:flex; align-items:center; gap:8px; }
-
-        .social-input { display:flex; gap:10px; margin-bottom:10px; align-items:center; }
-        .social-input select, .social-input input { flex:1; }
-        .social-input button { flex:0 0 56px; height:56px; background:#0d9488; color:white; font-size:24px; border-radius:20px; }
-
-        .added-link { display:flex; align-items:center; gap:10px; margin-bottom:8px; background:rgba(255,255,255,0.1); padding:12px; border-radius:20px; }
-        .added-link i { font-size:20px; }
-        .added-link button { background:red; color:white; border:none; border-radius:50%; width:32px; height:32px; cursor:pointer; }
-
-        .inbox-list { display: grid; gap: 16px; }
-        .inbox-item {
-            background: rgba(255,255,255,0.15);
-            border-radius: 20px;
-            padding: 16px;
-            cursor: pointer;
-            transition: 0.3s;
+        @media (min-width: 768px) {
+            .glass { padding: clamp(28px, 5vw, 32px); max-width: 700px; }
+            .nav-container { padding:12px 30px; gap:40px; }
+            .services { gap:28px; }
         }
-        .inbox-item:hover { background: rgba(255,255,255,0.25); transform: translateY(-4px); }
-        .inbox-item.unread { border-left: 4px solid var(--coral); }
-
-        .chat-window {
-            display: none;
-            flex-direction: column;
-            height: 70vh;
-            margin-top: 20px;
-        }
-        .chat-header {
-            padding: 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            text-align: center;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        .chat-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .message {
-            max-width: 80%;
-            padding: 12px 18px;
-            border-radius: 20px;
-            line-height: 1.4;
-        }
-        .message.client { align-self: flex-end; background: var(--coral); color: white; }
-        .message.owner { align-self: flex-start; background: rgba(255,255,255,0.3); }
-        .message small { display: block; margin-top: 6px; opacity: 0.7; font-size: 0.8em; }
-        .chat-input {
-            display: flex;
-            padding: 16px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            gap: 10px;
-        }
-        .chat-input input {
-            flex: 1;
-            padding: 14px;
-            border-radius: 50px;
-            border: none;
-            background: rgba(255,255,255,0.2);
-            color: white;
-        }
-        .chat-input input::placeholder { color: rgba(255,255,255,0.7); }
-        .chat-input button {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--coral);
-            color: white;
-            border: none;
-            font-size: 1.4rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .glass { padding: 24px; }
-            .preview-img { max-width: 100px; max-height: 100px; }
-            .profile-preview { width: 130px; height: 130px; }
-            .card img.profile-img { max-width: 260px; }
+        @media (min-width: 1024px) {
+            .main-content { padding:20px; }
+            .glass { max-width: 800px; }
         }
     </style>
 </head>
 <body>
 
-<!-- DASHBOARD (always visible – no login screen) -->
 <div id="dashboardScreen">
     <div class="bottom-nav">
         <div class="nav-container">
-            <div class="nav-item active" onclick="show('home')"><i class="fas fa-home"></i><span>My Services</span></div>
-            <div class="nav-item" onclick="show('add')"><i class="fas fa-plus-circle"></i><span>New</span></div>
-            <div class="nav-item" onclick="show('messages')"><i class="fas fa-envelope"></i><span>Messages</span></div>
-            <div class="nav-item" onclick="logoutAndGoHome()"><i class="fas fa-sign-out-alt"></i><span>Sign Out</span></div>
+            <div class="nav-item active" onclick="show('home')"><i class="fas fa-home"></i><span>My Posts</span></div>
+            <div class="nav-item" onclick="show('add')"><i class="fas fa-plus-circle"></i><span>New Post</span></div>
+            <div class="nav-item" onclick="window.location.href='https://www.zoiriscleaningservices.com/blog/'"><i class="fas fa-globe"></i><span>View Blog</span></div>
+            <div class="nav-item" onclick="alert('Sign-out coming soon')"><i class="fas fa-sign-out-alt"></i><span>Sign Out</span></div>
         </div>
     </div>
 
     <div class="main-content">
-        <h1 class="logo">TrueWebX</h1>
-        <p style="text-align:center; margin-bottom:30px;" id="welcomeMsg"></p>
+        <h1 class="logo" onclick="window.location.href='https://www.zoiriscleaningservices.com/'">Zoiris Cleaning</h1>
+        <p style="text-align:center; margin-bottom:30px; font-size:clamp(1rem, 3vw, 1.1rem);">Manage your blog posts</p>
 
+        <!-- MY POSTS -->
         <div id="home" class="glass">
-            <h2 style="text-align:center; margin-bottom:24px;">My Published Services</h2>
-            <div class="services" id="list"></div>
+            <h2 style="text-align:center; margin-bottom:24px; font-size:clamp(1.8rem, 6vw, 2.2rem);">My Published Posts</h2>
+            <div class="services" id="list">
+                <p style="text-align:center; padding:40px; opacity:0.9; font-size:clamp(1rem, 3vw, 1.1rem);">Loading your posts...</p>
+            </div>
         </div>
 
+        <!-- ADD NEW POST -->
         <div id="add" class="glass" style="display:none;">
-            <h2>Publish New Service</h2>
+            <h2 style="text-align:center; margin-bottom:24px; font-size:clamp(1.8rem, 6vw, 2.2rem);">Write New Blog Post</h2>
             <form class="form-grid" id="addForm">
-                <input type="text" id="name" placeholder="Business / Company Name" required>
-
-                <input type="text" id="location" placeholder="Location (e.g. Miami)" required>
-
-                <input type="tel" id="phone" placeholder="Phone Number" required>
-                <input type="email" id="gmail" placeholder="Email" required>
-                <textarea id="desc" placeholder="Detailed Description" rows="5" required></textarea>
+                <input type="text" id="name" placeholder="Post Title *" required>
+                <textarea id="desc" placeholder="Write your full blog post content here... *" rows="8" required></textarea>
 
                 <div class="photo-upload">
                     <i class="fas fa-camera"></i>
-                    <span>Upload Profile Photo / Logo</span>
-                    <small>(Required – one image)</small>
+                    <span>Upload Featured Image *</span>
+                    <small>Required – one image</small>
                     <input type="file" id="profile" accept="image/*" required>
                     <div class="preview-container" id="profilePreview"></div>
                 </div>
@@ -371,125 +236,27 @@
                 <div class="photo-upload">
                     <i class="fas fa-images"></i>
                     <span>Upload Gallery Photos</span>
-                    <small>(Optional – select multiple)</small>
+                    <small>Optional – select multiple</small>
                     <input type="file" id="photos" accept="image/*" multiple>
                     <div class="preview-container" id="galleryPreview"></div>
                 </div>
 
-                <div id="social-container">
-                    <h3 style="margin:20px 0 10px;">Social Media (optional)</h3>
-                    <div class="social-input">
-                        <select id="social-type">
-                            <option value="instagram">Instagram</option>
-                            <option value="tiktok">TikTok</option>
-                            <option value="facebook">Facebook</option>
-                            <option value="twitter">X (Twitter)</option>
-                            <option value="linkedin">LinkedIn</option>
-                            <option value="youtube">YouTube</option>
-                            <option value="whatsapp">WhatsApp</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <input type="url" id="social-url" placeholder="Full URL">
-                        <button type="button" onclick="addSocialLink()">+</button>
-                    </div>
-                    <div id="added-socials"></div>
-                </div>
-
-                <button type="button" id="publishBtn">PUBLISH NOW</button>
+                <button type="button" id="publishBtn">PUBLISH POST</button>
             </form>
-            <p id="msg"></p>
-        </div>
-
-        <div id="edit" class="glass" style="display:none;">
-            <h2>Edit Service</h2>
-            <form class="form-grid" id="editForm">
-                <input type="text" id="edit-name" placeholder="Business / Company Name" required>
-
-                <input type="text" id="edit-location" placeholder="Location (e.g. Miami)" required>
-
-                <input type="tel" id="edit-phone" placeholder="Phone Number" required>
-                <input type="email" id="edit-gmail" placeholder="Email" required>
-                <textarea id="edit-desc" placeholder="Detailed Description" rows="5" required></textarea>
-
-                <div class="photo-upload">
-                    <i class="fas fa-camera"></i>
-                    <span>Change Profile Photo / Logo</span>
-                    <small>(Optional)</small>
-                    <input type="file" id="edit-profile" accept="image/*">
-                    <div class="preview-container" id="editProfilePreview"></div>
-                </div>
-
-                <div class="photo-upload">
-                    <i class="fas fa-images"></i>
-                    <span>Add More Gallery Photos</span>
-                    <small>(Optional)</small>
-                    <input type="file" id="edit-photos" accept="image/*" multiple>
-                    <div class="preview-container" id="editGalleryPreview"></div>
-                </div>
-
-                <div id="edit-social-container">
-                    <h3 style="margin:20px 0 10px;">Social Media</h3>
-                    <div class="social-input">
-                        <select id="edit-social-type">
-                            <option value="instagram">Instagram</option>
-                            <option value="tiktok">TikTok</option>
-                            <option value="facebook">Facebook</option>
-                            <option value="twitter">X (Twitter)</option>
-                            <option value="linkedin">LinkedIn</option>
-                            <option value="youtube">YouTube</option>
-                            <option value="whatsapp">WhatsApp</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <input type="url" id="edit-social-url" placeholder="Full URL">
-                        <button type="button" onclick="addSocialLink(true)">+</button>
-                    </div>
-                    <div id="edit-added-socials"></div>
-                </div>
-
-                <button type="button" onclick="updateService()">SAVE CHANGES</button>
-            </form>
-            <p id="edit-msg"></p>
-        </div>
-
-        <div id="messages" class="glass" style="display:none;">
-            <h2>Messages</h2>
-            <div id="inboxList" class="inbox-list"></div>
-
-            <div id="chatWindow" class="glass chat-window">
-                <div class="chat-header" id="chatHeader">Select a conversation</div>
-                <div class="chat-body" id="chatBody"></div>
-                <div class="chat-input">
-                    <input type="text" id="replyInput" placeholder="Type your reply...">
-                    <button onclick="sendReply()"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
+            <p id="msg" style="text-align:center; margin-top:20px; font-size:clamp(0.95rem, 3vw, 1rem);"></p>
         </div>
     </div>
 </div>
 
 <script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyAHZ5v86FWK9uU-9LfZKaBsMR6QQ92JqQM",
-        authDomain: "truewebx-78890.firebaseapp.com",
-        projectId: "truewebx-78890",
-        storageBucket: "truewebx-78890.firebasestorage.app",
-        messagingSenderId: "578628752073",
-        appId: "1:578628752073:web:c916cc3f234865a2947318"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-
     const SUPABASE_URL = 'https://dwxbzltxsdeshmmtcycv.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_4PWdqRYFR0E-tp-OjdTP3Q_S_5qvRbp';
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     const list = document.getElementById('list');
     const msg = document.getElementById('msg');
-    const welcomeMsg = document.getElementById('welcomeMsg');
-    let currentEditId = null;
-    let currentSocialLinks = [];
     let isPublishing = false;
-    let currentChatServiceId = null;
+    let allMyPosts = [];
 
     function previewImage(file, containerId, isProfile = false) {
         const reader = new FileReader();
@@ -519,121 +286,66 @@
 
     document.getElementById('profile').addEventListener('change', e => e.target.files[0] && previewImage(e.target.files[0], 'profilePreview', true));
     document.getElementById('photos').addEventListener('change', e => e.target.files.length && previewMultipleImages(e.target.files, 'galleryPreview'));
-    document.getElementById('edit-profile').addEventListener('change', e => e.target.files[0] ? previewImage(e.target.files[0], 'editProfilePreview', true) : document.getElementById('editProfilePreview').innerHTML = '');
-    document.getElementById('edit-photos').addEventListener('change', e => e.target.files.length && previewMultipleImages(e.target.files, 'editGalleryPreview'));
-
-    function logoutAndGoHome() {
-        auth.signOut().then(() => {
-            window.location.href = 'https://truewebx.site/';
-        });
-    }
-
-    auth.onAuthStateChanged(user => {
-        if (user) loadDashboard(user);
-    });
-
-    async function loadDashboard(user = auth.currentUser) {
-        if (!user) return;
-        welcomeMsg.textContent = `Hello ${user.displayName || user.email.split('@')[0]}!`;
-
-        const { data: services } = await supabaseClient
-            .from('services')
-            .select('*')
-            .eq('owner_id', user.uid)
-            .order('created_at', { ascending: false });
-
-        list.innerHTML = services && services.length > 0
-            ? services.map(s => `
-                <div class="card">
-                    <div class="edit" onclick="editService('${s.id}')"><i class="fas fa-edit"></i></div>
-                    <div class="delete" onclick="deleteService('${s.id}')">×</div>
-                    
-                    <img src="${s.profile || 'https://via.placeholder.com/600x400/0d9488/ffffff?text=Upload+Your+Logo'}" class="profile-img" alt="Profile">
-                    
-                    <h3>${s.name || 'No business name'}</h3>
-                    <p><strong>${s.city || 'No location'}</strong></p>
-                    <p>${s.description || 'No description'}</p>
-                    
-                    ${Array.isArray(s.photos) && s.photos.length > 0 ? `
-                    <div class="photos">
-                        ${s.photos.map(p => `<img src="${p}" alt="Gallery photo">`).join('')}
-                    </div>` : ''}
-                    
-                    <p>Phone: <span class="private">${s.phone || 'Not available'}</span></p>
-                    <p>Email: <span class="private">${s.gmail || 'Not available'}</span></p>
-
-                    ${Array.isArray(s.social_links) && s.social_links.length > 0 ? `
-                    <div class="links">
-                        ${s.social_links.map(link => `
-                            <a href="${link.url}" target="_blank">
-                                <i class="fab fa-${link.type.toLowerCase()}"></i> ${link.type}
-                            </a>
-                        `).join('')}
-                    </div>` : ''}
-                </div>
-            `).join('')
-            : '<p style="text-align:center; padding:40px; opacity:0.9;">You have no published services yet. Create a new one!</p>';
-    }
 
     function show(section) {
-        ['home', 'add', 'edit', 'messages'].forEach(s => document.getElementById(s).style.display = s === section ? 'block' : 'none');
-        document.querySelectorAll('.nav-item').forEach((el, i) => el.classList.toggle('active', i === (section === 'home' ? 0 : section === 'add' ? 1 : section === 'messages' ? 2 : 3)));
-        if (section === 'home') loadDashboard();
-        if (section === 'add') {
-            currentSocialLinks = [];
-            document.getElementById('added-socials').innerHTML = '';
-            document.getElementById('publishBtn').disabled = false;
-            document.getElementById('addForm').reset();
-            document.getElementById('profilePreview').innerHTML = '';
-            document.getElementById('galleryPreview').innerHTML = '';
-        }
-        if (section === 'messages') loadInbox();
+        ['home', 'add'].forEach(s => document.getElementById(s).style.display = s === section ? 'block' : 'none');
+        document.querySelectorAll('.nav-item').forEach((el, i) => el.classList.toggle('active', i === (section === 'home' ? 0 : 1)));
+        if (section === 'home') loadMyPosts();
+        if (section === 'add') resetForm();
     }
 
-    function addSocialLink(isEdit = false) {
-        const select = isEdit ? document.getElementById('edit-social-type') : document.getElementById('social-type');
-        const input = isEdit ? document.getElementById('edit-social-url') : document.getElementById('social-url');
-        const type = select.value;
-        const url = input.value.trim();
-        if (url && url.startsWith('http')) {
-            currentSocialLinks.push({ type, url });
-            updateAddedSocials(isEdit);
-            input.value = '';
-        } else if (url) {
-            alert('Please enter a valid URL (starting with https://)');
-        }
+    function resetForm() {
+        document.getElementById('addForm').reset();
+        document.getElementById('profilePreview').innerHTML = '';
+        document.getElementById('galleryPreview').innerHTML = '';
+        document.getElementById('publishBtn').disabled = false;
+        msg.innerHTML = '';
     }
 
-    function updateAddedSocials(isEdit = false) {
-        const container = isEdit ? 'edit-added-socials' : 'added-socials';
-        document.getElementById(container).innerHTML = currentSocialLinks.map((link, i) => `
-            <div class="added-link">
-                <i class="fab fa-${link.type.toLowerCase()}"></i>
-                <span>${link.type}: ${link.url}</span>
-                <button onclick="removeSocialLink(${i}, ${isEdit})">×</button>
+    async function loadMyPosts() {
+        list.innerHTML = '<p style="text-align:center; padding:40px; opacity:0.9; font-size:clamp(1rem, 3vw, 1.1rem);">Loading...</p>';
+
+        const { data: posts, error } = await supabaseClient
+            .from('services')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error || !posts || posts.length === 0) {
+            list.innerHTML = '<p style="text-align:center; padding:40px; opacity:0.9; font-size:clamp(1rem, 3vw, 1.1rem);">No posts published yet.<br>Be the first to write one!</p>';
+            return;
+        }
+
+        allMyPosts = posts;
+
+        list.innerHTML = posts.map(p => `
+            <div class="card">
+                <img src="${p.profile || 'https://via.placeholder.com/600x400/0d9488/ffffff?text=No+Image'}" 
+                     alt="${p.name}" class="profile-img">
+
+                <h3>${p.name || 'Untitled Post'}</h3>
+                <p>${p.description || 'No content.'}</p>
+
+                ${Array.isArray(p.photos) && p.photos.length > 0 ? `
+                <div class="photos">
+                    ${p.photos.map(photo => `<img src="${photo}" alt="Gallery" loading="lazy">`).join('')}
+                </div>` : ''}
+
+                <small style="display:block; margin-top:16px; opacity:0.8; font-size:clamp(0.85rem, 2.5vw, 0.95rem);">
+                    Published: ${new Date(p.created_at).toLocaleDateString()}
+                </small>
             </div>
         `).join('');
     }
 
-    function removeSocialLink(index, isEdit = false) {
-        currentSocialLinks.splice(index, 1);
-        updateAddedSocials(isEdit);
-    }
-
-    document.getElementById('publishBtn').onclick = addService;
-
-    async function addService() {
+    document.getElementById('publishBtn').onclick = async function() {
         if (isPublishing) return;
 
-        const name = document.getElementById('name').value.trim();
-        const location = document.getElementById('location').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const gmail = document.getElementById('gmail').value.trim();
-        const desc = document.getElementById('desc').value.trim();
+        const title = document.getElementById('name').value.trim();
+        const content = document.getElementById('desc').value.trim();
         const profileFile = document.getElementById('profile').files[0];
 
-        if (!name || !location || !phone || !gmail || !desc || !profileFile) {
-            msg.innerHTML = '<p style="color:red;">Required fields are missing!</p>';
+        if (!title || !content || !profileFile) {
+            msg.innerHTML = '<p style="color:#ffeb3b; font-size:clamp(0.95rem, 3vw, 1rem);">Title, content, and featured image are required!</p>';
             return;
         }
 
@@ -641,240 +353,68 @@
         document.getElementById('publishBtn').disabled = true;
         document.getElementById('publishBtn').textContent = 'PUBLISHING...';
 
-        const baseSlug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        const locationSlug = location.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        const slug = `${baseSlug}-${locationSlug}`.slice(0, 100);
-
-        const user = auth.currentUser;
-        if (!user) return;
+        const baseSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        const slug = `${baseSlug}-${Date.now()}`.slice(0, 100);
 
         try {
-            const fileExt = profileFile.name.split('.').pop();
-            const fileName = `profile_${crypto.randomUUID()}.${fileExt}`;
-            const { error: profileError } = await supabaseClient.storage.from('profiles').upload(fileName, profileFile);
+            const profileExt = profileFile.name.split('.').pop();
+            const profileName = `featured_${crypto.randomUUID()}.${profileExt}`;
+            const { error: profileError } = await supabaseClient.storage.from('profiles').upload(profileName, profileFile);
             if (profileError) throw profileError;
-            const { data: profileData } = supabaseClient.storage.from('profiles').getPublicUrl(fileName);
-            const profileUrl = profileData.publicUrl;
+            const { data: profileData } = supabaseClient.storage.from('profiles').getPublicUrl(profileName);
 
             const photoFiles = document.getElementById('photos').files;
-            const photosUrls = [];
+            const photoUrls = [];
             for (let file of photoFiles) {
                 if (file) {
-                    const fileExt = file.name.split('.').pop();
-                    const fileName = `photo_${crypto.randomUUID()}.${fileExt}`;
-                    const { error } = await supabaseClient.storage.from('photos').upload(fileName, file);
-                    if (error) continue;
-                    const { data } = supabaseClient.storage.from('photos').getPublicUrl(fileName);
-                    photosUrls.push(data.publicUrl);
+                    const ext = file.name.split('.').pop();
+                    const name = `gallery_${crypto.randomUUID()}.${ext}`;
+                    const { error } = await supabaseClient.storage.from('photos').upload(name, file);
+                    if (!error) {
+                        const { data } = supabaseClient.storage.from('photos').getPublicUrl(name);
+                        photoUrls.push(data.publicUrl);
+                    }
                 }
             }
 
-            const service = {
-                id: crypto.randomUUID(),
-                owner_id: user.uid,
-                name,
-                city: location,
-                phone,
-                gmail,
-                description: desc,
-                profile: profileUrl,
-                photos: photosUrls,
-                social_links: currentSocialLinks,
-                slug: slug,
+            const newId = crypto.randomUUID();
+
+            const newPost = {
+                id: newId,
+                name: title,
+                description: content,
+                profile: profileData.publicUrl,
+                photos: photoUrls.length > 0 ? photoUrls : null,
+                slug,
                 created_at: new Date().toISOString()
             };
 
-            const { error } = await supabaseClient.from('services').insert(service);
+            const { error } = await supabaseClient.from('services').insert(newPost);
             if (error) throw error;
 
-            msg.innerHTML = `<p style="color:#0f0;">Published successfully!<br>Your public page: <strong>https://truewebx.site/#${slug}</strong></p>`;
-            document.getElementById('addForm').reset();
-            currentSocialLinks = [];
-            document.getElementById('added-socials').innerHTML = '';
-            document.getElementById('profilePreview').innerHTML = '';
-            document.getElementById('galleryPreview').innerHTML = '';
-            setTimeout(() => { show('home'); msg.innerHTML = ''; }, 6000);
+            msg.innerHTML = `
+                <p style="color:#0f0; font-weight:bold; font-size:clamp(0.95rem, 3vw, 1rem);">
+                    Post published successfully!<br><br>
+                    It will appear on your blog shortly.
+                </p>`;
+            
+            resetForm();
+            setTimeout(() => {
+                show('home');
+                msg.innerHTML = '';
+            }, 6000);
+
         } catch (err) {
-            msg.innerHTML = `<p style="color:red;">Error: ${err.message || 'Unknown error'}</p>`;
+            msg.innerHTML = `<p style="color:red; font-size:clamp(0.95rem, 3vw, 1rem);">Error: ${err.message || 'Failed to publish'}</p>`;
             console.error(err);
         } finally {
             isPublishing = false;
             document.getElementById('publishBtn').disabled = false;
-            document.getElementById('publishBtn').textContent = 'PUBLISH NOW';
+            document.getElementById('publishBtn').textContent = 'PUBLISH POST';
         }
-    }
+    };
 
-    async function editService(id) {
-        currentEditId = id;
-        const { data: service } = await supabaseClient.from('services').select('*').eq('id', id).single();
-
-        document.getElementById('edit-name').value = service.name || '';
-        document.getElementById('edit-location').value = service.city || '';
-        document.getElementById('edit-phone').value = service.phone || '';
-        document.getElementById('edit-gmail').value = service.gmail || '';
-        document.getElementById('edit-desc').value = service.description || '';
-
-        currentSocialLinks = Array.isArray(service.social_links) ? service.social_links : [];
-        updateAddedSocials(true);
-        document.getElementById('editProfilePreview').innerHTML = '';
-        document.getElementById('editGalleryPreview').innerHTML = '';
-
-        show('edit');
-    }
-
-    async function updateService() {
-        if (!currentEditId) return;
-
-        const name = document.getElementById('edit-name').value.trim();
-        const location = document.getElementById('edit-location').value.trim();
-        const phone = document.getElementById('edit-phone').value.trim();
-        const gmail = document.getElementById('edit-gmail').value.trim();
-        const desc = document.getElementById('edit-desc').value.trim();
-
-        if (!name || !location || !phone || !gmail || !desc) {
-            document.getElementById('edit-msg').innerHTML = '<p style="color:red;">Required fields cannot be empty</p>';
-            return;
-        }
-
-        const baseSlug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        const locationSlug = location.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        const slug = `${baseSlug}-${locationSlug}`.slice(0, 100);
-
-        try {
-            const profileFile = document.getElementById('edit-profile').files[0];
-            const { data: current } = await supabaseClient.from('services').select('profile, photos').eq('id', currentEditId).single();
-
-            let profileUrl = current.profile;
-            if (profileFile) {
-                const fileExt = profileFile.name.split('.').pop();
-                const fileName = `profile_${crypto.randomUUID()}.${fileExt}`;
-                const { error } = await supabaseClient.storage.from('profiles').upload(fileName, profileFile);
-                if (error) throw error;
-                const { data } = supabaseClient.storage.from('profiles').getPublicUrl(fileName);
-                profileUrl = data.publicUrl;
-            }
-
-            let photosUrls = current.photos || [];
-            const photoFiles = document.getElementById('edit-photos').files;
-            for (let file of photoFiles) {
-                if (file) {
-                    const fileExt = file.name.split('.').pop();
-                    const fileName = `photo_${crypto.randomUUID()}.${fileExt}`;
-                    const { error } = await supabaseClient.storage.from('photos').upload(fileName, file);
-                    if (error) throw error;
-                    const { data } = supabaseClient.storage.from('photos').getPublicUrl(fileName);
-                    photosUrls.push(data.publicUrl);
-                }
-            }
-
-            const updates = {
-                name,
-                city: location,
-                phone,
-                gmail,
-                description: desc,
-                profile: profileUrl,
-                photos: photosUrls,
-                social_links: currentSocialLinks,
-                slug: slug
-            };
-
-            const { error } = await supabaseClient.from('services').update(updates).eq('id', currentEditId);
-            if (error) throw error;
-
-            document.getElementById('edit-msg').innerHTML = '<p style="color:#0f0;">Updated successfully! New URL: https://truewebx.site/#' + slug + '</p>';
-            setTimeout(() => { show('home'); document.getElementById('edit-msg').innerHTML = ''; }, 4000);
-        } catch (err) {
-            document.getElementById('edit-msg').innerHTML = `<p style="color:red;">Error: ${err.message || 'Unknown error'}</p>`;
-        }
-    }
-
-    async function deleteService(id) {
-        if (confirm('Are you sure you want to delete this service?')) {
-            const { error } = await supabaseClient.from('services').delete().eq('id', id);
-            if (error) alert('Error: ' + error.message);
-            loadDashboard();
-        }
-    }
-
-    async function loadInbox() {
-        const user = auth.currentUser;
-        if (!user) return;
-
-        const { data: services } = await supabaseClient.from('services').select('id, name').eq('owner_id', user.uid);
-        if (!services || services.length === 0) {
-            document.getElementById('inboxList').innerHTML = '<p style="text-align:center;">No services yet</p>';
-            return;
-        }
-
-        const { data: messages } = await supabaseClient.from('messages')
-            .select('service_id, text, created_at, is_from_owner')
-            .in('service_id', services.map(s => s.id))
-            .order('created_at', { ascending: false });
-
-        const chats = {};
-        messages.forEach(m => {
-            if (!chats[m.service_id]) {
-                chats[m.service_id] = {
-                    name: services.find(s => s.id === m.service_id)?.name || 'Unknown',
-                    lastMessage: m.text,
-                    time: m.created_at,
-                    unread: !m.is_from_owner
-                };
-            }
-        });
-
-        document.getElementById('inboxList').innerHTML = Object.keys(chats).length ? 
-            Object.values(chats).map(chat => `
-                <div class="inbox-item ${chat.unread ? 'unread' : ''}" onclick="openChat('${services.find(s => s.name === chat.name)?.id}', '${chat.name.replace(/'/g, "\\'")}')">
-                    <strong>${chat.name}</strong>
-                    <div style="opacity:0.9;font-size:0.95rem;margin-top:6px;">${chat.lastMessage}</div>
-                    <small>${new Date(chat.time).toLocaleString()}</small>
-                </div>
-            `).join('') : '<p style="text-align:center; opacity:0.8;">No messages yet</p>';
-    }
-
-    async function openChat(serviceId, name) {
-        currentChatServiceId = serviceId;
-        document.getElementById('chatHeader').textContent = `Chat – ${name}`;
-        document.getElementById('chatWindow').style.display = 'flex';
-        loadChatMessages();
-    }
-
-    async function loadChatMessages() {
-        const { data } = await supabaseClient.from('messages')
-            .select('*')
-            .eq('service_id', currentChatServiceId)
-            .order('created_at', { ascending: true });
-
-        const body = document.getElementById('chatBody');
-        body.innerHTML = data.map(m => `
-            <div class="message ${m.is_from_owner ? 'owner' : 'client'}">
-                ${m.text}
-                <small>${new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</small>
-            </div>
-        `).join('');
-        body.scrollTop = body.scrollHeight;
-    }
-
-    async function sendReply() {
-        const input = document.getElementById('replyInput');
-        const text = input.value.trim();
-        if (!text || !currentChatServiceId) return;
-
-        await supabaseClient.from('messages').insert({
-            service_id: currentChatServiceId,
-            text,
-            is_from_owner: true
-        });
-
-        input.value = '';
-        loadChatMessages();
-    }
-
-    document.getElementById('replyInput')?.addEventListener('keypress', e => {
-        if (e.key === 'Enter') sendReply();
-    });
+    window.onload = () => show('home');
 </script>
-</body> 
+</body>
 </html> 
