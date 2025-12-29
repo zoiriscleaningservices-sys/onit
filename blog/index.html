@@ -1090,7 +1090,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- ==== TrueWebX Blog Embed (Auto-Swiping Gallery on Single Post) ==== -->
+<!-- ==== TrueWebX Blog Embed (Touch-Swipeable + Auto-Swiping Gallery) ==== -->
 <section class="truewebx-blog-section" aria-labelledby="truewebx-blog-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
@@ -1118,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             color: transparent;
         }
 
-        /* Blog Grid */
+        /* Blog Grid - Same as before (perfect fit) */
         .truewebx-blog-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1234,7 +1234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             white-space: pre-wrap;
         }
 
-        /* Auto-Swiping Gallery */
+        /* Touch + Auto Swipe Gallery */
         .gallery-wrapper {
             position: relative;
             width: 100%;
@@ -1243,34 +1243,21 @@ document.addEventListener('DOMContentLoaded', () => {
             overflow: hidden;
             border-radius: 24px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            user-select: none;
+            touch-action: pan-y;
         }
         .gallery-slider {
             display: flex;
-            width: 100%;
-            animation: autoSwipe 20s linear infinite;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: max-content;
         }
         .gallery-slider img {
             width: 100%;
+            max-width: 900px;
             height: 500px;
             object-fit: cover;
             flex-shrink: 0;
-            scroll-snap-align: start;
-        }
-        @keyframes autoSwipe {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Duplicate for seamless loop */
-        .gallery-duplicate {
-            display: flex;
-            width: 100%;
-        }
-        .gallery-duplicate img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            flex-shrink: 0;
+            pointer-events: none;
         }
 
         .back-btn {
@@ -1299,17 +1286,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         @media (min-width: 640px) {
-            .truewebx-blog-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 36px;
-            }
+            .truewebx-blog-grid { grid-template-columns: repeat(2, 1fr); gap: 36px; }
             .truewebx-blog-card img.featured { height: 260px; }
         }
         @media (min-width: 1024px) {
-            .truewebx-blog-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 40px;
-            }
+            .truewebx-blog-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; }
             .truewebx-blog-card img.featured { height: 280px; }
             .truewebx-single-post { padding: 60px; }
         }
@@ -1360,7 +1341,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function setMetaTags(blog) {
             document.title = `${blog.name} | Zoiris Cleaning Services Blog`;
 
-            const desc = blog.description ? blog.description.substring(0, 155) + '...' : 'Read the latest insights and tips from Zoiris Cleaning Services.';
+            const desc = blog.description ? blog.description.substring(0, 155) + '...' : 'Read the latest insights from Zoiris Cleaning Services.';
             let metaDesc = document.querySelector('meta[name="description"]');
             if (!metaDesc) {
                 metaDesc = document.createElement('meta');
@@ -1427,13 +1408,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let galleryHTML = '';
             if (Array.isArray(blog.photos) && blog.photos.length > 0) {
-                const images = blog.photos.map(p => `<img src="${p}" alt="Blog image" loading="lazy">`).join('');
                 galleryHTML = `
-                <div class="gallery-wrapper">
-                    <div class="gallery-slider">
-                        ${images}
-                        <!-- Duplicate for seamless loop -->
-                        ${images}
+                <div class="gallery-wrapper" id="galleryWrapper">
+                    <div class="gallery-slider" id="gallerySlider">
+                        ${blog.photos.map(p => `<img src="${p}" alt="Blog gallery image" loading="lazy">`).join('')}
                     </div>
                 </div>`;
             }
@@ -1463,6 +1441,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
             history.pushState({}, '', `#${slug}`);
             window.scrollTo(0, 0);
+
+            // Initialize swipe + auto-swipe if gallery exists
+            if (blog.photos && blog.photos.length > 1) {
+                initGallery(blog.photos.length);
+            }
+        }
+
+        // Touch swipe + auto-swipe logic
+        function initGallery(imageCount) {
+            const slider = document.getElementById('gallerySlider');
+            const wrapper = document.getElementById('galleryWrapper');
+            let currentIndex = 0;
+            let startX = 0;
+            let isDragging = false;
+            let autoSwipeInterval;
+
+            const slideWidth = wrapper.clientWidth;
+
+            // Auto-swipe every 8 seconds
+            function startAutoSwipe() {
+                autoSwipeInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % imageCount;
+                    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                }, 8000);
+            }
+
+            function stopAutoSwipe() {
+                clearInterval(autoSwipeInterval);
+            }
+
+            // Touch/Mouse events
+            wrapper.addEventListener('touchstart', e => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+                stopAutoSwipe();
+            });
+
+            wrapper.addEventListener('touchmove', e => {
+                if (!isDragging) return;
+                e.preventDefault();
+            });
+
+            wrapper.addEventListener('touchend', e => {
+                if (!isDragging) return;
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > 50) { // swipe threshold
+                    if (diff > 0) {
+                        // swipe left → next
+                        currentIndex = (currentIndex + 1) % imageCount;
+                    } else {
+                        // swipe right → prev
+                        currentIndex = (currentIndex - 1 + imageCount) % imageCount;
+                    }
+                    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                }
+
+                isDragging = false;
+                startAutoSwipe();
+            });
+
+            // Mouse drag support (for desktop testing)
+            wrapper.addEventListener('mousedown', e => {
+                startX = e.clientX;
+                isDragging = true;
+                stopAutoSwipe();
+                wrapper.style.cursor = 'grabbing';
+            });
+
+            wrapper.addEventListener('mousemove', e => {
+                if (!isDragging) return;
+                e.preventDefault();
+            });
+
+            wrapper.addEventListener('mouseup', e => {
+                if (!isDragging) return;
+                const endX = e.clientX;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) currentIndex = (currentIndex + 1) % imageCount;
+                    else currentIndex = (currentIndex - 1 + imageCount) % imageCount;
+                    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                }
+
+                isDragging = false;
+                wrapper.style.cursor = 'grab';
+                startAutoSwipe();
+            });
+
+            wrapper.addEventListener('mouseleave', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    wrapper.style.cursor = 'grab';
+                    startAutoSwipe();
+                }
+            });
+
+            // Start auto-swipe
+            startAutoSwipe();
+
+            // Handle resize
+            window.addEventListener('resize', () => {
+                slider.style.transition = 'none';
+                slider.style.transform = `translateX(-${currentIndex * wrapper.clientWidth}px)`;
+                setTimeout(() => slider.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)', 50);
+            });
         }
 
         function checkHashAndRender() {
@@ -1478,8 +1564,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadBlogs();
     </script>
 </section>
-<!-- ==== End Blog Embed with Auto-Swiping Infinite Gallery ==== -->
-
+<!-- ==== End Blog Embed with Touch-Swipe + Auto Gallery ==== -->
 
 
 
