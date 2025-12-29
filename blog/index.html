@@ -1087,10 +1087,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-<!-- ==== TrueWebX Blog Embed (Perfect Touch-Swipe + Auto-Swipe Gallery) ==== -->
+<!-- ==== TrueWebX Blog Embed (Full-Picture Swipe Gallery with Arrows on Desktop) ==== -->
 <section class="truewebx-blog-section" aria-labelledby="truewebx-blog-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
@@ -1118,7 +1115,7 @@ document.addEventListener('DOMContentLoaded', () => {
             color: transparent;
         }
 
-        /* Blog Grid - Same perfect fit as before */
+        /* Blog Grid (unchanged - perfect fit) */
         .truewebx-blog-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1234,7 +1231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             white-space: pre-wrap;
         }
 
-        /* Perfect Frame-Fit Swipe Gallery */
+        /* Full-Picture Gallery with Arrows (Desktop) + Touch Swipe (Mobile) */
         .gallery-wrapper {
             position: relative;
             width: 100%;
@@ -1243,20 +1240,47 @@ document.addEventListener('DOMContentLoaded', () => {
             overflow: hidden;
             border-radius: 24px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-            aspect-ratio: 16 / 9; /* Consistent frame ratio */
-            background: #000;
         }
         .gallery-slider {
             display: flex;
-            height: 100%;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .gallery-slider img {
             width: 100%;
-            height: 100%;
-            object-fit: contain; /* Fits perfectly in frame without cropping */
+            height: 500px;
+            object-fit: cover; /* Full picture, cropped to fill frame beautifully */
             flex-shrink: 0;
-            background: #000;
+        }
+
+        /* Arrows - Visible only on desktop */
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+        .gallery-arrow:hover {
+            opacity: 1;
+            background: rgba(0,0,0,0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .gallery-arrow.prev { left: 20px; }
+        .gallery-arrow.next { right: 20px; }
+
+        /* Hide arrows on mobile */
+        @media (max-width: 768px) {
+            .gallery-arrow { display: none; }
         }
 
         .back-btn {
@@ -1277,11 +1301,6 @@ document.addEventListener('DOMContentLoaded', () => {
             text-align: center;
             margin-top: 70px;
             font-size: clamp(0.9rem, 2.5vw, 1rem);
-        }
-        .truewebx-footer-link a {
-            color: white;
-            text-decoration: underline;
-            font-weight: 600;
         }
 
         @media (min-width: 640px) {
@@ -1339,7 +1358,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function setMetaTags(blog) {
             document.title = `${blog.name} | Zoiris Cleaning Services Blog`;
-
             const desc = blog.description ? blog.description.substring(0, 155) + '...' : 'Read the latest insights from Zoiris Cleaning Services.';
             let metaDesc = document.querySelector('meta[name="description"]');
             if (!metaDesc) {
@@ -1348,21 +1366,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.head.appendChild(metaDesc);
             }
             metaDesc.content = desc;
-
-            const setOG = (property, content) => {
-                let tag = document.querySelector(`meta[property="og:${property}"]`);
-                if (!tag) {
-                    tag = document.createElement('meta');
-                    tag.setAttribute('property', `og:${property}`);
-                    document.head.appendChild(tag);
-                }
-                tag.content = content;
-            };
-            setOG('title', document.title);
-            setOG('description', desc);
-            setOG('url', window.location.href);
-            setOG('type', 'article');
-            setOG('image', blog.profile || 'https://truewebx.site/og-image.jpg');
         }
 
         function resetMetaTags() {
@@ -1384,7 +1387,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             ${new Date(b.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
                         </div>
                         <h2>${b.name}</h2>
-                        <p class="excerpt">${b.description ? b.description.substring(0, 150) + '...' : 'Read this insightful post from Zoiris Cleaning Services.'}</p>
+                        <p class="excerpt">${b.description ? b.description.substring(0, 150) + '...' : 'Read this insightful post.'}</p>
                         <a href="#${b.slug}" class="read-more" onclick="showSinglePost('${b.slug}'); return false;">
                             Read Post →
                         </a>
@@ -1407,11 +1410,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let galleryHTML = '';
             if (Array.isArray(blog.photos) && blog.photos.length > 0) {
+                const images = blog.photos.map(p => `<img src="${p}" alt="Gallery image" loading="lazy">`).join('');
                 galleryHTML = `
                 <div class="gallery-wrapper" id="galleryWrapper">
                     <div class="gallery-slider" id="gallerySlider">
-                        ${blog.photos.map(p => `<img src="${p}" alt="Blog gallery image" loading="lazy">`).join('')}
+                        ${images}
                     </div>
+                    <div class="gallery-arrow prev" id="prevBtn"><i class="fas fa-chevron-left"></i></div>
+                    <div class="gallery-arrow next" id="nextBtn"><i class="fas fa-chevron-right"></i></div>
                 </div>`;
             }
 
@@ -1446,102 +1452,74 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Perfect swipe + auto-swipe gallery
-        function initGallery(imageCount) {
+        function initGallery(count) {
             const wrapper = document.getElementById('galleryWrapper');
             const slider = document.getElementById('gallerySlider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
-            let startX = 0;
-            let isDragging = false;
-            let autoSwipeTimer;
+            let autoTimer;
 
-            const slideWidth = wrapper.clientWidth;
-
-            function goToSlide(index) {
-                currentIndex = index;
+            function updateSlide() {
                 slider.style.transform = `translateX(-${currentIndex * 100}%)`;
             }
 
             function nextSlide() {
-                currentIndex = (currentIndex + 1) % imageCount;
-                goToSlide(currentIndex);
+                currentIndex = (currentIndex + 1) % count;
+                updateSlide();
             }
 
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + count) % count;
+                updateSlide();
+            }
+
+            // Auto-swipe on desktop only
             function startAutoSwipe() {
-                autoSwipeTimer = setInterval(nextSlide, 7000); // Auto-swipe every 7 seconds
+                if (window.innerWidth > 768) {
+                    autoTimer = setInterval(nextSlide, 8000);
+                }
             }
 
             function stopAutoSwipe() {
-                clearInterval(autoSwipeTimer);
+                clearInterval(autoTimer);
             }
 
-            // Touch events
+            // Arrows (desktop)
+            nextBtn.onclick = () => {
+                stopAutoSwipe();
+                nextSlide();
+                startAutoSwipe();
+            };
+            prevBtn.onclick = () => {
+                stopAutoSwipe();
+                prevSlide();
+                startAutoSwipe();
+            };
+
+            // Touch swipe (mobile)
+            let touchStartX = 0;
             wrapper.addEventListener('touchstart', e => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
+                touchStartX = e.touches[0].clientX;
                 stopAutoSwipe();
             }, { passive: true });
 
-            wrapper.addEventListener('touchmove', e => {
-                if (!isDragging) return;
-                e.preventDefault();
-            }, { passive: false });
-
             wrapper.addEventListener('touchend', e => {
-                if (!isDragging) return;
-                const endX = e.changedTouches[0].clientX;
-                const diff = startX - endX;
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
 
                 if (Math.abs(diff) > 50) {
                     if (diff > 0) nextSlide();
-                    else currentIndex = (currentIndex - 1 + imageCount) % imageCount;
-                    goToSlide(currentIndex);
+                    else prevSlide();
                 }
-
-                isDragging = false;
                 startAutoSwipe();
             });
 
-            // Mouse drag for desktop
-            wrapper.addEventListener('mousedown', e => {
-                startX = e.clientX;
-                isDragging = true;
-                stopAutoSwipe();
-                wrapper.style.cursor = 'grabbing';
-            });
-
-            wrapper.addEventListener('mousemove', e => {
-                if (!isDragging) return;
-                e.preventDefault();
-            });
-
-            wrapper.addEventListener('mouseup', e => {
-                if (!isDragging) return;
-                const endX = e.clientX;
-                const diff = startX - endX;
-
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) nextSlide();
-                    else currentIndex = (currentIndex - 1 + imageCount) % imageCount;
-                    goToSlide(currentIndex);
-                }
-
-                isDragging = false;
-                wrapper.style.cursor = 'grab';
-                startAutoSwipe();
-            });
-
-            wrapper.addEventListener('mouseleave', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    wrapper.style.cursor = 'grab';
-                    startAutoSwipe();
-                }
-            });
-
-            // Handle resize
+            // Resize handling
             window.addEventListener('resize', () => {
-                goToSlide(currentIndex);
+                updateSlide();
+                stopAutoSwipe();
+                startAutoSwipe();
             });
 
             startAutoSwipe();
@@ -1549,19 +1527,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function checkHashAndRender() {
             const hash = window.location.hash.slice(1);
-            if (hash) {
-                showSinglePost(hash);
-            } else {
-                renderBlogGrid();
-            }
+            if (hash) showSinglePost(hash);
+            else renderBlogGrid();
         }
 
         window.addEventListener('popstate', checkHashAndRender);
         loadBlogs();
     </script>
 </section>
-<!-- ==== End Final Perfect Gallery Blog Embed ==== -->
-
+<!-- ==== End Final Full-Picture Gallery Blog Embed ==== -->
 
 
 
