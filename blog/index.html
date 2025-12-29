@@ -1090,7 +1090,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- ==== TrueWebX Blog Embed (Touch-Swipeable + Auto-Swiping Gallery) ==== -->
+<!-- ==== TrueWebX Blog Embed (Perfect Touch-Swipe + Auto-Swipe Gallery) ==== -->
 <section class="truewebx-blog-section" aria-labelledby="truewebx-blog-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
@@ -1118,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             color: transparent;
         }
 
-        /* Blog Grid - Same as before (perfect fit) */
+        /* Blog Grid - Same perfect fit as before */
         .truewebx-blog-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1234,7 +1234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             white-space: pre-wrap;
         }
 
-        /* Touch + Auto Swipe Gallery */
+        /* Perfect Frame-Fit Swipe Gallery */
         .gallery-wrapper {
             position: relative;
             width: 100%;
@@ -1243,21 +1243,20 @@ document.addEventListener('DOMContentLoaded', () => {
             overflow: hidden;
             border-radius: 24px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-            user-select: none;
-            touch-action: pan-y;
+            aspect-ratio: 16 / 9; /* Consistent frame ratio */
+            background: #000;
         }
         .gallery-slider {
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            width: max-content;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .gallery-slider img {
             width: 100%;
-            max-width: 900px;
-            height: 500px;
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain; /* Fits perfectly in frame without cropping */
             flex-shrink: 0;
-            pointer-events: none;
+            background: #000;
         }
 
         .back-btn {
@@ -1442,68 +1441,68 @@ document.addEventListener('DOMContentLoaded', () => {
             history.pushState({}, '', `#${slug}`);
             window.scrollTo(0, 0);
 
-            // Initialize swipe + auto-swipe if gallery exists
             if (blog.photos && blog.photos.length > 1) {
                 initGallery(blog.photos.length);
             }
         }
 
-        // Touch swipe + auto-swipe logic
+        // Perfect swipe + auto-swipe gallery
         function initGallery(imageCount) {
-            const slider = document.getElementById('gallerySlider');
             const wrapper = document.getElementById('galleryWrapper');
+            const slider = document.getElementById('gallerySlider');
             let currentIndex = 0;
             let startX = 0;
             let isDragging = false;
-            let autoSwipeInterval;
+            let autoSwipeTimer;
 
             const slideWidth = wrapper.clientWidth;
 
-            // Auto-swipe every 8 seconds
+            function goToSlide(index) {
+                currentIndex = index;
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % imageCount;
+                goToSlide(currentIndex);
+            }
+
             function startAutoSwipe() {
-                autoSwipeInterval = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % imageCount;
-                    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-                }, 8000);
+                autoSwipeTimer = setInterval(nextSlide, 7000); // Auto-swipe every 7 seconds
             }
 
             function stopAutoSwipe() {
-                clearInterval(autoSwipeInterval);
+                clearInterval(autoSwipeTimer);
             }
 
-            // Touch/Mouse events
+            // Touch events
             wrapper.addEventListener('touchstart', e => {
                 startX = e.touches[0].clientX;
                 isDragging = true;
                 stopAutoSwipe();
-            });
+            }, { passive: true });
 
             wrapper.addEventListener('touchmove', e => {
                 if (!isDragging) return;
                 e.preventDefault();
-            });
+            }, { passive: false });
 
             wrapper.addEventListener('touchend', e => {
                 if (!isDragging) return;
                 const endX = e.changedTouches[0].clientX;
                 const diff = startX - endX;
 
-                if (Math.abs(diff) > 50) { // swipe threshold
-                    if (diff > 0) {
-                        // swipe left → next
-                        currentIndex = (currentIndex + 1) % imageCount;
-                    } else {
-                        // swipe right → prev
-                        currentIndex = (currentIndex - 1 + imageCount) % imageCount;
-                    }
-                    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) nextSlide();
+                    else currentIndex = (currentIndex - 1 + imageCount) % imageCount;
+                    goToSlide(currentIndex);
                 }
 
                 isDragging = false;
                 startAutoSwipe();
             });
 
-            // Mouse drag support (for desktop testing)
+            // Mouse drag for desktop
             wrapper.addEventListener('mousedown', e => {
                 startX = e.clientX;
                 isDragging = true;
@@ -1522,9 +1521,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const diff = startX - endX;
 
                 if (Math.abs(diff) > 50) {
-                    if (diff > 0) currentIndex = (currentIndex + 1) % imageCount;
+                    if (diff > 0) nextSlide();
                     else currentIndex = (currentIndex - 1 + imageCount) % imageCount;
-                    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                    goToSlide(currentIndex);
                 }
 
                 isDragging = false;
@@ -1540,15 +1539,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Start auto-swipe
-            startAutoSwipe();
-
             // Handle resize
             window.addEventListener('resize', () => {
-                slider.style.transition = 'none';
-                slider.style.transform = `translateX(-${currentIndex * wrapper.clientWidth}px)`;
-                setTimeout(() => slider.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)', 50);
+                goToSlide(currentIndex);
             });
+
+            startAutoSwipe();
         }
 
         function checkHashAndRender() {
@@ -1564,9 +1560,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadBlogs();
     </script>
 </section>
-<!-- ==== End Blog Embed with Touch-Swipe + Auto Gallery ==== -->
-
-
+<!-- ==== End Final Perfect Gallery Blog Embed ==== -->
 
 
 
