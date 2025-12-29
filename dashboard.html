@@ -115,6 +115,14 @@
         button:hover { background: #ff8787; }
         button:disabled { background: #666; cursor: not-allowed; }
 
+        button.edit-btn {
+            background: #0d9488;
+            margin-right: 8px;
+        }
+        button.delete-btn {
+            background: #d63031;
+        }
+
         /* Photo Upload */
         .photo-upload {
             position: relative;
@@ -159,7 +167,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.5); 
         }
 
-        /* Listings Grid - Perfect Text Wrap & No Overflow */
+        /* Listings Grid */
         .services { 
             display:grid; 
             grid-template-columns:1fr; 
@@ -224,7 +232,13 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        /* Responsive Adjustments */
+        .card-actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
         @media (min-width: 768px) {
             .glass { padding: clamp(28px, 5vw, 32px); max-width: 700px; }
             .nav-container { padding:12px 30px; gap:40px; }
@@ -260,18 +274,19 @@
             </div>
         </div>
 
-        <!-- ADD NEW POST -->
+        <!-- ADD / EDIT POST -->
         <div id="add" class="glass" style="display:none;">
-            <h2 style="text-align:center; margin-bottom:24px; font-size:clamp(1.8rem, 6vw, 2.2rem);">Write New Blog Post</h2>
+            <h2 id="formTitle" style="text-align:center; margin-bottom:24px; font-size:clamp(1.8rem, 6vw, 2.2rem);">Write New Blog Post</h2>
             <form class="form-grid" id="addForm">
+                <input type="hidden" id="editId">
                 <input type="text" id="name" placeholder="Post Title *" required>
                 <textarea id="desc" placeholder="Write your full blog post content here... Use **text** or __text__ for bold/underline keywords" rows="10" required></textarea>
 
                 <div class="photo-upload">
                     <i class="fas fa-camera"></i>
-                    <span>Upload Featured Image *</span>
+                    <span id="profileLabel">Upload Featured Image *</span>
                     <small>Required – one image</small>
-                    <input type="file" id="profile" accept="image/*" required>
+                    <input type="file" id="profile" accept="image/*">
                     <div class="preview-container" id="profilePreview"></div>
                 </div>
 
@@ -283,7 +298,10 @@
                     <div class="preview-container" id="galleryPreview"></div>
                 </div>
 
-                <button type="button" id="publishBtn">PUBLISH POST</button>
+                <div style="display:flex; gap:12px; justify-content:center;">
+                    <button type="button" id="publishBtn">PUBLISH POST</button>
+                    <button type="button" id="cancelEdit" style="display:none; background:#666;">Cancel</button>
+                </div>
             </form>
             <p id="msg" style="text-align:center; margin-top:20px; font-size:clamp(0.95rem, 3vw, 1rem);"></p>
         </div>
@@ -299,6 +317,7 @@
     const msg = document.getElementById('msg');
     let isPublishing = false;
     let allMyPosts = [];
+    let editingPost = null;
 
     function previewImage(file, containerId, isProfile = false) {
         const reader = new FileReader();
@@ -306,45 +325,57 @@
             const img = document.createElement('img');
             img.src = e.target.result;
             img.className = isProfile ? 'profile-preview' : 'preview-img';
-            document.getElementById(containerId).innerHTML = '';
-            document.getElementById(containerId).appendChild(img);
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            container.appendChild(img);
         };
         reader.readAsDataURL(file);
     }
 
     function previewMultipleImages(files, containerId) {
-        document.getElementById(containerId).innerHTML = '';
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
         Array.from(files).forEach(file => {
             const reader = new FileReader();
             reader.onload = function(e) {
                 const img = document.createElement('img');
                 img.src = e.target.result;
                 img.className = 'preview-img';
-                document.getElementById(containerId).appendChild(img);
+                container.appendChild(img);
             };
             reader.readAsDataURL(file);
         });
     }
 
-    document.getElementById('profile').addEventListener('change', e => e.target.files[0] && previewImage(e.target.files[0], 'profilePreview', true));
-    document.getElementById('photos').addEventListener('change', e => e.target.files.length && previewMultipleImages(e.target.files, 'galleryPreview'));
+    document.getElementById('profile').addEventListener('change', e => {
+        if (e.target.files[0]) previewImage(e.target.files[0], 'profilePreview', true);
+    });
+    document.getElementById('photos').addEventListener('change', e => {
+        if (e.target.files.length) previewMultipleImages(e.target.files, 'galleryPreview');
+    });
 
     function show(section) {
         ['home', 'add'].forEach(s => document.getElementById(s).style.display = s === section ? 'block' : 'none');
         document.querySelectorAll('.nav-item').forEach((el, i) => el.classList.toggle('active', i === (section === 'home' ? 0 : 1)));
         if (section === 'home') loadMyPosts();
-        if (section === 'add') resetForm();
+        if (section === 'add') {
+            if (!editingPost) resetForm();
+        }
     }
 
     function resetForm() {
         document.getElementById('addForm').reset();
         document.getElementById('profilePreview').innerHTML = '';
         document.getElementById('galleryPreview').innerHTML = '';
-        document.getElementById('publishBtn').disabled = false;
+        document.getElementById('publishBtn').textContent = 'PUBLISH POST';
+        document.getElementById('formTitle').textContent = 'Write New Blog Post';
+        document.getElementById('profileLabel').textContent = 'Upload Featured Image *';
+        document.getElementById('cancelEdit').style.display = 'none';
+        document.getElementById('editId').value = '';
+        editingPost = null;
         msg.innerHTML = '';
     }
 
-    // Process content for preview (same as blog)
     function processContent(text) {
         if (!text) return 'No content.';
         return text
@@ -391,9 +422,74 @@
                 <small style="display:block; margin-top:16px; opacity:0.8; font-size:clamp(0.85rem, 2.5vw, 0.95rem);">
                     Published: ${new Date(p.created_at).toLocaleDateString()}
                 </small>
+
+                <div class="card-actions">
+                    <button class="edit-btn" onclick="startEdit('${p.id}')">Edit</button>
+                    <button class="delete-btn" onclick="deletePost('${p.id}')">Delete</button>
+                </div>
             </div>
         `).join('');
     }
+
+    function startEdit(postId) {
+        const post = allMyPosts.find(p => p.id === postId);
+        if (!post) return;
+
+        editingPost = post;
+
+        document.getElementById('editId').value = post.id;
+        document.getElementById('name').value = post.name || '';
+        document.getElementById('desc').value = post.description || '';
+        document.getElementById('formTitle').textContent = 'Edit Blog Post';
+        document.getElementById('publishBtn').textContent = 'UPDATE POST';
+        document.getElementById('profileLabel').textContent = 'Change Featured Image (optional)';
+        document.getElementById('cancelEdit').style.display = 'block';
+
+        // Show current images
+        if (post.profile) {
+            const img = document.createElement('img');
+            img.src = post.profile;
+            img.className = 'profile-preview';
+            document.getElementById('profilePreview').innerHTML = '';
+            document.getElementById('profilePreview').appendChild(img);
+        }
+
+        if (Array.isArray(post.photos) && post.photos.length > 0) {
+            const container = document.getElementById('galleryPreview');
+            container.innerHTML = '';
+            post.photos.forEach(url => {
+                const img = document.createElement('img');
+                img.src = url;
+                img.className = 'preview-img';
+                container.appendChild(img);
+            });
+        }
+
+        show('add');
+    }
+
+    async function deletePost(postId) {
+        if (!confirm('Are you sure you want to delete this post? This cannot be undone.')) return;
+
+        try {
+            const { error } = await supabaseClient
+                .from('services')
+                .delete()
+                .eq('id', postId);
+
+            if (error) throw error;
+
+            msg.innerHTML = '<p style="color:#0f0;">Post deleted successfully!</p>';
+            loadMyPosts();
+        } catch (err) {
+            msg.innerHTML = `<p style="color:red;">Error deleting post: ${err.message}</p>`;
+        }
+    }
+
+    document.getElementById('cancelEdit').onclick = () => {
+        resetForm();
+        show('home');
+    };
 
     document.getElementById('publishBtn').onclick = async function() {
         if (isPublishing) return;
@@ -402,16 +498,15 @@
         const content = document.getElementById('desc').value.trim();
         const profileFile = document.getElementById('profile').files[0];
 
-        if (!title || !content || !profileFile) {
-            msg.innerHTML = '<p style="color:#ffeb3b; font-size:clamp(0.95rem, 3vw, 1rem);">Title, content, and featured image are required!</p>';
+        if (!title || !content) {
+            msg.innerHTML = '<p style="color:#ffeb3b;">Title and content are required!</p>';
             return;
         }
 
         isPublishing = true;
         document.getElementById('publishBtn').disabled = true;
-        document.getElementById('publishBtn').textContent = 'PUBLISHING...';
+        document.getElementById('publishBtn').textContent = editingPost ? 'UPDATING...' : 'PUBLISHING...';
 
-        // Clean slug - NO timestamp/numbers
         const cleanSlug = title
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
@@ -419,14 +514,21 @@
             .substring(0, 80);
 
         try {
-            const profileExt = profileFile.name.split('.').pop();
-            const profileName = `featured_${crypto.randomUUID()}.${profileExt}`;
-            const { error: profileError } = await supabaseClient.storage.from('profiles').upload(profileName, profileFile);
-            if (profileError) throw profileError;
-            const { data: profileData } = supabaseClient.storage.from('profiles').getPublicUrl(profileName);
+            let profileUrl = editingPost ? editingPost.profile : null;
+            let photoUrls = editingPost && Array.isArray(editingPost.photos) ? editingPost.photos : [];
 
+            // Upload new featured image if provided
+            if (profileFile) {
+                const profileExt = profileFile.name.split('.').pop();
+                const profileName = `featured_${crypto.randomUUID()}.${profileExt}`;
+                const { error: profileError } = await supabaseClient.storage.from('profiles').upload(profileName, profileFile, { upsert: true });
+                if (profileError) throw profileError;
+                const { data: profileData } = supabaseClient.storage.from('profiles').getPublicUrl(profileName);
+                profileUrl = profileData.publicUrl;
+            }
+
+            // Upload new gallery photos if provided
             const photoFiles = document.getElementById('photos').files;
-            const photoUrls = [];
             for (let file of photoFiles) {
                 if (file) {
                     const ext = file.name.split('.').pop();
@@ -439,27 +541,34 @@
                 }
             }
 
-            const newId = crypto.randomUUID();
-
-            const newPost = {
-                id: newId,
+            const postData = {
                 name: title,
                 description: content,
-                profile: profileData.publicUrl,
+                profile: profileUrl,
                 photos: photoUrls.length > 0 ? photoUrls : null,
-                slug: cleanSlug,
-                created_at: new Date().toISOString()
+                slug: cleanSlug
             };
 
-            const { error } = await supabaseClient.from('services').insert(newPost);
+            let error;
+            if (editingPost) {
+                ({ error } = await supabaseClient
+                    .from('services')
+                    .update(postData)
+                    .eq('id', editingPost.id));
+            } else {
+                postData.id = crypto.randomUUID();
+                postData.created_at = new Date().toISOString();
+                ({ error } = await supabaseClient.from('services').insert(postData));
+            }
+
             if (error) throw error;
 
             msg.innerHTML = `
-                <p style="color:#0f0; font-weight:bold; font-size:clamp(0.95rem, 3vw, 1rem);">
-                    Post published successfully!<br><br>
+                <p style="color:#0f0; font-weight:bold;">
+                    Post ${editingPost ? 'updated' : 'published'} successfully!<br><br>
                     View it at: https://www.zoiriscleaningservices.com/blog/#${cleanSlug}
                 </p>`;
-            
+
             resetForm();
             setTimeout(() => {
                 show('home');
@@ -467,12 +576,11 @@
             }, 8000);
 
         } catch (err) {
-            msg.innerHTML = `<p style="color:red; font-size:clamp(0.95rem, 3vw, 1rem);">Error: ${err.message || 'Failed to publish'}</p>`;
+            msg.innerHTML = `<p style="color:red;">Error: ${err.message || 'Failed to save post'}</p>`;
             console.error(err);
         } finally {
             isPublishing = false;
             document.getElementById('publishBtn').disabled = false;
-            document.getElementById('publishBtn').textContent = 'PUBLISH POST';
         }
     };
 
