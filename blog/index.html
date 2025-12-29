@@ -1090,12 +1090,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- ==== TrueWebX Blog Embed (Perfectly Responsive Cards & Single Post) ==== -->
+<!-- ==== TrueWebX Blog Embed (Auto-Swiping Gallery on Single Post) ==== -->
 <section class="truewebx-blog-section" aria-labelledby="truewebx-blog-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
 
-
+        .truewebx-blog-section {
+            background: linear-gradient(135deg, var(--turquoise), var(--coral));
+            color: #ffffff;
+            padding: 40px 16px 80px;
+            font-family: system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
         .truewebx-blog-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -1111,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             color: transparent;
         }
 
-        /* Blog Grid - Uniform Card Height & Perfect Fit */
+        /* Blog Grid */
         .truewebx-blog-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1126,13 +1133,13 @@ document.addEventListener('DOMContentLoaded', () => {
             transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
-            height: 100%; /* Makes all cards same height in row */
+            height: 100%;
         }
         .truewebx-blog-card:hover { transform: translateY(-10px); }
 
         .truewebx-blog-card img.featured {
             width: 100%;
-            height: 240px; /* Fixed height for uniform look */
+            height: 240px;
             object-fit: cover;
             object-position: center;
         }
@@ -1180,10 +1187,11 @@ document.addEventListener('DOMContentLoaded', () => {
             font-weight: bold;
             font-size: 0.95rem;
             transition: background 0.3s;
+            margin-top: auto;
         }
         .truewebx-blog-card .read-more:hover { background: #ff8787; }
 
-        /* Single Blog Post - Full Fit, No Overflow */
+        /* Single Blog Post */
         .truewebx-single-post {
             max-width: 900px;
             width: 100%;
@@ -1225,19 +1233,46 @@ document.addEventListener('DOMContentLoaded', () => {
             word-wrap: break-word;
             white-space: pre-wrap;
         }
-        .truewebx-single-post .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 16px;
-            margin: 50px 0;
-        }
-        .truewebx-single-post .gallery img {
+
+        /* Auto-Swiping Gallery */
+        .gallery-wrapper {
+            position: relative;
             width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-            object-fit: cover;
+            max-width: 900px;
+            margin: 50px auto;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
         }
+        .gallery-slider {
+            display: flex;
+            width: 100%;
+            animation: autoSwipe 20s linear infinite;
+        }
+        .gallery-slider img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+        }
+        @keyframes autoSwipe {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Duplicate for seamless loop */
+        .gallery-duplicate {
+            display: flex;
+            width: 100%;
+        }
+        .gallery-duplicate img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
         .back-btn {
             display: block;
             width: fit-content;
@@ -1263,7 +1298,6 @@ document.addEventListener('DOMContentLoaded', () => {
             font-weight: 600;
         }
 
-        /* Responsive Grid */
         @media (min-width: 640px) {
             .truewebx-blog-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1278,9 +1312,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             .truewebx-blog-card img.featured { height: 280px; }
             .truewebx-single-post { padding: 60px; }
-        }
-        @media (min-width: 1400px) {
-            .truewebx-blog-grid { gap: 48px; }
         }
     </style>
 
@@ -1352,25 +1383,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setOG('url', window.location.href);
             setOG('type', 'article');
             setOG('image', blog.profile || 'https://truewebx.site/og-image.jpg');
-
-            const ldScript = document.getElementById('articleLD');
-            if (ldScript) ldScript.remove();
-
-            const script = document.createElement('script');
-            script.id = 'articleLD';
-            script.type = 'application/ld+json';
-            script.text = JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "BlogPosting",
-                "headline": blog.name,
-                "description": blog.description || "",
-                "image": blog.profile || "",
-                "author": { "@type": "Organization", "name": "Zoiris Cleaning Services" },
-                "publisher": { "@type": "Organization", "name": "Zoiris Cleaning Services" },
-                "datePublished": blog.created_at ? new Date(blog.created_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-                "mainEntityOfPage": { "@type": "WebPage", "@id": window.location.href }
-            }, null, 2);
-            document.head.appendChild(script);
         }
 
         function resetMetaTags() {
@@ -1378,8 +1390,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const defaultDesc = 'Latest cleaning tips, industry insights, and professional advice from Zoiris Cleaning Services.';
             const metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) metaDesc.content = defaultDesc;
-            const ldScript = document.getElementById('articleLD');
-            if (ldScript) ldScript.remove();
         }
 
         function renderBlogGrid() {
@@ -1415,6 +1425,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setMetaTags(blog);
 
+            let galleryHTML = '';
+            if (Array.isArray(blog.photos) && blog.photos.length > 0) {
+                const images = blog.photos.map(p => `<img src="${p}" alt="Blog image" loading="lazy">`).join('');
+                galleryHTML = `
+                <div class="gallery-wrapper">
+                    <div class="gallery-slider">
+                        ${images}
+                        <!-- Duplicate for seamless loop -->
+                        ${images}
+                    </div>
+                </div>`;
+            }
+
             document.getElementById('singlePost').innerHTML = `
                 ${blog.profile ? `<img src="${blog.profile}" alt="${blog.name}" class="featured" loading="lazy">` : ''}
 
@@ -1428,10 +1451,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>${blog.description || ''}</p>
                 </div>
 
-                ${Array.isArray(blog.photos) && blog.photos.length > 0 ? `
-                <div class="gallery">
-                    ${blog.photos.map(p => `<img src="${p}" alt="Blog image" loading="lazy">`).join('')}
-                </div>` : ''}
+                ${galleryHTML}
 
                 <a href="#" class="back-btn" onclick="renderBlogGrid(); history.pushState({}, '', location.pathname); return false;">
                     ← Back to All Posts
@@ -1458,7 +1478,30 @@ document.addEventListener('DOMContentLoaded', () => {
         loadBlogs();
     </script>
 </section>
-<!-- ==== End Perfectly Fitting Responsive Blog Embed ==== -->
+<!-- ==== End Blog Embed with Auto-Swiping Infinite Gallery ==== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
