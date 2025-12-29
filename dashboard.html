@@ -175,7 +175,7 @@
             text-align:center;
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             word-wrap: break-word;
-            overflow-wrap: anywhere; /* Best for breaking long strings */
+            overflow-wrap: anywhere;
             hyphens: auto;
         }
         .card img.profile-img {
@@ -191,7 +191,7 @@
             word-wrap: break-word;
             overflow-wrap: anywhere;
         }
-        .card p {
+        .card .content-preview {
             margin: 10px 0;
             line-height: 1.6;
             opacity: 0.95;
@@ -199,6 +199,18 @@
             word-wrap: break-word;
             overflow-wrap: anywhere;
             hyphens: auto;
+        }
+        .card .content-preview strong {
+            color: #ffeb3b;
+            font-weight: 800;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+        .card .content-preview a {
+            color: #ffeb3b;
+            text-decoration: underline;
+            font-weight: bold;
         }
         .card .photos {
             display: grid;
@@ -253,7 +265,7 @@
             <h2 style="text-align:center; margin-bottom:24px; font-size:clamp(1.8rem, 6vw, 2.2rem);">Write New Blog Post</h2>
             <form class="form-grid" id="addForm">
                 <input type="text" id="name" placeholder="Post Title *" required>
-                <textarea id="desc" placeholder="Write your full blog post content here... *" rows="8" required></textarea>
+                <textarea id="desc" placeholder="Write your full blog post content here... Use **text** or __text__ for bold/underline keywords" rows="10" required></textarea>
 
                 <div class="photo-upload">
                     <i class="fas fa-camera"></i>
@@ -332,6 +344,22 @@
         msg.innerHTML = '';
     }
 
+    // Process content for preview (same as blog)
+    function processContent(text) {
+        if (!text) return 'No content.';
+        return text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/__([^_]+?)__/g, '<strong>$1</strong>')
+            .replace(/(\(251\)\s?930-8621|2519308621|251-930-8621)/g, '<a href="tel:2519308621"><strong>(251) 930-8621</strong></a>')
+            .replace(/(\+?\d{1,4}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,9}[-.\s]?\d{1,9})/g, '<a href="tel:$1">$1</a>')
+            .replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g, '<a href="mailto:$1">$1</a>')
+            .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank">$1</a>')
+            .replace(/\n/g, '<br>');
+    }
+
     async function loadMyPosts() {
         list.innerHTML = '<p style="text-align:center; padding:40px; opacity:0.9; font-size:clamp(1rem, 3vw, 1.1rem);">Loading...</p>';
 
@@ -353,7 +381,7 @@
                      alt="${p.name}" class="profile-img">
 
                 <h3>${p.name || 'Untitled Post'}</h3>
-                <p>${p.description || 'No content.'}</p>
+                <div class="content-preview">${processContent(p.description)}</div>
 
                 ${Array.isArray(p.photos) && p.photos.length > 0 ? `
                 <div class="photos">
@@ -383,8 +411,12 @@
         document.getElementById('publishBtn').disabled = true;
         document.getElementById('publishBtn').textContent = 'PUBLISHING...';
 
-        const baseSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-        const slug = `${baseSlug}-${Date.now()}`.slice(0, 100);
+        // Clean slug - NO timestamp/numbers
+        const cleanSlug = title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '')
+            .substring(0, 80);
 
         try {
             const profileExt = profileFile.name.split('.').pop();
@@ -415,7 +447,7 @@
                 description: content,
                 profile: profileData.publicUrl,
                 photos: photoUrls.length > 0 ? photoUrls : null,
-                slug,
+                slug: cleanSlug,
                 created_at: new Date().toISOString()
             };
 
@@ -425,14 +457,14 @@
             msg.innerHTML = `
                 <p style="color:#0f0; font-weight:bold; font-size:clamp(0.95rem, 3vw, 1rem);">
                     Post published successfully!<br><br>
-                    It will appear on your blog shortly.
+                    View it at: https://www.zoiriscleaningservices.com/blog/#${cleanSlug}
                 </p>`;
             
             resetForm();
             setTimeout(() => {
                 show('home');
                 msg.innerHTML = '';
-            }, 6000);
+            }, 8000);
 
         } catch (err) {
             msg.innerHTML = `<p style="color:red; font-size:clamp(0.95rem, 3vw, 1rem);">Error: ${err.message || 'Failed to publish'}</p>`;
