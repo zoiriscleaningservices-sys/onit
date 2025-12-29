@@ -1059,12 +1059,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- ==== TrueWebX Blog Embed (Full-Picture Swipe Gallery with Arrows on Desktop) ==== -->
+<!-- ==== Zoiris Cleaning Blog Embed (Maximum SEO + Clean Slugs + Enhanced Features) ==== -->
 <section class="truewebx-blog-section" aria-labelledby="truewebx-blog-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
 
-
+        .truewebx-blog-section {
+            background: linear-gradient(135deg, var(--turquoise), var(--coral));
+            color: #ffffff;
+            padding: 40px 16px 80px;
+            font-family: system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
         .truewebx-blog-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -1080,12 +1087,8 @@ document.addEventListener('DOMContentLoaded', () => {
             color: transparent;
         }
 
-        /* Blog Grid (unchanged - perfect fit) */
-        .truewebx-blog-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
+        /* Blog Grid */
+        .truewebx-blog-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
         .truewebx-blog-card {
             background: rgba(255,255,255,0.22);
             backdrop-filter: blur(20px);
@@ -1098,62 +1101,15 @@ document.addEventListener('DOMContentLoaded', () => {
             height: 100%;
         }
         .truewebx-blog-card:hover { transform: translateY(-10px); }
-
-        .truewebx-blog-card img.featured {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            object-position: center;
-        }
-        .truewebx-blog-card .content {
-            padding: 24px;
-            text-align: left;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .truewebx-blog-card .date {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-bottom: 8px;
-        }
-        .truewebx-blog-card h2 {
-            font-size: clamp(1.4rem, 4vw, 1.8rem);
-            margin: 0 0 12px 0;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .truewebx-blog-card .excerpt {
-            font-size: clamp(0.95rem, 2.5vw, 1rem);
-            line-height: 1.6;
-            opacity: 0.95;
-            margin-bottom: 20px;
-            flex-grow: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .truewebx-blog-card .read-more {
-            display: inline-block;
-            align-self: flex-start;
-            padding: 10px 28px;
-            background: var(--coral);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95rem;
-            transition: background 0.3s;
-            margin-top: auto;
-        }
+        .truewebx-blog-card img.featured { width: 100%; height: 240px; object-fit: cover; object-position: center; }
+        .truewebx-blog-card .content { padding: 24px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .truewebx-blog-card .date { font-size: 0.9rem; opacity: 0.8; margin-bottom: 8px; }
+        .truewebx-blog-card h2 { font-size: clamp(1.4rem, 4vw, 1.8rem); margin: 0 0 12px 0; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .truewebx-blog-card .excerpt { font-size: clamp(0.95rem, 2.5vw, 1rem); line-height: 1.6; opacity: 0.95; margin-bottom: 20px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+        .truewebx-blog-card .read-more { display: inline-block; align-self: flex-start; padding: 10px 28px; background: var(--coral); color: white; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: background 0.3s; margin-top: auto; }
         .truewebx-blog-card .read-more:hover { background: #ff8787; }
 
-        /* Single Blog Post */
+        /* Single Post */
         .truewebx-single-post {
             max-width: 900px;
             width: 100%;
@@ -1187,16 +1143,33 @@ document.addEventListener('DOMContentLoaded', () => {
             line-height: 1.3;
             word-wrap: break-word;
         }
+
+        /* Enhanced Content - Maximum SEO */
         .truewebx-single-post .content {
             font-size: clamp(1.05rem, 3.5vw, 1.25rem);
-            line-height: 1.8;
+            line-height: 1.9;
             max-width: 800px;
             margin: 0 auto 50px;
             word-wrap: break-word;
             white-space: pre-wrap;
         }
+        .truewebx-single-post .content strong {
+            color: #ffeb3b;
+            font-weight: 800;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+        .truewebx-single-post .content a {
+            color: #ffeb3b;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .truewebx-single-post .content a:hover {
+            color: white;
+        }
 
-        /* Full-Picture Gallery with Arrows (Desktop) + Touch Swipe (Mobile) */
+        /* Gallery */
         .gallery-wrapper {
             position: relative;
             width: 100%;
@@ -1213,11 +1186,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .gallery-slider img {
             width: 100%;
             height: 500px;
-            object-fit: cover; /* Full picture, cropped to fill frame beautifully */
+            object-fit: cover;
             flex-shrink: 0;
         }
-
-        /* Arrows - Visible only on desktop */
         .gallery-arrow {
             position: absolute;
             top: 50%;
@@ -1235,18 +1206,10 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: 0.8;
             transition: all 0.3s;
         }
-        .gallery-arrow:hover {
-            opacity: 1;
-            background: rgba(0,0,0,0.7);
-            transform: translateY(-50%) scale(1.1);
-        }
+        .gallery-arrow:hover { opacity: 1; background: rgba(0,0,0,0.7); transform: translateY(-50%) scale(1.1); }
         .gallery-arrow.prev { left: 20px; }
         .gallery-arrow.next { right: 20px; }
-
-        /* Hide arrows on mobile */
-        @media (max-width: 768px) {
-            .gallery-arrow { display: none; }
-        }
+        @media (max-width: 768px) { .gallery-arrow { display: none; } }
 
         .back-btn {
             display: block;
@@ -1280,7 +1243,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </style>
 
     <div class="truewebx-blog-container">
-        <h1 id="truewebx-blog-heading" class="truewebx-blog-heading">Zoiris Cleaning Services Blog</h1>
+        <h1 id="truewebx-blog-heading" class="truewebx-blog-heading">Zoiris Cleaning Services Blog – Expert Cleaning Tips in Mobile, AL</h1>
 
         <!-- Blog Grid View -->
         <div id="blogGrid" class="truewebx-blog-grid"></div>
@@ -1321,23 +1284,86 @@ document.addEventListener('DOMContentLoaded', () => {
             checkHashAndRender();
         }
 
+        // Maximum SEO Meta Tags
         function setMetaTags(blog) {
-            document.title = `${blog.name} | Zoiris Cleaning Services Blog`;
-            const desc = blog.description ? blog.description.substring(0, 155) + '...' : 'Read the latest insights from Zoiris Cleaning Services.';
+            document.title = `${blog.name} | Best Cleaning Service in Mobile AL | Call (251) 930-8621`;
+
+            const fullDesc = blog.description || 'Expert cleaning tips and services in Mobile, Alabama';
+            const metaDescription = `Professional cleaning service in Mobile AL – Zoiris Cleaning offers house cleaning, deep cleaning, commercial cleaning & more. Call (251) 930-8621 for a free quote. ${fullDesc.substring(0, 100)}...`;
+
             let metaDesc = document.querySelector('meta[name="description"]');
             if (!metaDesc) {
                 metaDesc = document.createElement('meta');
-                metaDesc.name = 'description';
+                metaDesc.name = "description";
                 document.head.appendChild(metaDesc);
             }
-            metaDesc.content = desc;
+            metaDesc.content = metaDescription;
+
+            // Open Graph / Social
+            const ogTags = [
+                { property: 'og:title', content: document.title },
+                { property: 'og:description', content: metaDescription },
+                { property: 'og:url', content: window.location.href },
+                { property: 'og:type', content: 'article' },
+                { property: 'og:image', content: blog.profile || 'https://www.zoiriscleaningservices.com/og-image.jpg' },
+                { property: 'og:site_name', content: 'Zoiris Cleaning Services' },
+                { property: 'og:locale', content: 'en_US' }
+            ];
+
+            ogTags.forEach(tag => {
+                let el = document.querySelector(`meta[property="${tag.property}"]`);
+                if (!el) {
+                    el = document.createElement('meta');
+                    el.setAttribute('property', tag.property);
+                    document.head.appendChild(el);
+                }
+                el.content = tag.content;
+            });
+
+            // Structured Data (Article)
+            const articleJson = {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": blog.name,
+                "description": fullDesc.substring(0, 200),
+                "image": blog.profile || "",
+                "author": {
+                    "@type": "Organization",
+                    "name": "Zoiris Cleaning Services",
+                    "url": "https://www.zoiriscleaningservices.com/"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Zoiris Cleaning Services",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.zoiriscleaningservices.com/logo.png"
+                    }
+                },
+                "datePublished": new Date(blog.created_at).toISOString().split('T')[0],
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": window.location.href
+                }
+            };
+
+            let script = document.getElementById('articleSchema');
+            if (script) script.remove();
+            script = document.createElement('script');
+            script.id = 'articleSchema';
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify(articleJson);
+            document.head.appendChild(script);
         }
 
         function resetMetaTags() {
-            document.title = 'Zoiris Cleaning Services Blog';
-            const defaultDesc = 'Latest cleaning tips, industry insights, and professional advice from Zoiris Cleaning Services.';
-            const metaDesc = document.querySelector('meta[name="description"]');
+            document.title = 'Zoiris Cleaning Services Blog | Best Cleaning Service in Mobile AL';
+            const defaultDesc = 'Expert cleaning tips, house cleaning, commercial cleaning, and deep cleaning services in Mobile, Alabama. Call (251) 930-8621 for the best cleaning service in Mobile AL.';
+            let metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) metaDesc.content = defaultDesc;
+
+            // Clear dynamic OG tags and schema if needed
+            document.getElementById('articleSchema')?.remove();
         }
 
         function renderBlogGrid() {
@@ -1346,14 +1372,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('blogGrid');
             container.innerHTML = allBlogs.map(b => `
                 <div class="truewebx-blog-card">
-                    ${b.profile ? `<img src="${b.profile}" alt="${b.name}" class="featured" loading="lazy">` : ''}
+                    ${b.profile ? `<img src="${b.profile}" alt="${b.name} - Cleaning Service in Mobile AL" class="featured" loading="lazy">` : ''}
                     <div class="content">
                         <div class="date">
                             ${new Date(b.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
                         </div>
                         <h2>${b.name}</h2>
-                        <p class="excerpt">${b.description ? b.description.substring(0, 150) + '...' : 'Read this insightful post.'}</p>
-                        <a href="#${b.slug}" class=" contact-button text-lg" onclick="showSinglePost('${b.slug}'); return false;">
+                        <p class="excerpt">${b.description ? b.description.substring(0, 150) + '...' : 'Professional cleaning tips from the best cleaning service in Mobile, AL.'}</p>
+                        <a href="#${b.slug}" class="read-more" onclick="showSinglePost('${b.slug}'); return false;">
                             Read Post →
                         </a>
                     </div>
@@ -1362,6 +1388,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('blogGrid').style.display = 'grid';
             document.getElementById('singlePost').style.display = 'none';
+        }
+
+        // Enhanced content with clickable phone/email/url + strong keywords
+        function processContent(text) {
+            if (!text) return '';
+
+            let html = text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                // Strong keywords
+                .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+                // Phone numbers (highlight the main one)
+                .replace(/(\(251\)\s?930-8621|2519308621|251-930-8621)/g, '<a href="tel:2519308621"><strong>(251) 930-8621</strong></a>')
+                .replace(/(\+?\d{1,4}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,9}[-.\s]?\d{1,9})/g, '<a href="tel:$1">$1</a>')
+                // Emails
+                .replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g, '<a href="mailto:$1">$1</a>')
+                // URLs
+                .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank">$1</a>')
+                // Line breaks
+                .replace(/\n/g, '<br>');
+
+            return html;
         }
 
         function showSinglePost(slug) {
@@ -1375,7 +1425,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let galleryHTML = '';
             if (Array.isArray(blog.photos) && blog.photos.length > 0) {
-                const images = blog.photos.map(p => `<img src="${p}" alt="Gallery image" loading="lazy">`).join('');
+                const images = blog.photos.map(p => `<img src="${p}" alt="Zoiris Cleaning Services - Mobile AL" loading="lazy">`).join('');
                 galleryHTML = `
                 <div class="gallery-wrapper" id="galleryWrapper">
                     <div class="gallery-slider" id="gallerySlider">
@@ -1387,7 +1437,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             document.getElementById('singlePost').innerHTML = `
-                ${blog.profile ? `<img src="${blog.profile}" alt="${blog.name}" class="featured" loading="lazy">` : ''}
+                ${blog.profile ? `<img src="${blog.profile}" alt="${blog.name} - Best Cleaning Service in Mobile AL" class="featured" loading="lazy">` : ''}
 
                 <div class="meta">
                     Published on ${new Date(blog.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -1396,7 +1446,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h1>${blog.name}</h1>
 
                 <div class="content">
-                    <p>${blog.description || ''}</p>
+                    ${processContent(blog.description)}
+                    <p style="margin-top:40px; font-size:1.2rem; text-align:center;">
+                        Need professional cleaning in Mobile, AL?<br>
+                        Call the best cleaning service today: <strong><a href="tel:2519308621">(251) 930-8621</a></strong>
+                    </p>
                 </div>
 
                 ${galleryHTML}
@@ -1439,7 +1493,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateSlide();
             }
 
-            // Auto-swipe on desktop only
             function startAutoSwipe() {
                 if (window.innerWidth > 768) {
                     autoTimer = setInterval(nextSlide, 8000);
@@ -1450,43 +1503,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(autoTimer);
             }
 
-            // Arrows (desktop)
-            nextBtn.onclick = () => {
-                stopAutoSwipe();
-                nextSlide();
-                startAutoSwipe();
-            };
-            prevBtn.onclick = () => {
-                stopAutoSwipe();
-                prevSlide();
-                startAutoSwipe();
-            };
+            nextBtn.onclick = () => { stopAutoSwipe(); nextSlide(); startAutoSwipe(); };
+            prevBtn.onclick = () => { stopAutoSwipe(); prevSlide(); startAutoSwipe(); };
 
-            // Touch swipe (mobile)
             let touchStartX = 0;
-            wrapper.addEventListener('touchstart', e => {
-                touchStartX = e.touches[0].clientX;
-                stopAutoSwipe();
-            }, { passive: true });
-
+            wrapper.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; stopAutoSwipe(); }, { passive: true });
             wrapper.addEventListener('touchend', e => {
-                const touchEndX = e.changedTouches[0].clientX;
-                const diff = touchStartX - touchEndX;
-
+                const diff = touchStartX - e.changedTouches[0].clientX;
                 if (Math.abs(diff) > 50) {
-                    if (diff > 0) nextSlide();
-                    else prevSlide();
+                    diff > 0 ? nextSlide() : prevSlide();
                 }
                 startAutoSwipe();
             });
 
-            // Resize handling
-            window.addEventListener('resize', () => {
-                updateSlide();
-                stopAutoSwipe();
-                startAutoSwipe();
-            });
-
+            window.addEventListener('resize', () => { updateSlide(); stopAutoSwipe(); startAutoSwipe(); });
             startAutoSwipe();
         }
 
@@ -1500,7 +1530,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadBlogs();
     </script>
 </section>
-<!-- ==== End Final Full-Picture Gallery Blog Embed ==== -->
+<!-- ==== End Maximum SEO Blog Embed for Zoiris Cleaning Services ==== -->
 
 
 
