@@ -1059,11 +1059,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- ==== Zoiris Cleaning Blog Embed (Markdown Bold Support + Clean Slugs) ==== -->
+<!-- ==== Zoiris Cleaning Blog Embed (Clean URLs with History API for Better SEO) ==== -->
 <section class="truewebx-blog-section" aria-labelledby="truewebx-blog-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
-
 
         .truewebx-blog-container {
             max-width: 1400px;
@@ -1137,7 +1136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             word-wrap: break-word;
         }
 
-        /* Enhanced Content - Bold + Underline for Strong Keywords */
+        /* Enhanced Content */
         .truewebx-single-post .content {
             font-size: clamp(1.05rem, 3.5vw, 1.25rem);
             line-height: 1.9;
@@ -1260,6 +1259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         let allBlogs = [];
+        const BASE_PATH = '/blog'; // Change this if your blog is under a different folder, e.g. '/' or '/articles'
 
         async function loadBlogs() {
             const { data: blogs, error } = await supabaseClient
@@ -1274,7 +1274,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             allBlogs = blogs;
-            checkHashAndRender();
+            checkPathAndRender();
         }
 
         function setMetaTags(blog) {
@@ -1309,7 +1309,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <h2>${b.name}</h2>
                         <p class="excerpt">${b.description ? b.description.substring(0, 150) + '...' : 'Professional cleaning tips from Zoiris Cleaning Services in Mobile, AL.'}</p>
-                        <a href="#${b.slug}" class="read-more" onclick="showSinglePost('${b.slug}'); return false;">
+                        <a href="${BASE_PATH}/${b.slug}" class="read-more" onclick="showSinglePost('${b.slug}'); return false;">
                             Read Post →
                         </a>
                     </div>
@@ -1320,7 +1320,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('singlePost').style.display = 'none';
         }
 
-        // Enhanced content with **bold** support + clickable links
         function processContent(text) {
             if (!text) return '';
 
@@ -1328,17 +1327,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;')
-                // Support both **text** and __text__ for strong/bold keywords
                 .replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>')
                 .replace(/__([^_]+?)__/g, '<strong>$1</strong>')
-                // Phone numbers
                 .replace(/(\(251\)\s?930-8621|2519308621|251-930-8621)/g, '<a href="tel:2519308621"><strong>(251) 930-8621</strong></a>')
                 .replace(/(\+?\d{1,4}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,9}[-.\s]?\d{1,9})/g, '<a href="tel:$1">$1</a>')
-                // Emails
                 .replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g, '<a href="mailto:$1">$1</a>')
-                // URLs
                 .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank">$1</a>')
-                // Line breaks
                 .replace(/\n/g, '<br>');
 
             return html;
@@ -1348,6 +1342,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const blog = allBlogs.find(b => b.slug === slug);
             if (!blog) {
                 renderBlogGrid();
+                history.pushState({}, '', location.pathname.replace(/\/[^/]+$/, '') || '/');
                 return;
             }
 
@@ -1385,7 +1380,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 ${galleryHTML}
 
-                <a href="#" class="back-btn" onclick="renderBlogGrid(); history.pushState({}, '', location.pathname); return false;">
+                <a href="${BASE_PATH}/" class="back-btn" onclick="renderBlogGrid(); history.pushState({}, '', '${BASE_PATH}/'); return false;">
                     ← Back to All Posts
                 </a>
             `;
@@ -1393,7 +1388,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('blogGrid').style.display = 'none';
             document.getElementById('singlePost').style.display = 'block';
 
-            history.pushState({}, '', `#${slug}`);
+            // Update URL to clean path: /blog/your-slug
+            history.pushState({slug: slug}, '', `${BASE_PATH}/${slug}`);
             window.scrollTo(0, 0);
 
             if (blog.photos && blog.photos.length > 1) {
@@ -1450,20 +1446,33 @@ document.addEventListener('DOMContentLoaded', () => {
             startAutoSwipe();
         }
 
-        function checkHashAndRender() {
-            const hash = window.location.hash.slice(1);
-            if (hash) showSinglePost(hash);
-            else renderBlogGrid();
+        // Get current slug from pathname
+        function getCurrentSlug() {
+            const path = window.location.pathname;
+            if (!path.startsWith(BASE_PATH + '/')) return null;
+            const slug = path.slice(BASE_PATH.length + 1).replace(/\/$/, '');
+            return slug || null;
         }
 
-        window.addEventListener('popstate', checkHashAndRender);
+        function checkPathAndRender() {
+            const slug = getCurrentSlug();
+            if (slug) {
+                showSinglePost(slug);
+            } else {
+                renderBlogGrid();
+            }
+        }
+
+        // Handle back/forward buttons
+        window.addEventListener('popstate', (e) => {
+            checkPathAndRender();
+        });
+
+        // Initial load
         loadBlogs();
     </script>
 </section>
-<!-- ==== End Blog Embed with **Bold** Support ==== -->
-
-
-
+<!-- ==== End Blog Embed with Clean URLs (History API) ==== -->
 
 
 
