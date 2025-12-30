@@ -1059,7 +1059,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- ==== Zoiris Cleaning Blog Embed (Clean URLs with History API for Better SEO) ==== -->
+<!-- ==== Zoiris Cleaning Blog Embed (Clean URLs with History API + Fallback for Direct Access) ==== -->
 <section class="truewebx-blog-section" aria-labelledby="truewebx-blog-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
@@ -1259,7 +1259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         let allBlogs = [];
-        const BASE_PATH = '/blog'; // Change this if your blog is under a different folder, e.g. '/' or '/articles'
+        const BASE_PATH = '/blog'; // Must match your server rewrite rule (e.g. /blog/* → this page)
 
         async function loadBlogs() {
             const { data: blogs, error } = await supabaseClient
@@ -1287,6 +1287,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.head.appendChild(metaDesc);
             }
             metaDesc.content = metaDescription;
+
+            // Optional: Add canonical tag for better SEO
+            let canonical = document.querySelector('link[rel="canonical"]');
+            if (!canonical) {
+                canonical = document.createElement('link');
+                canonical.rel = "canonical";
+                document.head.appendChild(canonical);
+            }
+            canonical.href = location.origin + BASE_PATH + '/' + blog.slug;
         }
 
         function resetMetaTags() {
@@ -1294,6 +1303,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const defaultDesc = 'Expert cleaning tips and professional cleaning services in Mobile, Alabama. Call (251) 930-8621 for the best house cleaning, deep cleaning, and commercial cleaning in Mobile AL.';
             let metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) metaDesc.content = defaultDesc;
+
+            let canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical) canonical.href = location.origin + BASE_PATH + '/';
         }
 
         function renderBlogGrid() {
@@ -1388,7 +1400,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('blogGrid').style.display = 'none';
             document.getElementById('singlePost').style.display = 'block';
 
-            // Update URL to clean path: /blog/your-slug
             history.pushState({slug: slug}, '', `${BASE_PATH}/${slug}`);
             window.scrollTo(0, 0);
 
@@ -1446,7 +1457,6 @@ document.addEventListener('DOMContentLoaded', () => {
             startAutoSwipe();
         }
 
-        // Get current slug from pathname
         function getCurrentSlug() {
             const path = window.location.pathname;
             if (!path.startsWith(BASE_PATH + '/')) return null;
@@ -1463,18 +1473,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Handle back/forward buttons
-        window.addEventListener('popstate', (e) => {
-            checkPathAndRender();
-        });
+        window.addEventListener('popstate', checkPathAndRender);
 
         // Initial load
         loadBlogs();
     </script>
 </section>
 <!-- ==== End Blog Embed with Clean URLs (History API) ==== -->
-
-
 
 
 
