@@ -318,6 +318,8 @@
     let isPublishing = false;
     let allMyPosts = [];
     let editingPost = null;
+    const BLOG_BASE_URL = 'https://www.zoiriscleaningservices.com/blog'; // Your blog base URL
+    const BASE_PATH = '/blog'; // Must match the path you configured on your server
 
     function previewImage(file, containerId, isProfile = false) {
         const reader = new FileReader();
@@ -423,6 +425,13 @@
                     Published: ${new Date(p.created_at).toLocaleDateString()}
                 </small>
 
+                <div style="margin-top:12px; font-size:clamp(0.9rem, 3vw, 1rem);">
+                    <strong>Live URL:</strong><br>
+                    <a href="${BLOG_BASE_URL}${BASE_PATH}/${p.slug}" target="_blank" style="color:#ffeb3b; word-break:break-all;">
+                        ${BLOG_BASE_URL}${BASE_PATH}/${p.slug}
+                    </a>
+                </div>
+
                 <div class="card-actions">
                     <button class="edit-btn" onclick="startEdit('${p.id}')">Edit</button>
                     <button class="delete-btn" onclick="deletePost('${p.id}')">Delete</button>
@@ -445,7 +454,6 @@
         document.getElementById('profileLabel').textContent = 'Change Featured Image (optional)';
         document.getElementById('cancelEdit').style.display = 'block';
 
-        // Show current images
         if (post.profile) {
             const img = document.createElement('img');
             img.src = post.profile;
@@ -517,7 +525,6 @@
             let profileUrl = editingPost ? editingPost.profile : null;
             let photoUrls = editingPost && Array.isArray(editingPost.photos) ? editingPost.photos : [];
 
-            // Upload new featured image if provided
             if (profileFile) {
                 const profileExt = profileFile.name.split('.').pop();
                 const profileName = `featured_${crypto.randomUUID()}.${profileExt}`;
@@ -527,7 +534,6 @@
                 profileUrl = profileData.publicUrl;
             }
 
-            // Upload new gallery photos if provided
             const photoFiles = document.getElementById('photos').files;
             for (let file of photoFiles) {
                 if (file) {
@@ -563,17 +569,22 @@
 
             if (error) throw error;
 
+            const fullUrl = `${BLOG_BASE_URL}${BASE_PATH}/${cleanSlug}`;
+
             msg.innerHTML = `
                 <p style="color:#0f0; font-weight:bold;">
                     Post ${editingPost ? 'updated' : 'published'} successfully!<br><br>
-                    View it at: https://www.zoiriscleaningservices.com/blog/#${cleanSlug}
+                    View it live at:<br>
+                    <a href="${fullUrl}" target="_blank" style="color:#ffeb3b; font-size:1.1em;">
+                        ${fullUrl}
+                    </a>
                 </p>`;
 
             resetForm();
             setTimeout(() => {
                 show('home');
                 msg.innerHTML = '';
-            }, 8000);
+            }, 10000);
 
         } catch (err) {
             msg.innerHTML = `<p style="color:red;">Error: ${err.message || 'Failed to save post'}</p>`;
