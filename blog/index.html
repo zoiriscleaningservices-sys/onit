@@ -1059,7 +1059,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- ==== Zoiris Cleaning Blog Embed (Clean URLs with History API + Fallback for Direct Access) ==== -->
+<!-- ==== Zoiris Cleaning Blog Embed (GitHub Pages Fix: Works on Refresh/Direct Access) ==== -->
 <section class="truewebx-blog-section" aria-labelledby="truewebx-blog-heading">
     <style>
         :root { --coral: #ff6b6b; --turquoise: #0d9488; }
@@ -1259,7 +1259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         let allBlogs = [];
-        const BASE_PATH = '/blog'; // Must match your server rewrite rule (e.g. /blog/* → this page)
+        const BASE_PATH = '/blog'; // Your blog path
 
         async function loadBlogs() {
             const { data: blogs, error } = await supabaseClient
@@ -1288,7 +1288,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             metaDesc.content = metaDescription;
 
-            // Optional: Add canonical tag for better SEO
             let canonical = document.querySelector('link[rel="canonical"]');
             if (!canonical) {
                 canonical = document.createElement('link');
@@ -1354,7 +1353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const blog = allBlogs.find(b => b.slug === slug);
             if (!blog) {
                 renderBlogGrid();
-                history.pushState({}, '', location.pathname.replace(/\/[^/]+$/, '') || '/');
+                history.replaceState({}, '', BASE_PATH + '/');
                 return;
             }
 
@@ -1400,7 +1399,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('blogGrid').style.display = 'none';
             document.getElementById('singlePost').style.display = 'block';
 
-            history.pushState({slug: slug}, '', `${BASE_PATH}/${slug}`);
+            history.replaceState({slug: slug}, '', `${BASE_PATH}/${slug}`);
             window.scrollTo(0, 0);
 
             if (blog.photos && blog.photos.length > 1) {
@@ -1475,11 +1474,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('popstate', checkPathAndRender);
 
-        // Initial load
-        loadBlogs();
+        // Critical GitHub Pages fix: use replaceState instead of pushState on initial load
+        // This prevents adding duplicate history entries when coming from 404.html
+        document.addEventListener('DOMContentLoaded', () => {
+            const slug = getCurrentSlug();
+            if (slug) {
+                history.replaceState({slug: slug}, '', location.pathname);
+            }
+            loadBlogs();
+        });
     </script>
 </section>
-<!-- ==== End Blog Embed with Clean URLs (History API) ==== -->
+<!-- ==== End Blog Embed – Now Works on GitHub Pages Refresh/Direct Access ==== -->
 
 
 
