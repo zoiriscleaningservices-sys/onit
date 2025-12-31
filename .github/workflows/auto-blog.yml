@@ -1,29 +1,23 @@
-name: Zoiris Auto Blog Agent
+name: Post Blog Every 5 Minutes
 
 on:
   schedule:
-    - cron: "*/5 * * * *"  # Every 5 minutes
-  workflow_dispatch:
+    - cron: '*/5 * * * *'   # Every 5 minutes
+  workflow_dispatch:        # Allows manual trigger
 
 jobs:
-  post-blog:
+  generate-and-post:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          node-version: '20'
+          python-version: '3.12'
 
-      - name: Install dependencies
-        run: npm install node-fetch openai @supabase/supabase-js
-
-      - name: Run AI Agent
-        run: node agent.js
+      - name: Run Blog Agent
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+        run: python agent.py
