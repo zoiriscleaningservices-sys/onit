@@ -1,0 +1,52 @@
+# =====================================================
+# robots.txt for Zoiris Cleaning Service
+# Website: https://www.zoiriscleaningservices.com/
+# Author: Zoiris Cleaning SEO Setup
+# Purpose: Allow search engines to crawl all public pages,
+# improve indexing speed, and guide crawlers to sitemap.
+# =====================================================
+
+# Allow all search engines to access the full website
+User-agent: *
+Allow: /
+
+# =====================================================
+# Optional Disallow Rules (for safety)
+# Uncomment any of these if they exist on your server:
+# =====================================================
+
+# Block admin or internal pages (if applicable)
+# Disallow: /admin/
+# Disallow: /dashboard/
+# Disallow: /login/
+# Disallow: /private/
+# Disallow: /cgi-bin/
+# Disallow: /temp/
+# Disallow: /test/
+# Disallow: /scripts/
+
+# Block search results or query URLs (optional)
+# Disallow: /*?*  
+# Disallow: /*&*  
+
+# =====================================================
+# Sitemap Location (Important for SEO)
+# =====================================================
+Sitemap: https://www.zoiriscleaningservices.com/sitemap.xml
+
+# =====================================================
+# Crawl Control (Optional)
+# =====================================================
+
+# For Bing, Yandex, and others (Google ignores this):
+# Crawl-delay: 10
+
+# =====================================================
+# Notes:
+# - Googlebot, Bingbot, and other major crawlers follow this file.
+# - "Allow: /" ensures full crawl access.
+# - Sitemap directive helps search engines find new pages faster.
+# - Keep URLs in sitemap updated when new pages are added.
+# =====================================================
+
+# End of robots.txt
