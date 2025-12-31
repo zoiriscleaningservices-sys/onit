@@ -1,0 +1,29 @@
+name: Zoiris Auto Blog Agent
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # Every 5 minutes (GitHub minimum)
+  workflow_dispatch:
+
+jobs:
+  post-blog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install node-fetch
+
+      - name: Run AI Agent
+        run: node agent.js
+        env:
+          GEMINI_API_KEY: ${{ AIzaSyCs0ggrX5CAERGlMcZsGTt8zrpBSnNRmTk }}
+          SUPABASE_URL: ${{ https://vrpyomevjlsacourdmki.supabase.co }}
+          SUPABASE_SERVICE_KEY: ${{ sb_publishable_CyhH7Cwymoqf2fxdNj6D1Q_NHl6TmTV }}
