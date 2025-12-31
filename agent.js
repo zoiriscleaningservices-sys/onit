@@ -1,15 +1,15 @@
-// Prompt for unique Sydney cleaning services
+// Prompt for unique Mobile, AL cleaning services
 const prompt = `
-You are an expert SEO writer for Zoiris Cleaning Services in Sydney, Australia.
+You are an expert SEO writer for Zoiris Cleaning Services in Mobile, Alabama, USA.
 
 Generate ONE brand new, unique cleaning service post. Never repeat previous ideas.
 
 Respond ONLY with pure JSON (no markdown, no extra text):
 
 {
-  "title": "Professional and catchy title (e.g. Expert Carpet Steam Cleaning Sydney)",
-  "slug": "lowercase-with-hyphens (e.g. expert-carpet-steam-cleaning-sydney)",
-  "content": "Detailed 300-500 word description. Cover what's included, benefits, why choose Zoiris in Sydney, include keywords naturally. Use **bold** for key terms."
+  "title": "Professional and catchy title (e.g. Expert Carpet Steam Cleaning Mobile AL)",
+  "slug": "lowercase-with-hyphens (e.g. expert-carpet-steam-cleaning-mobile-al)",
+  "content": "Detailed 300-500 word description. Cover what's included, benefits, why choose Zoiris in Mobile, include keywords naturally. Use **bold** for key terms."
 }
 `;
 
