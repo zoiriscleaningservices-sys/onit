@@ -1,5 +1,4 @@
 import json
-import time
 import random
 import uuid
 import re
@@ -7,8 +6,7 @@ import requests
 import os
 from datetime import datetime
 
-# === CONFIGURATION ===
-GROQ_API_KEY = os.getenv('GROQ_API_KEY')  # Free key from https://console.groq.com/keys
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
 SUPABASE_URL = 'https://dwxbzltxsdeshmmtcycv.supabase.co'
 SUPABASE_ANON_KEY = 'sb_publishable_4PWdqRYFR0E-tp-OjdTP3Q_S_5qvRbp'
@@ -33,69 +31,52 @@ IMAGE_URLS = [
 
 def generate_blog_post():
     prompt = """
-You are an expert SEO blog writer for Zoiris Cleaning Services, a professional cleaning company in Mobile, Alabama.
+You are an expert SEO blog writer for Zoiris Cleaning Services in Mobile, Alabama.
 
-Create a unique, engaging, and informative blog post (450-650 words) on a cleaning-related topic relevant to Mobile, AL residents.
+Write a unique 500-700 word blog post about cleaning tips or services.
 
-Incorporate these SEO keywords naturally multiple times:
-- cleaning services Mobile AL
-- house cleaning Mobile Alabama
-- professional cleaners Mobile
-- deep cleaning Mobile AL
-- residential cleaning Mobile AL
-- commercial cleaning Mobile Alabama
+Include these keywords naturally: cleaning services Mobile AL, house cleaning Mobile Alabama, professional cleaners Mobile, deep cleaning Mobile AL, residential cleaning Mobile AL, commercial cleaning Mobile Alabama.
 
-Tie in local elements: Mobile's humid climate, pollen, beaches, Mardi Gras cleanup, port dust, etc.
+Mention local things like humidity, pollen, beaches, Mardi Gras.
 
-Use **bold** for key phrases and __underline__ for emphasis where it fits.
+Use **bold** and __underline__ for keywords.
 
-End with a strong call-to-action:
-"Ready for a spotless home or office? Contact Zoiris Cleaning Services today at (251) 930-8621 or email zoiriscleaningservices@gmail.com for a free quote!"
+End with: "Contact Zoiris Cleaning Services at (251) 930-8621 or zoiriscleaningservices@gmail.com for a free quote!"
 
-Output strictly in this format:
+Output exactly:
 
-Title: [SEO-Optimized Title Here]
+Title: [Title]
 
-Content: [Full blog post here with markdown formatting]
+Content: [Full post]
 """
 
     response = requests.post(
         "https://api.groq.com/openai/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "Content-Type": "application/json"
-        },
+        headers={"Authorization": f"Bearer {GROQ_API_KEY}", "Content-Type": "application/json"},
         json={
-            "model": "llama-3.1-70b-versatile",  # Excellent quality, free tier eligible
+            "model": "llama-3.1-70b-versatile",
             "messages": [{"role": "user", "content": prompt}],
-            "temperature": 0.85,
+            "temperature": 0.8,
             "max_tokens": 1800
         }
     )
 
     if response.status_code != 200:
-        raise Exception(f"Groq API error {response.status_code}: {response.text}")
+        raise Exception(f"Error: {response.text}")
 
     text = response.json()['choices'][0]['message']['content']
 
-    # Robust parsing
-    if "Title:" in text and "Content:" in text:
-        title = text.split("Title:")[1].split("Content:")[0].strip()
-        content = text.split("Content:")[1].strip()
-    else:
-        lines = text.splitlines()
-        title = lines[0].replace("Title:", "").strip() if lines else "Professional Cleaning Tips for Mobile AL"
-        content = "\n".join(lines[2:]).strip()
+    title = text.split("Title:")[1].split("Content:")[0].strip() if "Title:" in text else "Best Cleaning Services in Mobile AL"
+    content = text.split("Content:")[1].strip() if "Content:" in text else text
 
     return title, content
 
 def post_to_supabase(title, content):
     slug = re.sub(r'[^a-z0-9-]+', '-', title.lower()).strip('-')[:80]
-
     profile_url = random.choice(IMAGE_URLS)
-    gallery_urls = random.sample([url for url in IMAGE_URLS if url != profile_url], random.randint(1, 5))
+    gallery_urls = random.sample([u for u in IMAGE_URLS if u != profile_url], random.randint(2, 5))
 
-    post_data = {
+    data = {
         "id": str(uuid.uuid4()),
         "created_at": datetime.utcnow().isoformat() + "Z",
         "name": title,
@@ -105,7 +86,7 @@ def post_to_supabase(title, content):
         "slug": slug
     }
 
-    response = requests.post(
+    r = requests.post(
         f"{SUPABASE_URL}/rest/v1/services",
         headers={
             "apikey": SUPABASE_ANON_KEY,
@@ -113,23 +94,22 @@ def post_to_supabase(title, content):
             "Content-Type": "application/json",
             "Prefer": "return=minimal"
         },
-        json=post_data
+        json=data
     )
 
-    if response.status_code == 201:
-        print(f"SUCCESS: Published '{title}'")
-        print(f"Live URL: https://www.zoiriscleaningservices.com/blog/{slug}")
+    if r.status_code == 201:
+        print(f"SUCCESS! New post: {title}")
+        print(f"View: https://www.zoiriscleaningservices.com/blog/{slug}")
     else:
-        print(f"Failed: {response.status_code} - {response.text}")
+        print(f"Failed: {r.status_code} {r.text}")
 
 if __name__ == "__main__":
     if not GROQ_API_KEY:
-        print("ERROR: GROQ_API_KEY missing")
+        print("No GROQ_API_KEY")
         exit(1)
 
-    print(f"[{datetime.now()}] Zoiris Cleaning AI Blog Agent (Groq Free) - Starting...")
     try:
         title, content = generate_blog_post()
         post_to_supabase(title, content)
     except Exception as e:
-        print(f"AGENT FAILED: {str(e)}")
+        print(f"Error: {e}")
