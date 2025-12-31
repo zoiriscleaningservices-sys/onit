@@ -1,0 +1,21 @@
+name: Zoiris Grok AI Blog Agent
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'   # Monday 9AM
+    - cron: '0 10 * * 3'  # Wednesday 10AM
+    - cron: '0 8 * * 5'   # Friday 8AM (1-3 posts/week)
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - run: pip install openai supabase
+      - run: python grok_blog_agent.py
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
