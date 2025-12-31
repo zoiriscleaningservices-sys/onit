@@ -1,39 +1,18 @@
-try {
-    let profileUrl = editingPost?.profile || null;
-    let photoUrls = editingPost?.photos || [];
+const postData = {
+    name: title,
+    description: content,
+    profile: profileUrl,
+    photos: photoUrls.length ? photoUrls : null,
+    slug: cleanSlug,
+    created_at: editingPost ? editingPost.created_at : new Date().toISOString()
+};
 
-    // Upload featured image if new one selected
-    if (profileFile) {
-        const profileName = `featured_${Date.now()}_${profileFile.name}`;
-        const { error: uploadError } = await supabaseClient.storage
-            .from('profiles')
-            .upload(profileName, profileFile, { upsert: true });
-
-        if (uploadError) throw uploadError;
-
-        const { data: profileData } = supabaseClient.storage
-            .from('profiles')
-            .getPublicUrl(profileName);
-
-        profileUrl = profileData.publicUrl;
-    }
-
-    // Upload gallery photos
-    for (const file of photoFiles) {
-        if (file) {
-            const name = `gallery_${Date.now()}_${file.name}`;
-            const { error } = await supabaseClient.storage
-                .from('photos')
-                .upload(name, file);
-
-            if (error) continue; // skip failed ones
-
-            const { data } = supabaseClient.storage
-                .from('photos')
-                .getPublicUrl(name);
-
-            photoUrls.push(data.publicUrl);
-        }
-    }
-
-    // Rest of insert/update code remains the same...
+if (editingPost) {
+    await supabaseClient
+        .from('services')
+        .update(postData)
+        .eq('id', editingPost.id);
+} else {
+    postData.id = crypto.randomUUID();
+    await supabaseClient.from('services').insert(postData);
+}
