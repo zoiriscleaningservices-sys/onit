@@ -24,6 +24,6 @@ jobs:
       - name: Run AI Agent
         run: node agent.js
         env:
-          GEMINI_API_KEY: ${{AIzaSyCs0ggrX5CAERGlMcZsGTt8zrpBSnNRmTk}}
-          SUPABASE_URL: ${{https://dwxbzltxsdeshmmtcycv.supabase.co}}
-          SUPABASE_SERVICE_KEY: ${{sb_publishable_4PWdqRYFR0E-tp-OjdTP3Q_S_5qvRbp}}
+          GEMINI_API_KEY: ${{ AIzaSyCs0ggrX5CAERGlMcZsGTt8zrpBSnNRmTk }}
+          SUPABASE_URL: ${{ https://dwxbzltxsdeshmmtcycv.supabase.co }}
+          SUPABASE_SERVICE_KEY: ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3eGJ6bHR4c2Rlc2htbXRjeWN2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2Njk0ODQzOCwiZXhwIjoyMDgyNTI0NDM4fQ.ylRVbzU48IQePs-iKGchagxMq3t7iWy4eT2JdkJkKT8 }}
