@@ -1,0 +1,36 @@
+name: Generate & Deploy Sitemap
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # Daily at 4 AM UTC (backup)
+  workflow_dispatch:     # Manual run
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install supabase
+        run: pip install supabase
+
+      - name: Generate sitemap.xml
+        env:
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: python generate_sitemap.py
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}  # ← This uses your PAT
+          publish_dir: .
+          publish_branch: gh-pages
+          force_orphan: true
+          enable_jekyll: false
