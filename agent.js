@@ -1,18 +1,19 @@
+// Prompt for unique Sydney cleaning services
 const prompt = `
-You are a professional SEO blog writer for Zoiris Cleaning Services in Sydney, Australia.
+You are an expert SEO writer for Zoiris Cleaning Services in Sydney, Australia.
 
-Generate ONE completely new and unique cleaning service post. Never repeat ideas.
+Generate ONE brand new, unique cleaning service post. Never repeat previous ideas.
 
-Strictly respond with ONLY pure JSON (no markdown, no extra text):
+Respond ONLY with pure JSON (no markdown, no extra text):
 
 {
-  "title": "Catchy title like 'Professional End of Lease Cleaning Sydney'",
-  "slug": "lowercase-hyphenated-slug",
-  "content": "Full detailed description (300-500 words). Include benefits, what's covered, why choose Zoiris in Sydney, natural keywords like 'cleaning services Sydney', phone bold, etc. Use **bold** for key phrases."
+  "title": "Professional and catchy title (e.g. Expert Carpet Steam Cleaning Sydney)",
+  "slug": "lowercase-with-hyphens (e.g. expert-carpet-steam-cleaning-sydney)",
+  "content": "Detailed 300-500 word description. Cover what's included, benefits, why choose Zoiris in Sydney, include keywords naturally. Use **bold** for key terms."
 }
 `;
 
-console.log("🌟 Prompt sent to Gemini:", prompt);
+console.log("🌟 Sending prompt to Gemini...");
 
 const aiRes = await fetch(
   `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
@@ -26,34 +27,53 @@ const aiRes = await fetch(
   }
 );
 
-if (!aiRes.ok) throw new Error("Gemini failed: " + await aiRes.text());
+if (!aiRes.ok) {
+  const err = await aiRes.text();
+  console.error("Gemini error:", err);
+  throw new Error("Gemini failed");
+}
 
 const aiData = await aiRes.json();
 const textResponse = aiData.candidates[0].content.parts[0].text;
 
 let blog;
-try { blog = JSON.parse(textResponse); } catch (e) { throw new Error("Bad JSON from Gemini"); }
+try {
+  blog = JSON.parse(textResponse);
+} catch (e) {
+  console.error("Invalid JSON:", textResponse);
+  throw e;
+}
 
-console.log("🌟 Generated:", blog.title);
+console.log("🌟 Generated post:", blog.title);
 
-// Hardcoded real public image URLs for variety (professional cleaning photos)
-const profiles = [
-  "https://fluxcms.com.au/wp-content/uploads/2025/06/carpet-cleaning4.jpg",
-  "https://websitebydesign.com.au/wp-content/uploads/2025/07/office-cleaning12.jpg",
-  "https://fluxcms.com.au/wp-content/uploads/2025/07/carpet-cleaning5-1024x726.jpg",
-  "https://www.sparkleencleaning.com.au/wp-content/uploads/2022/08/Warehouse-Cleaning.jpg",
-  "https://image6.slideserve.com/11960057/office-cleaning-l.jpg"
+// Real professional cleaning images (public URLs)
+const profileImages = [
+  "https://callthecleaners.com.au/wp-content/uploads/2025/12/DIY-vs-Professional-End-Of-Lease-Cleaning-Cost-Advantages-and-Disadvantages.webp",
+  "https://ozapcs.com.au/wp-content/uploads/2021/03/lease.jpeg",
+  "https://sydneyprocleaningservices.com.au/wp-content/uploads/2025/08/Sydney-Professional-Cleaners-7-1024x654.webp",
+  "https://a1groupservices.com.au/wp-content/uploads/2023/12/office-cleaning-1024x682.jpg",
+  "https://gogreencarpetclean.com.au/wp-content/uploads/2021/08/Carpet-cleaning.jpg",
+  "https://www.maid2match.com.au/wp-content/uploads/2021/09/img_services_housecleaning.jpg",
+  "https://inandoutwindowcleaning.com.au/wp-content/uploads/2024/02/commercial-window-cleaning1.png"
 ];
 
-const galleries = [
-  "https://media.istockphoto.com/id/1281015066/photo/house-mess-and-junk-declutter.jpg?s=612x612",
-  "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_1500,ar_3:2/at%2Fart%2Fdesign%2FSpecial-Projects%2F2024%2F02_BeforeAfter%2FMetadata-Images%2FAT-Before-After_Metadata-3",
-  "https://media.houseandgarden.co.uk/photos/67879170ef5ba82e72c39a22/master/w_1024%2Cc_limit/DesignAndThat.Yard.CulverdenRd.ECH-36.jpg"
+const galleryImages = [
+  "https://cleaneffortlessly.com.au/wp-content/uploads/2025/07/about-bg.jpg",
+  "https://monstercleaning.com.au/wp-content/uploads/2024/10/Professional-Office-Cleaners-in-Sydney.jpg",
+  "https://myercarpetcleaning.com.au/wp-content/uploads/2020/02/Professional-Carpet-Cleaning-Bondi-1.jpg",
+  "https://www.resultscleaningco.com/wp-content/uploads/2018/09/residential-Cleaning-Copy-min.jpg",
+  "https://www.clearwash.com.au/wp-content/uploads/2020/05/Clearwash-132-scaled.jpg"
 ];
 
-// Pick random images
-const profile = profiles[Math.floor(Math.random() * profiles.length)];
-const photos = [galleries[0], galleries[1], galleries[2]]; // 3 gallery photos
+// Random selection for variety
+const profile = profileImages[Math.floor(Math.random() * profileImages.length)];
+const photos = [
+  galleryImages[Math.floor(Math.random() * galleryImages.length)],
+  galleryImages[Math.floor(Math.random() * galleryImages.length)],
+  galleryImages[Math.floor(Math.random() * galleryImages.length)]
+];
+
+console.log("🌟 Using profile image:", profile);
 
 const supabaseRes = await fetch(`${process.env.SUPABASE_URL}/rest/v1/services`, {
   method: "POST",
@@ -73,7 +93,11 @@ const supabaseRes = await fetch(`${process.env.SUPABASE_URL}/rest/v1/services`, 
 });
 
 if (supabaseRes.ok) {
-  console.log("🌟 SUCCESS! New post added:", blog.title, "| Profile:", profile);
+  console.log("🌟 SUCCESS! New post created and will appear in your dashboard:");
+  console.log("Title:", blog.title);
+  console.log("Live URL: https://www.zoiriscleaningservices.com/blog/" + blog.slug);
 } else {
-  throw new Error("Supabase insert failed: " + await supabaseRes.text());
+  const err = await supabaseRes.text();
+  console.error("Supabase error:", err);
+  throw new Error("Insert failed");
 }
