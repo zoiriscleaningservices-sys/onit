@@ -1,80 +1,79 @@
-// agent.js
-import fetch from 'node-fetch';
-import OpenAI from 'openai';
-import { createClient } from '@supabase/supabase-js';
-import crypto from 'crypto';
+const prompt = `
+You are a professional SEO blog writer for Zoiris Cleaning Services in Sydney, Australia.
 
-// Initialize OpenAI & Supabase
-const openai = new OpenAI({ apiKey: process.env.GEMINI_API_KEY });
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+Generate ONE completely new and unique cleaning service post. Never repeat ideas.
 
-async function generateBlogPost() {
-  const prompt = `
-Write a fully SEO-optimized blog post about Zoiris Cleaning Services in Mobile, AL.
-Include the business phone number (251-930-8621) and email (zoiriscleaningservices@gmail.com).
-Include headings, subheadings, and keywords relevant to residential and commercial cleaning.
-Suggest 3 images (featured + gallery) and provide them as URLs.
-Return JSON like:
+Strictly respond with ONLY pure JSON (no markdown, no extra text):
+
 {
-  "title": "...",
-  "content": "...",
-  "images": ["url1","url2","url3"]
+  "title": "Catchy title like 'Professional End of Lease Cleaning Sydney'",
+  "slug": "lowercase-hyphenated-slug",
+  "content": "Full detailed description (300-500 words). Include benefits, what's covered, why choose Zoiris in Sydney, natural keywords like 'cleaning services Sydney', phone bold, etc. Use **bold** for key phrases."
 }
-  `;
+`;
 
-  const aiResponse = await openai.chat.completions.create({
-    model: "gpt-5-mini",
-    messages: [{ role: "user", content: prompt }],
-  });
+console.log("🌟 Prompt sent to Gemini:", prompt);
 
-  const post = JSON.parse(aiResponse.choices[0].message.content);
-  return post;
-}
-
-async function uploadImageFromURL(url, folder) {
-  const response = await fetch(url);
-  const buffer = await response.arrayBuffer();
-  const fileName = `${folder}_${crypto.randomUUID()}.jpg`;
-  const { error } = await supabase.storage.from(folder).upload(fileName, Buffer.from(buffer), { upsert: true });
-  if (error) throw error;
-
-  const { data } = supabase.storage.from(folder).getPublicUrl(fileName);
-  return data.publicUrl;
-}
-
-async function runAgent() {
-  try {
-    console.log("Generating AI blog post...");
-    const post = await generateBlogPost();
-
-    console.log("Uploading images...");
-    const profileUrl = await uploadImageFromURL(post.images[0], "profiles");
-    const photoUrls = [];
-    for (let i = 1; i < post.images.length; i++) {
-      const url = await uploadImageFromURL(post.images[i], "photos");
-      photoUrls.push(url);
-    }
-
-    const slug = post.title.toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .substring(0, 80);
-
-    console.log("Inserting post into Supabase...");
-    await supabase.from('services').insert({
-      id: crypto.randomUUID(),
-      name: post.title,
-      description: post.content,
-      profile: profileUrl,
-      photos: photoUrls.length ? photoUrls : null,
-      slug,
-      created_at: new Date().toISOString()
-    });
-
-    console.log("✅ AI blog post created successfully!");
-  } catch (err) {
-    console.error("❌ Error creating blog post:", err);
+const aiRes = await fetch(
+  `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { responseMimeType: "application/json" }
+    })
   }
-}
+);
 
-runAgent();
+if (!aiRes.ok) throw new Error("Gemini failed: " + await aiRes.text());
+
+const aiData = await aiRes.json();
+const textResponse = aiData.candidates[0].content.parts[0].text;
+
+let blog;
+try { blog = JSON.parse(textResponse); } catch (e) { throw new Error("Bad JSON from Gemini"); }
+
+console.log("🌟 Generated:", blog.title);
+
+// Hardcoded real public image URLs for variety (professional cleaning photos)
+const profiles = [
+  "https://fluxcms.com.au/wp-content/uploads/2025/06/carpet-cleaning4.jpg",
+  "https://websitebydesign.com.au/wp-content/uploads/2025/07/office-cleaning12.jpg",
+  "https://fluxcms.com.au/wp-content/uploads/2025/07/carpet-cleaning5-1024x726.jpg",
+  "https://www.sparkleencleaning.com.au/wp-content/uploads/2022/08/Warehouse-Cleaning.jpg",
+  "https://image6.slideserve.com/11960057/office-cleaning-l.jpg"
+];
+
+const galleries = [
+  "https://media.istockphoto.com/id/1281015066/photo/house-mess-and-junk-declutter.jpg?s=612x612",
+  "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_1500,ar_3:2/at%2Fart%2Fdesign%2FSpecial-Projects%2F2024%2F02_BeforeAfter%2FMetadata-Images%2FAT-Before-After_Metadata-3",
+  "https://media.houseandgarden.co.uk/photos/67879170ef5ba82e72c39a22/master/w_1024%2Cc_limit/DesignAndThat.Yard.CulverdenRd.ECH-36.jpg"
+];
+
+// Pick random images
+const profile = profiles[Math.floor(Math.random() * profiles.length)];
+const photos = [galleries[0], galleries[1], galleries[2]]; // 3 gallery photos
+
+const supabaseRes = await fetch(`${process.env.SUPABASE_URL}/rest/v1/services`, {
+  method: "POST",
+  headers: {
+    apikey: process.env.SUPABASE_SERVICE_KEY,
+    Authorization: `Bearer ${process.env.SUPABASE_SERVICE_KEY}`,
+    "Content-Type": "application/json",
+    Prefer: "return=minimal"
+  },
+  body: JSON.stringify({
+    name: blog.title,
+    slug: blog.slug,
+    description: blog.content,
+    profile: profile,
+    photos: photos
+  })
+});
+
+if (supabaseRes.ok) {
+  console.log("🌟 SUCCESS! New post added:", blog.title, "| Profile:", profile);
+} else {
+  throw new Error("Supabase insert failed: " + await supabaseRes.text());
+}
