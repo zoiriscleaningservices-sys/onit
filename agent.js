@@ -1,3 +1,25 @@
+// Define the prompt — this tells Gemini what kind of blog post to generate
+const prompt = `
+You are an expert blog writer for a cleaning services company called Zoiris Cleaning Services.
+
+Generate ONE new unique service offering in strict JSON format (no markdown, no explanations).
+
+Requirements:
+- Make it sound professional and appealing
+- Use a different service idea each time (never repeat)
+- Include location: Sydney, Australia
+
+Respond ONLY with valid JSON in this exact structure:
+{
+  "title": "Short catchy service title (e.g. End of Lease Cleaning Sydney)",
+  "slug": "lowercase-hyphenated-version-of-title (e.g. end-of-lease-cleaning-sydney)",
+  "content": "A detailed description of the service (200-400 words), explaining benefits, what’s included, and why customers should choose Zoiris."
+}
+
+Do not include any backticks, ```json, or extra text.
+`;
+
+// Now log and send to Gemini
 console.log("🌟 Prompt sent to Gemini:", prompt);
 
 const aiRes = await fetch(
@@ -8,7 +30,7 @@ const aiRes = await fetch(
     body: JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
-        responseMimeType: "application/json"  // Forces pure JSON output (no markdown)
+        responseMimeType: "application/json"  // Forces clean JSON output
       }
     })
   }
@@ -30,7 +52,6 @@ if (!aiData.candidates || aiData.candidates.length === 0) {
 const textResponse = aiData.candidates[0].content.parts[0].text;
 console.log("🌟 Raw Gemini text:", textResponse);
 
-// Parse the JSON string returned by Gemini
 let blog;
 try {
   blog = JSON.parse(textResponse);
@@ -47,13 +68,12 @@ const supabaseRes = await fetch(`${process.env.SUPABASE_URL}/rest/v1/services`, 
     apikey: process.env.SUPABASE_SERVICE_KEY,
     Authorization: `Bearer ${process.env.SUPABASE_SERVICE_KEY}`,
     "Content-Type": "application/json",
-    // Change to return=representation if you want the inserted row back
     Prefer: "return=minimal"
   },
   body: JSON.stringify({
     name: blog.title,
     slug: blog.slug,
-    description: blog.content,  // assuming this matches your column name
+    description: blog.content,
     profile: "https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg",
     photos: ["https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg"]
   })
@@ -64,6 +84,7 @@ console.log("🌟 Supabase response status:", supabaseRes.status);
 if (!supabaseRes.ok) {
   const errorText = await supabaseRes.text();
   console.error("🌟 Supabase error:", errorText);
+  throw new Error("Failed to insert into Supabase");
 } else {
-  console.log("🌟 Successfully inserted into Supabase!");
+  console.log("🌟 Successfully inserted new service into Supabase!");
 }
