@@ -7,7 +7,7 @@ import urllib.request
 import os
 
 # Your xAI API key (get from https://x.ai/api)
-XAI_API_KEY = os.getenv('XAI_API_KEY')  # Set this environment variable
+XAI_API_KEY = os.getenv('XAI_API_KEY')  # Set this environment variable 
 
 # Supabase details from the HTML
 SUPABASE_URL = 'https://dwxbzltxsdeshmmtcycv.supabase.co'
