@@ -2,8 +2,8 @@ name: Zoiris Auto Blog Agent
 
 on:
   schedule:
-    - cron: "*/5 * * * *"  # Every 5 minutes (GitHub's minimum allowed frequency)
-  workflow_dispatch:  # Allows manual triggering from GitHub UI
+    - cron: "*/5 * * * *"  # Every 5 minutes
+  workflow_dispatch:
 
 jobs:
   post-blog:
@@ -16,14 +16,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Updated to a more recent LTS version (as of late 2025)
+          node-version: '20'
 
       - name: Install dependencies
-        run: npm install node-fetch  # Or better: use npm ci if you have a package-lock.json
+        run: npm install node-fetch openai @supabase/supabase-js
 
       - name: Run AI Agent
         run: node agent.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }} 
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
