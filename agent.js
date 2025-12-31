@@ -1,25 +1,17 @@
-// Define the prompt — this tells Gemini what kind of blog post to generate
 const prompt = `
-You are an expert blog writer for a cleaning services company called Zoiris Cleaning Services.
+You are an expert blog writer for Zoiris Cleaning Services, a professional cleaning company in Sydney, Australia.
 
-Generate ONE new unique service offering in strict JSON format (no markdown, no explanations).
+Generate ONE unique new cleaning service offering. Make it fresh and different every time.
 
-Requirements:
-- Make it sound professional and appealing
-- Use a different service idea each time (never repeat)
-- Include location: Sydney, Australia
+Respond ONLY with pure valid JSON in this exact format (no markdown, no extra text, no explanations):
 
-Respond ONLY with valid JSON in this exact structure:
 {
-  "title": "Short catchy service title (e.g. End of Lease Cleaning Sydney)",
-  "slug": "lowercase-hyphenated-version-of-title (e.g. end-of-lease-cleaning-sydney)",
-  "content": "A detailed description of the service (200-400 words), explaining benefits, what’s included, and why customers should choose Zoiris."
+  "title": "Catchy service title (e.g. Deep Kitchen Cleaning Sydney)",
+  "slug": "lowercase-with-hyphens (e.g. deep-kitchen-cleaning-sydney)",
+  "content": "Detailed description of the service (250-400 words). Explain what's included, benefits, and why choose Zoiris Cleaning Services in Sydney."
 }
-
-Do not include any backticks, ```json, or extra text.
 `;
 
-// Now log and send to Gemini
 console.log("🌟 Prompt sent to Gemini:", prompt);
 
 const aiRes = await fetch(
@@ -30,7 +22,7 @@ const aiRes = await fetch(
     body: JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
-        responseMimeType: "application/json"  // Forces clean JSON output
+        responseMimeType: "application/json"
       }
     })
   }
@@ -38,37 +30,35 @@ const aiRes = await fetch(
 
 if (!aiRes.ok) {
   const errorText = await aiRes.text();
-  console.error("🌟 Gemini error response:", aiRes.status, errorText);
-  throw new Error(`Gemini API error: ${aiRes.status}`);
+  console.error("🌟 Gemini error:", aiRes.status, errorText);
+  throw new Error("Gemini API failed");
 }
 
 const aiData = await aiRes.json();
-console.log("🌟 Parsed AI JSON:", aiData);
 
-if (!aiData.candidates || aiData.candidates.length === 0) {
-  throw new Error("No candidates returned from Gemini");
+if (!aiData.candidates?.[0]) {
+  throw new Error("No response from Gemini");
 }
 
 const textResponse = aiData.candidates[0].content.parts[0].text;
-console.log("🌟 Raw Gemini text:", textResponse);
-
 let blog;
+
 try {
   blog = JSON.parse(textResponse);
-} catch (parseError) {
-  console.error("Failed to parse Gemini response as JSON:", textResponse);
-  throw parseError;
+} catch (e) {
+  console.error("🌟 Failed to parse JSON:", textResponse);
+  throw e;
 }
 
-console.log("🌟 Blog object:", blog);
+console.log("🌟 Generated blog:", blog);
 
 const supabaseRes = await fetch(`${process.env.SUPABASE_URL}/rest/v1/services`, {
   method: "POST",
   headers: {
-    apikey: process.env.SUPABASE_SERVICE_KEY,
-    Authorization: `Bearer ${process.env.SUPABASE_SERVICE_KEY}`,
+    "apikey": process.env.SUPABASE_SERVICE_KEY,
+    "Authorization": `Bearer ${process.env.SUPABASE_SERVICE_KEY}`,
     "Content-Type": "application/json",
-    Prefer: "return=minimal"
+    "Prefer": "return=minimal"
   },
   body: JSON.stringify({
     name: blog.title,
@@ -79,12 +69,10 @@ const supabaseRes = await fetch(`${process.env.SUPABASE_URL}/rest/v1/services`, 
   })
 });
 
-console.log("🌟 Supabase response status:", supabaseRes.status);
-
-if (!supabaseRes.ok) {
-  const errorText = await supabaseRes.text();
-  console.error("🌟 Supabase error:", errorText);
-  throw new Error("Failed to insert into Supabase");
+if (supabaseRes.ok) {
+  console.log("🌟 SUCCESS! New service posted to Supabase:", blog.title);
 } else {
-  console.log("🌟 Successfully inserted new service into Supabase!");
+  const err = await supabaseRes.text();
+  console.error("🌟 Supabase error:", supabaseRes.status, err);
+  throw new Error("Failed to save to Supabase");
 }
