@@ -1,36 +1,33 @@
-name: Generate & Deploy Sitemap
+name: Generate Blog Sitemap
 
 on:
+  workflow_dispatch:     # Manual trigger
   schedule:
-    - cron: '0 4 * * *'  # Daily at 4 AM UTC (backup)
-  workflow_dispatch:     # Manual run
-  push:
-    branches: [ main ]
+    - cron: '0 * * * *'  # Every hour (adjust as needed)
 
 jobs:
-  build:
+  generate-sitemap:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Install supabase
+      - name: Install Supabase client
         run: pip install supabase
 
       - name: Generate sitemap.xml
         env:
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: python generate_sitemap.py
+        run: python generate-sitemap.py
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}  # ← This uses your PAT
-          publish_dir: .
-          publish_branch: gh-pages
-          force_orphan: true
-          enable_jekyll: false
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog-sitemap.xml
+          git diff --quiet && echo "No changes" || (git commit -m "Update blog-sitemap.xml [bot]" && git push)
