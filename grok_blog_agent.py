@@ -62,22 +62,20 @@ IMAGE_POOL = [
     "https://images.unsplash.com/photo-1581578303128-3fc40e9a93c6?auto=format&fit=crop&w=1260&q=80",
     "https://images.unsplash.com/photo-1527515637462-cff94ebc1b04?auto=format&fit=crop&w=1260&q=80",
     "https://images.unsplash.com/photo-1609017048893-9b1e3c6ea3a3?auto=format&fit=crop&w=1260&q=80",
-    # Continue adding more from Pexels/Unsplash searches (cleaning service, house cleaning, commercial cleaning, etc.)
+    # Continue adding more from Pexels/Unsplash searches
     "https://images.pexels.com/photos/4239029/pexels-photo-4239029.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "https://images.pexels.com/photos/4107127/pexels-photo-4107127.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "https://images.pexels.com/photos/6195960/pexels-photo-6195960.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "https://images.pexels.com/photos/6201985/pexels-photo-6201985.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "https://images.pexels.com/photos/9462340/pexels-photo-9462340.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    # Add as many as needed to reach 100+ — all direct links to high-res images
-    # ... (expand further with more unique URLs from Pexels and Unsplash cleaning collections)
 ]
 
 def generate_post_with_grok():
     response = client.chat.completions.create(
         model="grok-4",  # Best quality model
         messages=[
-            {"role": "system", "content": "You are a top SEO blogger for Zoiris Cleaning Services in Mobile, AL. Write ONE completely unique, long (1000-1500 words), helpful blog post. Title: catchy + keyword-rich. Content: in-depth guide on a cleaning topic. Use keywords naturally: cleaning services Mobile AL, house cleaning Mobile Alabama, professional cleaners Mobile AL, deep cleaning Mobile AL, move in move out cleaning Mobile AL, commercial cleaning Mobile AL, eco-friendly cleaning Mobile Alabama. Include sections, local tips (humidity, mold, hurricanes), benefits, and end with CTA: Call **(251) 930-8621** or email zoiriscleaningservices@gmail.com. Use **bold** for key phrases. Output ONLY JSON: {\"title\": \"string\", \"content\": \"string with \\n for new lines\"}"},
-            {"role": "user", "content": "Generate a fresh, unique post on a new cleaning topic for Mobile AL."}
+            {"role": "system", "content": "You are a top SEO blogger for Zoiris Cleaning Services in Mobile, AL. Write ONE completely unique, long (1000-1500 words), helpful blog post about the full range of cleaning services offered by Zoiris Cleaning Services in Mobile, Alabama. Title: catchy + keyword-rich but SHORT (50-60 characters max). Primary keywords (use frequently & naturally): cleaning services Mobile AL, house cleaning Mobile Alabama, professional cleaners Mobile AL, deep cleaning Mobile AL, move in move out cleaning Mobile AL, commercial cleaning Mobile AL, eco-friendly cleaning Mobile Alabama. Incorporate as many of these service terms as possible naturally throughout the post: Deep clean, General housekeeping, Moving-related cleaning, Office & workplace cleaning, Standard cleaning, Recurring Services, Interior & exterior window cleaning, Bath And Kitchen, Business Cleaning, COVID-19 Clean, Carpet Vacuum, Ceiling Fans, Changing Sheets, Cleaning Equipment, Cleaning Your Home, Contract Cleaning, Contract Cleaning Services, Damp Mop, Deep Clean, Detailed Cleaning, Dining Room, Full Cleaning Service, Furniture Polish, Glass Cleaner, Granite Cleaner, Hardwood Floors, Hire A Cleaning Service, Home Or Business Cleaning, Initial Cleaning, Job Cleaning, Light Fixtures, Living Rooms, Maid Service, Monthly Cleaning Services, Move-Out, Office Cleaning Services, One Time Cleanings, Oven Clean, Personalized Service, Quarterly Cleaning Services, Refrigerator Clean, Regular Cleaning, Residential Clean, Rugs Vacuum, Specialty Cleaning, Take Trash, Trash Out, Vacuum Cleaner, Washing Dishes, Weekly Cleaning Services, Window Coverings, Wiping Down, Wood Floor Cleaner, Advanced Cleaning, Apartment Cleaning, Bathroom Cleaning, Best Maid Service, Blinds Dusted, Cabinet Cleaning And Organizing, Clean Window Sills, Cleaner Homes, Cleaning For Seniors, Cleaning Job, Cleaning Maid Services, Cleaning Process, Comprehensive Cleaning, Consistent Cleaning, Customized Clean, detailed cleaning, Dining Room Cleaning, Disinfection Housekeeping, Enhanced Disinfection, Everyday Housekeeping, Exceptional Clean, Free Cleaning, Green Cleaning, Gutter Cleaning, Holiday Cleaning, Home Organization, house cleaning, Household Disinfecting, Housekeeping Kitchen, Kitchen And Laundry Room, Laundry Room Cleaning, Living Room Cleaning, Mobile Home Cleaning, Move In/ Out Cleaning, Organizational Services, Our Home Cleaning Services, Oven Cleaning, Personalized Cleaning, Premium Home Cleaning Services, Pressure Washing, Refrigerator Cleaning, rental property cleaning, Room Cleaning Kitchen, Routine Cleanings, Seasonal Cleaning, Sparkling Clean, Specialized Cleaning, Specialty House Cleaning Services, Vacation Rental Cleaning, Wall Washing, Window Blind Cleaning, Wood Floors, Mattress cleaning, Upholstery cleaning, Fitness center & gym cleaning, Laboratory cleaning, Medical institution cleaning, Move-out cleaning, Movie theater cleaning, Multi-tenant cleaning, Office cleaning, Post-construction cleaning, Post-event cleaning, School & campus cleaning, Stadium cleaning, Gutter cleaning, Glass & mirror cleaning, Power/pressure washing, Rooftop/skylight cleaning, Window washing, Area rug cleaning, Carpet steam cleaning, Drapes & curtain cleaning, General carpet cleaning, Leather cleaning, Pet stain & odor removal. Content: in-depth guide showcasing Zoiris as the top provider for ALL these services in Mobile AL. Include sections on residential, commercial, specialty cleans, local Mobile tips (humidity, mold, hurricanes, salt air, pollen), benefits, and end with strong CTA: Call **(251) 930-8621** or email zoiriscleaningservices@gmail.com. Use **bold** for key phrases. Output ONLY JSON: {\"title\": \"string\", \"content\": \"string with \\n for new lines\"}"},
+            {"role": "user", "content": "Generate a fresh, unique comprehensive post covering the full range of cleaning services by Zoiris Cleaning Services in Mobile AL."}
         ],
         response_format={"type": "json_object"},
         temperature=1.0
@@ -89,7 +87,7 @@ def main():
     try:
         title, content = generate_post_with_grok()
 
-        # Fixed slug generation (pure Python regex)
+        # Safe slug generation (pure Python regex) - limited to 80 chars for safety
         slug = re.sub(r'[^a-z0-9]+', '-', title.lower())
         slug = re.sub(r'-+', '-', slug)
         slug = slug.strip('-')[:80]
@@ -110,6 +108,7 @@ def main():
         result = supabase.table("services").insert(post).execute()
         if result.data:
             print(f"SUCCESS! Published: {title}")
+            print(f"Character count: {len(title)} (ideal 50-60 for full Google display)")
             print(f"URL: https://www.zoiriscleaningservices.com/blog/blog/{slug}")
         else:
             print("Insert failed:", result)
