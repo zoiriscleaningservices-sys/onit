@@ -30,15 +30,15 @@ def generate_image(prompt: str):
     """Generate an image using Grok's image model and return base64 string"""
     try:
         response = client.images.generate(
-            model="grok-2-image-1212",  # Current Grok image generation model
+            model="grok-2-image",  # Correct model name (grok-2-image, not grok-2-image-1212)
             prompt=prompt,
             n=1,
-            response_format="b64_json"  # Returns base64 directly
+            response_format="b64_json"  # Returns {"data": [{"b64_json": "..."}]}
         )
         return response.data[0].b64_json
     except Exception as e:
         print(f"Image generation failed: {e}")
-        # Fallback: return a placeholder base64 (transparent 1x1 pixel)
+        # Fallback placeholder (transparent 1x1 pixel)
         return "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
 
 def main():
@@ -48,16 +48,17 @@ def main():
         print(f"Blog Title: {title}")
         print(f"Generating featured image with prompt: {image_prompt}")
 
-        # Generate featured profile image
-        full_prompt = image_prompt + ", professional photography style, high resolution, bright and clean, realistic, detailed, inviting"
+        # Enhanced prompt for better results
+        full_prompt = image_prompt + ", professional photography style, high resolution, bright and clean lighting, realistic details, inviting atmosphere, Zoiris Cleaning Services in Mobile AL vibe"
+
         profile_b64 = generate_image(full_prompt)
 
-        # Generate 3-5 additional gallery images with variations
+        # Generate 3-5 additional gallery images
         photos_b64 = []
         num_photos = random.randint(3, 5)
         print(f"Generating {num_photos} additional images...")
         for i in range(num_photos):
-            variation = f"{image_prompt}, variation {i+1}, different angle or room, professional cleaning scene in Mobile AL, bright natural light, eco-friendly products, happy team"
+            variation = f"{image_prompt}, variation {i+1}: different room or cleaning scene (kitchen, office, post-construction, carpet cleaning, window washing), professional cleaners at work in Mobile Alabama, bright natural light, eco-friendly tools"
             b64 = generate_image(variation)
             photos_b64.append(b64)
 
@@ -70,8 +71,8 @@ def main():
             "id": str(uuid.uuid4()),
             "name": title,
             "description": content,
-            "profile": profile_b64,      # base64 string for featured image
-            "photos": photos_b64,        # list of base64 strings for gallery
+            "profile": profile_b64,      # base64 featured image
+            "photos": photos_b64,        # list of base64 gallery images
             "slug": slug,
             "created_at": "now()"
         }
@@ -81,7 +82,7 @@ def main():
             print(f"\nSUCCESS! Blog post published successfully!")
             print(f"Title: {title}")
             print(f"Character count: {len(title)} (ideal 50-60)")
-            print(f"Featured + {len(photos_b64)} AI-generated images attached")
+            print(f"AI-generated featured + {len(photos_b64)} gallery images attached")
             print(f"URL: https://www.zoiriscleaningservices.com/blog/blog/{slug}")
         else:
             print("Insert failed:", result)
