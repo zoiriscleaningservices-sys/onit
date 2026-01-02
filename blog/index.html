@@ -1128,7 +1128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             margin: 20px 0 30px;
             text-align: center;
         }
-        .truewebx-single-post h1 {
+        .truewebx-single-post h2 {
             font-size: clamp(2rem, 7vw, 3rem);
             text-align: center;
             margin: 20px 0 30px;
@@ -1235,7 +1235,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </style>
 
     <div class="truewebx-blog-container">
-        <h1 id="truewebx-blog-heading" class="truewebx-blog-heading">Zoiris Cleaning Services Blog</h1>
+        <h2 id="truewebx-blog-heading" class="truewebx-blog-heading">Zoiris Cleaning Services Blog</h2>
 
         <!-- Blog Grid View -->
         <div id="blogGrid" class="truewebx-blog-grid"></div>
@@ -1379,7 +1379,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     Published on ${new Date(blog.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
                 </div>
 
-                <h1>${blog.name}</h1>
+                <h2>${blog.name}</h2>
 
                 <div class="content">
                     ${processContent(blog.description)}
