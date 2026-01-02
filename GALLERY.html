@@ -948,26 +948,7 @@ body{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ZOIRIS CLEANING PHOTO + VIDEO GALLERY SECTION (WITH VIDEOS VISIBLE IN GRID) -->
+<!-- ZOIRIS CLEANING PHOTO + VIDEO GALLERY SECTION (WITH CAPTIONS) -->
 <section class="zoiris-gallery-section">
     <div class="container">
         <h2 class="section-title" style="font-size: clamp(2.2rem, 7vw, 3.5rem); font-weight: 800; text-align: center; margin-bottom: 40px; background: linear-gradient(45deg, #fff, #ffeb3b); -webkit-background-clip: text; color: transparent; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">
@@ -987,7 +968,6 @@ body{
 <style>
     .zoiris-gallery-section {
         padding: clamp(40px, 8vw, 80px) 20px;
-        background: transparent;
     }
     .container {
         max-width: 1200px;
@@ -1021,10 +1001,8 @@ body{
         aspect-ratio: 1 / 1;
         display: block;
     }
-
-    /* Play icon for videos */
     .media-item.video-item::before {
-        content: '\f04b';
+        content: '\f04b'; /* Play icon */
         font-family: "Font Awesome 6 Free";
         font-weight: 900;
         position: absolute;
@@ -1035,10 +1013,9 @@ body{
         color: rgba(255,255,255,0.9);
         z-index: 2;
         text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-        pointer-events: none;
     }
 
-    /* Magnifying glass for photos */
+    /* Magnifying glass for photos, play icon already for videos */
     .media-item.photo-item::after {
         content: '\f002';
         font-family: "Font Awesome 6 Free";
@@ -1057,6 +1034,18 @@ body{
     }
     .media-item.photo-item:hover::after {
         opacity: 1;
+    }
+
+    .media-caption {
+        padding: 12px 16px;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+    .media-title {
+        font-weight: bold;
+        margin-bottom: 4px;
     }
 
     @media (max-width: 768px) {
@@ -1080,70 +1069,68 @@ body{
         );
 
         async function loadGallerySection() {
-            const { data: sections, error } = await supabaseClient
+            const { data: items, error } = await supabaseClient
                 .from('services')
                 .select('name, profile, photos, description')
                 .order('created_at', { ascending: false });
 
-            if (error || !sections) {
+            if (error || !items) {
                 galleryContainer.innerHTML = `<p style="text-align:center; color:#ffeb3b;">Error loading gallery.</p>`;
                 return;
             }
 
-            const gallerySections = sections.filter(s => !s.description || s.description.trim() === '');
+            // Filter only gallery entries (no blog text)
+            const galleryItems = items.filter(item => 
+                !item.description || item.description.trim() === ''
+            );
 
-            if (gallerySections.length === 0) {
+            if (galleryItems.length === 0) {
                 galleryContainer.innerHTML = `<p style="text-align:center; opacity:0.9;">No photos or videos yet. Check back soon!</p>`;
                 return;
             }
 
             let html = '<div class="gallery-grid">';
 
-            gallerySections.forEach(section => {
-                const sectionTitle = section.name || "Gallery Item";
+            galleryItems.forEach(item => {
+                const sectionTitle = item.name || "Gallery Item";
 
-                // Featured/cover media
-                if (section.profile) {
-                    const isVideo = /\.(mp4|webm|mov|avi)$/i.test(section.profile);
-                    const mediaClass = isVideo ? 'video-item' : 'photo-item';
-                    const mediaTag = isVideo 
-                        ? `<video muted loop preload="metadata" playsinline>
-                               <source src="${section.profile}#t=0.1" type="video/mp4">
-                           </video>`
-                        : `<img src="${section.profile}" alt="${sectionTitle} featured" loading="lazy">`;
-
+                // Featured/cover image (photo)
+                if (item.profile) {
                     html += `
-                        <div class="media-item ${mediaClass}">
-                            <a href="${section.profile}" data-fancybox="zoiris-gallery" 
-                               ${isVideo ? 'data-type="video"' : ''} 
-                               data-caption="<strong>${sectionTitle}</strong><br>Featured">
-                                ${mediaTag}
+                        <div class="media-item photo-item">
+                            <a href="${item.profile}" data-fancybox="zoiris-gallery" data-caption="<strong>${sectionTitle}</strong><br>Featured Image">
+                                <img src="${item.profile}" alt="${sectionTitle} featured" loading="lazy">
                             </a>
                         </div>
                     `;
                 }
 
-                // Gallery media (photos + videos)
-                if (Array.isArray(section.photos)) {
-                    section.photos.forEach((url, i) => {
+                // Gallery photos + videos (assuming URLs ending in .mp4, .webm, .mov are videos)
+                if (Array.isArray(item.photos)) {
+                    item.photos.forEach((url, index) => {
                         const isVideo = /\.(mp4|webm|mov|avi)$/i.test(url);
-                        const mediaClass = isVideo ? 'video-item' : 'photo-item';
-                        const captionTitle = `${sectionTitle} - ${isVideo ? 'Video' : 'Photo'} ${i + 1}`;
-                        const mediaTag = isVideo 
-                            ? `<video muted loop preload="metadata" playsinline>
-                                   <source src="${url}#t=0.1" type="video/mp4">
-                               </video>`
-                            : `<img src="${url}" alt="${captionTitle}" loading="lazy">`;
+                        const captionTitle = `${sectionTitle} - ${isVideo ? 'Video' : 'Photo'} ${index + 1}`;
 
-                        html += `
-                            <div class="media-item ${mediaClass}">
-                                <a href="${url}" data-fancybox="zoiris-gallery" 
-                                   ${isVideo ? 'data-type="video"' : ''} 
-                                   data-caption="<strong>${captionTitle}</strong>">
-                                    ${mediaTag}
-                                </a>
-                            </div>
-                        `;
+                        if (isVideo) {
+                            html += `
+                                <div class="media-item video-item">
+                                    <a href="${url}" data-fancybox="zoiris-gallery" data-type="video" data-caption="<strong>${captionTitle}</strong>">
+                                        <video muted loop preload="metadata">
+                                            <source src="${url}#t=0.1" type="video/mp4">
+                                            Your browser does not support video.
+                                        </video>
+                                    </a>
+                                </div>
+                            `;
+                        } else {
+                            html += `
+                                <div class="media-item photo-item">
+                                    <a href="${url}" data-fancybox="zoiris-gallery" data-caption="<strong>${captionTitle}</strong>">
+                                        <img src="${url}" alt="${captionTitle}" loading="lazy">
+                                    </a>
+                                </div>
+                            `;
+                        }
                     });
                 }
             });
@@ -1151,7 +1138,7 @@ body{
             html += '</div>';
             galleryContainer.innerHTML = html;
 
-            // Initialize Fancybox – full support for photos + videos + sharing
+            // Initialize Fancybox – supports photos + videos + full sharing
             Fancybox.bind("[data-fancybox='zoiris-gallery']", {
                 Toolbar: {
                     display: {
@@ -1161,7 +1148,6 @@ body{
                     },
                 },
                 Thumbs: { autoStart: false },
-                Images: { initialSize: "fit" },
                 Hash: false,
                 share: {
                     facebook: true,
@@ -1179,10 +1165,7 @@ body{
         loadGallerySection();
     });
 </script>
-<!-- END ZOIRIS CLEANING GALLERY SECTION (PHOTOS + VIDEOS VISIBLE) -->
-
-
-
+<!-- END ZOIRIS CLEANING GALLERY SECTION (PHOTOS + VIDEOS + CAPTIONS) -->
 
 
 
