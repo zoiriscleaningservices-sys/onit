@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoiris Cleaning – Photo Gallery</title>
+    <meta name="description" content="Professional cleaning services gallery by Zoiris Cleaning. Before & after photos, team, and more.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root { 
+            --coral: #ff6b6b; 
+            --turquoise: #0d9488; 
+            --glass-bg: rgba(255,255,255,0.18); 
+            --text: #ffffff; 
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            background: linear-gradient(135deg, var(--turquoise), var(--coral)); 
+            color: var(--text); 
+            min-height:100vh; 
+        }
+
+        header {
+            text-align:center;
+            padding: clamp(40px, 10vw, 80px) 20px 40px;
+        }
+        .logo { 
+            font-size: clamp(3rem, 10vw, 6rem); 
+            font-weight:900; 
+            background:linear-gradient(45deg,#fff,#ff8fa3); 
+            -webkit-background-clip:text; 
+            color:transparent; 
+            margin-bottom: 16px;
+        }
+        .tagline {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Gallery Sections */
+        .gallery-section {
+            margin-bottom: clamp(60px, 10vw, 100px);
+        }
+        .section-title {
+            font-size: clamp(2.2rem, 7vw, 3.5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #fff, #ffeb3b);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .cover-img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 32px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .cover-img:hover {
+            transform: scale(1.02);
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .photo-item {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            transition: transform 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+        }
+
+        /* Magnifying glass overlay (like the example) */
+        .photo-item::after,
+        .cover-img::after {
+            content: '\f002'; /* Font Awesome search icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: rgba(255,255,255,0.9);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+        .photo-item:hover::after,
+        .cover-img:hover::after {
+            opacity: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        footer a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer .powered-by {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 100px 20px;
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .no-gallery {
+            text-align: center;
+            padding: 80px 20px;
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .photos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 16px;
+            }
+            .cover-img {
+                border-radius: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="logo">Zoiris Cleaning</h1>
+        <p class="tagline">Professional Cleaning Services – See Our Work</p>
+    </div>
+</header>
+
+<main class="container" id="galleryContainer">
+    <div class="loading">Loading gallery...</div>
+</main>
+
+<footer>
+    <p>© 2026 Zoiris Cleaning Services | <a href="https://www.zoiriscleaningservices.com/" target="_blank">zoiriscleaningservices.com</a></p>
+    <p style="margin-top:12px; font-size:1rem;">
+        <a href="tel:2519308621" style="color:#ffeb3b;">Call (251) 930-8621</a> for a free quote!
+    </p>
+    <p class="powered-by">
+        Powered by <a href="https://truewebx.site/" target="_blank">TrueWebX</a>
+    </p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script>
+    const SUPABASE_URL = 'https://dwxbzltxsdeshmmtcycv.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_4PWdqRYFR0E-tp-OjdTP3Q_S_5qvRbp';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const galleryContainer = document.getElementById('galleryContainer');
+
+    async function loadGallery() {
+        const { data: sections, error } = await supabaseClient
+            .from('services')
+            .select('name, profile, photos, description')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            galleryContainer.innerHTML = `<div class="loading" style="color:#ffeb3b;">Error loading gallery. Please try again later.</div>`;
+            console.error(error);
+            return;
+        }
+
+        const gallerySections = sections.filter(section => 
+            !section.description || section.description.trim() === ''
+        );
+
+        if (gallerySections.length === 0) {
+            galleryContainer.innerHTML = `<div class="no-gallery">No photos in the gallery yet. Check back soon!</div>`;
+            return;
+        }
+
+        let html = '';
+
+        gallerySections.forEach(section => {
+            if (!section.name) return;
+
+            const coverImg = section.profile || 'https://via.placeholder.com/1200x600/0d9488/ffffff?text=Zoiris+Cleaning';
+            const photos = Array.isArray(section.photos) ? section.photos : [];
+
+            // Unique group name for each section
+            const groupName = `gallery-${section.name.replace(/\s+/g, '-').toLowerCase()}`;
+
+            html += `
+                <section class="gallery-section">
+                    <h2 class="section-title">${section.name}</h2>
+                    
+                    <a href="${coverImg}" data-fancybox="${groupName}" data-caption="${section.name} - Cover Image">
+                        <img src="${coverImg}" alt="${section.name} cover" class="cover-img" loading="lazy">
+                    </a>
+                    
+                    ${photos.length > 0 ? `
+                    <div class="photos-grid">
+                        ${photos.map((photo, index) => `
+                            <div class="photo-item">
+                                <a href="${photo}" data-fancybox="${groupName}" data-caption="${section.name} - Photo ${index + 1}">
+                                    <img src="${photo}" alt="${section.name} photo ${index + 1}" loading="lazy">
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+                </section>
+            `;
+        });
+
+        galleryContainer.innerHTML = html;
+
+        // Initialize Fancybox with share buttons and full features
+        Fancybox.bind("[data-fancybox]", {
+            Toolbar: {
+                display: {
+                    left: ["infobar"],
+                    middle: ["zoomIn", "zoomOut", "toggle1to1", "rotateCCW", "rotateCW", "flipX", "flipY"],
+                    right: ["slideshow", "thumbs", "download", "share", "close"],
+                },
+            },
+            Thumbs: { autoStart: false },
+            Images: { initialSize: "fit" },
+            Hash: false,
+            share: {
+                facebook: true,
+                twitter: true,
+                pinterest: true,
+                linkedin: true,
+                whatsapp: true,
+                copyLink: true,
+            },
+        });
+    }
+
+    window.onload = loadGallery;
+</script>
+
+</body>
+</html>
