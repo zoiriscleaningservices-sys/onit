@@ -71,6 +71,7 @@
             margin-bottom: 40px;
             cursor: pointer;
             transition: transform 0.3s ease;
+            position: relative;
         }
         .cover-img:hover {
             transform: scale(1.02);
@@ -100,10 +101,10 @@
             display: block;
         }
 
-        /* Magnifying glass overlay (like the example) */
+        /* Magnifying glass on hover */
         .photo-item::after,
         .cover-img::after {
-            content: '\f002'; /* Font Awesome search icon */
+            content: '\f002';
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             position: absolute;
@@ -224,14 +225,13 @@
             const coverImg = section.profile || 'https://via.placeholder.com/1200x600/0d9488/ffffff?text=Zoiris+Cleaning';
             const photos = Array.isArray(section.photos) ? section.photos : [];
 
-            // Unique group name for each section
             const groupName = `gallery-${section.name.replace(/\s+/g, '-').toLowerCase()}`;
 
             html += `
                 <section class="gallery-section">
                     <h2 class="section-title">${section.name}</h2>
                     
-                    <a href="${coverImg}" data-fancybox="${groupName}" data-caption="${section.name} - Cover Image">
+                    <a href="${coverImg}" data-fancybox="${groupName}" data-caption="${section.name} - Featured">
                         <img src="${coverImg}" alt="${section.name} cover" class="cover-img" loading="lazy">
                     </a>
                     
@@ -252,7 +252,7 @@
 
         galleryContainer.innerHTML = html;
 
-        // Initialize Fancybox with share buttons and full features
+        // Initialize Fancybox with FULL sharing options
         Fancybox.bind("[data-fancybox]", {
             Toolbar: {
                 display: {
@@ -270,6 +270,8 @@
                 pinterest: true,
                 linkedin: true,
                 whatsapp: true,
+                telegram: true,
+                email: true,
                 copyLink: true,
             },
         });
