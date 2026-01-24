@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.zoiriscleaningservices.com/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.zoiriscleaningservices.com/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.zoiriscleaningservices.com/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://www.zoiriscleaningservices.com/favicon/site.webmanifest">
+
   <!-- Home -->
   <url>
     <loc>https://www.zoiriscleaningservices.com/</loc>
@@ -208,3 +214,4 @@
   </url>
 
 </urlset>
+
