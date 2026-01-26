@@ -9,9 +9,7 @@
 
 <meta name="description" content="Contact Zoiris Cleaning Services today for the #1 house cleaning, deep cleaning, commercial cleaning, Airbnb & vacation rental cleaning in Mobile, AL. Call (251) 930-8621 or get a free quote. Serving Mobile & Baldwin County.">
 
-<meta name="keywords" content="contact Zoiris Cleaning Services, Zoiris Cleaning phone number, cleaning service Mobile AL contact, get quote cleaning Mobile Alabama, call cleaning company Mobile AL, cleaning service near me contact, Zoiris Cleaning Services Mobile AL, cleaning company Mobile AL phone, house cleaning quote Mobile AL, commercial cleaning contact Mobile, Airbnb cleaning contact Mobile AL, deep cleaning Mobile contact, move in out cleaning quote Mobile Alabama">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="keywords" content="contact Zoiris Cleaning Services, Zoiris Cleaning phone number, cleaning service Mobile AL contact, get quote cleaning Mobile Alabama, call cleaning company Mobile AL, cleaning service near me contact, Zoiris Cleaning Services Mobile AL, cleaning company Mobile AL phone, house cleaning quote Mobile AL, commercial cleaning contact Mobile, Airbnb cleaning contact Mobile AL, deep cleaning Mobile contact, move in out cleaning quote Mobile Alabama">  
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="Zoiris Cleaning Service">
 
@@ -44,6 +42,8 @@
 <!-- Preload Font Awesome fonts -->
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+ <link rel="preload" as="image" href="https://i.ibb.co/F4gsMz1c/7e6c60fb-e7da-4ac4-9db4-251daab42a76.png" fetchpriority="high">
+ <link rel="preload" as="image" href="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" fetchpriority="high">
 
 <!-- Swiper CSS (async is fine - not critical for initial layout) -->
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -220,7 +220,6 @@ Zoiris Cleaning Services Downtown Mobile, Zoiris Cleaning Midtown Mobile AL, Zoi
 
 
 
-
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -241,6 +240,22 @@ Zoiris Cleaning Services Downtown Mobile, Zoiris Cleaning Midtown Mobile AL, Zoi
 
 
 
+  <style>
+
+
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/F4gsMz1c/7e6c60fb-e7da-4ac4-9db4-251daab42a76.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+
+
  /* Neon cyber hover effect */
 .dropdown a:hover {
   background: #0ff; /* neon cyan background */
@@ -250,6 +265,15 @@ Zoiris Cleaning Services Downtown Mobile, Zoiris Cleaning Midtown Mobile AL, Zoi
   border-radius: 6px;
   transition: all 0.25s ease-in-out;
 }
+
+
+
+:where(h1) {
+  margin-block: 0.67em;
+  font-size: 2em;
+}
+
+
 
 body{
   background-color: #000;
@@ -401,12 +425,6 @@ body{
             background-size: cover;
             background-position: center;
         }
-        .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-
         .service-card {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -489,8 +507,18 @@ body{
         }
 
 
+.tailwind-loading body {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
 
-
+/* Optional: Smooth fade-in when ready */
+html:not(.tailwind-loading) body {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+ 
 
 
 
@@ -588,7 +616,7 @@ body{
           html {
     scroll-behavior: smooth;
   }
-    </style>
+</style>
 
     <body class="min-h-screen py-8 px-4">
     <!-- Floating Background Bubbles -->
@@ -599,9 +627,8 @@ body{
         <div class="bubble" style="width: 100px; height: 100px; left: 70%; animation-delay: 1s;"></div>
         <div class="bubble" style="width: 90px; height: 90px; left: 85%; animation-delay: 3s;"></div>
     </div>
-    
+  
 
-    
 
 
 
@@ -667,10 +694,18 @@ body{
                 <a href="#quote" class="contact-button text-lg">Get a Quote</a>
             </div>
 
-            <div class="md:hidden flex items-center">
-                <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-500 focus:outline-none">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+           <div class="md:hidden flex items-center">
+             <button
+             id="mobile-menu-button"
+              class="text-gray-700 hover:text-blue-500 focus:outline-none"
+              aria-label="Open mobile menu"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              > 
+    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+  </button>
+
+
             </div>
         </div>
     </div>
@@ -725,6 +760,10 @@ body{
     </script>
 </nav>
 
+
+
+
+
         
 
     <!-- CONTACT BAR (under navbar) -->
@@ -744,35 +783,48 @@ body{
       </a>
     </div>
 
+ 
 
 
-    <!-- Right: Social Icons -->
-    <div class="flex space-x-2 mt-2 md:mt-0">
-      <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-facebook-f fa-beat"></i>
-      </a>
-      <a href="https://www.instagram.com/zoiriscleaning" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-instagram fa-beat"></i>
-      </a>
-      <a href="https://x.com/zoiriscleaning" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-twitter fa-beat"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/zoiriscleaning-services-b5b0b2381/" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-linkedin-in fa-beat"></i>
-      </a>
-      <a href="https://www.yelp.com/user_details?userid=7SDy8Urgj43gfYxrR5o2eQ" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-yelp fa-beat"></i>
-      </a>
-      <a href="https://www.youtube.com/channel/UCTewa53AZduD2H9J04RogCw" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-youtube fa-beat"></i>
-      </a>
-      <a href="https://www.pinterest.com/zoiriolysh/_profile/" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
-        <i class="fab fa-pinterest-p fa-beat"></i>
-      </a>
-    </div>
 
-  </div>
+<!-- Right: Social Icons -->
+<div class="flex space-x-2 mt-2 md:mt-0">
+  <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-facebook-f fa-beat"></i>
+    <span class="sr-only">Follow us on Facebook</span>
+  </a>
+  <a href="https://www.instagram.com/zoiriscleaning" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-instagram fa-beat"></i>
+    <span class="sr-only">Follow us on Instagram</span>
+  </a>
+  <a href="https://x.com/zoiriscleaning" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-twitter fa-beat"></i>
+    <span class="sr-only">Follow us on X (Twitter)</span>
+  </a>
+  <a href="https://www.linkedin.com/in/zoiriscleaning-services-b5b0b2381/" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-linkedin-in fa-beat"></i>
+    <span class="sr-only">Connect with us on LinkedIn</span>
+  </a>
+  <a href="https://www.yelp.com/user_details?userid=7SDy8Urgj43gfYxrR5o2eQ" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-yelp fa-beat"></i>
+    <span class="sr-only">Read our reviews on Yelp</span>
+  </a>
+  <a href="https://www.youtube.com/channel/UCTewa53AZduD2H9J04RogCw" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-youtube fa-beat"></i>
+    <span class="sr-only">Subscribe to our YouTube channel</span>
+  </a>
+  <a href="https://www.pinterest.com/zoiriolysh/_profile/" class="w-8 h-8 flex items-center justify-center bg-white text-blue-500 rounded-full hover:bg-gray-200 transition">
+    <i class="fab fa-pinterest-p fa-beat"></i>
+    <span class="sr-only">Follow us on Pinterest</span>
+  </a>
+</div>  
 </div>
+</div>
+
+
+
+
+
 <!-- 🌟 Navigation Bar -->
 
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -850,6 +902,8 @@ body{
   </div>
 </div>
 
+
+
 <script>
   // ✅ ZIP Codes You Serve
   const serviceZips = [
@@ -919,8 +973,6 @@ body{
     document.getElementById("confirmationSection").classList.remove("hidden");
   });
 </script>
-
-
 
 
 
