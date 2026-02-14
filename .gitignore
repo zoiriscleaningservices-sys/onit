@@ -1,0 +1,16 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Gemini/Antigravity folders
+.gemini/
+.agent/
+brain/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# CSV files (if they contain sensitive data)
+all-websites.csv

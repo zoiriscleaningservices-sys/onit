@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoiris Cleaning – My Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root { 
+            --coral: #ff6b6b; 
+            --turquoise: #0d9488; 
+            --glass-bg: rgba(255,255,255,0.18); 
+            --text: #ffffff; 
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            background: linear-gradient(135deg, var(--turquoise), var(--coral)); 
+            color: var(--text); 
+            min-height:100vh; 
+            display:flex;
+            flex-direction:column;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position:fixed; 
+            bottom:0; left:0; right:0; 
+            height:80px; 
+            background:rgba(0,0,0,0.9); 
+            backdrop-filter:blur(20px);
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            z-index:9999; 
+            padding-bottom:env(safe-area-inset-bottom);
+        }
+        .nav-container {
+            background:rgba(255,255,255,0.1); 
+            backdrop-filter:blur(20px); 
+            border-radius:50px; 
+            padding:12px 24px;
+            display:flex; 
+            gap:clamp(20px, 8vw, 40px); 
+            box-shadow:0 8px 32px rgba(0,0,0,0.5);
+        }
+        .nav-item { 
+            display:flex; 
+            flex-direction:column; 
+            align-items:center; 
+            gap:6px; 
+            color:#888; 
+            font-size:clamp(10px, 2.5vw, 11px); 
+            font-weight:600; 
+            cursor:pointer; 
+        }
+        .nav-item i { font-size:clamp(22px, 5vw, 24px); }
+        .nav-item.active, .nav-item.active i { color:var(--coral); transform:scale(1.15); }
+
+        /* Main Content */
+        .main-content {
+            flex:1;
+            padding:clamp(16px, 4vw, 20px);
+            padding-top:80px;
+            padding-bottom:100px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+        .logo { 
+            font-size: clamp(2.2rem, 8vw, 4rem); 
+            font-weight:900; 
+            background:linear-gradient(45deg,#fff,#ff8fa3); 
+            -webkit-background-clip:text; 
+            color:transparent; 
+            text-align:center; 
+            margin:clamp(16px, 4vw, 20px) 0; 
+            cursor:pointer;
+        }
+
+        /* Glass Card */
+        .glass { 
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: clamp(24px, 5vw, 32px);
+            margin: 20px 0;
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        /* Form */
+        .form-grid { display: grid; gap: clamp(16px, 4vw, 20px); width: 100%; }
+        input, textarea, button {
+            padding: clamp(14px, 4vw, 18px);
+            border-radius: 20px;
+            border: none;
+            font-size: clamp(15px, 4vw, 16px);
+            background: rgba(255,255,255,0.25);
+            color: white;
+            backdrop-filter: blur(10px);
+            width: 100%;
+        }
+        input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.7); }
+        button {
+            background: var(--coral);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover { background: #ff8787; }
+        button:disabled { background: #666; cursor: not-allowed; }
+
+        button.edit-btn {
+            background: #0d9488;
+            margin-right: 8px;
+        }
+        button.delete-btn {
+            background: #d63031;
+        }
+
+        /* Photo Upload */
+        .photo-upload {
+            position: relative;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            border: 2px dashed rgba(255,255,255,0.4);
+            border-radius: 28px;
+            padding: clamp(20px, 5vw, 24px);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .photo-upload:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: var(--coral);
+            transform: translateY(-4px);
+        }
+        .photo-upload i { font-size: clamp(40px, 10vw, 48px); color: var(--coral); margin-bottom: 12px; }
+        .photo-upload span { font-size: clamp(16px, 4.5vw, 18px); font-weight: 600; display: block; margin-bottom: 8px; }
+        .photo-upload small { font-size: clamp(13px, 3.5vw, 14px); opacity: 0.85; }
+        .photo-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+        .preview-container { 
+            margin-top: 16px; 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 12px; 
+            justify-content: center; 
+        }
+        .preview-img { 
+            max-width: clamp(100px, 25vw, 120px); 
+            max-height: clamp(100px, 25vw, 120px); 
+            object-fit: cover; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4); 
+        }
+        .profile-preview { 
+            width: clamp(130px, 35vw, 160px); 
+            height: clamp(130px, 35vw, 160px); 
+            object-fit: cover; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5); 
+        }
+
+        /* Listings Grid */
+        .services { 
+            display:grid; 
+            grid-template-columns:1fr; 
+            gap:clamp(20px, 5vw, 24px); 
+            margin-top:20px; 
+            width:100%; 
+        }
+        .card { 
+            background:rgba(255,255,255,0.15); 
+            border-radius:28px; 
+            padding:clamp(20px, 5vw, 24px); 
+            width:100%; 
+            text-align:center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            word-wrap: break-word;
+            overflow-wrap: anywhere;
+            hyphens: auto;
+        }
+        .card img.profile-img {
+            width: 100%;
+            max-width: clamp(260px, 70vw, 320px);
+            border-radius: 20px;
+            margin: 16px auto;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .card h3 {
+            margin: 16px 0 8px;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
+            word-wrap: break-word;
+            overflow-wrap: anywhere;
+        }
+        .card .content-preview {
+            margin: 10px 0;
+            line-height: 1.6;
+            opacity: 0.95;
+            font-size: clamp(0.95rem, 3vw, 1rem);
+            word-wrap: break-word;
+            overflow-wrap: anywhere;
+            hyphens: auto;
+        }
+        .card .content-preview strong {
+            color: #ffeb3b;
+            font-weight: 800;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+        .card .content-preview a {
+            color: #ffeb3b;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .card .photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(clamp(100px, 25vw, 110px), 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .card .photos img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .card-actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .glass { padding: clamp(28px, 5vw, 32px); max-width: 700px; }
+            .nav-container { padding:12px 30px; gap:40px; }
+            .services { gap:28px; }
+        }
+        @media (min-width: 1024px) {
+            .main-content { padding:20px; }
+            .glass { max-width: 800px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="dashboardScreen">
+    <div class="bottom-nav">
+        <div class="nav-container">
+            <div class="nav-item active" onclick="show('home')"><i class="fas fa-home"></i><span>My Posts</span></div>
+            <div class="nav-item" onclick="show('add')"><i class="fas fa-plus-circle"></i><span>New Post</span></div>
+            <div class="nav-item" onclick="window.location.href='https://www.zoiriscleaningservices.com/blog/'"><i class="fas fa-globe"></i><span>View Blog</span></div>
+            <div class="nav-item" onclick="alert('Sign-out coming soon')"><i class="fas fa-sign-out-alt"></i><span>Sign Out</span></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1 class="logo" onclick="window.location.href='https://www.zoiriscleaningservices.com/'">Zoiris Cleaning</h1>
+        <p style="text-align:center; margin-bottom:30px; font-size:clamp(1rem, 3vw, 1.1rem);">Manage your blog posts</p>
+
+        <!-- MY POSTS -->
+        <div id="home" class="glass">
+            <h2 style="text-align:center; margin-bottom:24px; font-size:clamp(1.8rem, 6vw, 2.2rem);">My Published Posts</h2>
+            <div class="services" id="list">
+                <p style="text-align:center; padding:40px; opacity:0.9; font-size:clamp(1rem, 3vw, 1.1rem);">Loading your posts...</p>
+            </div>
+        </div>
+
+        <!-- ADD / EDIT POST -->
+        <div id="add" class="glass" style="display:none;">
+            <h2 id="formTitle" style="text-align:center; margin-bottom:24px; font-size:clamp(1.8rem, 6vw, 2.2rem);">Write New Blog Post</h2>
+            <form class="form-grid" id="addForm">
+                <input type="hidden" id="editId">
+                <input type="text" id="name" placeholder="Post Title *" required>
+                <textarea id="desc" placeholder="Write your full blog post content here... Use **text** or __text__ for bold/underline keywords" rows="10" required></textarea>
+
+                <div class="photo-upload">
+                    <i class="fas fa-camera"></i>
+                    <span id="profileLabel">Upload Featured Image *</span>
+                    <small>Required – one image</small>
+                    <input type="file" id="profile" accept="image/*">
+                    <div class="preview-container" id="profilePreview"></div>
+                </div>
+
+                <div class="photo-upload">
+                    <i class="fas fa-images"></i>
+                    <span>Upload Gallery Photos</span>
+                    <small>Optional – select multiple</small>
+                    <input type="file" id="photos" accept="image/*" multiple>
+                    <div class="preview-container" id="galleryPreview"></div>
+                </div>
+
+                <div style="display:flex; gap:12px; justify-content:center;">
+                    <button type="button" id="publishBtn">PUBLISH POST</button>
+                    <button type="button" id="cancelEdit" style="display:none; background:#666;">Cancel</button>
+                </div>
+            </form>
+            <p id="msg" style="text-align:center; margin-top:20px; font-size:clamp(0.95rem, 3vw, 1rem);"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const SUPABASE_URL = 'https://dwxbzltxsdeshmmtcycv.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_4PWdqRYFR0E-tp-OjdTP3Q_S_5qvRbp';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const list = document.getElementById('list');
+    const msg = document.getElementById('msg');
+    let isPublishing = false;
+    let allMyPosts = [];
+    let editingPost = null;
+    const BLOG_BASE_URL = 'https://www.zoiriscleaningservices.com/blog'; // Your blog base URL
+    const BASE_PATH = '/blog'; // Must match the path you configured on your server
+
+    function previewImage(file, containerId, isProfile = false) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = isProfile ? 'profile-preview' : 'preview-img';
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            container.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function previewMultipleImages(files, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        Array.from(files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'preview-img';
+                container.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    document.getElementById('profile').addEventListener('change', e => {
+        if (e.target.files[0]) previewImage(e.target.files[0], 'profilePreview', true);
+    });
+    document.getElementById('photos').addEventListener('change', e => {
+        if (e.target.files.length) previewMultipleImages(e.target.files, 'galleryPreview');
+    });
+
+    function show(section) {
+        ['home', 'add'].forEach(s => document.getElementById(s).style.display = s === section ? 'block' : 'none');
+        document.querySelectorAll('.nav-item').forEach((el, i) => el.classList.toggle('active', i === (section === 'home' ? 0 : 1)));
+        if (section === 'home') loadMyPosts();
+        if (section === 'add') {
+            if (!editingPost) resetForm();
+        }
+    }
+
+    function resetForm() {
+        document.getElementById('addForm').reset();
+        document.getElementById('profilePreview').innerHTML = '';
+        document.getElementById('galleryPreview').innerHTML = '';
+        document.getElementById('publishBtn').textContent = 'PUBLISH POST';
+        document.getElementById('formTitle').textContent = 'Write New Blog Post';
+        document.getElementById('profileLabel').textContent = 'Upload Featured Image *';
+        document.getElementById('cancelEdit').style.display = 'none';
+        document.getElementById('editId').value = '';
+        editingPost = null;
+        msg.innerHTML = '';
+    }
+
+    function processContent(text) {
+        if (!text) return 'No content.';
+        return text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/__([^_]+?)__/g, '<strong>$1</strong>')
+            .replace(/(\(251\)\s?930-8621|2519308621|251-930-8621)/g, '<a href="tel:2519308621"><strong>(251) 930-8621</strong></a>')
+            .replace(/(\+?\d{1,4}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,9}[-.\s]?\d{1,9})/g, '<a href="tel:$1">$1</a>')
+            .replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g, '<a href="mailto:$1">$1</a>')
+            .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank">$1</a>')
+            .replace(/\n/g, '<br>');
+    }
+
+    async function loadMyPosts() {
+        list.innerHTML = '<p style="text-align:center; padding:40px; opacity:0.9; font-size:clamp(1rem, 3vw, 1.1rem);">Loading...</p>';
+
+        const { data: posts, error } = await supabaseClient
+            .from('services')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error || !posts || posts.length === 0) {
+            list.innerHTML = '<p style="text-align:center; padding:40px; opacity:0.9; font-size:clamp(1rem, 3vw, 1.1rem);">No posts published yet.<br>Be the first to write one!</p>';
+            return;
+        }
+
+        allMyPosts = posts;
+
+        list.innerHTML = posts.map(p => `
+            <div class="card">
+                <img src="${p.profile || 'https://via.placeholder.com/600x400/0d9488/ffffff?text=No+Image'}" 
+                     alt="${p.name}" class="profile-img">
+
+                <h3>${p.name || 'Untitled Post'}</h3>
+                <div class="content-preview">${processContent(p.description)}</div>
+
+                ${Array.isArray(p.photos) && p.photos.length > 0 ? `
+                <div class="photos">
+                    ${p.photos.map(photo => `<img src="${photo}" alt="Gallery" loading="lazy">`).join('')}
+                </div>` : ''}
+
+                <small style="display:block; margin-top:16px; opacity:0.8; font-size:clamp(0.85rem, 2.5vw, 0.95rem);">
+                    Published: ${new Date(p.created_at).toLocaleDateString()}
+                </small>
+
+                <div style="margin-top:12px; font-size:clamp(0.9rem, 3vw, 1rem);">
+                    <strong>Live URL:</strong><br>
+                    <a href="${BLOG_BASE_URL}${BASE_PATH}/${p.slug}" target="_blank" style="color:#ffeb3b; word-break:break-all;">
+                        ${BLOG_BASE_URL}${BASE_PATH}/${p.slug}
+                    </a>
+                </div>
+
+                <div class="card-actions">
+                    <button class="edit-btn" onclick="startEdit('${p.id}')">Edit</button>
+                    <button class="delete-btn" onclick="deletePost('${p.id}')">Delete</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function startEdit(postId) {
+        const post = allMyPosts.find(p => p.id === postId);
+        if (!post) return;
+
+        editingPost = post;
+
+        document.getElementById('editId').value = post.id;
+        document.getElementById('name').value = post.name || '';
+        document.getElementById('desc').value = post.description || '';
+        document.getElementById('formTitle').textContent = 'Edit Blog Post';
+        document.getElementById('publishBtn').textContent = 'UPDATE POST';
+        document.getElementById('profileLabel').textContent = 'Change Featured Image (optional)';
+        document.getElementById('cancelEdit').style.display = 'block';
+
+        if (post.profile) {
+            const img = document.createElement('img');
+            img.src = post.profile;
+            img.className = 'profile-preview';
+            document.getElementById('profilePreview').innerHTML = '';
+            document.getElementById('profilePreview').appendChild(img);
+        }
+
+        if (Array.isArray(post.photos) && post.photos.length > 0) {
+            const container = document.getElementById('galleryPreview');
+            container.innerHTML = '';
+            post.photos.forEach(url => {
+                const img = document.createElement('img');
+                img.src = url;
+                img.className = 'preview-img';
+                container.appendChild(img);
+            });
+        }
+
+        show('add');
+    }
+
+    async function deletePost(postId) {
+        if (!confirm('Are you sure you want to delete this post? This cannot be undone.')) return;
+
+        try {
+            const { error } = await supabaseClient
+                .from('services')
+                .delete()
+                .eq('id', postId);
+
+            if (error) throw error;
+
+            msg.innerHTML = '<p style="color:#0f0;">Post deleted successfully!</p>';
+            loadMyPosts();
+        } catch (err) {
+            msg.innerHTML = `<p style="color:red;">Error deleting post: ${err.message}</p>`;
+        }
+    }
+
+    document.getElementById('cancelEdit').onclick = () => {
+        resetForm();
+        show('home');
+    };
+
+    document.getElementById('publishBtn').onclick = async function() {
+        if (isPublishing) return;
+
+        const title = document.getElementById('name').value.trim();
+        const content = document.getElementById('desc').value.trim();
+        const profileFile = document.getElementById('profile').files[0];
+
+        if (!title || !content) {
+            msg.innerHTML = '<p style="color:#ffeb3b;">Title and content are required!</p>';
+            return;
+        }
+
+        isPublishing = true;
+        document.getElementById('publishBtn').disabled = true;
+        document.getElementById('publishBtn').textContent = editingPost ? 'UPDATING...' : 'PUBLISHING...';
+
+        const cleanSlug = title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '')
+            .substring(0, 80);
+
+        try {
+            let profileUrl = editingPost ? editingPost.profile : null;
+            let photoUrls = editingPost && Array.isArray(editingPost.photos) ? editingPost.photos : [];
+
+            if (profileFile) {
+                const profileExt = profileFile.name.split('.').pop();
+                const profileName = `featured_${crypto.randomUUID()}.${profileExt}`;
+                const { error: profileError } = await supabaseClient.storage.from('profiles').upload(profileName, profileFile, { upsert: true });
+                if (profileError) throw profileError;
+                const { data: profileData } = supabaseClient.storage.from('profiles').getPublicUrl(profileName);
+                profileUrl = profileData.publicUrl;
+            }
+
+            const photoFiles = document.getElementById('photos').files;
+            for (let file of photoFiles) {
+                if (file) {
+                    const ext = file.name.split('.').pop();
+                    const name = `gallery_${crypto.randomUUID()}.${ext}`;
+                    const { error } = await supabaseClient.storage.from('photos').upload(name, file);
+                    if (!error) {
+                        const { data } = supabaseClient.storage.from('photos').getPublicUrl(name);
+                        photoUrls.push(data.publicUrl);
+                    }
+                }
+            }
+
+            const postData = {
+                name: title,
+                description: content,
+                profile: profileUrl,
+                photos: photoUrls.length > 0 ? photoUrls : null,
+                slug: cleanSlug
+            };
+
+            let error;
+            if (editingPost) {
+                ({ error } = await supabaseClient
+                    .from('services')
+                    .update(postData)
+                    .eq('id', editingPost.id));
+            } else {
+                postData.id = crypto.randomUUID();
+                postData.created_at = new Date().toISOString();
+                ({ error } = await supabaseClient.from('services').insert(postData));
+            }
+
+            if (error) throw error;
+
+            const fullUrl = `${BLOG_BASE_URL}${BASE_PATH}/${cleanSlug}`;
+
+            msg.innerHTML = `
+                <p style="color:#0f0; font-weight:bold;">
+                    Post ${editingPost ? 'updated' : 'published'} successfully!<br><br>
+                    View it live at:<br>
+                    <a href="${fullUrl}" target="_blank" style="color:#ffeb3b; font-size:1.1em;">
+                        ${fullUrl}
+                    </a>
+                </p>`;
+
+            resetForm();
+            setTimeout(() => {
+                show('home');
+                msg.innerHTML = '';
+            }, 10000);
+
+        } catch (err) {
+            msg.innerHTML = `<p style="color:red;">Error: ${err.message || 'Failed to save post'}</p>`;
+            console.error(err);
+        } finally {
+            isPublishing = false;
+            document.getElementById('publishBtn').disabled = false;
+        }
+    };
+
+    window.onload = () => show('home');
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
