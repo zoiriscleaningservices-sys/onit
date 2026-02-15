@@ -655,334 +655,7 @@
 
 
 
-  <!-- ZOIRIS CLEANING &ndash; LUXURY HOLIDAY POPUP (FIXED, MOBILE-PERFECT, FINAL) -->
-  <div id="zoirisHolidayWrapper" style="all:unset;display:contents;">
 
-    <style>
-      /* All styles are safely scoped &ndash; cannot affect your site */
-      #zoirisHolidayWrapper * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      #zoirisHolidayWrapper .holiday-popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.82);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 999999;
-        opacity: 0;
-        transition: opacity .7s ease;
-        backdrop-filter: blur(10px);
-        font-family: system-ui, sans-serif;
-      }
-
-      #zoirisHolidayWrapper .holiday-popup-overlay.show {
-        opacity: 1;
-      }
-
-      #zoirisHolidayWrapper .holiday-popup-content {
-        position: relative;
-        width: 92%;
-        max-width: 940px;
-        height: 92vh;
-        max-height: 880px;
-        background: #111;
-        border-radius: 28px;
-        overflow: hidden;
-        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9);
-      }
-
-      #zoirisHolidayWrapper .holiday-popup-close {
-        position: absolute;
-        top: 12px;
-        right: 18px;
-        font-size: 46px;
-        color: white;
-        cursor: pointer;
-        z-index: 1000;
-        opacity: 0.9;
-        padding: 8px;
-      }
-
-      #zoirisHolidayWrapper .holiday-popup-close:hover {
-        opacity: 1;
-        transform: scale(1.2);
-      }
-
-      #zoirisHolidayWrapper .luxury-banner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        min-height: 500px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: white;
-        overflow: hidden;
-      }
-
-      /* Background photos &ndash; now fully visible and gorgeous */
-      #zoirisHolidayWrapper .luxury-slides div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        animation: fadeSlide 21s infinite;
-      }
-
-      #zoirisHolidayWrapper .luxury-slides div:nth-child(1) {
-        background-image: url('https://i.ibb.co/Ps4CzByD/family-holidays-smaller.jpg');
-        animation-delay: 0s;
-      }
-
-      #zoirisHolidayWrapper .luxury-slides div:nth-child(2) {
-        background-image: url('https://i.ibb.co/k22tKqRT/fireworks-new-years-eve-san-francisco.jpg');
-        animation-delay: 7s;
-      }
-
-      #zoirisHolidayWrapper .luxury-slides div:nth-child(3) {
-        background-image: url('https://i.ibb.co/4RnrFL8c/phoenix-party-bus-rental-2.jpg');
-        animation-delay: 14s;
-      }
-
-      @keyframes fadeSlide {
-
-        0%,
-        100% {
-          opacity: 0
-        }
-
-        11%,
-        34% {
-          opacity: 1
-        }
-
-        44% {
-          opacity: 0
-        }
-      }
-
-      /* Snow &ndash; beautiful & mobile-friendly */
-      #zoirisHolidayWrapper .snowflake {
-        position: absolute;
-        top: -20px;
-        background: white;
-        border-radius: 50%;
-        pointer-events: none;
-        animation: fall linear infinite;
-      }
-
-      @keyframes fall {
-        from {
-          transform: translateY(-10vh) rotate(0deg);
-        }
-
-        to {
-          transform: translateY(110vh) translateX(90px) rotate(360deg);
-        }
-      }
-
-      #zoirisHolidayWrapper .luxury-content {
-        position: relative;
-        z-index: 5;
-        width: 90%;
-        max-width: 720px;
-        padding: 48px 32px;
-        background: rgba(0, 0, 0, 0.78);
-        border-radius: 24px;
-        backdrop-filter: blur(14px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-      }
-
-      #zoirisHolidayWrapper .luxury-content h1 {
-        font-size: 52px;
-        font-weight: 900;
-        line-height: 1.1;
-        margin-bottom: 14px;
-        background: linear-gradient(90deg, #fff, #c8e6ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      #zoirisHolidayWrapper .luxury-content h2 {
-        font-size: 32px;
-        font-weight: 800;
-        margin-bottom: 20px;
-      }
-
-      #zoirisHolidayWrapper .luxury-content h2 span {
-        color: #63b3ff;
-        font-size: 1.2em;
-      }
-
-      #zoirisHolidayWrapper .luxury-content p {
-        font-size: 19px;
-        line-height: 1.8;
-        margin-bottom: 34px;
-        opacity: 0.96;
-      }
-
-      /* Buttons &ndash; big, beautiful, and perfectly working */
-      #zoirisHolidayWrapper .luxury-button,
-      #zoirisHolidayWrapper .contact-button {
-        display: inline-block;
-        padding: 18px 40px;
-        margin: 10px;
-        font-size: 20px;
-        font-weight: 900;
-        border-radius: 16px;
-        text-decoration: none;
-        min-width: 260px;
-        transition: all .3s;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      }
-
-      #zoirisHolidayWrapper .luxury-button {
-        background: linear-gradient(45deg, #1e90ff, #63b3ff);
-        color: white;
-      }
-
-      #zoirisHolidayWrapper .contact-button {
-        background: rgba(255, 255, 255, 0.15);
-        color: white;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-      }
-
-      #zoirisHolidayWrapper .luxury-button:hover,
-      #zoirisHolidayWrapper .contact-button:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-      }
-
-      /* Mobile perfection */
-      @media (max-width:640px) {
-        #zoirisHolidayWrapper .holiday-popup-content {
-          width: 96%;
-          height: 94vh;
-          border-radius: 24px;
-        }
-
-        #zoirisHolidayWrapper .luxury-content {
-          padding: 40px 20px;
-        }
-
-        #zoirisHolidayWrapper .luxury-content h1 {
-          font-size: 38px;
-        }
-
-        #zoirisHolidayWrapper .luxury-content h2 {
-          font-size: 26px;
-        }
-
-        #zoirisHolidayWrapper .luxury-content p {
-          font-size: 17px;
-        }
-
-        #zoirisHolidayWrapper .luxury-button,
-        #zoirisHolidayWrapper .contact-button {
-          display: block;
-          width: 88%;
-          margin: 14px auto;
-          font-size: 19px;
-          padding: 17px 20px;
-        }
-      }
-    </style>
-
-    <div class="holiday-popup-overlay" id="holidayPopup">
-      <div class="holiday-popup-content">
-        <span class="holiday-popup-close" id="popupClose">&iacute;—</span>
-
-        <section class="luxury-banner">
-          <div class="luxury-slides">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div id="snowContainer"></div>
-
-          <div class="luxury-content">
-            <h1>Make Your Home Sparkle This Holiday Season!</h1>
-            <h2>Enjoy <span>10% OFF</span> All Cleaning Services &mdash; Limited Time!</h2>
-            <p>Tis the season to shine! Say goodbye to holiday mess and hello to a sparkling, cozy home.<br>Sit back,
-              relax, and let us bring the festive magic!</p>
-
-            <button class="luxury-button" id="bookNowBtn">Book Now & Save 10%</button>
-
-            <div style="margin-top:12px;">
-              <a href="tel:2519308621" class="contact-button">Call Now (251) 930-8621</a>
-              <a href="mailto:zoiriscleaningservices@gmail.com" class="contact-button">Email Us</a>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
-
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll("[data-safe-listener]").forEach(el => {
-          // placeholder to prevent null listener crashes
-        });
-      });
-    </script>
-
-
-    <script>
-      (() => {
-        const popup = document.getElementById('holidayPopup');
-        const wrapper = document.getElementById('zoirisHolidayWrapper');
-
-        // Show popup
-        setTimeout(() => popup.classList.add('show'), 900);
-
-        // Close & remove
-        const closePopup = () => {
-          popup.classList.remove('show');
-          setTimeout(() => wrapper?.remove(), 800);
-        };
-
-        document.getElementById('popupClose').onclick = closePopup;
-        popup.onclick = e => { if (e.target === popup) closePopup(); };
-
-        // Book Now â†’ close + scroll to your form
-        document.getElementById('bookNowBtn').onclick = () => {
-          closePopup();
-          document.querySelector('#quote')?.scrollIntoView({ behavior: 'smooth' });
-        };
-
-        // Snow &ndash; works perfectly on mobile too
-        const snow = document.getElementById('snowContainer');
-        const count = window.innerWidth < 600 ? 45 : 70;
-        for (let i = 0; i < count; i++) {
-          const f = document.createElement('div');
-          f.className = 'snowflake';
-          f.style.left = Math.random() * 100 + 'vw';
-          f.style.width = f.style.height = 5 + Math.random() * 8 + 'px';
-          f.style.animationDuration = 7 + Math.random() * 10 + 's';
-          f.style.animationDelay = Math.random() * 8 + 's';
-          f.style.opacity = 0.4 + Math.random() * 0.5;
-          snow.appendChild(f);
-        }
-      })();
-    </script>
-
-  </div>
-  <!-- END OF ZOIRIS LUXURY HOLIDAY POPUP &ndash; PERFECT & SAFE -->
 
 
 
@@ -1013,56 +686,58 @@
           <a href="/about/" class="contact-button text-lg">About</a>
 
           <!-- SERVICES Dropdown -->
-              <div class="relative group inline-block">
-                <button type="button" class="contact-button text-lg">
-                  Services &#9662;
-                </button>
-                <div class="absolute left-0 top-full hidden group-hover:flex flex-col w-56 z-50">
-                  <a href="/commercial-cleaning/" class="contact-button text-lg hover:bg-blue-700">Commercial Cleaning</a>
-                  <a href="/deep-cleaning/" class="contact-button text-lg hover:bg-blue-700">Deep Cleaning</a>
-                  <a href="/house-cleaning/" class="contact-button text-lg hover:bg-blue-700">House Cleaning</a>
-                  <a href="/move-in-cleaning/" class="contact-button text-lg hover:bg-blue-700">Move-In Cleaning</a>
-                  <a href="/move-out-cleaning/" class="contact-button text-lg hover:bg-blue-700">Move-Out Cleaning</a>
-                  <a href="/vacation-rental-cleaning/" class="contact-button text-lg hover:bg-blue-700">Vacation Rental Cleaning</a>
-                  <a href="/airbnb-cleaning/" class="contact-button text-lg hover:bg-blue-700">Airbnb Cleaning</a>
-                  <a href="/post-construction-cleanup/" class="contact-button text-lg hover:bg-blue-700">Post-Construction Cleanup</a>
-                  <a href="/carpet-cleaning/" class="contact-button text-lg hover:bg-blue-700">Carpet Cleaning</a>
-                  <a href="/pressure-washing/" class="contact-button text-lg hover:bg-blue-700">Pressure Washing</a>
-                  <a href="/Detailing-Mobile-AL/" class="contact-button text-lg hover:bg-blue-700">Detailing</a>
-                  <a href="/laundry-services/" class="contact-button text-lg hover:bg-blue-700">Laundry Services</a>
-                  <a href="/window-cleaning/" class="contact-button text-lg hover:bg-blue-700">Window Cleaning</a>
-</div>
-              </div>
+          <div class="relative group inline-block">
+            <button type="button" class="contact-button text-lg">
+              Services &#9662;
+            </button>
+            <div class="absolute left-0 top-full hidden group-hover:flex flex-col w-56 z-50">
+              <a href="/commercial-cleaning/" class="contact-button text-lg hover:bg-blue-700">Commercial Cleaning</a>
+              <a href="/deep-cleaning/" class="contact-button text-lg hover:bg-blue-700">Deep Cleaning</a>
+              <a href="/house-cleaning/" class="contact-button text-lg hover:bg-blue-700">House Cleaning</a>
+              <a href="/move-in-cleaning/" class="contact-button text-lg hover:bg-blue-700">Move-In Cleaning</a>
+              <a href="/move-out-cleaning/" class="contact-button text-lg hover:bg-blue-700">Move-Out Cleaning</a>
+              <a href="/vacation-rental-cleaning/" class="contact-button text-lg hover:bg-blue-700">Vacation Rental
+                Cleaning</a>
+              <a href="/airbnb-cleaning/" class="contact-button text-lg hover:bg-blue-700">Airbnb Cleaning</a>
+              <a href="/post-construction-cleanup/" class="contact-button text-lg hover:bg-blue-700">Post-Construction
+                Cleanup</a>
+              <a href="/carpet-cleaning/" class="contact-button text-lg hover:bg-blue-700">Carpet Cleaning</a>
+              <a href="/pressure-washing/" class="contact-button text-lg hover:bg-blue-700">Pressure Washing</a>
+              <a href="/Detailing-Mobile-AL/" class="contact-button text-lg hover:bg-blue-700">Detailing</a>
+              <a href="/laundry-services/" class="contact-button text-lg hover:bg-blue-700">Laundry Services</a>
+              <a href="/window-cleaning/" class="contact-button text-lg hover:bg-blue-700">Window Cleaning</a>
+            </div>
+          </div>
 
           <!-- LOCATIONS Dropdown -->
-              <div class="relative group inline-block ml-6">
-                <button type="button" class="contact-button text-lg">
-                  Locations &#9662;
-                </button>
-                <div class="absolute left-0 top-full hidden group-hover:flex flex-col w-56 z-50">
-                  <a href="/downtown-mobile/" class="contact-button text-lg hover:bg-blue-700">Downtown Mobile</a>
-                  <a href="/midtown-mobile/" class="contact-button text-lg hover:bg-blue-700">Midtown Mobile</a>
-                  <a href="/west-mobile/" class="contact-button text-lg hover:bg-blue-700">West Mobile</a>
-                  <a href="/saraland/" class="contact-button text-lg hover:bg-blue-700">Saraland</a>
-                  <a href="/semmes/" class="contact-button text-lg hover:bg-blue-700">Semmes</a>
-                  <a href="/theodore/" class="contact-button text-lg hover:bg-blue-700">Theodore</a>
-                  <a href="/satsuma/" class="contact-button text-lg hover:bg-blue-700">Satsuma</a>
-                  <a href="/grand-bay/" class="contact-button text-lg hover:bg-blue-700">Grand Bay</a>
-                  <a href="/daphne/" class="contact-button text-lg hover:bg-blue-700">Daphne</a>
-                  <a href="/fairhope/" class="contact-button text-lg hover:bg-blue-700">Fairhope</a>
-                  <a href="/spanish-fort/" class="contact-button text-lg hover:bg-blue-700">Spanish Fort</a>
-                  <a href="/eastern-shore/" class="contact-button text-lg hover:bg-blue-700">Eastern Shore</a>
-                  <a href="/gulf-shores/" class="contact-button text-lg hover:bg-blue-700">Gulf Shores</a>
-                  <a href="/orange-beach/" class="contact-button text-lg hover:bg-blue-700">Orange Beach</a>
-                  <a href="/foley/" class="contact-button text-lg hover:bg-blue-700">Foley</a>
-                  <a href="/fort-morgan/" class="contact-button text-lg hover:bg-blue-700">Fort Morgan</a>
-                  <a href="/robertsdale/" class="contact-button text-lg hover:bg-blue-700">Robertsdale</a>
-                  <a href="/bay-minette/" class="contact-button text-lg hover:bg-blue-700">Bay Minette</a>
-                  <a href="/loxley/" class="contact-button text-lg hover:bg-blue-700">Loxley</a>
-                  <a href="/elberta/" class="contact-button text-lg hover:bg-blue-700">Elberta</a>
-                  <a href="/summerdale/" class="contact-button text-lg hover:bg-blue-700">Summerdale</a>
-</div>
-              </div>
+          <div class="relative group inline-block ml-6">
+            <button type="button" class="contact-button text-lg">
+              Locations &#9662;
+            </button>
+            <div class="absolute left-0 top-full hidden group-hover:flex flex-col w-56 z-50">
+              <a href="/downtown-mobile/" class="contact-button text-lg hover:bg-blue-700">Downtown Mobile</a>
+              <a href="/midtown-mobile/" class="contact-button text-lg hover:bg-blue-700">Midtown Mobile</a>
+              <a href="/west-mobile/" class="contact-button text-lg hover:bg-blue-700">West Mobile</a>
+              <a href="/saraland/" class="contact-button text-lg hover:bg-blue-700">Saraland</a>
+              <a href="/semmes/" class="contact-button text-lg hover:bg-blue-700">Semmes</a>
+              <a href="/theodore/" class="contact-button text-lg hover:bg-blue-700">Theodore</a>
+              <a href="/satsuma/" class="contact-button text-lg hover:bg-blue-700">Satsuma</a>
+              <a href="/grand-bay/" class="contact-button text-lg hover:bg-blue-700">Grand Bay</a>
+              <a href="/daphne/" class="contact-button text-lg hover:bg-blue-700">Daphne</a>
+              <a href="/fairhope/" class="contact-button text-lg hover:bg-blue-700">Fairhope</a>
+              <a href="/spanish-fort/" class="contact-button text-lg hover:bg-blue-700">Spanish Fort</a>
+              <a href="/eastern-shore/" class="contact-button text-lg hover:bg-blue-700">Eastern Shore</a>
+              <a href="/gulf-shores/" class="contact-button text-lg hover:bg-blue-700">Gulf Shores</a>
+              <a href="/orange-beach/" class="contact-button text-lg hover:bg-blue-700">Orange Beach</a>
+              <a href="/foley/" class="contact-button text-lg hover:bg-blue-700">Foley</a>
+              <a href="/fort-morgan/" class="contact-button text-lg hover:bg-blue-700">Fort Morgan</a>
+              <a href="/robertsdale/" class="contact-button text-lg hover:bg-blue-700">Robertsdale</a>
+              <a href="/bay-minette/" class="contact-button text-lg hover:bg-blue-700">Bay Minette</a>
+              <a href="/loxley/" class="contact-button text-lg hover:bg-blue-700">Loxley</a>
+              <a href="/elberta/" class="contact-button text-lg hover:bg-blue-700">Elberta</a>
+              <a href="/summerdale/" class="contact-button text-lg hover:bg-blue-700">Summerdale</a>
+            </div>
+          </div>
 
           <a href="/blog/" class="contact-button text-lg">Blog</a>
           <a href="/contact/" class="contact-button text-lg">Contact</a>
@@ -1087,52 +762,52 @@
         <a href="/about/" class="contact-button text-lg">About</a>
 
         <!-- SERVICES DROPDOWN (Mobile) -->
-          <button onclick="toggleDropdown('mobile-services')" class="contact-button text-lg">
-            Services &#9662;
-          </button>
-          <div id="mobile-services" class="hidden pl-4 space-y-1">
-            <a href="/commercial-cleaning/" class="contact-button text-lg">Commercial Cleaning</a>
-            <a href="/deep-cleaning/" class="contact-button text-lg">Deep Cleaning</a>
-            <a href="/house-cleaning/" class="contact-button text-lg">House Cleaning</a>
-            <a href="/move-in-cleaning/" class="contact-button text-lg">Move-In Cleaning</a>
-            <a href="/move-out-cleaning/" class="contact-button text-lg">Move-Out Cleaning</a>
-            <a href="/vacation-rental-cleaning/" class="contact-button text-lg">Vacation Rental Cleaning</a>
-            <a href="/airbnb-cleaning/" class="contact-button text-lg">Airbnb Cleaning</a>
-            <a href="/post-construction-cleanup/" class="contact-button text-lg">Post-Construction Cleanup</a>
-            <a href="/carpet-cleaning/" class="contact-button text-lg">Carpet Cleaning</a>
-            <a href="/pressure-washing/" class="contact-button text-lg">Pressure Washing</a>
-            <a href="/Detailing-Mobile-AL/" class="contact-button text-lg">Detailing</a>
-            <a href="/laundry-services/" class="contact-button text-lg">Laundry Services</a>
-            <a href="/window-cleaning/" class="contact-button text-lg">Window Cleaning</a>
-</div>
+        <button onclick="toggleDropdown('mobile-services')" class="contact-button text-lg">
+          Services &#9662;
+        </button>
+        <div id="mobile-services" class="hidden pl-4 space-y-1">
+          <a href="/commercial-cleaning/" class="contact-button text-lg">Commercial Cleaning</a>
+          <a href="/deep-cleaning/" class="contact-button text-lg">Deep Cleaning</a>
+          <a href="/house-cleaning/" class="contact-button text-lg">House Cleaning</a>
+          <a href="/move-in-cleaning/" class="contact-button text-lg">Move-In Cleaning</a>
+          <a href="/move-out-cleaning/" class="contact-button text-lg">Move-Out Cleaning</a>
+          <a href="/vacation-rental-cleaning/" class="contact-button text-lg">Vacation Rental Cleaning</a>
+          <a href="/airbnb-cleaning/" class="contact-button text-lg">Airbnb Cleaning</a>
+          <a href="/post-construction-cleanup/" class="contact-button text-lg">Post-Construction Cleanup</a>
+          <a href="/carpet-cleaning/" class="contact-button text-lg">Carpet Cleaning</a>
+          <a href="/pressure-washing/" class="contact-button text-lg">Pressure Washing</a>
+          <a href="/Detailing-Mobile-AL/" class="contact-button text-lg">Detailing</a>
+          <a href="/laundry-services/" class="contact-button text-lg">Laundry Services</a>
+          <a href="/window-cleaning/" class="contact-button text-lg">Window Cleaning</a>
+        </div>
 
         <!-- LOCATIONS DROPDOWN (Mobile) -->
-          <button onclick="toggleDropdown('mobile-locations')" class="contact-button text-lg">
-            Locations &#9662;
-          </button>
-          <div id="mobile-locations" class="hidden pl-4 space-y-1">
-            <a href="/downtown-mobile/" class="contact-button text-lg">Downtown Mobile</a>
-            <a href="/midtown-mobile/" class="contact-button text-lg">Midtown Mobile</a>
-            <a href="/west-mobile/" class="contact-button text-lg">West Mobile</a>
-            <a href="/saraland/" class="contact-button text-lg">Saraland</a>
-            <a href="/semmes/" class="contact-button text-lg">Semmes</a>
-            <a href="/theodore/" class="contact-button text-lg">Theodore</a>
-            <a href="/satsuma/" class="contact-button text-lg">Satsuma</a>
-            <a href="/grand-bay/" class="contact-button text-lg">Grand Bay</a>
-            <a href="/daphne/" class="contact-button text-lg">Daphne</a>
-            <a href="/fairhope/" class="contact-button text-lg">Fairhope</a>
-            <a href="/spanish-fort/" class="contact-button text-lg">Spanish Fort</a>
-            <a href="/eastern-shore/" class="contact-button text-lg">Eastern Shore</a>
-            <a href="/gulf-shores/" class="contact-button text-lg">Gulf Shores</a>
-            <a href="/orange-beach/" class="contact-button text-lg">Orange Beach</a>
-            <a href="/foley/" class="contact-button text-lg">Foley</a>
-            <a href="/fort-morgan/" class="contact-button text-lg">Fort Morgan</a>
-            <a href="/robertsdale/" class="contact-button text-lg">Robertsdale</a>
-            <a href="/bay-minette/" class="contact-button text-lg">Bay Minette</a>
-            <a href="/loxley/" class="contact-button text-lg">Loxley</a>
-            <a href="/elberta/" class="contact-button text-lg">Elberta</a>
-            <a href="/summerdale/" class="contact-button text-lg">Summerdale</a>
-</div>
+        <button onclick="toggleDropdown('mobile-locations')" class="contact-button text-lg">
+          Locations &#9662;
+        </button>
+        <div id="mobile-locations" class="hidden pl-4 space-y-1">
+          <a href="/downtown-mobile/" class="contact-button text-lg">Downtown Mobile</a>
+          <a href="/midtown-mobile/" class="contact-button text-lg">Midtown Mobile</a>
+          <a href="/west-mobile/" class="contact-button text-lg">West Mobile</a>
+          <a href="/saraland/" class="contact-button text-lg">Saraland</a>
+          <a href="/semmes/" class="contact-button text-lg">Semmes</a>
+          <a href="/theodore/" class="contact-button text-lg">Theodore</a>
+          <a href="/satsuma/" class="contact-button text-lg">Satsuma</a>
+          <a href="/grand-bay/" class="contact-button text-lg">Grand Bay</a>
+          <a href="/daphne/" class="contact-button text-lg">Daphne</a>
+          <a href="/fairhope/" class="contact-button text-lg">Fairhope</a>
+          <a href="/spanish-fort/" class="contact-button text-lg">Spanish Fort</a>
+          <a href="/eastern-shore/" class="contact-button text-lg">Eastern Shore</a>
+          <a href="/gulf-shores/" class="contact-button text-lg">Gulf Shores</a>
+          <a href="/orange-beach/" class="contact-button text-lg">Orange Beach</a>
+          <a href="/foley/" class="contact-button text-lg">Foley</a>
+          <a href="/fort-morgan/" class="contact-button text-lg">Fort Morgan</a>
+          <a href="/robertsdale/" class="contact-button text-lg">Robertsdale</a>
+          <a href="/bay-minette/" class="contact-button text-lg">Bay Minette</a>
+          <a href="/loxley/" class="contact-button text-lg">Loxley</a>
+          <a href="/elberta/" class="contact-button text-lg">Elberta</a>
+          <a href="/summerdale/" class="contact-button text-lg">Summerdale</a>
+        </div>
 
         <a href="/blog/" class="contact-button text-lg">Blog</a>
         <a href="/contact/" class="contact-button text-lg">Contact</a>
@@ -1612,17 +1287,22 @@
           so you can focus on hosting without the stress.
         </p>
         <ul class="mt-6 space-y-3 text-black font-medium">
-          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Fast & Reliable Turnovers &mdash; ready for the next guest,
+          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Fast & Reliable Turnovers &mdash; ready for the next
+            guest,
             every time</li>
           <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Hotel-Quality Standards &mdash; spotless kitchens,
             bathrooms, and living spaces</li>
-          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Fresh Linens & Towels &mdash; professionally laundered and
+          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Fresh Linens & Towels &mdash; professionally laundered
+            and
             neatly presented</li>
-          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Eco-Friendly Products &mdash; safe for guests, pets, and the
+          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Eco-Friendly Products &mdash; safe for guests, pets,
+            and the
             environment</li>
-          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Customizable Services &mdash; tailored to your hosting and
+          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Customizable Services &mdash; tailored to your hosting
+            and
             booking schedule</li>
-          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>100% Guest-Ready Guarantee &mdash; ensuring 5-star reviews
+          <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>100% Guest-Ready Guarantee &mdash; ensuring 5-star
+            reviews
             and repeat bookings</li>
         </ul>
       </div>
@@ -2436,7 +2116,8 @@
         along the <strong>Eastern Shore</strong>, our team is ready to keep your space spotless, healthy, and welcoming.
         We combine flexible scheduling, eco-friendly cleaning products, and years of hands-on experience to deliver
         results
-        you can count on &mdash; no matter the size or type of property. Explore our full service area below and click on a
+        you can count on &mdash; no matter the size or type of property. Explore our full service area below and click
+        on a
         location to view it directly on Google Maps.
       </p>
     </div>
@@ -2527,134 +2208,217 @@
 
 
 
-          <!-- Footer -->
-    <footer class="bg-gradient-to-b from-gray-900 to-black text-gray-200 py-16 relative overflow-hidden font-sans">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
+  <!-- Footer -->
+  <footer class="bg-gradient-to-b from-gray-900 to-black text-gray-200 py-16 relative overflow-hidden font-sans">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-        <!-- Left: Logo & Description -->
-        <div class="space-y-6 relative z-10">
-          <a href="/" class="flex items-center space-x-3 group">
-            <img src="https://i.ibb.co/gbzKPdnc/Chat-GPT-Image-Aug-31-2025-12-19-42-AM-Picsart-Background-Remover.png"
-              alt="Zoiris Cleaning Logo"
-              class="h-28 w-auto transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] rounded-full" />
-          </a>
-          <p class="text-gray-400 text-sm leading-relaxed text-justify">
-            Zoiris Cleaning is your trusted partner for professional cleaning services in Mobile, AL, and surrounding
-            areas like Daphne, Fairhope, Midtown Mobile, Downtown Mobile, West Mobile, Eastern Shore, and Spanish Fort.
-            We specialize in residential and commercial cleaning, deep cleans, move-in/move-out services, carpet and
-            window cleaning, Airbnb and vacation rentals, post-construction cleanup, and pressure washing.
+      <!-- Left: Logo & Description -->
+      <div class="space-y-6 relative z-10">
+        <a href="/" class="flex items-center space-x-3 group">
+          <img src="https://i.ibb.co/gbzKPdnc/Chat-GPT-Image-Aug-31-2025-12-19-42-AM-Picsart-Background-Remover.png"
+            alt="Zoiris Cleaning Logo"
+            class="h-28 w-auto transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] rounded-full" />
+        </a>
+        <p class="text-gray-400 text-sm leading-relaxed text-justify">
+          Zoiris Cleaning is your trusted partner for professional cleaning services in Mobile, AL, and surrounding
+          areas like Daphne, Fairhope, Midtown Mobile, Downtown Mobile, West Mobile, Eastern Shore, and Spanish Fort.
+          We specialize in residential and commercial cleaning, deep cleans, move-in/move-out services, carpet and
+          window cleaning, Airbnb and vacation rentals, post-construction cleanup, and pressure washing.
+        </p>
+        <!-- Contact Info -->
+        <div class="space-y-3 pt-4">
+          <p class="flex items-center text-gray-300 group">
+            <i class="fas fa-map-marker-alt w-6 text-blue-500 group-hover:text-blue-400 transition-colors"></i>
+            <span>Mobile, AL</span>
           </p>
-          <!-- Contact Info -->
-          <div class="space-y-3 pt-4">
-            <p class="flex items-center text-gray-300 group">
-              <i class="fas fa-map-marker-alt w-6 text-blue-500 group-hover:text-blue-400 transition-colors"></i>
-              <span>Mobile, AL</span>
-            </p>
-            <p class="flex items-center text-gray-300 group">
-              <i class="fas fa-phone-alt w-6 text-blue-500 group-hover:text-blue-400 transition-colors"></i>
-              <a href="tel:+12519308621" class="hover:text-white transition-colors">(251) 930-8621</a>
-            </p>
-            <p class="flex items-center text-gray-300 group">
-              <i class="fas fa-envelope w-6 text-blue-500 group-hover:text-blue-400 transition-colors"></i>
-              <a href="mailto:zoiriscleaningservices@gmail.com"
-                class="hover:text-white transition-colors">zoiriscleaningservices@gmail.com</a>
-            </p>
-            <p class="flex items-center text-gray-300 group">
-              <i class="fas fa-sitemap w-6 text-blue-500 group-hover:text-blue-400 transition-colors"></i>
-              <a href="/sitemap.xml" class="hover:text-white transition-colors">Sitemap</a>
-            </p>
-          </div>
-        </div>
-
-        <!-- Middle: Services -->
-        <div class="relative z-10">
-          <h3 class="text-white font-bold text-xl mb-6 tracking-wide border-b border-gray-800 pb-2 inline-block">Our Services</h3>
-          <ul class="space-y-3 text-gray-400">
-            <li><a href="/house-cleaning/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-broom w-6 text-blue-600 group-hover:text-blue-400"></i> Residential Cleaning</a></li>
-            <li><a href="/deep-cleaning/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-sparkles w-6 text-purple-500 group-hover:text-purple-400"></i> Deep Cleaning</a></li>
-            <li><a href="/commercial-cleaning/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-building w-6 text-gray-500 group-hover:text-gray-400"></i> Commercial Cleaning</a></li>
-            <li><a href="/airbnb-cleaning/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-home w-6 text-pink-500 group-hover:text-pink-400"></i> Airbnb Cleaning</a></li>
-            <li><a href="/carpet-cleaning/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-layer-group w-6 text-orange-500 group-hover:text-orange-400"></i> Carpet Cleaning</a></li>
-            <li><a href="/window-cleaning/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-window-maximize w-6 text-cyan-500 group-hover:text-cyan-400"></i> Window Cleaning</a></li>
-            <li><a href="/move-in-cleaning/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-box-open w-6 text-yellow-500 group-hover:text-yellow-400"></i> Move-In Cleaning</a></li>
-            <li><a href="/move-out-cleaning/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-door-open w-6 text-red-500 group-hover:text-red-400"></i> Move-Out Cleaning</a></li>
-            <li><a href="/post-construction-cleanup/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-hard-hat w-6 text-yellow-600 group-hover:text-yellow-500"></i> Post-Construction</a></li>
-            <li><a href="/vacation-rental-cleaning/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-umbrella-beach w-6 text-teal-500 group-hover:text-teal-400"></i> Vacation Rental</a></li>
-            <li><a href="/pressure-washing/" class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i class="fas fa-water w-6 text-blue-400 group-hover:text-blue-300"></i> Pressure Washing</a></li>
-          </ul>
-        </div>
-
-        <!-- Right: Locations & Quick Links -->
-        <div class="relative z-10">
-          <h3 class="text-white font-bold text-xl mb-6 tracking-wide border-b border-gray-800 pb-2 inline-block">Service Areas</h3>
-          
-          <!-- Scrollable/Grid Locations for better fit -->
-          <div class="bg-gray-900/50 rounded-lg p-4 mb-6 border border-gray-800">
-             <ul class="grid grid-cols-2 gap-2 text-gray-400 text-sm">
-              <li><a href="/downtown-mobile/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Downtown</a></li>
-              <li><a href="/midtown-mobile/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Midtown</a></li>
-              <li><a href="/west-mobile/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> West Mobile</a></li>
-              <li><a href="/saraland/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Saraland</a></li>
-              <li><a href="/semmes/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Semmes</a></li>
-              <li><a href="/theodore/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Theodore</a></li>
-              <li><a href="/satsuma/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Satsuma</a></li>
-              <li><a href="/grand-bay/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Grand Bay</a></li>
-              <li><a href="/daphne/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Daphne</a></li>
-              <li><a href="/fairhope/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Fairhope</a></li>
-              <li><a href="/spanish-fort/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Spanish Fort</a></li>
-              <li><a href="/eastern-shore/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Eastern Shore</a></li>
-              <li><a href="/gulf-shores/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Gulf Shores</a></li>
-              <li><a href="/orange-beach/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Orange Beach</a></li>
-              <li><a href="/foley/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Foley</a></li>
-              <li><a href="/fort-morgan/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Fort Morgan</a></li>
-              <li><a href="/robertsdale/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Robertsdale</a></li>
-              <li><a href="/bay-minette/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Bay Minette</a></li>
-              <li><a href="/loxley/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Loxley</a></li>
-              <li><a href="/elberta/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Elberta</a></li>
-              <li><a href="/summerdale/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Summerdale</a></li>
-              <li><a href="/dauphin-island/" class="hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Dauphin Is.</a></li>
-            </ul>
-          </div>
-
-          <h3 class="text-white font-bold text-lg mb-4 tracking-wide">Quick Links</h3>
-          <ul class="flex flex-wrap gap-4 text-gray-400 text-sm">
-            <li><a href="/index.html" class="hover:text-white transition-colors flex items-center"><i class="fas fa-home mr-2 text-blue-500"></i> Home</a></li>
-            <li><a href="/about/" class="hover:text-white transition-colors flex items-center"><i class="fas fa-info-circle mr-2 text-blue-500"></i> About</a></li>
-            <li><a href="/blog/" class="hover:text-white transition-colors flex items-center"><i class="fas fa-blog mr-2 text-blue-500"></i> Blog</a></li>
-            <li><a href="/contact/" class="hover:text-white transition-colors flex items-center"><i class="fas fa-envelope mr-2 text-blue-500"></i> Contact</a></li>
-            <li><a href="/apply/" class="hover:text-white transition-colors flex items-center"><i class="fas fa-user-plus mr-2 text-blue-500"></i> Apply</a></li>
-          </ul>
-          
-          <p class="mt-8 text-gray-500 text-xs text-center lg:text-left">&copy; <span id="year"></span> Zoiris Cleaning. All Rights Reserved.</p>
+          <p class="flex items-center text-gray-300 group">
+            <i class="fas fa-phone-alt w-6 text-blue-500 group-hover:text-blue-400 transition-colors"></i>
+            <a href="tel:+12519308621" class="hover:text-white transition-colors">(251) 930-8621</a>
+          </p>
+          <p class="flex items-center text-gray-300 group">
+            <i class="fas fa-envelope w-6 text-blue-500 group-hover:text-blue-400 transition-colors"></i>
+            <a href="mailto:zoiriscleaningservices@gmail.com"
+              class="hover:text-white transition-colors">zoiriscleaningservices@gmail.com</a>
+          </p>
+          <p class="flex items-center text-gray-300 group">
+            <i class="fas fa-sitemap w-6 text-blue-500 group-hover:text-blue-400 transition-colors"></i>
+            <a href="/sitemap.xml" class="hover:text-white transition-colors">Sitemap</a>
+          </p>
         </div>
       </div>
 
-      <!-- Social Media Full Width -->
-      <div class="mt-12 border-t border-gray-800 pt-8 relative z-10 bg-black/20">
-        <div class="flex flex-wrap justify-center gap-6 text-2xl">
-          <a href="https://facebook.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-blue-500"><i class="fab fa-facebook"></i></a>
-          <a href="https://instagram.com/zoiriscleaning" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-pink-500"><i class="fab fa-instagram"></i></a>
-          <a href="https://x.com/zoiriscleaning" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-sky-400"><i class="fab fa-x-twitter"></i></a>
-          <a href="https://linkedin.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
-          <a href="https://youtube.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-red-500"><i class="fab fa-youtube"></i></a>
-          <a href="https://tiktok.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-gray-200"><i class="fab fa-tiktok"></i></a>
-          <a href="https://pinterest.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-red-600"><i class="fab fa-pinterest"></i></a>
-          <a href="https://snapchat.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-yellow-400"><i class="fab fa-snapchat"></i></a>
-          <a href="https://reddit.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-orange-500"><i class="fab fa-reddit"></i></a>
-          <a href="https://tumblr.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-indigo-400"><i class="fab fa-tumblr"></i></a>
-          <a href="https://discord.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-indigo-500"><i class="fab fa-discord"></i></a>
-          <a href="https://wa.me/12519308621" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-green-500"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://telegram.org" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-sky-500"><i class="fab fa-telegram"></i></a>
-          <a href="https://yelp.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-red-400"><i class="fab fa-yelp"></i></a>
-          <a href="https://github.com" target="_blank" class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-gray-400"><i class="fab fa-github"></i></a>
-        </div>
+      <!-- Middle: Services -->
+      <div class="relative z-10">
+        <h3 class="text-white font-bold text-xl mb-6 tracking-wide border-b border-gray-800 pb-2 inline-block">Our
+          Services</h3>
+        <ul class="space-y-3 text-gray-400">
+          <li><a href="/house-cleaning/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-broom w-6 text-blue-600 group-hover:text-blue-400"></i> Residential Cleaning</a></li>
+          <li><a href="/deep-cleaning/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-sparkles w-6 text-purple-500 group-hover:text-purple-400"></i> Deep Cleaning</a></li>
+          <li><a href="/commercial-cleaning/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-building w-6 text-gray-500 group-hover:text-gray-400"></i> Commercial Cleaning</a></li>
+          <li><a href="/airbnb-cleaning/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-home w-6 text-pink-500 group-hover:text-pink-400"></i> Airbnb Cleaning</a></li>
+          <li><a href="/carpet-cleaning/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-layer-group w-6 text-orange-500 group-hover:text-orange-400"></i> Carpet Cleaning</a></li>
+          <li><a href="/window-cleaning/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-window-maximize w-6 text-cyan-500 group-hover:text-cyan-400"></i> Window Cleaning</a></li>
+          <li><a href="/move-in-cleaning/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-box-open w-6 text-yellow-500 group-hover:text-yellow-400"></i> Move-In Cleaning</a></li>
+          <li><a href="/move-out-cleaning/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-door-open w-6 text-red-500 group-hover:text-red-400"></i> Move-Out Cleaning</a></li>
+          <li><a href="/post-construction-cleanup/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-hard-hat w-6 text-yellow-600 group-hover:text-yellow-500"></i> Post-Construction</a></li>
+          <li><a href="/vacation-rental-cleaning/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-umbrella-beach w-6 text-teal-500 group-hover:text-teal-400"></i> Vacation Rental</a></li>
+          <li><a href="/pressure-washing/"
+              class="hover:text-blue-400 transition-all duration-200 flex items-center group"><i
+                class="fas fa-water w-6 text-blue-400 group-hover:text-blue-300"></i> Pressure Washing</a></li>
+        </ul>
       </div>
 
-      <!-- Background Gradient Effect -->
-      <div class="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-green-900/10 opacity-50 pointer-events-none"></div>
+      <!-- Right: Locations & Quick Links -->
+      <div class="relative z-10">
+        <h3 class="text-white font-bold text-xl mb-6 tracking-wide border-b border-gray-800 pb-2 inline-block">Service
+          Areas</h3>
 
-      <!-- Local SEO Schema -->
-      <script type="application/ld+json">
+        <!-- Scrollable/Grid Locations for better fit -->
+        <div class="bg-gray-900/50 rounded-lg p-4 mb-6 border border-gray-800">
+          <ul class="grid grid-cols-2 gap-2 text-gray-400 text-sm">
+            <li><a href="/downtown-mobile/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Downtown</a></li>
+            <li><a href="/midtown-mobile/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Midtown</a></li>
+            <li><a href="/west-mobile/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> West Mobile</a></li>
+            <li><a href="/saraland/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Saraland</a></li>
+            <li><a href="/semmes/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Semmes</a></li>
+            <li><a href="/theodore/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Theodore</a></li>
+            <li><a href="/satsuma/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Satsuma</a></li>
+            <li><a href="/grand-bay/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Grand Bay</a></li>
+            <li><a href="/daphne/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Daphne</a></li>
+            <li><a href="/fairhope/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Fairhope</a></li>
+            <li><a href="/spanish-fort/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Spanish Fort</a></li>
+            <li><a href="/eastern-shore/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Eastern Shore</a></li>
+            <li><a href="/gulf-shores/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Gulf Shores</a></li>
+            <li><a href="/orange-beach/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Orange Beach</a></li>
+            <li><a href="/foley/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Foley</a></li>
+            <li><a href="/fort-morgan/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Fort Morgan</a></li>
+            <li><a href="/robertsdale/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Robertsdale</a></li>
+            <li><a href="/bay-minette/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Bay Minette</a></li>
+            <li><a href="/loxley/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Loxley</a></li>
+            <li><a href="/elberta/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Elberta</a></li>
+            <li><a href="/summerdale/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Summerdale</a></li>
+            <li><a href="/dauphin-island/" class="hover:text-blue-400 transition-colors flex items-center"><i
+                  class="fas fa-map-pin text-xs mr-2 text-red-500"></i> Dauphin Is.</a></li>
+          </ul>
+        </div>
+
+        <h3 class="text-white font-bold text-lg mb-4 tracking-wide">Quick Links</h3>
+        <ul class="flex flex-wrap gap-4 text-gray-400 text-sm">
+          <li><a href="/index.html" class="hover:text-white transition-colors flex items-center"><i
+                class="fas fa-home mr-2 text-blue-500"></i> Home</a></li>
+          <li><a href="/about/" class="hover:text-white transition-colors flex items-center"><i
+                class="fas fa-info-circle mr-2 text-blue-500"></i> About</a></li>
+          <li><a href="/blog/" class="hover:text-white transition-colors flex items-center"><i
+                class="fas fa-blog mr-2 text-blue-500"></i> Blog</a></li>
+          <li><a href="/contact/" class="hover:text-white transition-colors flex items-center"><i
+                class="fas fa-envelope mr-2 text-blue-500"></i> Contact</a></li>
+          <li><a href="/apply/" class="hover:text-white transition-colors flex items-center"><i
+                class="fas fa-user-plus mr-2 text-blue-500"></i> Apply</a></li>
+        </ul>
+
+        <p class="mt-8 text-gray-500 text-xs text-center lg:text-left">&copy; <span id="year"></span> Zoiris Cleaning.
+          All Rights Reserved.</p>
+      </div>
+    </div>
+
+    <!-- Social Media Full Width -->
+    <div class="mt-12 border-t border-gray-800 pt-8 relative z-10 bg-black/20">
+      <div class="flex flex-wrap justify-center gap-6 text-2xl">
+        <a href="https://facebook.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-blue-500"><i
+            class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com/zoiriscleaning" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-pink-500"><i
+            class="fab fa-instagram"></i></a>
+        <a href="https://x.com/zoiriscleaning" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-sky-400"><i
+            class="fab fa-x-twitter"></i></a>
+        <a href="https://linkedin.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-blue-400"><i
+            class="fab fa-linkedin"></i></a>
+        <a href="https://youtube.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-red-500"><i
+            class="fab fa-youtube"></i></a>
+        <a href="https://tiktok.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-gray-200"><i
+            class="fab fa-tiktok"></i></a>
+        <a href="https://pinterest.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-red-600"><i
+            class="fab fa-pinterest"></i></a>
+        <a href="https://snapchat.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-yellow-400"><i
+            class="fab fa-snapchat"></i></a>
+        <a href="https://reddit.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-orange-500"><i
+            class="fab fa-reddit"></i></a>
+        <a href="https://tumblr.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-indigo-400"><i
+            class="fab fa-tumblr"></i></a>
+        <a href="https://discord.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-indigo-500"><i
+            class="fab fa-discord"></i></a>
+        <a href="https://wa.me/12519308621" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-green-500"><i
+            class="fab fa-whatsapp"></i></a>
+        <a href="https://telegram.org" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-sky-500"><i
+            class="fab fa-telegram"></i></a>
+        <a href="https://yelp.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-red-400"><i
+            class="fab fa-yelp"></i></a>
+        <a href="https://github.com" target="_blank"
+          class="text-gray-500 hover:scale-110 transition-transform duration-200 hover:text-gray-400"><i
+            class="fab fa-github"></i></a>
+      </div>
+    </div>
+
+    <!-- Background Gradient Effect -->
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-green-900/10 opacity-50 pointer-events-none">
+    </div>
+
+    <!-- Local SEO Schema -->
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
@@ -2674,7 +2438,7 @@
       "priceRange": "$$"
     }
       </script>
-    </footer>
+  </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -2815,8 +2579,7 @@
   </script>
 
   <!-- Floating Chat Button + Neon Smart Chatbox -->
-  <button type="button" id="zoiris-fab" class="zoiris-chat-fab" onclick="toggleChat()"
-    aria-label="Open chat">&#128172;</button>
+  <a href="javascript:void(0)" id="zoiris-fab" class="zoiris-chat-fab" onclick="toggleChat()">&#128172;</a>
 
   <!-- Sign-in Modal -->
   <div id="zoiris-signin" class="signin-modal">
@@ -2853,63 +2616,47 @@
       }
     }
 
-    // &#9989; Sign-in form submission (POST to Formspree + localStorage) - SAFE VERSION
-    const signinForm = document.getElementById("zoiris-signin-form");
+    // &#9989; Sign-in form submission (POST to Formspree + localStorage)
+    document.getElementById("zoiris-signin-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const name = document.getElementById('zoiris-name').value.trim();
+      const contact = document.getElementById('zoiris-contact').value.trim();
+      const statusEl = document.getElementById("signin-status");
 
-    if (signinForm)
-      signinForm.addEventListener("submit", async function (e) {
-        e.preventDefault();
+      if (name === "" || contact === "") {
+        alert("Please enter your name and phone/email to continue.");
+        return;
+      }
 
-        const nameEl = document.getElementById('zoiris-name');
-        const contactEl = document.getElementById('zoiris-contact');
-        const statusEl = document.getElementById("signin-status");
+      statusEl.textContent = "Signing in...";
 
-        // Safety check in case fields are missing (prevents further errors)
-        if (!nameEl || !contactEl) {
-          console.error("Sign-in form fields missing");
-          return;
+      try {
+        let response = await fetch("https://formspree.io/f/xkgvorgd", {
+          method: "POST",
+          body: JSON.stringify({ name, contact }),
+          headers: { "Accept": "application/json", "Content-Type": "application/json" }
+        });
+
+        if (response.ok) {
+          signedIn = true;
+          localStorage.setItem("zoirisUser", JSON.stringify({ name, contact }));
+          statusEl.textContent = "&#9989; Signed in successfully!";
+
+          setTimeout(() => {
+            document.getElementById('zoiris-signin').style.display = 'none';
+            toggleChat();
+
+            // Personalized greeting
+            const msgBox = document.getElementById('zoiris-messages');
+            msgBox.innerHTML = `<p><strong>ZOIRIS:</strong> Hi ${name} &#128075; Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>`;
+          }, 1000);
+        } else {
+          statusEl.textContent = "â Œ Error: Could not sign in. Try again.";
         }
-
-        const name = nameEl.value.trim();
-        const contact = contactEl.value.trim();
-
-        if (name === "" || contact === "") {
-          alert("Please enter your name and phone/email to continue.");
-          return;
-        }
-
-
-
-
-        statusEl.textContent = "Signing in...";
-
-        try {
-          let response = await fetch("https://formspree.io/f/xkgvorgd", {
-            method: "POST",
-            body: JSON.stringify({ name, contact }),
-            headers: { "Accept": "application/json", "Content-Type": "application/json" }
-          });
-
-          if (response.ok) {
-            signedIn = true;
-            localStorage.setItem("zoirisUser", JSON.stringify({ name, contact }));
-            statusEl.textContent = "&#9989; Signed in successfully!";
-
-            setTimeout(() => {
-              document.getElementById('zoiris-signin').style.display = 'none';
-              toggleChat();
-
-              // Personalized greeting
-              const msgBox = document.getElementById('zoiris-messages');
-              msgBox.innerHTML = `<p><strong>ZOIRIS:</strong> Hi ${name} &#128075; Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>`;
-            }, 1000);
-          } else {
-            statusEl.textContent = "âŒ Error: Could not sign in. Try again.";
-          }
-        } catch (err) {
-          statusEl.textContent = "&#9888;ï¸ Network error. Please try again.";
-        }
-      });
+      } catch (err) {
+        statusEl.textContent = "&#9888;ï¸  Network error. Please try again.";
+      }
+    });
 
     // &#9989; Restore session if user already signed in
     window.onload = function () {
@@ -2971,7 +2718,7 @@
           else if (q.includes("email")) reply = "&#128231; <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
           else if (q.includes("price")) reply = "&#128178; Our prices vary depending on the service. Contact us for a free personalized quote!";
           else if (q.includes("book")) reply = "&#128197; You can book in just 3 easy steps on our booking page!";
-          else if (q.includes("location")) reply = "&#128205; We proudly serve Mobile, Alabama and nearby areas.";
+          else if (q.includes("location")) reply = "&#128205;  We proudly serve Mobile, Alabama and nearby areas.";
           else if (q.includes("service")) reply = "&#129529; We provide House Cleaning, Office Cleaning, Window Cleaning, and Deep Cleaning.";
           else reply = "&#9989; You can always reach us at &#128222; <a href='tel:2519308621'>251-930-8621</a> or &#128231; <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
         } else {
@@ -2979,7 +2726,7 @@
           else if (q.includes("correo")) reply = "&#128231; <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
           else if (q.includes("precio")) reply = "&#128178; Nuestros precios var&iacute;an seg&uacute;n el servicio. &iexcl;Cont&aacute;ctanos para una cotizaci&oacute;n gratis!";
           else if (q.includes("reservar")) reply = "&#128197; Puedes reservar en nuestra p&aacute;gina de reservas.";
-          else if (q.includes("ubicaci&oacute;n")) reply = "&#128205; Servimos Mobile, Alabama y &aacute;reas cercanas.";
+          else if (q.includes("ubicaci&oacute;n")) reply = "&#128205;  Servimos Mobile, Alabama y &aacute;reas cercanas.";
           else if (q.includes("servicio")) reply = "&#129529; Ofrecemos Limpieza de Hogar, Oficinas, Ventanas y Limpieza Profunda.";
           else reply = "&#9989; Siempre puedes llamarnos al &#128222; <a href='tel:2519308621'>251-930-8621</a> o escribirnos a &#128231; <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
         }
@@ -2999,12 +2746,10 @@
     function quickAsk(text) { sendZoiris(text); }
   </script>
 
-
-
   <div id="zoiris-chatbox">
     <div class="chat-header">
       ZOIRIS LIVE CHAT
-      <span style="float:right; cursor:pointer;" onclick="toggleLang(event)">ðŸŒ</span>
+      <span style="float:right; cursor:pointer;" onclick="toggleLang(event)">ðŸŒ </span>
     </div>
     <div class="chat-messages" id="zoiris-messages">
       <p><strong>ZOIRIS:</strong> Hi &#128075; Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>
@@ -3232,139 +2977,6 @@
     }
   </style>
 
-  <script>
-    let lang = "en";
-    let signedIn = false;
-
-    // &#9989; Toggle Open/Close Chat
-    function toggleChat() {
-      const chat = document.getElementById('zoiris-chatbox');
-      const fab = document.getElementById('zoiris-fab');
-
-      if (!signedIn) {
-        document.getElementById('zoiris-signin').style.display = 'flex';
-        return;
-      }
-
-      if (chat.style.display === 'flex') {
-        chat.style.display = 'none';
-        fab.classList.remove("active");
-      } else {
-        chat.style.display = 'flex';
-        fab.classList.add("active");
-      }
-    }
-
-    // &#9989; Handle Sign-in
-    function signInZoiris() {
-      const name = document.getElementById('zoiris-name').value.trim();
-      const contact = document.getElementById('zoiris-contact').value.trim();
-
-      if (name === "" || contact === "") {
-        alert("Please enter your name and phone/email to continue.");
-        return;
-      }
-
-      // Save in localStorage
-      localStorage.setItem("zoirisUser", JSON.stringify({ name, contact }));
-      signedIn = true;
-      document.getElementById('zoiris-signin').style.display = 'none';
-      toggleChat(); // open chat after sign-in
-    }
-
-    // &#9989; Check if user already signed in
-    window.onload = function () {
-      const savedUser = localStorage.getItem("zoirisUser");
-      if (savedUser) {
-        signedIn = true;
-      }
-    };
-
-    function toggleLang(e) {
-      e.stopPropagation();
-      lang = (lang === "en") ? "es" : "en";
-      resetGreeting();
-      updateQuickButtons();
-    }
-
-    function resetGreeting() {
-      const msgBox = document.getElementById('zoiris-messages');
-      msgBox.innerHTML = (lang === "en")
-        ? "<p><strong>ZOIRIS:</strong> Hi &#128075; Welcome to ZOIRIS Cleaning Services! How can we help you today?</p>"
-        : "<p><strong>ZOIRIS:</strong> &iexcl;Hola &#128075; Bienvenido a ZOIRIS Cleaning Services! &iquest;C&oacute;mo podemos ayudarte hoy?</p>";
-    }
-
-    function updateQuickButtons() {
-      const quick = document.getElementById('quick-buttons');
-      if (lang === "en") {
-        quick.innerHTML = `
-      <button onclick="quickAsk('What is your phone number?')">&#128222; Phone</button>
-      <button onclick="quickAsk('What is your email?')">&#128231; Email</button>
-      <button onclick="quickAsk('What services do you offer?')">&#129529; Services</button>
-      <button onclick="quickAsk('How can I book an appointment?')">&#128197; Booking</button>
-      <button onclick="quickAsk('What is your price?')">&#128178; Prices</button>
-    `;
-      } else {
-        quick.innerHTML = `
-      <button onclick="quickAsk('&iquest;Cu&aacute;l es su n&uacute;mero de tel&eacute;fono?')">&#128222; Tel&eacute;fono</button>
-      <button onclick="quickAsk('&iquest;Cu&aacute;l es su correo electr&oacute;nico?')">&#128231; Correo</button>
-      <button onclick="quickAsk('&iquest;Qu&eacute; servicios ofrecen?')">&#129529; Servicios</button>
-      <button onclick="quickAsk('&iquest;C&oacute;mo puedo reservar una cita?')">&#128197; Reservar</button>
-      <button onclick="quickAsk('&iquest;Cu&aacute;l es su precio?')">&#128178; Precios</button>
-    `;
-      }
-    }
-
-    function sendZoiris(customText) {
-      const input = document.getElementById('zoiris-input');
-      const msgBox = document.getElementById('zoiris-messages');
-      let text = customText || input.value.trim();
-      if (text !== "") {
-        const userMsg = document.createElement('p');
-        userMsg.innerHTML = "<strong>You:</strong> " + text;
-        msgBox.appendChild(userMsg);
-
-        let reply = "";
-        const q = text.toLowerCase();
-
-        if (lang === "en") {
-          if (q.includes("phone")) reply = "&#128222; <a href='tel:2519308621'>251-930-8621</a>";
-          else if (q.includes("email")) reply = "&#128231; <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
-          else if (q.includes("price")) reply = "&#128178; Our prices vary depending on the service. Contact us for a free personalized quote!";
-          else if (q.includes("book")) reply = "&#128197; You can book in just 3 easy steps on our booking page!";
-          else if (q.includes("location")) reply = "&#128205; We proudly serve Mobile, Alabama and nearby areas.";
-          else if (q.includes("service")) reply = "&#129529; We provide House Cleaning, Office Cleaning, Window Cleaning, and Deep Cleaning.";
-          else reply = "&#9989; You can always reach us at &#128222; <a href='tel:2519308621'>251-930-8621</a> or &#128231; <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
-        } else {
-          if (q.includes("tel&eacute;fono")) reply = "&#128222; <a href='tel:2519308621'>251-930-8621</a>";
-          else if (q.includes("correo")) reply = "&#128231; <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
-          else if (q.includes("precio")) reply = "&#128178; Nuestros precios var&iacute;an seg&uacute;n el servicio. &iexcl;Cont&aacute;ctanos para una cotizaci&oacute;n gratis!";
-          else if (q.includes("reservar")) reply = "&#128197; Puedes reservar en nuestra p&aacute;gina de reservas.";
-          else if (q.includes("ubicaci&oacute;n")) reply = "&#128205; Servimos Mobile, Alabama y &aacute;reas cercanas.";
-          else if (q.includes("servicio")) reply = "&#129529; Ofrecemos Limpieza de Hogar, Oficinas, Ventanas y Limpieza Profunda.";
-          else reply = "&#9989; Siempre puedes llamarnos al &#128222; <a href='tel:2519308621'>251-930-8621</a> o escribirnos a &#128231; <a href='mailto:Zoiriscleaningservices@gmail.com'>Zoiriscleaningservices@gmail.com</a>";
-        }
-
-        setTimeout(() => {
-          const replyMsg = document.createElement('p');
-          replyMsg.innerHTML = "<strong>ZOIRIS:</strong> " + reply;
-          msgBox.appendChild(replyMsg);
-          msgBox.scrollTop = msgBox.scrollHeight;
-        }, 800);
-
-        input.value = "";
-        msgBox.scrollTop = msgBox.scrollHeight;
-      }
-    }
-
-    function quickAsk(text) {
-      sendZoiris(text);
-    }
-
-    function quickAsk(text) {
-      sendZoiris(text);
-    }
-
-
 </body>
+
 </html>
