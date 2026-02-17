@@ -2530,5 +2530,119 @@
 
 
   <!-- Hero Section -->
+
+<script>
+// Contextual Navigation Fix v2
+(function() {
+    'use strict';
+    
+    const currentLocation = 'downtown-mobile';
+    const currentService = 'move-in-out';
+    
+    // List of all services for matching
+    const services = ['commercial-cleaning', 'deep-cleaning', 'house-cleaning', 'move-in-cleaning',
+                     'move-out-cleaning', 'vacation-rental-cleaning', 'airbnb-cleaning',
+                     'post-construction-cleanup', 'carpet-cleaning', 'pressure-washing',
+                     'Detailing-Mobile-AL', 'laundry-services', 'window-cleaning', 'detailing', 'move-in-out'];
+    
+    const locations = ['alabaster', 'albertville', 'anniston', 'athens', 'auburn', 'bay-minette',
+                      'bessemer', 'birmingham', 'calera', 'chelsea', 'cullman', 'daphne',
+                      'dauphin-island', 'decatur', 'dothan', 'downtown-mobile', 'eastern-shore',
+                      'elberta', 'enterprise', 'fairhope', 'florence', 'foley', 'fort-morgan',
+                      'fort-payne', 'gadsden', 'gardendale', 'grand-bay', 'gulf-shores',
+                      'hartselle', 'helena', 'homewood', 'hoover', 'hueytown', 'huntsville',
+                      'loxley', 'madison', 'maid-service-mobile-al', 'midtown-mobile',
+                      'millbrook', 'montgomery', 'mountain-brook', 'muscle-shoals', 'northport',
+                      'opelika', 'orange-beach', 'oxford', 'phenix-city', 'prattville',
+                      'robertsdale', 'saraland', 'satsuma', 'selma', 'semmes', 'spanish-fort',
+                      'summerdale', 'theodore', 'tillmans-corner', 'troy', 'tuscaloosa',
+                      'vestavia-hills', 'west-mobile'];
+    
+    function extractService(href) {
+        // Try to extract service from various href patterns
+        // Pattern 1: /services/service-name/
+        let match = href.match(/\/services\/([^\/]+)\//);
+        if (match) return match[1];
+        
+        // Pattern 2: ../service-name/ (relative)
+        match = href.match(/\.\.\/([\w-]+)\//);
+        if (match && services.includes(match[1])) return match[1];
+        
+        // Pattern 3: /location/service-name/
+        const parts = href.split('/').filter(p => p);
+        if (parts.length === 2 && locations.includes(parts[0]) && services.includes(parts[1])) {
+            return parts[1];
+        }
+        
+        return null;
+    }
+    
+    function extractLocation(href) {
+        // Try to extract location from various href patterns
+        const parts = href.split('/').filter(p => p);
+        
+        // Pattern 1: /location/
+        if (parts.length === 1 && locations.includes(parts[0])) {
+            return parts[0];
+        }
+        
+        // Pattern 2: /location/service/
+        if (parts.length === 2 && locations.includes(parts[0])) {
+            return parts[0];
+        }
+        
+        return null;
+    }
+    
+    function updateNavigationLinks() {
+        // Update all navigation links
+        const navLinks = document.querySelectorAll('nav a[href]');
+        
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            
+            // Skip external links, anchors, and static pages
+            if (!href || href.startsWith('http') || href.startsWith('#') || 
+                href.includes('/about/') || href.includes('/blog/') || 
+                href.includes('/contact/') || href.includes('/Gallery/') ||
+                href.includes('/apply/') || href === '/') {
+                return;
+            }
+            
+            const service = extractService(href);
+            const location = extractLocation(href);
+            
+            // If we're on a location page and this is a service link
+            if (currentLocation && service && !location) {
+                link.setAttribute('href', `/${currentLocation}/${service}/`);
+            }
+            
+            // If we're on a service page (under /services/) and this is a location link
+            if (currentService && !currentLocation && location && !service) {
+                link.setAttribute('href', `/${location}/${currentService}/`);
+            }
+            
+            // If we're on a location-service page
+            if (currentLocation && currentService) {
+                if (service && !location) {
+                    // Service link - keep current location
+                    link.setAttribute('href', `/${currentLocation}/${service}/`);
+                } else if (location && !service) {
+                    // Location link - keep current service
+                    link.setAttribute('href', `/${location}/${currentService}/`);
+                }
+            }
+        });
+    }
+    
+    // Run on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateNavigationLinks);
+    } else {
+        updateNavigationLinks();
+    }
+})();
+</script>
+
 </body>
 </html>
