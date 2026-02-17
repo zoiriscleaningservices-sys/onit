@@ -1,0 +1,249 @@
+================================================================================
+PRIORITY PAGES FOR GOOGLE SEARCH CONSOLE INDEXING
+================================================================================
+
+Instructions:
+1. Go to Google Search Console
+2. Use the URL Inspection tool
+3. Paste each URL below and click 'Request Indexing'
+4. Start with Priority 1 and work your way down
+5. Google limits requests, so spread them over several days if needed
+
+================================================================================
+
+
+================================================================================
+PRIORITY 1
+================================================================================
+
+https://www.zoiriscleaningservices.com/
+  Reason: Homepage - Most important page
+
+
+================================================================================
+PRIORITY 2
+================================================================================
+
+https://www.zoiriscleaningservices.com/services/commercial-cleaning/
+  Reason: Main service page - Commercial Cleaning
+
+https://www.zoiriscleaningservices.com/services/deep-cleaning/
+  Reason: Main service page - Deep Cleaning
+
+https://www.zoiriscleaningservices.com/services/house-cleaning/
+  Reason: Main service page - House Cleaning
+
+https://www.zoiriscleaningservices.com/services/move-in-cleaning/
+  Reason: Main service page - Move In Cleaning
+
+https://www.zoiriscleaningservices.com/services/move-out-cleaning/
+  Reason: Main service page - Move Out Cleaning
+
+https://www.zoiriscleaningservices.com/services/vacation-rental-cleaning/
+  Reason: Main service page - Vacation Rental Cleaning
+
+https://www.zoiriscleaningservices.com/services/airbnb-cleaning/
+  Reason: Main service page - Airbnb Cleaning
+
+https://www.zoiriscleaningservices.com/services/post-construction-cleanup/
+  Reason: Main service page - Post Construction Cleanup
+
+https://www.zoiriscleaningservices.com/services/carpet-cleaning/
+  Reason: Main service page - Carpet Cleaning
+
+https://www.zoiriscleaningservices.com/services/pressure-washing/
+  Reason: Main service page - Pressure Washing
+
+https://www.zoiriscleaningservices.com/services/Detailing-Mobile-AL/
+  Reason: Main service page - Detailing Mobile Al
+
+https://www.zoiriscleaningservices.com/services/laundry-services/
+  Reason: Main service page - Laundry Services
+
+https://www.zoiriscleaningservices.com/services/window-cleaning/
+  Reason: Main service page - Window Cleaning
+
+
+================================================================================
+PRIORITY 3
+================================================================================
+
+https://www.zoiriscleaningservices.com/maid-service-mobile-al/
+  Reason: Major location page - Mobile (Main)
+
+https://www.zoiriscleaningservices.com/downtown-mobile/
+  Reason: Major location page - Downtown Mobile
+
+https://www.zoiriscleaningservices.com/midtown-mobile/
+  Reason: Major location page - Midtown Mobile
+
+https://www.zoiriscleaningservices.com/west-mobile/
+  Reason: Major location page - West Mobile
+
+https://www.zoiriscleaningservices.com/birmingham/
+  Reason: Major location page - Birmingham
+
+https://www.zoiriscleaningservices.com/huntsville/
+  Reason: Major location page - Huntsville
+
+https://www.zoiriscleaningservices.com/montgomery/
+  Reason: Major location page - Montgomery
+
+https://www.zoiriscleaningservices.com/tuscaloosa/
+  Reason: Major location page - Tuscaloosa
+
+https://www.zoiriscleaningservices.com/hoover/
+  Reason: Major location page - Hoover
+
+https://www.zoiriscleaningservices.com/dothan/
+  Reason: Major location page - Dothan
+
+https://www.zoiriscleaningservices.com/daphne/
+  Reason: Major location page - Daphne
+
+https://www.zoiriscleaningservices.com/fairhope/
+  Reason: Major location page - Fairhope
+
+https://www.zoiriscleaningservices.com/spanish-fort/
+  Reason: Major location page - Spanish Fort
+
+https://www.zoiriscleaningservices.com/gulf-shores/
+  Reason: Major location page - Gulf Shores
+
+https://www.zoiriscleaningservices.com/orange-beach/
+  Reason: Major location page - Orange Beach
+
+https://www.zoiriscleaningservices.com/foley/
+  Reason: Major location page - Foley
+
+https://www.zoiriscleaningservices.com/saraland/
+  Reason: Major location page - Saraland
+
+https://www.zoiriscleaningservices.com/theodore/
+  Reason: Major location page - Theodore
+
+https://www.zoiriscleaningservices.com/semmes/
+  Reason: Major location page - Semmes
+
+https://www.zoiriscleaningservices.com/bay-minette/
+  Reason: Major location page - Bay Minette
+
+
+================================================================================
+PRIORITY 4
+================================================================================
+
+https://www.zoiriscleaningservices.com/about/
+  Reason: Main page - About Us
+
+https://www.zoiriscleaningservices.com/contact/
+  Reason: Main page - Contact
+
+https://www.zoiriscleaningservices.com/blog/
+  Reason: Main page - Blog
+
+https://www.zoiriscleaningservices.com/Gallery/
+  Reason: Main page - Gallery
+
+https://www.zoiriscleaningservices.com/apply/
+  Reason: Main page - Careers/Apply
+
+
+================================================================================
+PRIORITY 5
+================================================================================
+
+https://www.zoiriscleaningservices.com/maid-service-mobile-al/airbnb-cleaning/
+  Reason: High-value combo - Airbnb Cleaning in Maid Service Mobile Al
+
+https://www.zoiriscleaningservices.com/maid-service-mobile-al/deep-cleaning/
+  Reason: High-value combo - Deep Cleaning in Maid Service Mobile Al
+
+https://www.zoiriscleaningservices.com/maid-service-mobile-al/house-cleaning/
+  Reason: High-value combo - House Cleaning in Maid Service Mobile Al
+
+https://www.zoiriscleaningservices.com/maid-service-mobile-al/commercial-cleaning/
+  Reason: High-value combo - Commercial Cleaning in Maid Service Mobile Al
+
+https://www.zoiriscleaningservices.com/maid-service-mobile-al/move-in-out/
+  Reason: High-value combo - Move In Out in Maid Service Mobile Al
+
+https://www.zoiriscleaningservices.com/daphne/airbnb-cleaning/
+  Reason: High-value combo - Airbnb Cleaning in Daphne
+
+https://www.zoiriscleaningservices.com/daphne/deep-cleaning/
+  Reason: High-value combo - Deep Cleaning in Daphne
+
+https://www.zoiriscleaningservices.com/daphne/house-cleaning/
+  Reason: High-value combo - House Cleaning in Daphne
+
+https://www.zoiriscleaningservices.com/daphne/commercial-cleaning/
+  Reason: High-value combo - Commercial Cleaning in Daphne
+
+https://www.zoiriscleaningservices.com/daphne/move-in-out/
+  Reason: High-value combo - Move In Out in Daphne
+
+https://www.zoiriscleaningservices.com/fairhope/airbnb-cleaning/
+  Reason: High-value combo - Airbnb Cleaning in Fairhope
+
+https://www.zoiriscleaningservices.com/fairhope/deep-cleaning/
+  Reason: High-value combo - Deep Cleaning in Fairhope
+
+https://www.zoiriscleaningservices.com/fairhope/house-cleaning/
+  Reason: High-value combo - House Cleaning in Fairhope
+
+https://www.zoiriscleaningservices.com/fairhope/commercial-cleaning/
+  Reason: High-value combo - Commercial Cleaning in Fairhope
+
+https://www.zoiriscleaningservices.com/fairhope/move-in-out/
+  Reason: High-value combo - Move In Out in Fairhope
+
+https://www.zoiriscleaningservices.com/gulf-shores/airbnb-cleaning/
+  Reason: High-value combo - Airbnb Cleaning in Gulf Shores
+
+https://www.zoiriscleaningservices.com/gulf-shores/deep-cleaning/
+  Reason: High-value combo - Deep Cleaning in Gulf Shores
+
+https://www.zoiriscleaningservices.com/gulf-shores/house-cleaning/
+  Reason: High-value combo - House Cleaning in Gulf Shores
+
+https://www.zoiriscleaningservices.com/gulf-shores/commercial-cleaning/
+  Reason: High-value combo - Commercial Cleaning in Gulf Shores
+
+https://www.zoiriscleaningservices.com/gulf-shores/move-in-out/
+  Reason: High-value combo - Move In Out in Gulf Shores
+
+https://www.zoiriscleaningservices.com/birmingham/airbnb-cleaning/
+  Reason: High-value combo - Airbnb Cleaning in Birmingham
+
+https://www.zoiriscleaningservices.com/birmingham/deep-cleaning/
+  Reason: High-value combo - Deep Cleaning in Birmingham
+
+https://www.zoiriscleaningservices.com/birmingham/house-cleaning/
+  Reason: High-value combo - House Cleaning in Birmingham
+
+https://www.zoiriscleaningservices.com/birmingham/commercial-cleaning/
+  Reason: High-value combo - Commercial Cleaning in Birmingham
+
+https://www.zoiriscleaningservices.com/birmingham/move-in-out/
+  Reason: High-value combo - Move In Out in Birmingham
+
+https://www.zoiriscleaningservices.com/huntsville/airbnb-cleaning/
+  Reason: High-value combo - Airbnb Cleaning in Huntsville
+
+https://www.zoiriscleaningservices.com/huntsville/deep-cleaning/
+  Reason: High-value combo - Deep Cleaning in Huntsville
+
+https://www.zoiriscleaningservices.com/huntsville/house-cleaning/
+  Reason: High-value combo - House Cleaning in Huntsville
+
+https://www.zoiriscleaningservices.com/huntsville/commercial-cleaning/
+  Reason: High-value combo - Commercial Cleaning in Huntsville
+
+https://www.zoiriscleaningservices.com/huntsville/move-in-out/
+  Reason: High-value combo - Move In Out in Huntsville
+
+
+================================================================================
+Total pages in this list: 69
+================================================================================
